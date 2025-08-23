@@ -22,6 +22,30 @@ Alternatively, you can manually browse the reports by clicking on the thumbnails
 
 ---
 
+## 🧬 Agents功能 / Therapeutic Agents Analysis
+
+FigureYa提供了完整的**therapeutic agents (治疗性药物)分析功能**，用于药物发现、靶点分析和作用机制研究。
+
+FigureYa provides comprehensive **therapeutic agents analysis functionality** for drug discovery, target analysis, and mechanism of action studies.
+
+### 🚀 快速开始 / Quick Start
+- **[快速入门指南](docs/Agents_Quick_Start.md)** - 5分钟了解Agents功能
+- **[完整使用指南](docs/Agents_Functionality_Guide.md)** - 详细功能说明和最佳实践  
+- **[教程示例](docs/Agents_Tutorial_Example.R)** - 可运行的R代码示例
+
+### 🎯 核心模块 / Core Modules
+- **FigureYa131CMap_update**: CMap连接性图谱分析
+- **FigureYa213customizeHeatmap**: 多源证据药物筛选  
+- **FigureYa212drugTargetV2**: 药物靶点敏感性分析
+
+### 📋 典型应用 / Applications
+- 🔍 **Drug Discovery**: 基于基因表达寻找候选药物
+- 🎯 **Precision Medicine**: 个性化药物敏感性预测
+- 🧬 **Mechanism Studies**: 药物作用机制和靶点分析
+- 📈 **Drug Repurposing**: 现有药物的新适应症发现
+
+---
+
 ## 📦 Getting the Code and Data
 
 You have two options for accessing the files.
