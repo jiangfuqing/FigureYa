@@ -16,8 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Requirement Description
 I would like to crowdsource the calculation method for Figure 1c in the article. FigureYa182RFSurv selected genes with relatively high importance, followed by conventional methods like multicox to further reduce the number of genes. However, this paper describes a different approach—selecting the model from 1,023 combinations based on the log-rank p-value of the Kaplan-Meier (KM) analysis and the number of genes, which is a distinct style.
 
-
-
 ![](example.png)
 
 出自<https://onlinelibrary.wiley.com/doi/abs/10.1002/jcp.28600>
@@ -48,14 +46,10 @@ options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("randomForestSRC")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 load package
  
@@ -94,7 +88,6 @@ brca.mRNA.expr.txt and brca.lncRNA.expr.txt, gene expression matrix.
 brca.surv.txt. Clinical information.
 
 The original text had only 99 samples. We have 180 samples here.
-
 
 ![](method.PNG)
 

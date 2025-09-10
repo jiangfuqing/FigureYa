@@ -35,8 +35,6 @@ Fig. 3 | Neutrophil heterogeneity and functional validation in humans.
 b, Tissue preference of neutrophil clusters in humans, revealed by
 **Ro/e (ratio of observed cell number to expected cell number)**.
 
-
-
 类似的图：
 
 Similar figure:
@@ -78,9 +76,6 @@ For more single-cell analysis visualization tools from FigureYa: <https://k.yous
 source("install_dependencies.R")
 ```
 
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 # Requirements Description
 
 使用国内镜像安装包。

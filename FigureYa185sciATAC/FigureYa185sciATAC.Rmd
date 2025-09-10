@@ -83,10 +83,6 @@ devtools::install_github('cole-trapnell-lab/leidenbase')
 devtools::install_github('cole-trapnell-lab/monocle3')
 ```
 
-
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 加载包
 Loading package
 

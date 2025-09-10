@@ -51,14 +51,10 @@ reticulate::py_install("magic-impute") # this will install py packages: `magic` 
 install.packages("Rmagic") # R interface for magic package
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 
 ```{r}
@@ -171,7 +167,6 @@ dremi.res <- CalculateKnnDREMI(imputed.matrix = imputed.matrix,
 write.table(dremi.res$dremi, "tmp.data/PLCG2.DREMI.tsv", row.names = F, sep = "\t", quote = F)
 ```
 
-
 # 开始画图
 
 复现文中的S3E
@@ -225,7 +220,6 @@ clusters <- dendextend::cutree(hc, k = 3) # dendextend::cutree()
 hc <- dendextend::color_branches(hc, k = 3, col = ggsci::pal_d3("category20")(20))
 plot(hc)
 ```
-
 
 自定义函数，Hanning filter function
 

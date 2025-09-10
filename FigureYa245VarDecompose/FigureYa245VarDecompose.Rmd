@@ -74,14 +74,10 @@ options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages(c("foreach", "doParallel"))
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 load packages
 
@@ -180,7 +176,6 @@ data$Tissue <- factor(data$Tissue) # Tissue should be factor for LMM model
 data$Species <- factor(data$Species) # Species should be factor for LMM model 
 head(data)
 ```
-
 
 # 3) 批量对每个基因构建线性混合模型(LMM)，并计算物种和组织两个随机效应分别对基因表达方差的贡献
 # 3) Construct a linear mixed model (LMM) for each gene in batches, and calculate the contribution of two random effects of species and tissue to gene expression variance, respectively

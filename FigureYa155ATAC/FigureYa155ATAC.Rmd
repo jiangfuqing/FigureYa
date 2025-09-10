@@ -65,14 +65,10 @@ BiocManager::install("DESeq2")
 BiocManager::install("ChIPseeker")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 Load package
 

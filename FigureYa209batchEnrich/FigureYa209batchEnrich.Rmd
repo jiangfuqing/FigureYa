@@ -70,14 +70,10 @@ install.packages("shadowtext")
 install.packages("ggstance")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 load packages
 
@@ -144,7 +140,6 @@ keep_category <- function(em_ORA, n) {
     } 
     return(keep)
 }
-
 
 enrich_filter <- function(em_result, showCategory) {
     keep <- keep_category(em_result, showCategory)

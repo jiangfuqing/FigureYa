@@ -45,14 +45,10 @@ install.packages("randomForest")
 install.packages("survival")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 Loading package
 
@@ -124,7 +120,6 @@ cox.pcutoff <- 0.001
 Coxoutput.OS <- NULL
 for (i in 1:nrow(exp)) {
   display.progress(index = i,totalN = nrow(exp)) # 显示进度   # shows progress
-
 
   
   # 产生临时变量存储生存以及变量表达值

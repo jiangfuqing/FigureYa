@@ -49,14 +49,10 @@ BiocManager::install("monocle")
 install.packages("https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz",repos = NULL)
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 
@@ -228,7 +224,6 @@ p
 # p <- p +  scale_color_gradientn(colours = rev(c("grey80", "yellow", "red")))
 
 ggsave("trajectory_pseudotime.pdf", plot = p, width = 7, height = 5)
-
 
 p <- plot_cell_trajectory(cds.object, color_by = "State")+
   theme(legend.position = "right")

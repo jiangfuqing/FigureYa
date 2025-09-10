@@ -53,14 +53,10 @@ install.packages("ImmuLncRNA_0.1.0.tar.gz", repos = NULL, type = "source")
 install.packages("estimate")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 Load package
 
@@ -462,7 +458,6 @@ p
 
 ggsave("ImmuLncRNA.pdf", width = 5, height = 8)
 ```
-
 
 ```{r}
 sessionInfo()

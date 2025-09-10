@@ -48,14 +48,10 @@ options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("survcomp")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 load packages
 
@@ -129,8 +125,6 @@ expr <- expr[,apply(expr, 2, function(x) sum(x == 0) < pct * nrow(expr))]
 # 4. 防止基因名出错
 # 4. Prevent gene name errors
 colnames(expr) <- make.names(colnames(expr))
-
-
 
 ## 加载免疫基因集
 ## Load the immune gene set

@@ -15,5 +15,3 @@ if(!require(pbapply)){
 if(!require(survivalROC)){ 
   install.packages("survivalROC")
 } else {library(survivalROC)}
-Sys.setenv(LANGUAGE = "en") 
-options(stringsAsFactors = FALSE)

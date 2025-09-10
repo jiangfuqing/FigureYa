@@ -3,5 +3,4 @@
 
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 install.packages("devtools")
-library(devtools)
 install_github("ebecht/MCPcounter",ref="master", subdir="Source")

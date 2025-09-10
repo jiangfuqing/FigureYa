@@ -54,21 +54,16 @@ For more pancancer analysis and visualization resources, visit: <https://k.yoush
 
 Using domestic mirrors for package installation.
 
-
 ```{r eval=FALSE}
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("maftools")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 

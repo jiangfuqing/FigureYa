@@ -48,14 +48,10 @@ install.packages("tidyverse")
 install.packages("haven")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 Load package
 
@@ -226,7 +222,6 @@ p1 <- ggplot(data = pattern.dat, aes(x = context, y = value,
    ggtitle(paste0("Mutation signatures in ", ncol(nmf_res$contribution),
                   " muscle-invasive TCGA bladder cancers")) + 
   theme(plot.title = element_text(hjust = 0.5, size = rel(1.5)))
-
 
 ## Figure 1B
 # 按照突变数目排序

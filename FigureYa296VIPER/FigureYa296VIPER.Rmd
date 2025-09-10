@@ -76,14 +76,10 @@ BiocManager::install("mixtools")
 BiocManager::install("viper")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 
@@ -265,7 +261,6 @@ regulon <- aracne2regulon(afile = file.path(res.path, "output_aracne.adj.txt"),
 ### Reading regulon takes significant time, can be saved in Result/ folder after reading
 #saveRDS(regulon, file.path(res.path, "regulon.rds"))
 
-
 ## 使用msVIPER进行主调控因子分析
 ## Master Regulator Analysis performed by msVIPER 
 ## ----------------------------------------------
@@ -304,7 +299,6 @@ pdf(file.path(fig.path, "Target for each TF.pdf"))
 plot(mrs, cex = .7)
 invisible(dev.off())
 
-
 ## Leading-edge分析
 ## Leading-edge analysis
 
@@ -321,7 +315,6 @@ mrs.tab$p.adj <- p.adjust(mrs.tab$p.value, method = "BH")
 # Leading targets cannot be written to txt, can choose xlsx or rds format
 write.table(mrs.tab, file = file.path(res.path, "ouput_mrs.txt"), quote = F)
 
-
 ## msVIPER扩展分析 
 ## Beyond msVIPER  
 ## ------------------------------------------------------------------
@@ -337,7 +330,6 @@ mrs.boot <- bootstrapmsviper(mrs.boot, "mode")
 pdf(file.path(fig.path, "Target for each TF (bootstap).pdf"))
 plot(mrs.boot, cex = .7)
 invisible(dev.off())
-
 
 ### Shadow analysis
 ### 寻找调控网络间的阴影对
@@ -368,13 +360,11 @@ mrs.synergy <- msviperSynergy(mrs.synergy, verbose = TRUE)
 summary(mrs.synergy)
 mrs.synergy$es$synergy
 
-
 # msVIPER图展示共调控regulon在生发中心反应基因表达特征中的富集结果
 # msVIPER plot showing the results for the enrichment of co-regulons on the germinal center reaction gene expression signature
 pdf(file.path(fig.path, "Target for each TF(Co-regulon).pdf"))
 plot(mrs.synergy, mrs = 25, cex = .7)
 invisible(dev.off())
-
 
 ## 活性分数分析
 ## Activity Score 

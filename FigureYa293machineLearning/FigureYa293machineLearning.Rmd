@@ -92,18 +92,10 @@ library(devtools)
 install_github("binderh/CoxBoost")
 ```
 
-
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 
@@ -320,7 +312,6 @@ fit <- rfsrc(Surv(OS.time, OS)~., data = est_dd,
              proximity = T,
              forest = T,
              seed = seed)
-
 
 vimp_result <- vimp(fit, importance = "permute")  
 importance_scores <- vimp_result$importance

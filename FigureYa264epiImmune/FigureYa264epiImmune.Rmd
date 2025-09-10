@@ -77,7 +77,6 @@ options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages(c("ggcorrplot", "ggprism"))
 
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
@@ -93,10 +92,6 @@ BiocManager::install("quantiseqr")
 remotes::install_github("icbi-lab/immunedeconv")
 ```
 
-
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 # 加载包
 # Loading packages
 

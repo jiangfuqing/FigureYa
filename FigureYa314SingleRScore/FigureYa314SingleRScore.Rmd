@@ -62,14 +62,10 @@ options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("Matrix")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 
@@ -215,7 +211,6 @@ plot.data <- CalScore(GetAssayData(seu, layer = "data"), sig.gene)
 # 如果emat使用原始表达矩阵，则得分宜用对数化
 # If using log-normalized data, scores don't need log-transformation
 # If using raw counts, scores should be log-transformed
-
 
 ## 打分策略二：AUCell
 ## Scoring Method 2: AUCell

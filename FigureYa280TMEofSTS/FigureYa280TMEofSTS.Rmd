@@ -58,14 +58,10 @@ library(devtools)
 install_github("ebecht/MCPcounter",ref="master", subdir="Source")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 
@@ -301,7 +297,6 @@ annCol$Disease <- sapply(annCol$Disease,function(x) {
          "Fibromatous Neoplasms" = "FN",
          "Soft Tissue Tumors and Sarcomas, NOS" = "STT or STS",
          "Synovial-like Neoplasms" = "SLN")})
-
 
 # 设置Disease的因子水平
 # Set factor levels for Disease

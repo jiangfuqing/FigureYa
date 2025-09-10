@@ -4,5 +4,4 @@
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("PMAPscore")
-browseVignettes("PMAPscore")
 BiocManager::install("SPIA")

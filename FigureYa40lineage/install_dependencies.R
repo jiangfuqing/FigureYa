@@ -3,9 +3,3 @@
 
 #options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))  # 设置CRAN镜像为清华源 | Set CRAN mirror to Tsinghua source
 #options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")  # 设置Bioconductor镜像为中科大源 | Set Bioconductor mirror to USTC source
-if ( ! require(monocle)) BiocInstaller::biocLite("monocle")
-if ( ! require(DDRTree)) BiocInstaller::biocLite("DDRTree")
-if ( ! require(pheatmap)) BiocInstaller::biocLite("pheatmap")
-library(monocle)
-library(DDRTree)
-library(pheatmap)

@@ -3,5 +3,4 @@
 
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-library(devtools)
 install_github("Gibbsdavidl/ImmuneSubtypeClassifier")

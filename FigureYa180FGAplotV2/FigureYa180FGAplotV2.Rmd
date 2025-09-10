@@ -58,14 +58,10 @@ options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 install.packages(c("stringr", "magrittr", "ggplot2","patchwork","Rmisc","Cairo"))
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 Loading package
 
@@ -380,7 +376,6 @@ p2 <- ggplot(tableGL, aes(x = subgroup,
   scale_y_continuous(limits = c(-mar(tableGL[tableGL$class=='FGG',]),mar(tableGL[tableGL$class=='FGL',])),breaks =seq(-0.5,0.5,gap),
                      labels=abs(seq(-0.5,0.5,gap)),expand = c(0.01,0),
                      name  = "FGG or FGL (Fraction of Genome Gained or lost)")
-
 
 p4 <- p2+ 
   facet_grid(rows = vars(group),scales = "free_y",space = "free_y",switch = "y")+

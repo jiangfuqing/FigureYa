@@ -21,7 +21,6 @@ Reproduce the result graph in the article
 出自<https://doi.org/10.1016/j.immuni.2018.03.023>
 From <https://doi.org/10.1016/j.immuni.2018.03.023>
 
-
 Figure 1. Immune Subtypes in Cancer (A) Expression signature modules and identification of immune subtypes. 
 
 - Top: Consensus clustering of the pairwise correlation of cancer immune gene expression signature scores (rows and columns). Five modules of shared associations are indicated by boxes. 
@@ -53,14 +52,10 @@ library(devtools)
 install_github("Gibbsdavidl/ImmuneSubtypeClassifier")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 Loading the package
 

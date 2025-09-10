@@ -7,11 +7,3 @@
 #if (!requireNamespace("BiocManager", quietly = TRUE))
     #install.packages("BiocManager")
 #BiocManager::install("sigFeature", version = "3.8") 
-library(tidyverse)
-library(glmnet)
-source('msvmRFE.R')   #文件夹内自带 it comes with it in the folder
-library(VennDiagram)
-library(sigFeature)
-library(e1071)
-library(caret)
-library(randomForest)

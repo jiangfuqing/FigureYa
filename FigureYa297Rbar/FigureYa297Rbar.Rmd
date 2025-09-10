@@ -78,10 +78,6 @@ remotes::install_github("coolbutuseless/ggpattern")
 install.packages("magick")
 ```
 
-
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 # 加载包
 # Loading packages
 

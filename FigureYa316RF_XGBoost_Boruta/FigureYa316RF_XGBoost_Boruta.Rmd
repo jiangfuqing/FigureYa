@@ -79,7 +79,6 @@ Boruta
 - Figure 5K，可参考FigureYa131CMap<https://k.youshop10.com/7kOjUwPe>
 - Figure 6D，可参考FigureYa102multipanelROC<https://k.youshop10.com/7bYkTnXu>
 
-
 Figure S2 displays the results of four algorithms (LASSO, XGBoost, Random Forest [RF], and Boruta), while the Methods section describes five algorithms (LASSO, SVM-RFE, XGBoost, RF, and Boruta).
 
 This represents our first crowdfunding initiative for XGBoost implementation. FigureYa65SVM has already covered the first two algorithms (LASSO and SVM-RFE), while this document implements the remaining three (XGBoost, RF, and Boruta).
@@ -130,9 +129,6 @@ In addition, the FigureYa we have crowdfunded can realize several of the images 
 source("install_dependencies.R")
 ```
 
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 # Requirements Description
 
 使用国内镜像安装包。
@@ -144,7 +140,6 @@ options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("randomForest")
 ```
-
 
 ```{r}
 # 显示英文报错信息

@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 想众筹按照文中的方法构建基因对预后模型
 
-
 # Requirement Description
 
 I want to crowdfund to construct a gene pair prognostic model according to the method in this paper
@@ -76,18 +75,10 @@ install.packages("matlab")
 install.packages("EnvStats")
 ```
 
-
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 load packages
 

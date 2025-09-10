@@ -71,7 +71,6 @@ We will cover two scenarios to help you successfully complete the analysis:
 - Option 1: Predicting cell type proportions in bulk data **without pre-grouping**.
 - Option 2: Predicting cell type proportions in bulk data **based on pre-grouped cell types**.
 
-
 # 环境设置
 # Environment Setup
 
@@ -87,14 +86,10 @@ devtools::install_github('xuranw/MuSiC')
 BiocManager::install("glmGamPoi")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 # 加载包
 # Loading packages
 
@@ -220,7 +215,6 @@ pdf("DimPlot.celltype.pdf",height = 5,width = 5)
 DimPlot(immune.combined.sct, group.by = "seurat_annotations", label = TRUE) + NoLegend()
 dev.off()
 ```
-
 
 ```{r}
 # 从Seurat对象中提取标准化后的表达矩阵

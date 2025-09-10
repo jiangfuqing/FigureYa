@@ -51,9 +51,6 @@ It's somewhat like consensus clustering, just overly complex. The algorithmic wo
 source("install_dependencies.R")
 ```
 
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 # Requirements Description
 
 运行classpredict包，需要用**windows系统**
@@ -188,7 +185,6 @@ lapply(probe.stat$sets, function(x) summary(probe.stat$pvalue[x]))
 # 探针集rCV总结
 # summary the rCV of the probe set
 lapply(probe.stat$sets, function(x) summary(probe.stat$rCV[x])) 
-
 
 ## 2: 生成24个树状图系列
 ## 2: Generation of a series of 24 dendrograms 
@@ -335,7 +331,6 @@ table(sampleInfo$FinalCluster)
 split(sampleInfo$Sample, sampleInfo$FinalCluster)
 write.table(sampleInfo, file.path(res.path, "output_sampleInfo.txt"), 
             row.names = F, col.names = T, quote = F, sep = "\t")
-
 
 ## 5: 16基因特征
 ## 5: 16 gene signature  

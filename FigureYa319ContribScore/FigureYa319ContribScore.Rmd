@@ -52,14 +52,10 @@ install.packages("Seurat")
 BiocManager::install("SingleR")
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 
 ```{r}

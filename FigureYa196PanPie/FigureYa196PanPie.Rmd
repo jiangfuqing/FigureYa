@@ -37,19 +37,14 @@ f, g Pie charts showing the Chi-squared test of clinicopathologic factors for PR
 Once you understand the mapping between input data and visual outputs, as well as the role of each code block in generating plots, you can adapt this workflow to broader data types.
 Explore additional pan-cancer visualizations here: <https://k.koudai.com/Wi1xos9X> 
 
-
 # 环境设置
 
 使用国内镜像安装包
 
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
 
-```{r install_dependencies}
-source("install_dependencies.R")
-```
 # Environment Configuration
 
 Use domestic mirrors for package installation to accelerate downloads and bypass international network restrictions.
@@ -214,7 +209,6 @@ rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "black") # �
 text((par("usr")[1]+par("usr")[2])/2, # 用par("usr")来获取该画布的绝对位置 # Use par("usr") to get the absolute position of the canvas
      (par("usr")[3]+par("usr")[4])/2,
      "T",cex = 2, col = "white") # 显示图标题  # Displays the title of the diagram
-
 
 #--------------------------------------#
 # 画布区域7-12：绘制High组抬头和扇形图#
@@ -406,7 +400,6 @@ legend("topleft",
        y.intersp = 1,
        text.width = 0.075, # 图例的间隔 # The interval of the legend
        horiz = T) #  horiz = T) # 图例水平放置 # The legend is placed horizontally
-
 
 # 关闭图像句柄
 # Close the image handle

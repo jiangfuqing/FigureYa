@@ -54,7 +54,6 @@ We have crowdfunded many of the images in the examples, such as:
 
 使用国内镜像安装包
 
-
 # Environment settings
 
 Use the domestic mirror installation package
@@ -67,14 +66,10 @@ BiocManager::install("ComparisonSurv")
 install.packages(c("ComparisonSurv", "ggpubr", "survminer", "survRM2"))
 ```
 
-
-
 ```{r install_dependencies}
 source("install_dependencies.R")
 ```
-```{r install_dependencies}
-source("install_dependencies.R")
-```
+
 加载包
 load packages
 
