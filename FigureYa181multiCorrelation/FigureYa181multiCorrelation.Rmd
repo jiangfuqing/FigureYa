@@ -6,6 +6,7 @@ date: "2025-5-20"
 output: html_document
 ---
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -50,8 +51,6 @@ Sometimes we need to show the correlation between two variables of multiple sets
 Use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 ```
 

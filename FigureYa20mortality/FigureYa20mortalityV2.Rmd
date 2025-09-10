@@ -8,6 +8,7 @@ output: html_document
 [<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
