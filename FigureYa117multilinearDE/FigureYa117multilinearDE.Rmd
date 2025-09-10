@@ -64,7 +64,6 @@ The following article discusses in detail the drawbacks of the first approach an
 ```{r}
 source("install_dependencies.R")
 
-# 这将加速Bioconductor包的下载过程（This will speed up the download process of Bioconductor packages）
 ```
 
 加载包

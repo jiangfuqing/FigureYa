@@ -63,16 +63,20 @@ Which regulatory proteins have binding sites that are more similar? Who is more 
 
 ## 环境设置
 
+下载并安装Anaconda发行版，https://www.anaconda.com/distribution/#download-section
 
 用Jupyter notebook打开FigureYa115cofactor.ipynb文档
 
 **用法参考这篇：**<https://mp.weixin.qq.com/s/G-CQhNEJBmMRuDe2kxND_w>
+
+通过bioconda安装intervene, python 2.7环境：
 
 
 **注：**下文以“```bash”开头的代码都要复制粘贴到Terminal里运行（Linux和MAC自带），Windows10用WSL。WSL的用法参考FigureYa111markerGene里的视频<https://share.weiyun.com/56viiqa>，一步一步跟着洲更的演示来操作，就能在Windows系统里用起linux了。
 
 ##Environment settings
 
+Download and install the Anaconda distribution, https://www.anaconda.com/distribution/#download-section
 
 Open the FigureYa115cofactor.ipynb document with Jupyter notebook
 
@@ -83,6 +87,7 @@ Install Interne through Bioconda, Python 2.7 environment:
 **Note: * * The code starting with 'bash' in the following text should be copied and pasted into Terminal to run (Linux and MAC built-in), Windows 10 uses WSI. Refer to the video in FigureYa111markerGene for the usage of WSLs< https://share.weiyun.com/56viiqa >By following Zhou Geng's demonstration step by step, you can start using Linux on the Windows system.
 
 ```bash
+conda install -c bioconda intervene
 ```
 
 

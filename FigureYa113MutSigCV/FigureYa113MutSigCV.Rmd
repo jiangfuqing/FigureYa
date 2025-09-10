@@ -63,7 +63,9 @@ First, prepare the input data required for MutSigCV in R, then infer SMG using M
 
 (Actually, the way Matlab is used is quite simple, easier than R, and more like Excel)
 
+## 安装MutSigCV
 
+第一步：安装Matlab。目前MutSigCV的源码是用Matlab编写的，可前往Matlab网站注册，下载30天试用版：<https://ww2.mathworks.cn/campaigns/products/trials.highResolutionDisplay.html?prodcode=ML>。
 
 第二步：把`MutSigCV.m`文件拷贝到当前文件夹就可以使用了。
 
@@ -73,6 +75,7 @@ Step 1: Install Matlab. At present, the source code of MutSigCV is written in Ma
 
 Step 2: Copy the 'MutSigCV. m' file to the current folder to use.
 
+## 安装并加载画图所需的R包
 
 ##Install and load the R package required for drawing
 

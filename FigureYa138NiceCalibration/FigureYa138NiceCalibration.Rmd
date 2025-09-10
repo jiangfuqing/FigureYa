@@ -56,7 +56,6 @@ Discrimination (discrimination) and Calibration (consistency/calibration) are tw
 
 
 ```r
-# https://github.com/psolymos/ResourceSelection
 ```
 
 加载包
