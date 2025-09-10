@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -47,7 +48,6 @@ head(df)
 ## Start drawing
 
 ```{r,message=FALSE,warning=FALSE}
-#install.packages("pROC")
 library("pROC")
 
 #定义足够多的颜色，后面画线时从这里选颜色

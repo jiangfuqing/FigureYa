@@ -48,6 +48,7 @@ In my personal opinion, such a "relationship" diagram can be used as an annotati
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 设置系统环境语言为英文，用于显示英文报错信息
 # Set system environment language to English for displaying error messages in English
 Sys.setenv(LANGUAGE = "en") 

@@ -69,6 +69,7 @@ Here are three methods:
 ## Environment settings
 
 ```{r}
+source("install_dependencies.R")
 library(fgsea)
 library(clusterProfiler)
 library(enrichplot)

@@ -15,21 +15,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # 环境设置
 
-在终端(Terminal)安装Rmagic
 
 ```{bash}
 git clone https://github.com/KrishnaswamyLab/MAGIC
 cd MAGIC/python
-python setup.py install --user
 cd ../Rmagic
 R CMD INSTALL .
 
-pip install python-libmagic
 ```
 
 加载R包
 
 ```{r}
+source("install_dependencies.R")
 library(Seurat)
 library(tidyverse)
 library(ComplexHeatmap)

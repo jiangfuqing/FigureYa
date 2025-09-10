@@ -40,16 +40,12 @@ Explore additional pan-cancer visualizations here: <https://k.koudai.com/Wi1xos9
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment Configuration
 
-Use domestic mirrors for package installation to accelerate downloads and bypass international network restrictions.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages(c("dplyr", "ggplot2"))
+source("install_dependencies.R")
 ```
 
 加载包

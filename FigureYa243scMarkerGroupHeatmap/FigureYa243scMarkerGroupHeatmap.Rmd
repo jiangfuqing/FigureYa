@@ -29,14 +29,9 @@ D, Gene ontologies of cell-specific differentially expressed genes. The heat map
 
 环境设置 | Environment Setup
 
-使用国内镜像安装包 Install packages using domestic mirrors
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("Seurat")
-devtools::install_github("satijalab/seurat-data")
-install.packages("colorRamps")
+source("install_dependencies.R")
 ```
  
 加载包  Load packages
@@ -59,7 +54,6 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor | prevent chr from conv
 这里用Seurat的数据，便于小伙伴套用在自己的单细胞数据上。 Here we use Seurat’s data to make it convenient for teammates to apply to their own single-cell data.
 
 ```{r}
-# install dataset
 InstallData("ifnb")
 
 # load dataset

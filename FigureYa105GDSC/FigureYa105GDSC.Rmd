@@ -50,21 +50,15 @@ It is also possible to screen drugs with significant differences between groups 
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install(c("car", "ridge", "preprocessCore", "genefilter", "sva"))
 ```
 
 GDSC数据库里的内容可以用R包pRRophetic来访问和计算。
 
-<!-- 点击链接下载pRRophetic_0.5.tar.gz：<https://osf.io/dwzce/?action=download>，然后本地安装。 -->
 # 上述链接的R包有误，有问题，如要用pRRophetic包请用果子公众号更新维护版本<https://github.com/ixxmu/mp_duty/issues/2691>
 #The R package of the above link is incorrect. If you want to use the pRRophic package, please update the maintenance version with the fruit official account< https://github.com/ixxmu/mp_duty/issues/2691 >
 
@@ -72,12 +66,11 @@ GDSC数据库里的内容可以用R包pRRophetic来访问和计算。
 
 The content in the GDSC database can be accessed and calculated using the R package pRRophetic.
 
-Click on the link to download pRRophetic_0.5.tar.gz:< https://osf.io/dwzce/?action=download >Then install it locally.
 
 Load Package
 
 ```{r}
-install.packages("./pRRophetic 2/resource/pRRophetic_Guozi/", repos = NULL,type = "source")
+source("install_dependencies.R")
 # 加载pRRophetic包，用于药物反应预测和分析
 # Load the pRRophetic package for drug response prediction and analysis
 library(pRRophetic)

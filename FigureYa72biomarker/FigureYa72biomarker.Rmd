@@ -39,17 +39,10 @@ Ref: Robert Tibshirani, Trevor Hastie, Balasubramanian Narasimhan, and Gilbert C
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ## Environment settings
 
-Installation of packages using domestic mirrors
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("pamr")
-install.packages('R.utils') # required by data.table::fread to read gipped file
-install.packages("data.table")
 ```
 
 加载包
@@ -57,6 +50,7 @@ install.packages("data.table")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载PAMR包 - 用于微阵列数据分类分析 / Load PAMR package - for microarray data classification
 library(pamr)  
 

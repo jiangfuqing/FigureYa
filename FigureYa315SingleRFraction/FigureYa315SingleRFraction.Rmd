@@ -54,14 +54,10 @@ For Figure S5B of the same paper (Stratification of cDC transcriptomes by scores
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("SingleR")
+source("install_dependencies.R")
 ```
 
 # 加载包

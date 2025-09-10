@@ -41,16 +41,11 @@ For the case where the read count expression matrix is used as input, if your da
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("DESeq2")
 ```
 
 加载包
@@ -58,6 +53,7 @@ BiocManager::install("DESeq2")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载DESeq2包，用于差异表达基因分析
 # Load the DESeq2 package for differential gene expression analysis
 library(DESeq2)

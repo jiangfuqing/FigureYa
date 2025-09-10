@@ -73,16 +73,11 @@ $ATAC-seq_peak
   
 ## 环境设置
 
-使用国内镜像安装包
 
 ## Environment settings
 
-Installation of packages using domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("rentrez")
 ```
 
 加载包
@@ -90,6 +85,7 @@ install.packages("rentrez")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载rentrez包，用于访问NCBI数据库进行文献检索和数据获取
 # Load the rentrez package for accessing NCBI databases for literature retrieval and data acquisition
 library(rentrez)

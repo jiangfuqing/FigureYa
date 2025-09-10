@@ -38,13 +38,9 @@ This method can help determine whether an observed event is a low-probability ev
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
-Use a domestic mirror to install the package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if(!require('cgdsr')) install.packages("cgdsr") # cdgsr package @ http://www.cbioportal.org/rmatlab
+source("install_dependencies.R")
 ```
 
 加载包

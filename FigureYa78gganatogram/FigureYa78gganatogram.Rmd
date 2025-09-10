@@ -40,8 +40,7 @@ Reply to "organ" on Xiaoya Pictorial official account for more information.
 ##Environment settings
 
 ```{r}
-# 安装gganatogram包（从GitHub安装，当前行被注释掉） | Install the gganatogram package (from GitHub, current line is commented out)
-#devtools::install_github("jespermaag/gganatogram")
+source("install_dependencies.R")
 
 # 加载gganatogram包，用于绘制器官图 | Load the gganatogram package for plotting anatomical diagrams
 library(gganatogram)

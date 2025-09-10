@@ -8,6 +8,7 @@ output: html_document
 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
 knitr::opts_chunk$set(echo = TRUE)
@@ -35,40 +36,24 @@ from<https://www.cell.com/cell/abstract/S0092-8674(17)30596-2>
 
 Cell lineage analysis is mainly used for single-cell sequencing data, displaying the pseudotime arrangement of cells in a two-dimensional state space, that is, how a group of cells become another group of cells.
 
-## 软件安装
 
 细胞谱系分析目前用到的包主要是[Monocle2](https://bioconductor.org/packages/release/bioc/html/monocle.html)
 
-`monocle`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像. 
 
-CRAN镜像备选
 
-- 国科大: <https://mirrors.ustc.edu.cn/CRAN/>
-- 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
-- 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
-##Software installation
 
 The packages currently used for cell lineage analysis are mainly [Monocle2]（ https://bioconductor.org/packages/release/bioc/html/monocle.html )
 
-`Monocle needs to be installed through biocLite. If the speed is slow, remove the # from the # options (...) code below, and a domestic image will be used  
 
 CRAN image backup
 
--University of Science and Technology of China:< https://mirrors.ustc.edu.cn/CRAN/ >
--Tongji University:< https://mirrors.tongji.edu.cn/CRAN/ >
--Lanzhou University:< https://mirror.lzu.edu.cn/CRAN/ >
 
 ```{r, message=FALSE, warning=FALSE}
 #source("https://bioconductor.org/biocLite.R")  # 加载Bioconductor包管理器 | Load Bioconductor package manager
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))  # 设置CRAN镜像为清华源 | Set CRAN mirror to Tsinghua source
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")  # 设置Bioconductor镜像为中科大源 | Set Bioconductor mirror to USTC source
 
-# 检查并安装monocle包：用于单细胞RNA-seq数据分析的轨迹推断工具 | Check and install monocle package: Trajectory inference tool for single-cell RNA-seq data analysis
 if ( ! require(monocle)) BiocInstaller::biocLite("monocle")
-# 检查并安装DDRTree包：用于降维和轨迹推断的算法实现 | Check and install DDRTree package: Algorithm implementation for dimensionality reduction and trajectory inference
 if ( ! require(DDRTree)) BiocInstaller::biocLite("DDRTree")
-# 检查并安装pheatmap包：用于生成高质量热图的可视化工具 | Check and install pheatmap package: Visualization tool for generating high-quality heatmaps
 if ( ! require(pheatmap)) BiocInstaller::biocLite("pheatmap")
 
 # 加载monocle包 | Load the monocle package

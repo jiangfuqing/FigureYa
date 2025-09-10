@@ -36,13 +36,10 @@ Scenario 2: Multi-dimensional data information display
 # 环境设置
 # environment setting
 
-使用国内镜像安装包
 
-use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 
 ```
 

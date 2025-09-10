@@ -39,17 +39,13 @@ UMAP, one of the three mainstream latitude reduction methods. the advantage of U
 
 ## 环境设置
 
-先查看install_UMAP.md，安装anaconda和UMAP和添加环境变量。
 
-> Windows系统根据提供的视频“Windows10-UMAP安装.mov”进行软件安装和检查
 
 Mac系统这样添加环境变量：
 
 ## Environment Setup
 
-First check install_UMAP.md to install anaconda and UMAP and add environment variables.
 
-> Windows systems install and check the software according to the provided video “Windows10-UMAP installation.mov”
 
 Mac systems add environment variables like this:
 
@@ -59,20 +55,16 @@ Sys.getenv("PATH"="/anaconda3/bin/") #如果不在的话，需要将其加入环
 Sys.getenv("PATH") #再次检查
 ```
 
-使用国内镜像安装包
 
-Installation of packages using domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("Seurat")
 ```
 
 加载包
 
 library pacakges
 ```{r}
+source("install_dependencies.R")
 # 加载Seurat包 - 用于单细胞RNA测序数据分析
 # Load the Seurat package - for single-cell RNA sequencing data analysis
 library(Seurat)

@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -31,7 +32,6 @@ Find the best grouping when showing the impact of gene expression level (continu
 A file containing three columns of gene expression levels, survival time, and tracking, the file used for testing is dsg1.txt
 
 ```{r,message=FALSE,warning=FALSE}
-#install.packages(c("survival","survminer","ggplot2"))
 library(survival)
 library("survminer")
 library(ggplot2)

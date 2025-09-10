@@ -51,16 +51,14 @@ For more pancancer analysis plotting FigureYa see here <https://k.youshop10.com/
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation packages
 
 ```{r}
+source("install_dependencies.R")
 options(download.file.method = 'libcurl')
 options(url.method='libcurl')
-BiocManager::install("clusterProfiler")
 ```
 
 加载包

@@ -58,27 +58,18 @@ Many of the figures in the example article were crowdfunded, for example:
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
-Use a domestic mirror to install the package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("Biobase")
-BiocManager::install("GSVA")
-BiocManager::install("ComplexHeatmap")
+source("install_dependencies.R")
 
 library(utils)
 rforge <- "http://r-forge.r-project.org"
-install.packages("estimate", repos=rforge, dependencies=TRUE)
-install.packages("R.utils")
 ```
 
 加载包Load the package
 
 ```{r}
 library(GSVA)
-library(ComplexHeatmap) # 用到里面的pheatmap画图然后拼图，需安装2.8以上版本的ComplexHeatmap # Use the pheatmap function to plot and then assemble the image. You must have ComplexHeatmap version 2.8 or later installed.
 source("pheatmap_translate.R") # 如果不想放弃较老版本的R及其对应的老ComplexHeatmap，可以只加载新版ComplexHeatmap里的这个函数，该脚本出自2.9.4版ComplexHeatmap # If you don't want to abandon an older version of R and its corresponding ComplexHeatmap, you can just load this function from the newer ComplexHeatmap version. This script is from ComplexHeatmap version 2.9.4.
 library(circlize)
 library(viridis)

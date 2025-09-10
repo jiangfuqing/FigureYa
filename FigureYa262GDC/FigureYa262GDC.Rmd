@@ -44,13 +44,10 @@ The visualization of TCGA pancancer mutation data can be achieved by providing t
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

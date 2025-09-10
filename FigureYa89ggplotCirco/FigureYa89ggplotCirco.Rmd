@@ -38,17 +38,11 @@ Use heatmaps, bar charts, and heatmaps on the circle chart to display multiple s
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("readxl", dependencies = TRUE)
-install.packages("xlsx", dependencies = TRUE)
 ```
 
 加载包
@@ -56,6 +50,7 @@ install.packages("xlsx", dependencies = TRUE)
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载数据处理和可视化所需的包
 # Load packages required for data processing and visualization
 library(readxl)      # 用于读取Excel文件 / For reading Excel files

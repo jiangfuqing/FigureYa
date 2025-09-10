@@ -37,15 +37,9 @@ If you also want to add the expression data of a certain gene, and calculate the
 ## 环境设置
 ## environment setting
 
-使用国内镜像安装包
 
-use the domestic mirror installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("TCGAbiolinks")
-install.packages("kableExtra")
 ```
 
 加载包
@@ -53,14 +47,13 @@ install.packages("kableExtra")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(dplyr)
 library(kableExtra)
 ```
 
-你可能还需要安装pdflatex
 
-You may also need to install pdflatex
 
 ## 输入文件的准备
 ## Preparation of input files

@@ -8,6 +8,7 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

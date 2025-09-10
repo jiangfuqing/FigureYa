@@ -49,8 +49,7 @@ LASSO is more suitable for high-dimensional, strongly correlated, and small-samp
 The R package `glmnet` is used, which is the best R package available for fitting generalized linear models, lead by Trevor Hastie, the Stanford statistician who invented `LASSO` regression. 
 
 ```{r,fig.width=8, fig.height=6}
-#install.packages("glmnet")
-#install.packages("survival")
+source("install_dependencies.R")
 library("glmnet")
 library("survival")
 source("nonzeroCoef.R")

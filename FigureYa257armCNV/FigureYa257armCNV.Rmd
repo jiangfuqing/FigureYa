@@ -45,15 +45,12 @@ In addition, for the distribution chart of Figure 5E, 7D, and 9, please refer to
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

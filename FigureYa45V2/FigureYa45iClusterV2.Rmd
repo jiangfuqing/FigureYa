@@ -9,6 +9,7 @@ output: 'html_document'
 ![](hoptop.jpg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
 knitr::opts_chunk$set(echo = TRUE)
@@ -18,7 +19,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 在原来的基础上，增加和修改了如下几处内容：
 
-- 修改了R 3.5.0以后的安装方法(保留低于R 3.5.0之前的安装方法)
 - 增加重要参数的说明
 - 将`iClusterPlus`替换成最新的`iClusterBayes`
 - 增加了结果输出部分，用于调用其他R包做热图
@@ -28,7 +28,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 On the basis of the original, the following contents have been added and modified:
 
--Modified the installation method after R 3.5.0 (retaining the installation method before R 3.5.0)
 -Add an explanation of important parameters
 -Replace 'iClusterPlus' with the latest' iClusterBayes'`
 -Added a result output section for calling other R packages to create heat maps
@@ -94,40 +93,20 @@ One method is to cluster different data types separately and then manually merge
 
 ## 环境准备
 
-### 安装iClusterPlus
 
-`iClusterPlus`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像. 
 
-CRAN镜像备选
 
-- 国科大: <https://mirrors.ustc.edu.cn/CRAN/>
-- 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
-- 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
 ##Environmental preparation
 
 ###Install iClusterPlus
 
-`IClusterPlus needs to be installed through biocLite. If the speed is slow, remove the # from the # options (...) code below, and a domestic image will be used  
 
 CRAN image backup
 
--University of Science and Technology of China:< https://mirrors.ustc.edu.cn/CRAN/ >
--Tongji University:< https://mirrors.tongji.edu.cn/CRAN/ >
--Lanzhou University:< https://mirror.lzu.edu.cn/CRAN/ >
 
 ```{r, message=FALSE, warning=FALSE}
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-# R版本大于3.5.0时的安装方法
 # Installation method for R version > 3.5.0
-if (!requireNamespace("BiocManager"))
-    install.packages("BiocManager")
-# 检查是否安装了iClusterPlus包，若未安装则通过BiocManager安装
-# Check if the iClusterPlus package is installed, if not, install it via BiocManager
-if (!requireNamespace("iClusterPlus"))
-  BiocManager::install("iClusterPlus")
-#R版本小于3.5.0时的安装方法（已注释）
 # Installation method for R version < 3.5.0 (commented out)
 #source("http://bioconductor.org/biocLite.R")
 #biocLite("iClusterPlus")
@@ -141,11 +120,6 @@ library("iClusterPlus")
 ###Other tools
 
 ```{r}
-# 安装DNAcopy和GenomicRanges包（已注释，避免重复安装）
-# Install DNAcopy and GenomicRanges packages (commented to avoid reinstallation)
-#BiocManager::install("DNAcopy")
-#BiocManager::install("GenomicRanges")
-# R < 3.5.0版本的安装方法（已注释）
 # Installation method for R < 3.5.0 (commented out)
 #source("http://bioconductor.org/biocLite.R")
 #biocLite("DNAcopy")

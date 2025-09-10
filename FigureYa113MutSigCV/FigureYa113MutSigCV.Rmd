@@ -63,9 +63,7 @@ First, prepare the input data required for MutSigCV in R, then infer SMG using M
 
 (Actually, the way Matlab is used is quite simple, easier than R, and more like Excel)
 
-## 安装MutSigCV
 
-第一步：安装Matlab。目前MutSigCV的源码是用Matlab编写的，可前往Matlab网站注册，下载30天试用版：<https://ww2.mathworks.cn/campaigns/products/trials.highResolutionDisplay.html?prodcode=ML>。
 
 第二步：把`MutSigCV.m`文件拷贝到当前文件夹就可以使用了。
 
@@ -75,15 +73,11 @@ Step 1: Install Matlab. At present, the source code of MutSigCV is written in Ma
 
 Step 2: Copy the 'MutSigCV. m' file to the current folder to use.
 
-## 安装并加载画图所需的R包
 
 ##Install and load the R package required for drawing
 
 ```{r}
-# 使用国内镜像安装所需的R包 | Use domestic mirror to install required R packages
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-#BiocManager::install("ComplexHeatmap")
+source("install_dependencies.R")
 
 # 加载R包 | Load R packages
 library(tidyverse)      # 数据处理和可视化工具集 | Data processing and visualization toolkit
@@ -396,7 +390,6 @@ dev.off()
 
 # 附：
 
-作者使用的是Matlab R2017a版本，可以自行百度下载破解，也可采用如下百度网盘下载，附破解方法，见文件夹MATLAB R2017a安装方法.pdf。
 链接：https://pan.baidu.com/s/1koGMNmEALL1FmDakNwHa9A 
 提取码：3et5
 
@@ -404,7 +397,6 @@ dev.off()
 
 #Attachment:
 
-The author is using Matlab R2017a version, which can be downloaded and cracked on their own from Baidu, or downloaded from the following Baidu cloud drive. The cracking method is attached and can be found in the MATLAB R2017a installation method. pdf folder.
 Link: https://pan.baidu.com/s/1koGMNmEALL1FmDakNwHa9A  
 Extraction code: 3et5
 

@@ -57,15 +57,12 @@ You need to compare and contrast the presentation from various angles to find th
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 ```
 
 加载包

@@ -32,12 +32,9 @@ This process explores whether the distribution of microenvironment-related signa
 ## 环境设置
 ## Environment settings
 
-使用国内镜像安装包
-Use domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 ```
 
 加载包

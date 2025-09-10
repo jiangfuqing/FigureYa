@@ -56,24 +56,18 @@ reference material:
 
 # 环境设置
 
-安装需要的包
 
 #Environment settings
 
 Install the required packages
 
 ```{r}
-# 使用国内镜像安装包
-# Use domestic mirror to install packages
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-install.packages("devtools")
+source("install_dependencies.R")
 
 # 加载devtools包
 # Load the devtools package
 library(devtools)
-# 从GitHub安装MCPcounter包的master分支
 # Install the master branch of the MCPcounter package from GitHub
-install_github("ebecht/MCPcounter",ref="master", subdir="Source")
 ```
 
 加载需要用到的包

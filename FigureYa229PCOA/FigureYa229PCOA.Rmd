@@ -56,17 +56,12 @@ In practice, if you want to highlight the features you want to show, you need to
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("ape")
-install.packages("usedist")
+source("install_dependencies.R")
 ```
 
 加载包

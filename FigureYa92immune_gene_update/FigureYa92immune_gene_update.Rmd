@@ -63,21 +63,14 @@ Reply "R2" on the "Xiaoya Painting" official account to check the usage of simil
 
 # 环境设置
 
-使用国内镜像安装包
 
 #Environment settings
 
-Use domestic image installation package
 
 ```{r eval=FALSE}
-# 设置CRAN镜像为清华大学镜像源，提高包下载速度（Set CRAN mirror to Tsinghua University source for faster package downloads）
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+source("install_dependencies.R")
 
-# 设置Bioconductor镜像为清华大学镜像源，用于生物信息学相关包的下载（Set Bioconductor mirror to Tsinghua University source for bioinformatics package downloads）
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
-# 安装ggstatsplot包，该包集成了ggplot2和统计测试功能（Install the ggstatsplot package, which integrates ggplot2 and statistical testing functions）
-install.packages("ggstatsplot")
 ```
 
 加载包
@@ -244,7 +237,6 @@ data %>%
   geom_segment(aes(xend = 0, yend = symbol)) +  # 绘制从x=0到相关性值的水平线段（棒棒糖的"杆"）
   geom_point(aes(col = pvalue, size = abs(correlation))) +  # 绘制点，颜色映射p值，大小映射相关性绝对值
   scale_colour_gradientn(colours = c("#7fc97f", "#984ea3")) +  # 自定义颜色渐变（绿色到紫色）
-  #scale_color_viridis_c(begin = 0.5, end = 1) +  # 可选：使用viridis颜色渐变（需安装viridis包）
   scale_size_continuous(range = c(2, 8)) +  # 设置点的大小范围
   theme_minimal() +  # 使用极简主题
   ylab(NULL)  # 隐藏y轴标签

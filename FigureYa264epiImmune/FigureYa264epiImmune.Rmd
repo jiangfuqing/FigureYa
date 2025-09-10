@@ -68,25 +68,13 @@ For transcriptional regulatory mechanism exploration, check FigureYa here: <http
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages(c("ggcorrplot", "ggprism"))
+source("install_dependencies.R")
 
-# immunedeconv依赖包的安装
 # Installation of the immunedeconv dependency package
-remotes::install_github("cran/limSolve")
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("quantiseqr")
 
-# immunedeconv的安装方法看这里：https://github.com/icbi-lab/immunedeconv
-# For immunedeconv installation instructions, see: https://github.com/icbi-lab/immunedeconv
-remotes::install_github("icbi-lab/immunedeconv")
 ```
 
 # 加载包

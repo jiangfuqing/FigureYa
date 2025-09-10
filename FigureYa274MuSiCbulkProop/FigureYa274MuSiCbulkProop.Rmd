@@ -75,16 +75,10 @@ We will cover two scenarios to help you successfully complete the analysis:
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages('devtools')
-devtools::install_github('xuranw/MuSiC')
-BiocManager::install("glmGamPoi")
+source("install_dependencies.R")
 ```
 
 # 加载包
@@ -120,17 +114,13 @@ options(stringsAsFactors = FALSE)
 ### 构建单细胞数据集
 ### Constructing the Single-Cell Dataset
 
-`ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。出自<https://pubmed.ncbi.nlm.nih.gov/29227470/>，已被打包到SeuratData里，我们直接安装、加载它。
 
 为了友好对接目前主流的Seurat单细胞分析流程，使用SeuratData包钟的ifnb数据集做示例数据，示例数据ifnb有STIM和CTRL两组。
 
-`ifnb` – A Seurat object containing the PBMC control/IFNB-stimulated dataset, sourced from <https://pubmed.ncbi.nlm.nih.gov/29227470/>. This dataset has been pre-packaged in SeuratData, so we can directly install and load it.
 
 To ensure compatibility with the current mainstream Seurat single-cell analysis pipeline, we use the ifnb dataset from the SeuratData package as an example. The example dataset ifnb contains two groups: STIM (stimulated) and CTRL (control).
 
 ```{r}
-# 找网络好点的地方安装，教育网好些
-# Recommended to install in a stable network environment (educational networks work better)
 # InstallData("ifnb") 
 LoadData("ifnb")
 

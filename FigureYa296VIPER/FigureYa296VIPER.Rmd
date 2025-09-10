@@ -64,16 +64,10 @@ The METHOD DETAILS section under Integrated analysis describes the computational
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("dorothea")
-BiocManager::install("mixtools")
-BiocManager::install("viper")
+source("install_dependencies.R")
 ```
 
 # 加载包
@@ -165,11 +159,9 @@ write.table(data.frame("gene" = rownames(expr), expr), file.path(data.path, "eas
 # 重建基因调控网络 - ARACNe-AP
 # Reconstructing Gene Regulatory Networks - ARACNe-AP
 
-ARACNe-AP是基于java的程序，需要安装1.8以上的java。java下载地址<https://www.java.com/>
 
 ARACNe-AP可以从GitHub上下载后自行编译，存放在`Code/ARACNe-AP`文件夹里。具体过程参考GitHub指南。git clone <https://github.com/califano-lab/ARACNe-AP.git>，或者使用已经编译好的可执行文件：dist/aracne.jar。
 
-ARACNe-AP is a Java-based program that requires Java 1.8 or higher to be installed. Java can be downloaded from: <https://www.java.com/>
 
 ARACNe-AP can be downloaded from GitHub and compiled locally, then stored in the `Code/ARACNe-AP` directory. For detailed instructions, please refer to the GitHub guide: git clone <https://github.com/califano-lab/ARACNe-AP.git>. Alternatively, you may directly use the pre-compiled executable located at: dist/aracne.jar.
 

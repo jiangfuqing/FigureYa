@@ -44,7 +44,6 @@ Using heatmaps to display differences in chromatin accessibility is also applica
 # 环境设置   
 # Environment Setup
 
-安装要用到的软件：
 Install required software:
 
 - pfastq-dump，<https://github.com/inutano/pfastq-dump>
@@ -53,16 +52,11 @@ Install required software:
 - samtools，<http://samtools.sourceforge.net/>
 - sambamba，<http://lomereiter.github.io/sambamba/>
 - macs2，<https://github.com/taoliu/MACS/wiki/Install-macs2>
-- deeptools，<https://deeptools.readthedocs.io/en/develop/content/installation.html>
 
-安装R包
 Install R packages
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("DESeq2")
-BiocManager::install("ChIPseeker")
+source("install_dependencies.R")
 ```
 
 加载包

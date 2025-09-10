@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -69,7 +70,6 @@ txdb <- makeTxDbFromGFF("gencode.v22.annotation.gtf",format="gtf")
 exons_gene <- exonsBy(txdb, by = "gene")
 ##并行计算
 ##parallel computing
-#install.packages('parallel')
 library(parallel)
 #检测核心数
 #detect the number of cores
@@ -84,7 +84,6 @@ stopCluster(cl)#停止 stop
 gene_length22 <- do.call(rbind,lapply(results, data.frame))
 #或者plyr得到结果
 #or plyr to get the result
-#install.packages('plyr')
 library (plyr)
 gene_length22<- ldply(results, data.frame)
 colnames(gene_length22)<-c('gene_id','eff_length')

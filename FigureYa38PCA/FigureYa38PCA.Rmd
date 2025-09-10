@@ -8,6 +8,7 @@ output: html_document
 ![](http://oex750gzt.bkt.clouddn.com/18-9-3/64881053.jpg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -136,18 +137,13 @@ Uncle Y enhanced ggord and put it in the R package `yyplot`, see this article fo
 #### Classic version
 
 ```{r}
-#install.packages("devtools")
 #library(devtools)
-#devtools::install_github("GuangchuangYu/yyplot")
-#devtools::install_github('fawda123/ggord')
 library(ggplot2)
 library(plyr)
 library(ggord)
 library(yyplot)
 
-#有可能你的网络在安装yyplot时遇到困难，我把geom_ord_ellipse函数单独下载，通过本地进行加载。
 #调用yyplot包里的geom_ord_ellipse函数
-#It is possible that your network encountered difficulties when installing yyplot, so I downloaded the geom_ord_ellipse function separately and loaded it locally.
 #call the geom_ord_ellipse function in the yyplot package
 #source('./geom_ord_ellipse.R') #该文件位于当前文件夹 the file is located in the current folder
 
@@ -222,9 +218,6 @@ ggsave("PCA_arrow.pdf", width = 6, height = 6)
 After PCA analysis with `prcomp`, obtain the principal component values corresponding to each sample after dimensionality reduction and the variance explained by each principal component.
 
 ```{r,message=FALSE}
-#install.packages("ggplot2")
-#install.packages("dplyr")
-#install.packages("plyr")
 library(ggplot2)
 library(dplyr)
 library(plyr)

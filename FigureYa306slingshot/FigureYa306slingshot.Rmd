@@ -46,15 +46,10 @@ Personally, I find the heatmaps of gene expression dynamics over pseudotime gene
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("slingshot")
-devtools::install_github("statOmics/tradeSeq")
+source("install_dependencies.R")
 ```
 
 # 加载包

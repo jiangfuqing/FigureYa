@@ -55,14 +55,10 @@ ggplot2 to generate a bubble plot (reference: FigureYa178receptorLigand <https:/
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-devtools::install_github("zktuong/ktplots")
+source("install_dependencies.R")
 ```
 
 # 加载包
@@ -278,11 +274,8 @@ meta_data <- as.matrix(meta_data)
 write.table(meta_data, 'cellphonedb_meta.txt', sep='\t', quote=F, row.names=F)
 ```
 
-CellPhoneDB需要在终端（Linux、MAC系统）安装和运行。Windows用户用wsl<https://docs.microsoft.com/en-us/windows/wsl/install-win10>
 
-安装CellPhoneDB，参考<https://github.com/Teichlab/cellphonedb>
 
-CellPhoneDB needs to be installed and run on the terminal (Linux, MAC system). Windows users with WSL<https://docs.microsoft.com/en-us/windows/wsl/install-win10>
 
 Install CellPhoneDB, reference<https://github.com/Teichlab/cellphonedb>
 
@@ -295,9 +288,7 @@ python3 -m venv cpdb-venv
 # Activate environment
 source cpdb-venv/bin/activate
 
-# 安装CellPhoneDB
 # Install CellPhoneDB
-pip install cellphonedb
 
 # 运行cellphoneDB，细胞信息为细胞类型
 # Run cellphoneDB, and the cell information is the cell type

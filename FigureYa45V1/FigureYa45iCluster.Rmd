@@ -13,6 +13,7 @@ output: 'html_document'
 小丫编辑校验
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -42,20 +43,12 @@ iCluster分析过程答疑。
 
 ### 环境准备
 
-#### 安装iClusterPlus
 
-`iClusterPlus`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像. 
 
-CRAN镜像备选
 
-- 国科大: <https://mirrors.ustc.edu.cn/CRAN/>
-- 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
-- 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
 ```{r, message=FALSE, warning=FALSE}
 #source("https://bioconductor.org/biocLite.R")
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 if ( ! require(iClusterPlus)) BiocInstaller::biocLite("iClusterPlus")
 ```
 
@@ -66,7 +59,6 @@ if ( ! require(iClusterPlus)) BiocInstaller::biocLite("iClusterPlus")
 ```{r, message=FALSE}
 library(iClusterPlus)
 library(GenomicRanges)
-#install.packages("gplots")
 library(gplots)
 library(lattice)
 data(gbm)

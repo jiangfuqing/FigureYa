@@ -53,10 +53,7 @@ Original text: Graphical summary of the most frequently mutated genes (≥10 aff
 # environment setting
 
 ```{r}
-#使用国内镜像安装包
-#use the domestic mirror installation package
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#install.packages("ggalluvial")
+source("install_dependencies.R")
 
 library(ggalluvial)
 library(dplyr)

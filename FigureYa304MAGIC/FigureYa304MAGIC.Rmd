@@ -36,19 +36,11 @@ MAGIC特别有利于找时序变化基因、度量基因间的关系。发表MAG
 
 # 环境设置
 
-使用国内镜像安装包
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("biomaRt")
-install.packages("arrow") # for store large matrix, data.frame or data.table
+source("install_dependencies.R")
 
 # 
-install.packages("reticulate")
-reticulate::install_miniconda() # if no conda env in your PC or server
-reticulate::py_install("magic-impute") # this will install py packages: `magic` and `scprep`
-install.packages("Rmagic") # R interface for magic package
 ```
 
 加载包

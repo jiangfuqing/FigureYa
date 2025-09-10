@@ -58,20 +58,13 @@ Analyze the correlation between gene transcriptome expression and promoter methy
 
 # 环境设置
 
-使用国内镜像安装包
 
 #Environment settings
 
-Use domestic image installation package
 
 ```{r}
-# 设置CRAN镜像为清华大学镜像源（提升R包下载速度）
-# Set CRAN mirror to Tsinghua University mirror (improve R package download speed)
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+source("install_dependencies.R")
 
-# 设置Bioconductor镜像为清华大学镜像源（用于生物信息学相关R包）
-# Set Bioconductor mirror to Tsinghua University mirror (for bioinformatics-related R packages)
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 ```
 

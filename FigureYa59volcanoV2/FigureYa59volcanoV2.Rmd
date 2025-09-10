@@ -37,10 +37,7 @@ Demonstrate overall gene expression trends between the two groups.
 ## environment setting
 
 ```{r}
-#使用国内镜像安装包
-#use the domestic mirror installation package
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 
 library(ggplot2)
 library(ggrepel)

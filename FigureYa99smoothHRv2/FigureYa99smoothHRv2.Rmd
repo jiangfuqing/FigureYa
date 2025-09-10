@@ -41,16 +41,11 @@ Please refer to the "Theoretical References" folder in the document for specific
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("smoothHR")
 ```
 
 加载包
@@ -58,6 +53,7 @@ install.packages("smoothHR")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载smoothHR包 - 用于平滑危险比分析
 # Load the smoothHR package - used for smooth hazard ratio analysis
 library(smoothHR)

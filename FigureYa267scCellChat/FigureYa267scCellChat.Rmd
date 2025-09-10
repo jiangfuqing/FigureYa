@@ -70,25 +70,12 @@ In addition, the usage of CellPhoneDB can refer to FigureYa178receptorLigand< ht
 
 # 环境设置
 
-使用国内镜像安装包
 
 #Environment settings
 
-Use domestic image installation package
 
 ```{r eval=FALSE}
-# 设置R包安装源为清华镜像（Set CRAN mirror to Tsinghua University）
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-# 设置Bioconductor镜像为清华源（Set Bioconductor mirror to Tsinghua University）
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-# 安装管道操作符包（Install the magrittr package for pipe operators）
-install.packages("magrittr")
-# 从GitHub安装Seurat-data包（Install the Seurat-data package from GitHub）
-devtools::install_github('satijalab/seurat-data')
-# 从GitHub安装CellChat包用于细胞间通讯分析（Install the CellChat package from GitHub for cell-cell communication analysis）
-devtools::install_github("jinworks/CellChat") 
-install.packages("ifnb.SeuratData_3.1.0.tar.gz", repos = NULL, type = "source")
-devtools::install_github('immunogenomics/presto')
+source("install_dependencies.R")
 ```
 
 加载包
@@ -120,7 +107,6 @@ options(stringsAsFactors = FALSE)
 
 # 输入数据预处理
 
-`ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。出自<https://pubmed.ncbi.nlm.nih.gov/29227470/>，已被打包到SeuratData里，我们直接安装、加载它。
 
 示例数据ifnb有STIM和CTRL两组：
 
@@ -129,7 +115,6 @@ options(stringsAsFactors = FALSE)
 
 #Input data preprocessing
 
-`ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。 From< https://pubmed.ncbi.nlm.nih.gov/29227470/ >, has been packaged into SeuratData, we can directly install and load it.
 
 The example data ifnb has two groups: STIM and CTRL:
 
@@ -138,7 +123,6 @@ The example data ifnb has two groups: STIM and CTRL:
 
 ```{r eval=FALSE}
 ## 加载示例数据 (Load example dataset)
-# 安装并加载ifnb数据集，包含IFN-β刺激的PBMC单细胞RNA-seq数据
 # Install and load the 'ifnb' dataset containing single-cell RNA-seq data of IFN-β stimulated PBMCs
 # InstallData("ifnb")
 # (LoadData("ifnb"))

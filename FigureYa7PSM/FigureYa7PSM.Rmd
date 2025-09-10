@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -62,7 +63,6 @@ If you have your own data, save it in easy_input.txt format, you can skip the �
 Create a dataframe called df.patients, I would like it to contain age and gender data for 250 patients, all of which should be between 30-78 years old and 70% of which are set to be male.
 
 ```{r}
-#install.packages("wakefield")
 library(wakefield)
 set.seed(1234)
 df.patients <- r_data_frame(n = 250, 
@@ -123,7 +123,6 @@ Generate matched case group dataset and control group dataset
 The matchit function from the MatchIT package is used to match two types of samples
 
 ```{r}
-#install.packages("MatchIt")
 library(MatchIt)
 #要找年龄最接近的，因此选用method=‘nearest’。
 #ratio=1意味着这是一一配对

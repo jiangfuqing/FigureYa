@@ -35,16 +35,11 @@ Draw timeROC curves for different fitting models.
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("timeROC")
 ```
 
 加载包
@@ -52,6 +47,7 @@ install.packages("timeROC")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载timeROC包，用于时间依赖型ROC曲线分析 - Load the timeROC package for time-dependent ROC curve analysis
 library(timeROC)
 # 加载survival包，用于生存分析 - Load the survival package for survival analysis

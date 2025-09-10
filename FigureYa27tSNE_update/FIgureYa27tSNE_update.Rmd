@@ -22,13 +22,11 @@ Use R to draw a t-SNE plot for single-cell RNA-seq.
 
 出自<https://www.nature.com/articles/nature22973>
 
-你可能会卡在两个问题上：R包安装和数据集的预处理。
 
 本代码带你顺利解决这两个问题，画出t-SNE图，把细胞分类和候选marker基因输出到文件。
 
 from<https://www.nature.com/articles/nature22973>
 
-You may get stuck on two problems: R package installation and dataset preprocessing.
 
 This code takes you through these two problems smoothly, drawing t-SNE plots, exporting cell classification and candidate marker genes to file.
 
@@ -46,15 +44,14 @@ Scenario 2: Hundreds of tumor samples, identify subtypes, find marker genes. Use
 # 环境设置
 # environment setting
 
-安装R包`Seurat`。之前的版本对应2.x, 目前版本对应3.x.x.
 
 Install the R package `Seurat`. The previous version corresponded to 2.x, the current version corresponds to 3.x.x.
 
 ```{r, warning=FALSE,message=FALSE}
+source("install_dependencies.R")
 # 加载Seurat
 # loading Seurat
 if (! require("Seurat")){
-  install.packages('Seurat')
   library(Seurat)
 } else{
   library(Seurat)
@@ -62,7 +59,6 @@ if (! require("Seurat")){
 # 加载plyr
 # loading plyr
 if (! require(plyr)){
-  install.packages("plyr")
   library(plyr)
 } else{
   library(plyr)
@@ -71,24 +67,17 @@ if (! require(plyr)){
 library(ggplot2)
 ```
 
-**注**: Windows系统用户安装会很顺利。
 
-MacOS/Linux系统用户要有Root权限，或许会因为hdf5r安装失败而无法顺利安装，不要图省事，听报错的话，用`brew install hdf5`。
 
-因为根据hdf5的源代码，它不支持最新的hdf5 1.10.2，最高只支持hdf5 1.10.0，所以请在root权限下根据源码安装。
 
-**Note**: Windows users will have a smooth installation.
 
-MacOS/Linux system users have to have Root privileges, perhaps because hdf5r installation failed to install smoothly, do not try to save time, listen to the words of the error report, use `brew install hdf5`.
 
-Because according to the source code of hdf5, it does not support the latest hdf5 1.10.2, the highest only support hdf5 1.10.0, so please install it under root privileges according to the source code.
 
 ```bash
 wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.0/src/hdf5-1.10.0.tar.gz
 tar xf hdf5-1.10.0.tar.gz
 cd hdf5-1.10.0
 ./configure --prefix=/usr/local
-make && sudo make install
 ```
 
 # 数据预处理

@@ -41,18 +41,13 @@ On the right side, use a pie chart to show the correlation between each pathway 
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```{r}
-# 设置CRAN镜像为清华大学镜像站（Set CRAN mirror to Tsinghua University mirror site）
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+source("install_dependencies.R")
 
-# 设置Bioconductor镜像为中国科学技术大学镜像站（Set Bioconductor mirror to USTC mirror site）
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```
 
 加载包
@@ -133,9 +128,6 @@ gosets <- gosets$V1
 ##Perform GSVA on the GO pathway of interest to obtain the expression matrix of the pathway and calculate the correlation coefficient
 
 ```{r}
-# 连接到Ensembl数据库的人类基因数据集（使用亚洲镜像）
-# Connect to the human gene dataset in Ensembl database (using Asian mirror)
-ensembl <- useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl", mirror = "asia")
 
 # 初始化空列表存储每个GO term对应的基因（Initialize empty list to store genes for each GO term）
 go.list <- list()

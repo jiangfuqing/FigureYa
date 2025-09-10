@@ -51,21 +51,14 @@ For methods of connecting nodes (top, bottom, left, right), refer to FigureYa174
 
 # 环境设置
 
-使用国内镜像安装包
 .
 # Environment Setup
 
-Install packages using a domestic mirror.
 
 
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-devtools::install_github("zzwch/crosslinks")
-# 或者本地安装
-# Or install it locally
-install.packages("crosslinks-master.tar.gz", repos = NULL, type = "source")
+source("install_dependencies.R")
 ```
 
 加载包

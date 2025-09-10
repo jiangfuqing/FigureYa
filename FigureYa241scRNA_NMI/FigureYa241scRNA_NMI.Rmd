@@ -50,12 +50,9 @@ In Figures 2D and 2G of the example paper, expression programs were extracted us
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
-Using a domestic image installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

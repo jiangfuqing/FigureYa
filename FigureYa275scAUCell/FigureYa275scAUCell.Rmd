@@ -61,17 +61,12 @@ Implements multiple metabolic scoring methods including AUCell
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
-# 安装AUCell
 # Install AUCell
-BiocManager::install("AUCell")
 ```
 
 # 加载包
@@ -127,7 +122,6 @@ geneSets <- list(ISGs=ISG_genelist)
 
 跟FigureYa267scCellChat和FigureYa269scMetabolism一样的处理，获得中间文件immune.combined.rds，可直接跳到“使用AUCell包计算自定义基因集的评分”。
 
-`ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。出自<https://pubmed.ncbi.nlm.nih.gov/29227470/>，已被打包到SeuratData里，我们直接安装、加载它。
 
 示例数据ifnb有STIM和CTRL两组：
 
@@ -136,7 +130,6 @@ geneSets <- list(ISGs=ISG_genelist)
 
 The same processing pipeline as in FigureYa267scCellChat and FigureYa269scMetabolism was applied to generate the intermediate file immune.combined.rds. You may skip directly to the section "Calculating Custom Gene Set Scores Using AUCell".
 
-`ifnb` - A Seurat object containing PBMC control/IFNB-stimulated dataset. Sourced from <https://pubmed.ncbi.nlm.nih.gov/29227470/>, already packaged in SeuratData, we directly install and load it.
 
 The example data ifnb has two groups - STIM and CTRL:
 
@@ -144,7 +137,6 @@ The example data ifnb has two groups - STIM and CTRL:
 - Then integrate the two datasets, perform routine data preprocessing, and save as immune.combined for subsequent analysis.
 
 ```{r eval=FALSE}
-# 安装并加载所需数据集
 # Install and load required dataset
 #InstallData("ifnb") 
 
