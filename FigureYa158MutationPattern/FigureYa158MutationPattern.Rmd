@@ -39,6 +39,7 @@ Here, we use maftools + MutationalPatterns to perform this analysis.
 Use a domestic mirror to install the package
 
 ```{r, eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 BiocManager::install("MutationalPatterns")

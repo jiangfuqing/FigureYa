@@ -54,6 +54,7 @@ You can even write it as a loop and draw multiple genes in batches to see which 
 Use domestic image installation package
 
 ```{r}
+source("install_dependencies.R")
 # 设置CRAN镜像为清华大学镜像源（Set CRAN mirror to Tsinghua University mirror source）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

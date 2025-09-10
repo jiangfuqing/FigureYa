@@ -53,6 +53,7 @@ install.packages("kableExtra")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(dplyr)
 library(kableExtra)

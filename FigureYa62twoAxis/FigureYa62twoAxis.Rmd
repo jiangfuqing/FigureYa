@@ -51,6 +51,7 @@ install.packages("ggplot2")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(ggplot2)
 library(gtable) #方法二要用到 Method 2 is to be used
 library(grid) #方法二要用到 Method 2 is to be used

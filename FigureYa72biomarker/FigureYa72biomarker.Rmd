@@ -57,6 +57,7 @@ install.packages("data.table")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载PAMR包 - 用于微阵列数据分类分析 / Load PAMR package - for microarray data classification
 library(pamr)  
 

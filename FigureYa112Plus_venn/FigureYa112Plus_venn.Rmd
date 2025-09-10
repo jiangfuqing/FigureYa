@@ -66,6 +66,7 @@ Suitable for overlaps of 2, 3, or 4 lists, with upsetR being more appropriate fo
 Installation package
 
 ```{r, eval=FALSE}
+source("install_dependencies.R")
 # 安装ggVennDiagram包（从GitHub安装gaospecial用户的ggVennDiagram仓库）
 # Install the ggVennDiagram package (from the gaospecial/ggVennDiagram repository on GitHub)
 devtools::install_github("gaospecial/ggVennDiagram")

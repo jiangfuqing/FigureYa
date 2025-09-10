@@ -47,6 +47,7 @@ Simultaneously displaying three features is particularly suitable when one of th
 # Environment settings
 
 ```{r}
+source("install_dependencies.R")
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 if (!("BSgenome.Hsapiens.UCSC.hg19" %in% rownames(installed.packages()))) {

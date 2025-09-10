@@ -54,6 +54,7 @@ Here we use complexheatmap to draw the picture, but you can also use pheatmap to
 Use domestic mirror installation package
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```

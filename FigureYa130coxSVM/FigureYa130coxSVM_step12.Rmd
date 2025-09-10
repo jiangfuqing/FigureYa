@@ -67,6 +67,7 @@ BiocManager::install(c("minfi","ChAMPdata","Illumina450ProbeVariants.db","sva",
 Load required packages
 
 ```{r}
+source("install_dependencies.R")
 library(tidyverse)
 library(ChAMP)
 library(minfi)

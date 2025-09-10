@@ -56,6 +56,7 @@ install.packages("xlsx", dependencies = TRUE)
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载数据处理和可视化所需的包
 # Load packages required for data processing and visualization
 library(readxl)      # 用于读取Excel文件 / For reading Excel files

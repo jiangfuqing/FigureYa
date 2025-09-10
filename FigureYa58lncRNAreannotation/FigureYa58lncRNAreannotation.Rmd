@@ -108,6 +108,7 @@ make
 Then copy the `seqman` file to the current folder
 
 ```{r, message=FALSE}
+source("install_dependencies.R")
 #使用国内镜像安装包
 #use the domestic mirror installation package
 #options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

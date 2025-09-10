@@ -53,6 +53,7 @@ Figure 1e displays the cell proportion distribution specificity (Ro/e) line grap
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("BiocManager")

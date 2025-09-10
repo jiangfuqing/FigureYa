@@ -51,6 +51,7 @@ Figure 6. Roles of Siglec15 in predicting immune phenotypes in the Xiangya cohor
 使用国内镜像安装包
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("ggnewscale")

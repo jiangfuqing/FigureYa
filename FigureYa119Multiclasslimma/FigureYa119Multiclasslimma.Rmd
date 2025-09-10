@@ -59,6 +59,7 @@ BiocManager::install("affyPLM")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载limma包 - 用于基因表达数据分析和差异表达分析
 # Load the limma package - for gene expression data analysis and differential expression analysis
 library(limma)

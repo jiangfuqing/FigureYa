@@ -75,6 +75,7 @@ For more pan-cancer analysis and visualization tools (FigureYa series), visit <h
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("impute")

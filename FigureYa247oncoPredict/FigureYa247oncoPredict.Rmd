@@ -50,6 +50,7 @@ FigureYa212drugTarget也用了pRRophetic。根据PRISM和CTRP2.0药物敏感性A
 使用国内镜像安装包 Use domestic mirrors to install packages
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("sva")

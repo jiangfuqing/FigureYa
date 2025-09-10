@@ -69,6 +69,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor
 Customize the function to compare the differences between each group and other samples separately. If there are more groups, simply add them according to the pattern.
 
 ```{r}
+source("install_dependencies.R")
 # 创建需要配对比较的列表 [Create a list for pairwise comparisons]
 # 参数：group - 样本分组信息，命名向量，格式为样本名=分组名 [Parameter: group - Sample grouping information, named vector with format sample_name=group_name]
 createList <- function(group=NULL) {

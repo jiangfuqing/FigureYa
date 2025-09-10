@@ -50,6 +50,7 @@ Original: We performed the CIBERSORT and ESTIMATE algorithms to quantify the act
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("estimate", repos="http://r-forge.r-project.org", dependencies=TRUE)

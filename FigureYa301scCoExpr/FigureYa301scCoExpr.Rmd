@@ -75,6 +75,7 @@ For correlation visualization FigureYa, check here<https://k.youshop10.com/Eig1Y
 Using domestic mirrors for package installation.
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 # devtools::install_github('satijalab/seurat-data')

@@ -60,6 +60,7 @@ We have crowdfunded many of the images in the examples, such as:
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("survRM2")

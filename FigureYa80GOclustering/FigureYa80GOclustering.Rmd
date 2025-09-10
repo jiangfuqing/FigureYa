@@ -71,6 +71,7 @@ BiocManager::install("ggtree", version = "3.8")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 中文注释：加载plyr包，用于数据处理和操作
 # English Comment: Load the plyr package for data manipulation and processing
 library(plyr)

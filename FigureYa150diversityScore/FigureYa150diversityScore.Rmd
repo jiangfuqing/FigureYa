@@ -41,6 +41,7 @@ Use single-cell DNA sequencing data to calculate the diversity score to evaluate
 Use domestic mirror installation package
 
 ```{r, eval = F}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 install.packages('Seurat')

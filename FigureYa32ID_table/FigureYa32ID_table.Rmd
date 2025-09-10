@@ -8,6 +8,7 @@ output: html_document
 ![](guozixueshengxin.jpeg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

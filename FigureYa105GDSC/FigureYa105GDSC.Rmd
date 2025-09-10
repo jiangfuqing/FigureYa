@@ -77,6 +77,7 @@ Click on the link to download pRRophetic_0.5.tar.gz:< https://osf.io/dwzce/?acti
 Load Package
 
 ```{r}
+source("install_dependencies.R")
 install.packages("./pRRophetic 2/resource/pRRophetic_Guozi/", repos = NULL,type = "source")
 # 加载pRRophetic包，用于药物反应预测和分析
 # Load the pRRophetic package for drug response prediction and analysis

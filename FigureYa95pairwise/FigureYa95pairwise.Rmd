@@ -59,6 +59,7 @@ install.packages("ClassDiscovery")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载GSVA包，用于基因集变异分析 (Load the GSVA package for gene set variation analysis)
 library(GSVA)
 # 加载ClassDiscovery包，用于外部聚类分析 (Load the ClassDiscovery package for external clustering analysis)

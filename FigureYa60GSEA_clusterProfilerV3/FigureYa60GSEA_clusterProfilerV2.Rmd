@@ -51,6 +51,7 @@ If you want to use Java version of GSEA to do enrichment analysis and DIY result
 ## environment setting
 
 ```{r}
+source("install_dependencies.R")
 #使用国内镜像安装包
 #use the domestic mirror installation package
 #options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

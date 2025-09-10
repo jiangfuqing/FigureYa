@@ -43,6 +43,7 @@ For the analysis plots in Figure 6, please refer to FigureYa131CMap. For other c
 Use a domestic mirror to install the package
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```

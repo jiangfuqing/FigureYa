@@ -7,6 +7,7 @@ output: html_document
 
 指定一个新的包环境目录
 ```{r}
+source("install_dependencies.R")
 oldpath <- .libPaths()[1]
 newpath <- "/home/biostacs/R/backup/env_31723062"
 .libPaths(newpath)

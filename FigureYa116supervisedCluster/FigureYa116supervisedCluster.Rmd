@@ -46,6 +46,7 @@ Taking skin melanoma (TCGA-SKCM) as an example, supervised hierarchical clusteri
 Use domestic image installation package
 
 ```{r}
+source("install_dependencies.R")
 # 设置R包安装源为清华大学镜像（Set CRAN mirror to Tsinghua University mirror）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

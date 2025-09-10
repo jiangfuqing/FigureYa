@@ -77,6 +77,7 @@ In addition, the usage of CellPhoneDB can refer to FigureYa178receptorLigand< ht
 Use domestic image installation package
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 # 设置R包安装源为清华镜像（Set CRAN mirror to Tsinghua University）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 # 设置Bioconductor镜像为清华源（Set Bioconductor mirror to Tsinghua University）

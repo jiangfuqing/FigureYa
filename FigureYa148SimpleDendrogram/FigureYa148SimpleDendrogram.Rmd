@@ -54,6 +54,7 @@ install.packages(c("dendsort", "squash"))
 Load package
 
 ```{r}
+source("install_dependencies.R")
 library(ClassDiscovery) 
 library(dendsort)
 library(squash)

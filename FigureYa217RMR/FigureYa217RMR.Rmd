@@ -41,6 +41,7 @@ Differential genes are identified using the minimal Redundancy Maximal Relevance
 use the domestic mirror installation package
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("mRMRe")

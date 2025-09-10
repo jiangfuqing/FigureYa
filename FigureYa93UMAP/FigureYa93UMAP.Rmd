@@ -73,6 +73,7 @@ install.packages("Seurat")
 
 library pacakges
 ```{r}
+source("install_dependencies.R")
 # 加载Seurat包 - 用于单细胞RNA测序数据分析
 # Load the Seurat package - for single-cell RNA sequencing data analysis
 library(Seurat)

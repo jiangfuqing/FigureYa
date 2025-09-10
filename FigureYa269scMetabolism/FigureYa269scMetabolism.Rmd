@@ -40,6 +40,7 @@ Mining metabolic activity at single-cell resolution，为了方便使用，例�
 使用国内镜像安装包
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("magrittr")

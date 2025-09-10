@@ -67,6 +67,7 @@ install.packages("circlize")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载生物信息学分析所需的R包 / Load R packages for bioinformatics analysis
 library(GSVA)          # 基因集变异分析 / Gene Set Variation Analysis
 library(org.Hs.eg.db)

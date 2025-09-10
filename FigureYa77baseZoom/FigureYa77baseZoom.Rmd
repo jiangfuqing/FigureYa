@@ -47,6 +47,7 @@ The example graph is used to display the percentage of multiple genes in each va
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 设置系统环境变量，将语言设置为英文，确保R的报错信息以英文形式显示
 # Set system environment variable to display R error messages in English
 Sys.setenv(LANGUAGE = "en") 

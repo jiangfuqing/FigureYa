@@ -64,6 +64,7 @@ BiocManager::install("CancerSubtypes", version = "3.20")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载stringr包 - 用于字符串处理和操作
 # Load the stringr package - used for string processing and manipulation
 library(stringr)

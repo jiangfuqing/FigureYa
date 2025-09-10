@@ -71,6 +71,7 @@ BiocManager::install("maftools")
 Loading Packages
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(maftools)
 library(ggplot2)

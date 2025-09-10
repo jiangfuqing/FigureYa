@@ -69,6 +69,7 @@ install_github("woobe/rPlotter")
 ```
 
 ```{r}
+source("install_dependencies.R")
 library(rPlotter)
 library(scales)
 

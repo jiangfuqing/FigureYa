@@ -59,6 +59,7 @@ MotifbreakR can also be used in conjunction with other tools, with a series of r
 Use domestic image installation package
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 # 设置R包安装源为清华大学镜像（中文注释）
 # Set R package installation source to Tsinghua University mirror (English comment)
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

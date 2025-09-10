@@ -8,6 +8,7 @@ output: html_document
 ![](http://oex750gzt.bkt.clouddn.com/18-9-3/64881053.jpg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

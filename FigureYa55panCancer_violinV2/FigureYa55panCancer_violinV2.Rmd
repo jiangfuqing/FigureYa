@@ -60,6 +60,7 @@ install.packages("RColorBrewer")
 Load the required packages
 
 ```{r}
+source("install_dependencies.R")
 library(stringr)
 library(dplyr)
 library(ggplot2)

@@ -38,6 +38,7 @@ The weighted random forest was used to reduce the dimension of the survival data
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 install.packages("ranger")

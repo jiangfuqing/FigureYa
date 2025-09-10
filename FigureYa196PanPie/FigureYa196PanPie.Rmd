@@ -47,6 +47,7 @@ Explore additional pan-cancer visualizations here: <https://k.koudai.com/Wi1xos9
 Use domestic mirrors for package installation to accelerate downloads and bypass international network restrictions.
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages(c("dplyr", "ggplot2"))

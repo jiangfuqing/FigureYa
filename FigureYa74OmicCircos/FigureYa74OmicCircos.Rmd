@@ -68,6 +68,7 @@ BiocManager::install("OmicCircos")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载必要的R包 / Load necessary R packages
 library(S4Vectors)      # 提供S4向量数据结构 / Provides S4 vector data structures
 library(tidyverse)     # 数据清洗和分析工具集 / Data cleaning and analysis toolkit

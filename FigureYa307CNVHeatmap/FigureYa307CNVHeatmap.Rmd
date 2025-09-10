@@ -67,6 +67,7 @@ We have previously crowdsourced several mutation-related plots <https://k.yousho
 Using domestic mirrors for package installation.
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("trackViewer")

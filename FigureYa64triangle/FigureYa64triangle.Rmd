@@ -61,6 +61,7 @@ Use your imagination to develop more application scenarios.
 ## environment setting
 
 ```{r,message=FALSE}
+source("install_dependencies.R")
 #options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 #options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 #devtools::install_git('https://bitbucket.org/nicholasehamilton/ggtern')

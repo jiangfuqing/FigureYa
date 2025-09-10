@@ -48,6 +48,7 @@ For example, in the example text, there is one sample per column and one gene pe
 Use domestic image installation package
 
 ```{r}
+source("install_dependencies.R")
 # 设置CRAN镜像为清华大学镜像源
 # Set CRAN mirror to Tsinghua University mirror source
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

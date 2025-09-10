@@ -57,6 +57,7 @@ For example, does high expression of both genes A and B result in longer surviva
 use the domestic mirror installation package
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```

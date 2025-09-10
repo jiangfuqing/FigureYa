@@ -79,6 +79,7 @@ tar -czvf deconstructSigs.tar.gz deconstructSigs-master
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载数据分析常用工具包
 # Load commonly used data analysis toolkits
 library(tidyverse)

@@ -62,6 +62,7 @@ There are several diagrams in the article that can be implemented with our Figur
 Use the domestic mirror installation packages
 
 ```{r eval=TRUE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("maftools")

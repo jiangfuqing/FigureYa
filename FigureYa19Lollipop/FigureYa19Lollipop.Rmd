@@ -55,6 +55,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 ```
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(maftools)
 library(trackViewer)

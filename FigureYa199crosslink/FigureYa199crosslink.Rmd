@@ -60,6 +60,7 @@ Install packages using a domestic mirror.
 
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 devtools::install_github("zzwch/crosslinks")

@@ -69,6 +69,7 @@ You can use the pheatmap in the latest version of ComplexHeatmap on github for d
 Method 1: Install the github version of ComplexHeatmap (I personally tested it and found it to work)
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 library(devtools)
 install_github("jokergoo/ComplexHeatmap") 
 # 如果github网速困难，可本地安装

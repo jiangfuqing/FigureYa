@@ -58,6 +58,7 @@ install.packages("smoothHR")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载smoothHR包 - 用于平滑危险比分析
 # Load the smoothHR package - used for smooth hazard ratio analysis
 library(smoothHR)

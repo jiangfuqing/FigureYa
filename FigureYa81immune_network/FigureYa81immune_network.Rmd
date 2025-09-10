@@ -60,6 +60,7 @@ Using a network diagram to simultaneously display relevant relationships pvalue�
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 加载数据处理和可视化所需的包 | Load packages for data processing and visualization
 library(reshape2)     # 用于数据重塑 | For data reshaping
 library(corrplot)     # 用于绘制相关性热图 | For correlation matrix visualization

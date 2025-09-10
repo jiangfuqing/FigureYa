@@ -74,6 +74,7 @@ install.packages('GOplot')
 Load the required packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载用于功能富集分析的包 | Load packages for functional enrichment analysis
 library(clusterProfiler)
 # 加载用于生物信息学注释资源的包 | Load package for bioinformatics annotation resources

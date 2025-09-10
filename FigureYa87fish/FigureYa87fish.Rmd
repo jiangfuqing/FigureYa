@@ -67,6 +67,7 @@ install_github("chrisamiller/fishplot")
 加载包
 
 ```{r}
+source("install_dependencies.R")
 # 加载fishplot包，用于生成白血病克隆演化的鱼群图
 # Load the fishplot package for generating fish plots of leukemia clonal evolution
 library(fishplot)

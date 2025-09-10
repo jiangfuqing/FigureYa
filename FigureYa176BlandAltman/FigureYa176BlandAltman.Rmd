@@ -38,6 +38,7 @@ The Bland-Altman plot was used to compare the agreements among different evaluat
 Use the domestic mirror installation package
 
 ```{r, eval=FALSE}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 install.packages(c("BlandAltmanLeh", "MethComp", "smatr"))

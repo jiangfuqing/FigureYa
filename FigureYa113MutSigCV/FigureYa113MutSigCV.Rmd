@@ -80,6 +80,7 @@ Step 2: Copy the 'MutSigCV. m' file to the current folder to use.
 ##Install and load the R package required for drawing
 
 ```{r}
+source("install_dependencies.R")
 # 使用国内镜像安装所需的R包 | Use domestic mirror to install required R packages
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")

@@ -54,6 +54,7 @@ Submap algorithm website https://cloud.genepattern.org/gp
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 加载pheatmap包，用于绘制热图 | Load the pheatmap package for drawing heatmaps
 library(pheatmap)
 

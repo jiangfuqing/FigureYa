@@ -40,6 +40,7 @@ Reply to "organ" on Xiaoya Pictorial official account for more information.
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 安装gganatogram包（从GitHub安装，当前行被注释掉） | Install the gganatogram package (from GitHub, current line is commented out)
 #devtools::install_github("jespermaag/gganatogram")
 

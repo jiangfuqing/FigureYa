@@ -56,6 +56,7 @@ Use pie charts to show percentages, and then arrange the pie charts into a matri
 Use domestic mirror installation package
 
 ```{r}
+source("install_dependencies.R")
 setRepositories(ind=1:6)
 options(repos="http://cran.rstudio.com/")
 if(!require(devtools)) { install.packages("devtools") }

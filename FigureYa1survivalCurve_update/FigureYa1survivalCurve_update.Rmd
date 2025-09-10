@@ -93,6 +93,7 @@ install.packages("survminer")
 Load the required packages
 
 ```{r}
+source("install_dependencies.R")
 library("survival")
 library("survminer")
 

@@ -57,6 +57,7 @@ BiocManager::install("ChAMP")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载数据处理包
 # Load data processing package
 library(data.table)

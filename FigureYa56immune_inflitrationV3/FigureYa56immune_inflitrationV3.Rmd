@@ -63,6 +63,7 @@ reference material:
 Install the required packages
 
 ```{r}
+source("install_dependencies.R")
 # 使用国内镜像安装包
 # Use domestic mirror to install packages
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

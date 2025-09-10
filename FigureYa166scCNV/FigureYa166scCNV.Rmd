@@ -45,6 +45,7 @@ Calculate CNVs using single-cell RNA-seq data and compare differences between mu
 Using a domestic mirror to install the package
 
 ```{r}
+source("install_dependencies.R")
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```

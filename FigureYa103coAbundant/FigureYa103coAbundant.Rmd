@@ -66,6 +66,7 @@ BiocManager::install("WGCNA") #MAC系统，可能需要手动下载WGCNA后本�
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载WGCNA包，用于加权基因共表达网络分析
 # Load the WGCNA package for weighted gene co-expression network analysis
 library(WGCNA)

@@ -31,6 +31,7 @@ Applicable to chip data in the GEO database.
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(GEOquery)
 library(limma)
 library(ggplot2)

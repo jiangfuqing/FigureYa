@@ -70,6 +70,7 @@ Translated with DeepL.com (free version)
 Installation of packages using domestic mirrors
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 # 设置CRAN镜像源为清华镜像站 / Set CRAN mirror to Tsinghua TUNA mirror
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

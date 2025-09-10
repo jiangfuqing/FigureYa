@@ -69,6 +69,7 @@ install.packages("htmlwidgets")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(data.table)
 library(stringr)
 library(ggplot2)

@@ -9,6 +9,7 @@ output: 'html_document'
 ![](hoptop.jpg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
 knitr::opts_chunk$set(echo = TRUE)

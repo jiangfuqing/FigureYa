@@ -68,6 +68,7 @@ install.packages("ResourceSelection")
 Loading Packages
 
 ```{r}
+source("install_dependencies.R")
 library(rms)
 library(ResourceSelection)
 

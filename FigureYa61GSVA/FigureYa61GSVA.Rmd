@@ -43,6 +43,7 @@ install.packages("msigdbr")
 ### 加载包
 
 ```{r}
+source("install_dependencies.R")
 library(msigdbr)
 library(dplyr)
 library(data.table)

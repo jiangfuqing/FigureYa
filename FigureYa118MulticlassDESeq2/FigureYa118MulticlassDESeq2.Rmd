@@ -58,6 +58,7 @@ BiocManager::install("DESeq2")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载DESeq2包，用于差异表达基因分析
 # Load the DESeq2 package for differential gene expression analysis
 library(DESeq2)

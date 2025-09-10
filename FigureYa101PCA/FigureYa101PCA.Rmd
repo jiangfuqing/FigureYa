@@ -50,6 +50,7 @@ Not limited to RNA seq, it also applies to other types of data.
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 加载stringr包，提供强大的字符串处理功能
 # Load the stringr package, which provides powerful string processing functions
 library(stringr)
