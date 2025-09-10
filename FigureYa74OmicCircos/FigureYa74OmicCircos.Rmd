@@ -56,11 +56,7 @@ reference: <https://journals.sagepub.com/doi/10.4137/CIN.S13495>
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("OmicCircos")
+source("install_dependencies.R")
 ```
 
 加载包

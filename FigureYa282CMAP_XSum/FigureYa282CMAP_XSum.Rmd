@@ -63,15 +63,7 @@ If you use the methods described in the following demonstration, please cite the
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("PharmacoGx")
-BiocManager::install("CoreGx", force = TRUE)
-install.packages("shinyjs")
-install.packages("shinydashboard")
-install.packages("magicaxis")
-install.packages("lsa")
-install.packages("relations")
+source("install_dependencies.R")
 ```
 
 # 加载包

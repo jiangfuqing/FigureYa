@@ -44,9 +44,7 @@ Here, we take the data from the SEER database as an example, which can also be u
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("strucchange")
+source("install_dependencies.R")
 ```
 
 加载包

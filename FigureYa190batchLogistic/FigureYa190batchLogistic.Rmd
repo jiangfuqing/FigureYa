@@ -39,9 +39,7 @@ This is logistic regression. If you want cox regression, you can refer to Figure
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("SimDesign")
+source("install_dependencies.R")
 ```
 
 加载包
@@ -190,7 +188,6 @@ title_name<-'Table *. Univariate and multivariate logistic regression'
 table1 <- comtable
 mynote <- "Note: ..."
 
-if(!require(officer)) (install.packages('officer'))
 library(officer)
 library(dplyr)
 my_doc <- read_docx()  #初始化一个docx  # Initialize a docx

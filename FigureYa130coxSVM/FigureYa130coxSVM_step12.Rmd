@@ -48,13 +48,9 @@ Step 4: Use FW-SVM to further select feature numbers
 Use domestic mirrors to install packages
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 #' @ChAMP所依赖的包巨多，请耐心等待安装
 # ChAMP depends on many packages. Please be patient during installation.
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("ChAMP")
 BiocManager::install(c("minfi","ChAMPdata","Illumina450ProbeVariants.db","sva",
                        "IlluminaHumanMethylation450kmanifest","limma","RPMM","DNAcopy",
                        "preprocessCore","impute","marray","wateRmelon","goseq","plyr","GenomicRanges",

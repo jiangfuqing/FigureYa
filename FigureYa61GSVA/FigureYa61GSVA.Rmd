@@ -34,10 +34,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ### 安装包
 
 ```r
+source("install_dependencies.R")
 #使用国内镜像安装包
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("msigdbr")
 ```
 
 ### 加载包

@@ -62,16 +62,10 @@ Many of the figures in the example article were crowdfunded, for example:
 Use a domestic mirror to install the package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("Biobase")
-BiocManager::install("GSVA")
-BiocManager::install("ComplexHeatmap")
+source("install_dependencies.R")
 
 library(utils)
 rforge <- "http://r-forge.r-project.org"
-install.packages("estimate", repos=rforge, dependencies=TRUE)
-install.packages("R.utils")
 ```
 
 加载包Load the package

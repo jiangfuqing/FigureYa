@@ -55,11 +55,8 @@ The PMAPscore requires pathway information in kgml format, so MSigDB gene sets c
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("PMAPscore")
+source("install_dependencies.R")
 browseVignettes("PMAPscore")
-BiocManager::install("SPIA")
 ```
 
 # 加载包

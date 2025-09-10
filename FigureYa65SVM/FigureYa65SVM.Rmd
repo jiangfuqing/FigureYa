@@ -42,12 +42,7 @@ It is mainly used to filter the feature variables to construct the best classifi
 ## environment setting
 
 ```{r, message=FALSE}
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-#install.packages("glmnet") 
-#if (!requireNamespace("BiocManager", quietly = TRUE))
-    #install.packages("BiocManager")
-#BiocManager::install("sigFeature", version = "3.8") 
+source("install_dependencies.R")
 
 library(tidyverse)
 library(glmnet)

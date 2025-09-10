@@ -60,36 +60,31 @@ Answer: lasso heavily relies on seeds when allowed, as you need cross validation
 ###Install and load packages using domestic images
 
 ```{r}
+source("install_dependencies.R")
 # 设置CRAN镜像为清华大学镜像源
 # Set CRAN mirror to Tsinghua University mirror source
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 
 # 设置Bioconductor镜像为中国科学技术大学镜像源
 # Set Bioconductor mirror to University of Science and Technology of China mirror source
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 # 检查并加载/安装survival包 - 用于生存分析
 # Check and load/install survival package - for survival analysis
 if(!require(survival)){ 
-  install.packages("survival")
 } else {library(survival)}  
 
 # 检查并加载/安装glmnet包 - 用于正则化广义线性模型
 # Check and load/install glmnet package - for regularized generalized linear models
 if(!require(glmnet)){ 
-  install.packages("glmnet")
 } else {library(glmnet)}  
 
 # 检查并加载/安装pbapply包 - 用于并行计算和进度条显示
 # Check and load/install pbapply package - for parallel computation and progress bar display
 if(!require(pbapply)){ 
-  install.packages("pbapply")
 } else {library(pbapply)}  
 
 # 检查并加载/安装survivalROC包 - 用于生存分析中的ROC曲线
 # Check and load/install survivalROC package - for ROC curves in survival analysis
 if(!require(survivalROC)){ 
-  install.packages("survivalROC")
 } else {library(survivalROC)}
 
 # 设置环境语言为英文，确保报错信息为英文

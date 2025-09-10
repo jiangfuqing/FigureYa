@@ -59,10 +59,7 @@ Install required software:
 Install R packages
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("DESeq2")
-BiocManager::install("ChIPseeker")
+source("install_dependencies.R")
 ```
 
 加载包

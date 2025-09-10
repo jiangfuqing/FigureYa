@@ -62,8 +62,7 @@ Many figures of the same type appear in [Example 2] (<https://www.cell.com/devel
 Use the domestic mirror installation packages
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

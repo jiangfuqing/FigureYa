@@ -48,9 +48,7 @@ Please refer to the "Theoretical References" folder in the document for specific
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("smoothHR")
+source("install_dependencies.R")
 ```
 
 加载包

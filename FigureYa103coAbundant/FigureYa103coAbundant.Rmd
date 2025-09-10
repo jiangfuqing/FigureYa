@@ -49,15 +49,7 @@ Calculate and display the correlation between the co expression modules identifi
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("impute")
-BiocManager::install("preprocessCore")
-BiocManager::install("GO.db")
-BiocManager::install("AnnotationDbi")
-BiocManager::install("WGCNA") #MAC系统，可能需要手动下载WGCNA后本地安装，下载链接：https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/WGCNA_1.67.tgz
+source("install_dependencies.R")
 #MAC system, may require manual download of WGCNA and local installation. Download link: https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/WGCNA_1.67.tgz
 ```
 

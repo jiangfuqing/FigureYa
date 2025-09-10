@@ -57,14 +57,12 @@ To run the classpredict package, **Windows OS** is required.
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 # 下面代码安装或下载后本地安装
 # Install with the following code or download for local installation
 devtools::install_url("https://brb.nci.nih.gov/BRB-ArrayTools/RPackagesAndManuals/classpredict_0.2.tar.gz") 
 
-BiocManager::install("ConsensusClusterPlus")
 ```
 
 # 加载包

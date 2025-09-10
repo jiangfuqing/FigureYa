@@ -8,6 +8,7 @@ output: html_document
 ![](http://oex750gzt.bkt.clouddn.com/18-9-3/64881053.jpg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -136,7 +137,6 @@ Uncle Y enhanced ggord and put it in the R package `yyplot`, see this article fo
 #### Classic version
 
 ```{r}
-#install.packages("devtools")
 #library(devtools)
 #devtools::install_github("GuangchuangYu/yyplot")
 #devtools::install_github('fawda123/ggord')
@@ -222,9 +222,6 @@ ggsave("PCA_arrow.pdf", width = 6, height = 6)
 After PCA analysis with `prcomp`, obtain the principal component values corresponding to each sample after dimensionality reduction and the variance explained by each principal component.
 
 ```{r,message=FALSE}
-#install.packages("ggplot2")
-#install.packages("dplyr")
-#install.packages("plyr")
 library(ggplot2)
 library(dplyr)
 library(plyr)

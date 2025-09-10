@@ -42,10 +42,9 @@ At the same time, samples can be grouped based on the gene expression profile of
 ##Environment settings
 
 ```{r warning=FALSE}
+source("install_dependencies.R")
 # 使用国内镜像安装包
 # Use domestic mirror sources to install packages
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 # 安装并加载包
 # Install and load packages
@@ -53,7 +52,6 @@ Packages <- c("pheatmap","gplots") # CRAN的包 | Packages from CRAN
 for(pk in Packages){
   # 检查包是否已安装，未安装则安装
   # Check if the package is installed, install if not
-  if(!require(pk,character.only = T,quietly = T)) install.packages(pk)
   # 加载包并抑制加载信息
   # Load the package and suppress loading messages
   suppressMessages(library(pk,character.only = T))
@@ -62,8 +60,6 @@ for(pk in Packages){
 # 安装并加载Bioconductor源的GSVA包
 # Install and load GSVA package from Bioconductor
 if(!require("GSVA",character.only = T,quietly = T)){
-  if(!require("BiocManager",character.only = T, quietly = TRUE)) install.packages("BiocManager")
-  BiocManager::install("GSVA") # Bioconductor的包 | Package from Bioconductor
 } 
 suppressMessages(library("GSVA",character.only = T))
 

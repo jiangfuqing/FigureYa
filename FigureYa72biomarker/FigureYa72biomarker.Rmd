@@ -45,11 +45,7 @@ Ref: Robert Tibshirani, Trevor Hastie, Balasubramanian Narasimhan, and Gilbert C
 
 Installation of packages using domestic mirrors
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("pamr")
-install.packages('R.utils') # required by data.table::fread to read gipped file
-install.packages("data.table")
+source("install_dependencies.R")
 ```
 
 加载包

@@ -53,9 +53,7 @@ Follow “Xiaoya Drawing” WeChat Official Account, reply “30” to see the a
 use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages(c("rms", "nomogramEx", "regplot", "vioplot", "sm", "beanplot"))
+source("install_dependencies.R")
 ```
 
 加载包

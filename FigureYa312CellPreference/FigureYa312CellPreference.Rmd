@@ -80,9 +80,7 @@ For more single-cell analysis visualization tools from FigureYa: <https://k.yous
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("epitools")
+source("install_dependencies.R")
 ```
 
 # 加载包

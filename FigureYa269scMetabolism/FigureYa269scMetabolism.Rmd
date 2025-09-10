@@ -40,22 +40,15 @@ Mining metabolic activity at single-cell resolution，为了方便使用，例�
 使用国内镜像安装包
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("magrittr")
-install.packages("devtools")
+source("install_dependencies.R")
 devtools::install_github('satijalab/seurat-data',force = TRUE)
 
 ### 安装scMetabolism计算代谢通路
 # 如果安装不成功，先去升级R
 # 先安装依赖包
-install.packages("BiocManager")
-BiocManager::install(c("AUCell", "GSEABase", "GSVA"))
-install.packages("phangorn")
 devtools::install_github("YosefLab/VISION")
 devtools::install_github("wu-yc/scMetabolism")
 
-BiocManager::install("clusterProfiler")
 ```
 
 加载包

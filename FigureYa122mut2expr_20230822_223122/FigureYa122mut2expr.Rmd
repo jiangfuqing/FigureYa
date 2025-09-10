@@ -92,9 +92,7 @@ If you want to systematically study the interrelationships between genes, you ne
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("hgu133plus2.db")
+source("install_dependencies.R")
 ```
 
 加载包

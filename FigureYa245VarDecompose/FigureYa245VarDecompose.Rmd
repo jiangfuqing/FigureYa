@@ -69,9 +69,7 @@ This script implements the following functions:
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages(c("foreach", "doParallel"))
+source("install_dependencies.R")
 ```
 
 加载包

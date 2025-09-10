@@ -53,6 +53,7 @@ Requires awk, python2.7
 
 Download bigWigSummary:
 ```r
+source("install_dependencies.R")
 ## choose by platform & cpu type
 ## macOSX
 #download.file("http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/bigWigSummary","bigWigSummary")

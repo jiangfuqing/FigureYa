@@ -66,12 +66,10 @@ Implements multiple metabolic scoring methods including AUCell
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 # 安装AUCell
 # Install AUCell
-BiocManager::install("AUCell")
 ```
 
 # 加载包

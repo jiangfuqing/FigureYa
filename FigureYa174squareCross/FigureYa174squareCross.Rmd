@@ -49,10 +49,8 @@ Arrange the order of each node based on the biological significance of your own 
 Use the domestic mirror installation package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 devtools::install_github("zzwch/crosslinks") 
-install.packages("aplot")
 ```
 
 加载包

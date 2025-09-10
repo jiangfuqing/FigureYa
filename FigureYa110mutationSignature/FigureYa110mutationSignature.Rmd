@@ -59,11 +59,7 @@ Gaujoux R , Seoighe C . A flexible R package for nonnegative matrix factorizatio
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("BSgenome")
-BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
-BiocManager::install("GenomeInfoDb")
+source("install_dependencies.R")
 ```
 
 deconstructsigs的安装：从github下载<https://github.com/raerose01/deconstructSigs>，解压缩，然后压缩为.tar.gz格式，本地安装。

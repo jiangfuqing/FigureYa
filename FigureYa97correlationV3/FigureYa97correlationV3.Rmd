@@ -50,6 +50,7 @@ If you want to simultaneously demonstrate the correlation between two genes and 
 Load Package
 
 ```{r}
+source("install_dependencies.R")
 # 加载ggplot2包，用于数据可视化
 # Load the ggplot2 package for data visualization
 library(ggplot2)

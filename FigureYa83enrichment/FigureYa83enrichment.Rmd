@@ -80,9 +80,7 @@ $ATAC-seq_peak
 Installation of packages using domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("rentrez")
+source("install_dependencies.R")
 ```
 
 加载包

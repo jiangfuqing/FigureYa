@@ -49,8 +49,7 @@ In the analysis of mechanism of actions (MoA) and drug-target, [CLUE](https://cl
 Install packages using domestic mirrors
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 ```
 
 加载包

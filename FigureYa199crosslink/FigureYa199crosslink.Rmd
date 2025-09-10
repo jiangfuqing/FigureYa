@@ -60,12 +60,10 @@ Install packages using a domestic mirror.
 
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 devtools::install_github("zzwch/crosslinks")
 # 或者本地安装
 # Or install it locally
-install.packages("crosslinks-master.tar.gz", repos = NULL, type = "source")
 ```
 
 加载包

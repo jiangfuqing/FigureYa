@@ -56,10 +56,8 @@ The clone evolution diagram is a bit like a sankey. I compared it with FigureYa2
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 
-install.packages("devtools")
 library(devtools)
 install_github("chrisamiller/fishplot")
 ```

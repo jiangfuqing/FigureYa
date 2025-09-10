@@ -8,6 +8,7 @@ output: html_document
 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
 knitr::opts_chunk$set(echo = TRUE)
@@ -61,8 +62,6 @@ CRAN image backup
 
 ```{r, message=FALSE, warning=FALSE}
 #source("https://bioconductor.org/biocLite.R")  # 加载Bioconductor包管理器 | Load Bioconductor package manager
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))  # 设置CRAN镜像为清华源 | Set CRAN mirror to Tsinghua source
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")  # 设置Bioconductor镜像为中科大源 | Set Bioconductor mirror to USTC source
 
 # 检查并安装monocle包：用于单细胞RNA-seq数据分析的轨迹推断工具 | Check and install monocle package: Trajectory inference tool for single-cell RNA-seq data analysis
 if ( ! require(monocle)) BiocInstaller::biocLite("monocle")

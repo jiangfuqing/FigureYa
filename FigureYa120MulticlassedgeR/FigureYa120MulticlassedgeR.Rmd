@@ -48,9 +48,7 @@ For the case where the read count expression matrix is used as input, FigureYa11
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("edgeR")
+source("install_dependencies.R")
 ```
 
 加载包

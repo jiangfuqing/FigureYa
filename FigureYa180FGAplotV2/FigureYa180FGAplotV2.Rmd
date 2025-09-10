@@ -53,9 +53,7 @@ Alternatively, the data from TCGA can be used to calculate the FGA, FGG and FGL 
 Use the domestic mirror installation package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages(c("stringr", "magrittr", "ggplot2","patchwork","Rmisc","Cairo"))
+source("install_dependencies.R")
 ```
 
 加载包

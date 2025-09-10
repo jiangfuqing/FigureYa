@@ -45,10 +45,7 @@ Use heatmaps, bar charts, and heatmaps on the circle chart to display multiple s
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("readxl", dependencies = TRUE)
-install.packages("xlsx", dependencies = TRUE)
+source("install_dependencies.R")
 ```
 
 加载包

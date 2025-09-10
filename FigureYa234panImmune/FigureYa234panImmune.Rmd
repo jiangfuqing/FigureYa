@@ -55,20 +55,16 @@ The following three calculation methods are shown and plotted respectively (TIME
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("showtext")
+source("install_dependencies.R")
 
 # 安装IOBR，参照https://github.com/IOBR/IOBR
 # Install the IOBR, refer to https://github.com/IOBR/IOBR
-if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 depens <- c('tibble', 'survival', 'survminer', 'sva', 'limma', "DESeq2","devtools",
           'limSolve', 'GSVA', 'e1071', 'preprocessCore', 'ggplot2', "biomaRt",
           'ggpubr', "devtools", "tidyHeatmap", "caret", "glmnet", "ppcor", "timeROC","pracma")
 for(i in 1:length(depens)){
   depen<-depens[i]
   if (!requireNamespace(depen, quietly = TRUE))
-    BiocManager::install(depen,update = FALSE)
 }
 if (!requireNamespace("remotes", quietly = TRUE)) install("remotes")
 if (!requireNamespace("EPIC", quietly = TRUE))
@@ -77,12 +73,10 @@ if (!requireNamespace("MCPcounter", quietly = TRUE))
   remotes::install_github("ebecht/MCPcounter",ref="master", subdir="Source")
 if (!requireNamespace("estimate", quietly = TRUE)){
   rforge <- "http://r-forge.r-project.org"
-  install.packages("estimate", repos=rforge, dependencies=TRUE)
 }
 devtools::install_github("IOBR/IOBR")
 # 如果网络不好，可以从github下载后本地安装，安装包已上传至https://share.weiyun.com/g2BTNgVX
 # If the network is not good, you can download it from github and install it locally, and the installation package has been uploaded to the https://share.weiyun.com/g2BTNgVX
-install.packages("IOBR-master.tar.gz", repos = NULL, type = "source")
 ```
 
 加载包

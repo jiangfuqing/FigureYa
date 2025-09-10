@@ -47,9 +47,7 @@ Can be used to mine DNA methylation data of TCGA.
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("ChAMP")
+source("install_dependencies.R")
 ```
 
 加载包

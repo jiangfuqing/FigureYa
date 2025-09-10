@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -61,7 +62,6 @@ Compare the signal intensity of IP experiments and input controls, e.g., the fig
 In order to extract the signals in the bw file, 2 functions `regionCapture`, `signal_caputer_around_gene` are needed, saved in the `corelib.R` file
 
 ```{r}
-#install.packages("rtracklayer")
 source("./corelib.R") #位于当前文件夹 it is located in the current folder
 ```
 

@@ -41,18 +41,10 @@ Applicable to:
 Install the required packages
 
 ```r
+source("install_dependencies.R")
 #使用国内镜像安装包
 #use the domestic mirror installation package
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("TCGAbiolinks", version = "3.8")
 
-install.packages("stringr")
-install.packages("dplyr")
-install.packages("ggplot2")
-install.packages("RColorBrewer")
 ```
 
 加载需要用到的包

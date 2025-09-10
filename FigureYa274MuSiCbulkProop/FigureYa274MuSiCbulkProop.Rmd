@@ -80,11 +80,8 @@ We will cover two scenarios to help you successfully complete the analysis:
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages('devtools')
+source("install_dependencies.R")
 devtools::install_github('xuranw/MuSiC')
-BiocManager::install("glmGamPoi")
 ```
 
 # 加载包

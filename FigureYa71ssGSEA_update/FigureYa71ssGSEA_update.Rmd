@@ -56,10 +56,7 @@ The example paper extracted 27 kinds of immune cells, contacting the original au
 Installation of packages using domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("GSVA")
-install.packages("circlize")
+source("install_dependencies.R")
 ```
 
 加载包

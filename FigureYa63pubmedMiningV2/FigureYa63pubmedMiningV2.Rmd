@@ -54,14 +54,7 @@ It contains three modules that are relatively independent and can be run separat
 use the domestic mirror installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("rentrez")
-BiocManager::install("pubmed.mineR")
-install.packages("jiebaR")
-install.packages("bibliometrix")
-install.packages("DT")
-install.packages("htmlwidgets")
+source("install_dependencies.R")
 ```
 
 加载包

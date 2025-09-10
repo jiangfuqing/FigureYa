@@ -48,25 +48,22 @@ More ways of displaying correlation by the package corrplot can be found at <htt
 ## Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # ====================== 包安装设置 ======================
 # ====================== Package Installation Settings ======================
 
 # 使用国内镜像加速CRAN包下载 (注释状态)
 # Use Chinese mirror to accelerate CRAN package downloads (commented out)
-# options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 
 # 使用国内镜像加速Bioconductor包下载 (注释状态)
 # Use Chinese mirror for Bioconductor packages (commented out)
-# options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 # 安装Cairo图形设备包 (注释状态)
 # Install Cairo graphics device package (commented out)
-# install.packages("Cairo")
 
 # 添加discover包专用仓库并安装 (注释状态)
 # Add discover package repository and install (commented out)
 # options(repos=c(getOption("repos"), "http://ccb.nki.nl/software/discover/repos/r"))
-# install.packages("discover")
 
 
 # ====================== 加载所需包 ======================

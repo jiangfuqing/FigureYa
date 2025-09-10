@@ -58,10 +58,8 @@ Discrimination (discrimination) and Calibration (consistency/calibration) are tw
 Use domestic mirror installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 # https://github.com/psolymos/ResourceSelection
-install.packages("ResourceSelection")
 ```
 
 加载包

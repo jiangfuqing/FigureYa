@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -51,7 +52,6 @@ Clinical data, including categorization, sample size, hazard ratio, and confiden
 The data file for testing is easy_input.csv, and the corresponding column names for classification, sample size, hazard ratio, and confidence intervals (upper and lower limits) are Variable, Count, Point.Estimate, Low, and High, respectively.
 
 ```{r,message=FALSE,warning=FALSE}
-#install.packages("forestplot")
 library("forestplot")
 
 #读取输入文件，输入数据一般包括分类、样本数、风险比及置信区间（上限及下限）等，需要注意的是输入文件的布局(包括文字缩进)将展示在最后结果中，所见即所得。

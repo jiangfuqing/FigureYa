@@ -9,6 +9,7 @@ output: 'html_document'
 ![](hoptop.jpg)
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
 knitr::opts_chunk$set(echo = TRUE)
@@ -117,16 +118,11 @@ CRAN image backup
 -Lanzhou University:< https://mirror.lzu.edu.cn/CRAN/ >
 
 ```{r, message=FALSE, warning=FALSE}
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 # R版本大于3.5.0时的安装方法
 # Installation method for R version > 3.5.0
-if (!requireNamespace("BiocManager"))
-    install.packages("BiocManager")
 # 检查是否安装了iClusterPlus包，若未安装则通过BiocManager安装
 # Check if the iClusterPlus package is installed, if not, install it via BiocManager
 if (!requireNamespace("iClusterPlus"))
-  BiocManager::install("iClusterPlus")
 #R版本小于3.5.0时的安装方法（已注释）
 # Installation method for R version < 3.5.0 (commented out)
 #source("http://bioconductor.org/biocLite.R")
@@ -143,8 +139,6 @@ library("iClusterPlus")
 ```{r}
 # 安装DNAcopy和GenomicRanges包（已注释，避免重复安装）
 # Install DNAcopy and GenomicRanges packages (commented to avoid reinstallation)
-#BiocManager::install("DNAcopy")
-#BiocManager::install("GenomicRanges")
 # R < 3.5.0版本的安装方法（已注释）
 # Installation method for R < 3.5.0 (commented out)
 #source("http://bioconductor.org/biocLite.R")

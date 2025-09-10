@@ -41,9 +41,7 @@ For example, the sample text simultaneously shows the correlation of B7-H3 expre
 use the domestic mirror installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("ggplot2")
+source("install_dependencies.R")
 ```
 
 加载包

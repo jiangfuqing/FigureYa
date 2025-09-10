@@ -13,6 +13,7 @@ output: 'html_document'
 小丫编辑校验
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -54,8 +55,6 @@ CRAN镜像备选
 
 ```{r, message=FALSE, warning=FALSE}
 #source("https://bioconductor.org/biocLite.R")
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 if ( ! require(iClusterPlus)) BiocInstaller::biocLite("iClusterPlus")
 ```
 
@@ -66,7 +65,6 @@ if ( ! require(iClusterPlus)) BiocInstaller::biocLite("iClusterPlus")
 ```{r, message=FALSE}
 library(iClusterPlus)
 library(GenomicRanges)
-#install.packages("gplots")
 library(gplots)
 library(lattice)
 data(gbm)

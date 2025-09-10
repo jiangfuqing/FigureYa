@@ -82,9 +82,7 @@ For more pan-cancer analysis and visualization (FigureYa), visit: <https://k.you
 Using domestic mirrors for package installation.
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("randomcoloR")
+source("install_dependencies.R")
 ```
 
 # 加载包

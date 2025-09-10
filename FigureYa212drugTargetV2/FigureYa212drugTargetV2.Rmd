@@ -76,9 +76,7 @@ Chen Yang, Xiaowen Huang, Yan Li, Junfei Chen, Yuanyuan Lv, Shixue Dai, Prognosi
 使用国内镜像安装包
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("pRRophetic_0.5.tar.gz", repos = NULL, type = "source")
+source("install_dependencies.R")
 ```
 
 加载包

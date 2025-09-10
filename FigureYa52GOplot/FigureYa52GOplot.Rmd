@@ -57,16 +57,10 @@ In addition to being proficient in GO enrichment analysis, clusterProfiler can a
 Install the required packages
 
 ```r
+source("install_dependencies.R")
 #使用国内镜像安装包
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("clusterProfiler", version = "3.8")
-BiocManager::install("org.Mm.eg.db", version = "3.8")
 
-install.packages('GOplot')
 ```
 
 加载需要用到的包

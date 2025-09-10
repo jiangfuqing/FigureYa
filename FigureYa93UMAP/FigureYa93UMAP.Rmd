@@ -54,6 +54,7 @@ First check install_UMAP.md to install anaconda and UMAP and add environment var
 Mac systems add environment variables like this:
 
 ```r
+source("install_dependencies.R")
 Sys.getenv("PATH") #检查/Anaconda/bin 是否在环境中
 Sys.getenv("PATH"="/anaconda3/bin/") #如果不在的话，需要将其加入环境变量中
 Sys.getenv("PATH") #再次检查
@@ -64,9 +65,6 @@ Sys.getenv("PATH") #再次检查
 Installation of packages using domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("Seurat")
 ```
 
 加载包

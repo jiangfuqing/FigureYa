@@ -36,8 +36,7 @@ After obtaining paired differentially expressed genes for at least three subtype
 Use a domestic mirror to install the package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 
 ```
 

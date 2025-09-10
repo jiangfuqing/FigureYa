@@ -60,7 +60,7 @@ requirement:
 Install Seurat package
 
 ```r
-install.packages('Seurat')
+source("install_dependencies.R")
 ```
 
 加载包

@@ -66,12 +66,10 @@ cicero直接安装github版。不用conda安装，是因为conda的cicero不是�
 Install the github version of cicero directly. Not using conda for installation is because conda's cicero is not the latest version. It works fine with the data of 10X cell ranger, but has problems when dealing with sparse matrices.
 
 ```{r, eval=FALSE}
-BiocManager::install(c("Gviz", "GenomicRanges", "rtracklayer"))
-#install.packages("devtools")
+source("install_dependencies.R")
 devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")
 #小丫用上面的命令安装不成功，改从github下载后，重新压缩，本地安装，成功
 # Xiaoya failed to install it using the above command. Instead, she downloaded it from github, re-compressed it and installed it locally. It was successful
-#install.packages("cicero-release-master.tar.gz", repos = NULL, type = "source", ref = "monocle3")
 
 #MAC系统安装monocle时可能遇到问题，解决方法看这里https://cole-trapnell-lab.github.io/monocle3/docs/installation/
 # MAC system installing a monocle may encounter problems, solution here at https://cole-trapnell-lab.github.io/monocle3/docs/installation/

@@ -108,12 +108,9 @@ make
 Then copy the `seqman` file to the current folder
 
 ```{r, message=FALSE}
+source("install_dependencies.R")
 #使用国内镜像安装包
 #use the domestic mirror installation package
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if(! require('tidyverse')) install.packages('tidyverse')
-if(! require('GEOquery')) install.packages('GEOquery')
 
 library(tidyverse)
 library(GEOquery)

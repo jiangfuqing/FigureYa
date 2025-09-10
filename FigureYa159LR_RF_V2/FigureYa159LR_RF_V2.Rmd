@@ -36,8 +36,7 @@ On the basis of LASSO dimensionality reduction, logistic regression or Random fo
 Use a domestic mirror to install the package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 ```
 
 加载包

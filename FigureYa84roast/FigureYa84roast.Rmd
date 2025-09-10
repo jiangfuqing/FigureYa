@@ -74,9 +74,7 @@ Applicability: Suitable for microarray and RNA seq expression matrices, perform 
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("statmod")
+source("install_dependencies.R")
 ```
 
 加载包
