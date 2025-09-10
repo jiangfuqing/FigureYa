@@ -44,18 +44,6 @@ At the same time, samples can be grouped based on the gene expression profile of
 ```{r warning=FALSE}
 source("install_dependencies.R")
 
-# Install and load packages
-Packages <- c("pheatmap","gplots") # CRAN的包 | Packages from CRAN
-for(pk in Packages){
-  # 加载包并抑制加载信息
-  # Load the package and suppress loading messages
-  suppressMessages(library(pk,character.only = T))
-}
-
-# Install and load GSVA package from Bioconductor
-} 
-suppressMessages(library("GSVA",character.only = T))
-
 # 设置英文报错信息
 # Set error messages to English
 Sys.setenv(LANGUAGE = "en") 

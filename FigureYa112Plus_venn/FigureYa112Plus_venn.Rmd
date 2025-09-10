@@ -66,9 +66,7 @@ Installation package
 
 ```{r, eval=FALSE}
 source("install_dependencies.R")
-# Install the ggVennDiagram package (from the gaospecial/ggVennDiagram repository on GitHub)
 
-# Install the export package (used for exporting graphics, etc.)
 ```
 
 加载包

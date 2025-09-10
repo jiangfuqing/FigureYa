@@ -55,6 +55,7 @@ library packages
 
 ```{r}
 source("install_dependencies.R")
+#MAC system, may require manual download of WGCNA and local installation. Download link: https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/WGCNA_1.67.tgz
 # 加载WGCNA包，用于加权基因共表达网络分析
 # Load the WGCNA package for weighted gene co-expression network analysis
 library(WGCNA)

@@ -58,9 +58,6 @@ requirement:
 
 Install Seurat package
 
-```r
-```
-
 加载包
 
 library packages
@@ -202,7 +199,9 @@ names(new.cluster.ids) <- levels(pbmc)
 pbmc <- RenameIdents(pbmc, new.cluster.ids)
 ```
 
+这里可以接UMAP看聚类结果，关于UMAP的安装和详细用法，可参考FigureYa93UMAP。
 
+Here, UMAP can be connected to view the clustering results. For installation and detailed usage of UMAP, please refer to FigureYa93UMAP.
 
 ```r
 pbmc <- RunUMAP(pbmc, dims = 1:10)
@@ -325,6 +324,7 @@ seurat2scanpy(x = pbmc)  # x = 需要转换的Seurat对象
 
 后续的操作在Jupyter notebook进行。你需要：
 
+- 下载并安装Anaconda发行版，https://www.anaconda.com/distribution/#download-section
 - 用Jupyter notebook打开FigureYa111markerGene_step2_linuxMAC.ipynb或FigureYa111markerGene_step2_win10.ipynb文档继续画图。
 - ipynb文档的用法参考这篇：https://mp.weixin.qq.com/s/G-CQhNEJBmMRuDe2kxND_w
 
@@ -334,6 +334,7 @@ seurat2scanpy(x = pbmc)  # x = 需要转换的Seurat对象
 
 The subsequent operations will be carried out in the Jupyter notebook. You need:
 
+-Download and install the Anaconda distribution, https://www.anaconda.com/distribution/#download-section
 -Open the FigureYa111markerGene_step2.nuxmAC.ipynb or FigureYa111markerGene_step2w_in10.ipynb document with Jupyter notebook to continue drawing.
 -The usage of the ipynb document can be found in this article: https://mp.weixin.qq.com/s/G-CQhNEJBmMRuDe2kxND_w
 
