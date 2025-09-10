@@ -45,6 +45,11 @@ Important regions tend to be highly conserved, such as transcription factor bind
 
 下载bigWigSummary：
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 OS: Linux or MAC.

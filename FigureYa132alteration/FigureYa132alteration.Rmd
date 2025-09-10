@@ -58,6 +58,11 @@ This display method is used in multiple Figures in the example text. Refer to th
 - Figure 7, linked to treatment and drugs
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

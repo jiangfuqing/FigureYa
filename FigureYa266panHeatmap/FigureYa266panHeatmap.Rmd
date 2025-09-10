@@ -72,6 +72,11 @@ Additionally, we have crowdsourced several other interesting figures from this a
 For more pan-cancer FigureYa resources, see here<https://k.youshop10.com/C8RkTgR3>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

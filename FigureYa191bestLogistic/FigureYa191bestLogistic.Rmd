@@ -28,6 +28,11 @@ ROC was used to find the best cutoff for continuous variables, and two groups we
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

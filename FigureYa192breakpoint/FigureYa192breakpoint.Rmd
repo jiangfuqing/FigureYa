@@ -38,6 +38,11 @@ Here, we take the data from the SEER database as an example, which can also be u
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

@@ -84,6 +84,11 @@ D: Refer to FigureYa165heatmapPvalue <https://k.youshop10.com/XxLAKutg>
 - FigureYa213customizeHeatmap<https://k.youshop10.com/ERfoCk=-> reproduces Figure 6, performing CMap analysis and visualization.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

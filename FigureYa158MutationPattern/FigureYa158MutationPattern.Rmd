@@ -33,6 +33,11 @@ Currently, many R packages exist to assist with mutation signature analysis, suc
 Here, we use maftools + MutationalPatterns to perform this analysis.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

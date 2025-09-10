@@ -41,6 +41,11 @@ Ref: Robert Tibshirani, Trevor Hastie, Balasubramanian Narasimhan, and Gilbert C
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 Installation of packages using domestic mirrors

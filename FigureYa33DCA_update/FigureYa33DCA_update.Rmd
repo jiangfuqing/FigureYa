@@ -34,6 +34,11 @@ Survival data, which involves the combination of time and event occurrence facto
 In cohort studies, like the B-figure in the example, there are both opt-in and opt-out choices to help identify high-risk patients for intervention and low-risk patients to avoid overmedication. The ultimate purpose of this graph is to demonstrate this value.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

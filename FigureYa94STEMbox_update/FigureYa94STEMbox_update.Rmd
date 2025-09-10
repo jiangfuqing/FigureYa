@@ -43,6 +43,11 @@ The usage and parameter settings of STEM are not the topics to be discussed here
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Use domestic image installation package

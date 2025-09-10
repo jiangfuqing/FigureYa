@@ -30,6 +30,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{r}
 library(stringr)
 library(data.table)

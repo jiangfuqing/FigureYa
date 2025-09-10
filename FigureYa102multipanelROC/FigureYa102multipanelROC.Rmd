@@ -45,6 +45,11 @@ If you need to calculate and plot the ROC of a single biomarker, please refer to
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 ```{r}

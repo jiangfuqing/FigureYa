@@ -34,6 +34,11 @@ Scenario 1: Evaluate the proportional changes of different components of a whole
 Scenario 2: Evaluate different indicators under the same measurement system
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 ```{r}

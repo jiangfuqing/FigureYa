@@ -42,6 +42,11 @@ Can be used to mine DNA methylation data of TCGA.
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

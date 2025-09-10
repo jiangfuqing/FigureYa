@@ -59,6 +59,11 @@ Scores epithelial cells with AUCell followed by NMF clustering
 Implements multiple metabolic scoring methods including AUCell
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

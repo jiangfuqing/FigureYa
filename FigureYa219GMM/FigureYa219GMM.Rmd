@@ -37,6 +37,11 @@ All possible logistic regressions were constructed through permutations and comb
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

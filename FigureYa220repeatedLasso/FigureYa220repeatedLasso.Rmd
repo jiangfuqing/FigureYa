@@ -38,6 +38,11 @@ Using Cox proportional hazards model (iteration = 1000) with an lasso penalty to
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

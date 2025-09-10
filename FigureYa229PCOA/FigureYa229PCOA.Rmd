@@ -58,6 +58,11 @@ In practice, if you want to highlight the features you want to show, you need to
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

@@ -52,6 +52,11 @@ This document uses SingleR to calculate the proportion of cDC3_LAMP3 derived fro
 For Figure S5B of the same paper (Stratification of cDC transcriptomes by scores generated from signature genes of three cDC subsets), the FigureYa314SingleRScore <https://k.youshop10.com/2DkhulHr>can be used for calculation and plotting.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

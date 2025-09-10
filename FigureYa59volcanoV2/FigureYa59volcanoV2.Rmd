@@ -34,6 +34,11 @@ from<https://www.nature.com/articles/s41467-018-06944-1>
 Demonstrate overall gene expression trends between the two groups.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 ```{r}

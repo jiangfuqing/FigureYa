@@ -40,6 +40,11 @@ Using the Similarity Network Fusion (SNF) algorithm for joint clustering of mult
 FigureYa69cancerSubtype employed the SNFCC method for clustering the same dataset, whereas this time, it is applied to multi-omics data clustering.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

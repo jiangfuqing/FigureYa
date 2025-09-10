@@ -61,6 +61,11 @@ For extended implementations of this visualization approach in peer-reviewed stu
 
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 使用国内镜像安装包

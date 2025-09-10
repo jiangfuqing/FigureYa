@@ -58,6 +58,11 @@ reference material:
 
 安装需要的包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Install the required packages

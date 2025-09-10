@@ -38,6 +38,11 @@ Use complex correlation graphs to simultaneously display gene expression correla
 If you only want to calculate and display the correlation and draw a similar graph, refer to FigureYa92immune_gene.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

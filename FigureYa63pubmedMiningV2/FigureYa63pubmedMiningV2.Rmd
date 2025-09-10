@@ -47,6 +47,11 @@ It contains three modules that are relatively independent and can be run separat
 [Module 3] **Find a good friend from the abstract**
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 使用国内镜像安装包

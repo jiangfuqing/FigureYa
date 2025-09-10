@@ -17,6 +17,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 在终端(Terminal)安装Rmagic
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{bash}
 git clone https://github.com/KrishnaswamyLab/MAGIC
 cd MAGIC/python

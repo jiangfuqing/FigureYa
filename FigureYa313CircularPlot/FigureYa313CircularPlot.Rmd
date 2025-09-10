@@ -46,6 +46,11 @@ Compare the numerical distributions between two groups without requiring one-to-
 We have previously created many scatter plots in vertical coordinate systems <https://k.youshop10.com/PqTXapih>, using different colors or shapes for grouping. This time we will plot them as circles, using different circles for grouping.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Requirements Description
 
 使用国内镜像安装包。

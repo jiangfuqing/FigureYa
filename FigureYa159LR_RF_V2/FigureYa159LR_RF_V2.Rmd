@@ -30,6 +30,11 @@ Figure 3 | The predictive power of pseudogene expression in classification of UC
 On the basis of LASSO dimensionality reduction, logistic regression or Random forest methods are used to conduct 5-fold cross-validation to evaluate the prediction performance of LASSO selected features.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

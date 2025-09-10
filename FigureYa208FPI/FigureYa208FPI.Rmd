@@ -54,6 +54,11 @@ This method can be applied to batch-process multiple datasets (e.g., TCGA pan-ca
 Additionally, it is not limited to calculating the Ferroptosis Potential Index (FPI). By replacing the gene sets with custom collections related to a specific function, users can define their own "XX Index" following the same approach.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

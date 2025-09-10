@@ -51,6 +51,11 @@ The original method said that it was implemented with the rms package, the rms p
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

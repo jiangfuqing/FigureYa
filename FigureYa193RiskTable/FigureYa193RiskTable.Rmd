@@ -30,6 +30,11 @@ The riskscore of the training set was constructed and verified. Multivariate reg
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

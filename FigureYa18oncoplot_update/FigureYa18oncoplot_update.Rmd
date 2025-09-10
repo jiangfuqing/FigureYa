@@ -48,6 +48,11 @@ Here, use TCGAbiolinks to download data and draw with maftools. If you want more
 Maftools are rich in functions, browse <https://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html> to know what kind of graphs you can draw with it, and then come to it when you need it~
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

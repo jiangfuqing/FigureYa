@@ -64,6 +64,11 @@ Several figures in the article can be implemented using our crowdfunded FigureYa
 - More circle diagram drawing methods see <https://k.youshop10.com/Ch9kUjuR>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

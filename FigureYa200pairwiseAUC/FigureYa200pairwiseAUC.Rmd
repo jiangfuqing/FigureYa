@@ -36,6 +36,11 @@ The training set defines the candidate genes, and then looks for the set of gene
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic Mirror Installer

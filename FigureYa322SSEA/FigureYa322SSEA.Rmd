@@ -48,6 +48,11 @@ Suitable for simultaneously displaying multiple features across multiple dataset
 A single dataset with multiple features or multiple datasets with a single feature, you can refer to FigureYa8radar <https://k.youshop10.com/XJpd8V=R> to create petal-style radar charts.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

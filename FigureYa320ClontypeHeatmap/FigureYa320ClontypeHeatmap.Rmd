@@ -41,6 +41,11 @@ Figure 4. TCR analysis reveals lower diversity in terminally exhausted T cells.
 Evaluate the distribution of clonotypes across different cell types and plot a heatmap where color represents the logarithmic value of shared clonotypes between cell types.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

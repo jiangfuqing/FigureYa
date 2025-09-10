@@ -44,6 +44,11 @@ Refer to the author published this Nature CellPhoneDB Protocol < https://doi.org
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 加载R包

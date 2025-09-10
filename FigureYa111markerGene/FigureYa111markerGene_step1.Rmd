@@ -49,6 +49,11 @@ Here, Seurat was used earlier, and only the drawing function of scanpy was used 
 
 安装Seurat包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 requirement:

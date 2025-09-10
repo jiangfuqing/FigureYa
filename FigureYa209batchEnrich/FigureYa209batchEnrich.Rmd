@@ -58,6 +58,11 @@ Which is easy to tell a story, in the end, choose which method and which databas
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

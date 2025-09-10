@@ -46,6 +46,11 @@ Exome sequencing data can generate similar plots.
 RNA-seq data can also be leveraged for in-depth analysis using such approaches. For example, when RNA-seq identifies hundreds or thousands of differentially expressed genes, how can we pinpoint the key drivers? By what mechanisms do they regulate downstream gene expression? One possible explanation could be high-frequency copy number variations (gain/loss) in certain genes.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

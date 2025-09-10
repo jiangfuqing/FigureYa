@@ -43,6 +43,11 @@ Show multiple layers of information at the same time, not limited to the methyla
 You can also change to differentially expressed genes, replace the horizontal axis deltabeta with foldchange, and replace feature with gene classification.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

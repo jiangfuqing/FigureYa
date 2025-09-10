@@ -54,6 +54,11 @@ MotifbreakR can also be used in conjunction with other tools, with a series of r
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Use domestic image installation package

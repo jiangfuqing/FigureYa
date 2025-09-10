@@ -69,6 +69,11 @@ Applicability: Suitable for microarray and RNA seq expression matrices, perform 
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

@@ -48,6 +48,11 @@ It only cares which genes have mutations during calculation, weights and sums th
 The PMAPscore requires pathway information in kgml format, so MSigDB gene sets cannot be directly used here. Therefore, added code to batch download kgml files, read them as R objects, and apply them to PMAP calculations.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

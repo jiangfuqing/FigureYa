@@ -62,6 +62,11 @@ Chen Yang, Xiaowen Huang, Yan Li, Junfei Chen, Yuanyuan Lv, Shixue Dai, Prognosi
 
 方式一：安装github版的ComplexHeatmap（大鱼海棠亲测有效）
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 You can use the pheatmap in the latest version of ComplexHeatmap on github for drawing, and you can use it in either way.

@@ -50,6 +50,11 @@ Compare the effects of two factors on survival.
 For example, does high expression of both genes A and B result in longer survival compared to low expression of both genes A and B?
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

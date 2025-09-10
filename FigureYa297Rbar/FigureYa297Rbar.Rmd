@@ -56,6 +56,11 @@ We've also created some fancier bar charts:
 - FigureYa209batchEnrich <https://k.youshop10.com/dXk-kWCX>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

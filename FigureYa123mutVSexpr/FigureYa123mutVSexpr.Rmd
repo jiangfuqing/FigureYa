@@ -37,6 +37,11 @@ Used to demonstrate the correlation (independence) between mutations and express
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

@@ -43,6 +43,11 @@ Arrange the order of each node based on the biological significance of your own 
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

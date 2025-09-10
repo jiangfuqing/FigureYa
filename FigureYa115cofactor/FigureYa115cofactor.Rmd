@@ -73,6 +73,11 @@ Which regulatory proteins have binding sites that are more similar? Who is more 
 
 **注：**下文以“```bash”开头的代码都要复制粘贴到Terminal里运行（Linux和MAC自带），Windows10用WSL。WSL的用法参考FigureYa111markerGene里的视频<https://share.weiyun.com/56viiqa>，一步一步跟着洲更的演示来操作，就能在Windows系统里用起linux了。
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Download and install the Anaconda distribution, https://www.anaconda.com/distribution/#download -section

@@ -74,6 +74,11 @@ You can use best separation to group by high or low expression, see FigureYa4bes
 Or instead of using expression grouping, use known subtypes (obtained by clustering, or gold standard subtypes) grouping, see FigureYa116supervisedCluster, and further use its gold standard subtypes to find markers, and then use supervised hierarchical clustering to identify new subtypes on the validation set.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 安装需要的包

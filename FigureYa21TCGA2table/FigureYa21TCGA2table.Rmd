@@ -35,6 +35,11 @@ Categorical comparisons based on characteristics such as age, gender, ethnicity,
 If you also want to add the expression data of a certain gene, and calculate the HR of one-way and multi-factor cox regression, you can refer to FigureYa47HRtable, which can also generate tables in html, word and csv formats.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 使用国内镜像安装包

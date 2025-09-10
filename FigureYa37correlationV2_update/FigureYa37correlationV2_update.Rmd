@@ -42,6 +42,11 @@ More usage:
 - To find the target genes of transcription factors, to find which transcription factors regulate your genes, and to do further filtering, please refer to the “condensed strategy” at the end of this article: <https://mp.weixin.qq.com/s/UFbF5Ru8Pd67AcxCLODsfw>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

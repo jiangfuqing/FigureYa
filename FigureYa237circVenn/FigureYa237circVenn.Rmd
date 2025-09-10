@@ -36,6 +36,11 @@ To show the overlap genes between multiple groups and each specific gene, a venn
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

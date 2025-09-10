@@ -38,6 +38,11 @@ Test for intergroup differences between two or more groups of samples. Four comm
 Display subtype expression profiles using a heatmap and provide p-values for intergroup comparisons of expression profiles for each gene.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

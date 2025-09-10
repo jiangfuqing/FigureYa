@@ -35,6 +35,11 @@ Reply "182" on the "Xiaoya Drawing" public account to see your friends' discussi
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

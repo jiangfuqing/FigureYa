@@ -38,6 +38,11 @@ You can group based on high or low expression of a particular gene (or group bas
 In the next step, it is also possible to do survival analysis by grouping with high or low TMB values.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 加载R包

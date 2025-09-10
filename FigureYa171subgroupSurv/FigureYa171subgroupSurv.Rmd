@@ -36,6 +36,11 @@ Essentially, we filter the data by condition each time and then perform a surviv
 You may also want to read this article: Complete survival analysis of 20,000 genes in 8 seconds, everyone can do it! <https://mp.weixin.qq.com/s/o4e1HzG4zPIQoGT6-7D0ug>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

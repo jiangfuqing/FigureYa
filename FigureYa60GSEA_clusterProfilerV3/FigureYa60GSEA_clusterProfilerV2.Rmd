@@ -48,6 +48,11 @@ Suitable for: those who have done enrichment analysis with clusterProfiler and w
 If you want to use Java version of GSEA to do enrichment analysis and DIY result plot by yourself, please use FigureYa13GSEA_Java.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 ```{r}

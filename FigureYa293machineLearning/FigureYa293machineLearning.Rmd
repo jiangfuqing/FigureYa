@@ -75,6 +75,11 @@ For reference on figure design, you may consult our previously crowdsourced Figu
 - Figure 7，FigureYa71ssGSEA、FigureYa152DouleCorPlotexamples.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

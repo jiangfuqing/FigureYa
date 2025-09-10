@@ -5,6 +5,11 @@ date: "2020/4/25"
 output: html_document
 ---
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 指定一个新的包环境目录
 ```{r}
 oldpath <- .libPaths()[1]

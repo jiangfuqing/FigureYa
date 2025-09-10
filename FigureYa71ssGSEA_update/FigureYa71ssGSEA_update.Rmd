@@ -51,6 +51,11 @@ The example paper extracted 27 kinds of immune cells, contacting the original au
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 Installation of packages using domestic mirrors

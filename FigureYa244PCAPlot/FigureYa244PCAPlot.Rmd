@@ -37,6 +37,11 @@ Take a look at the <https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w> here to t
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

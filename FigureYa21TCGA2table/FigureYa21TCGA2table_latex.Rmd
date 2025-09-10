@@ -5,6 +5,11 @@ date: "7/21/2018"
 output: latex_document
 ---
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{r,message=FALSE}
 library(dplyr)
 x = read.csv("easy_input.csv")

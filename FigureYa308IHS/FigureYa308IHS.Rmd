@@ -68,6 +68,11 @@ For more heterogeneity figures, see here<https://k.youshop10.com/S-utnyI7>
 - FigureYa216MetaREM: **Meta-analysis** heterogeneity test, providing Q and p-value.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

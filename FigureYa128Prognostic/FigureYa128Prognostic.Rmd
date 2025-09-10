@@ -53,6 +53,11 @@ Answer: lasso heavily relies on seeds when allowed, as you need cross validation
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ### 使用国内镜像安装和加载包
 
 ##Environment settings

@@ -39,6 +39,11 @@ Use two sets of data to verify the lymph node metastasis signature (marker genes
 Use the signature found by TCGA data and then use other data sets for verification. This graph can be used to show the prediction effect.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

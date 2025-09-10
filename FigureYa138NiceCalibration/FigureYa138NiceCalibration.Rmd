@@ -52,6 +52,11 @@ Discrimination（区分度）和Calibration（一致性/标定度）是评价预
 Discrimination (discrimination) and Calibration (consistency/calibration) are two important indicators for evaluating the effectiveness of prediction models. They are mentioned in the example text. For details, please refer to this article: <http://www.dxy.cn/bbs/topic/38248198?from=recommend>
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

@@ -45,6 +45,11 @@ If necessary, let's raise funds through crowdfunding.
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 参考

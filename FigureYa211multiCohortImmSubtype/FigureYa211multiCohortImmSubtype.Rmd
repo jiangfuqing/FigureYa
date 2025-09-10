@@ -45,6 +45,11 @@ Original: We performed the CIBERSORT and ESTIMATE algorithms to quantify the act
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

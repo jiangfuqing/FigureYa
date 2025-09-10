@@ -62,6 +62,11 @@ This figure displays miRNA-target gene (or gene-drug, etc.) relationships, where
 To create this visualization, we enhanced the crosslink R package, which will continue to incorporate more innovative connection features. Those interested can visit <https://github.com/zzwch/crosslink> to explore the latest version and functionalities. GitHub also allows users to submit issues for direct communication with the author.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

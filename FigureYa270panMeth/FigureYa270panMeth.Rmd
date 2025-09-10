@@ -63,6 +63,11 @@ Analyze the methylation status of iron death genes in tumors and normal tissues 
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Use domestic image installation package

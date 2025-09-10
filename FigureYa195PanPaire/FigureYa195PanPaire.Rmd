@@ -60,6 +60,11 @@ You can also replace the gene sets with your own signatures or biomarkers of int
 For more pan-cancer visualizations, check here<https://k.koudai.com/Wi1xos9X>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

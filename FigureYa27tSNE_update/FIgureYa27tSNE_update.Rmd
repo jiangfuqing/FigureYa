@@ -44,6 +44,11 @@ Scenario 1: Hundreds of cells from single cell sequencing, identify subpopulatio
 Scenario 2: Hundreds of tumor samples, identify subtypes, find marker genes. Used to classify methylation subtypes like the example image.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 安装R包`Seurat`。之前的版本对应2.x, 目前版本对应3.x.x.

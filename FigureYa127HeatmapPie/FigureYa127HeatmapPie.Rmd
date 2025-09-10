@@ -43,6 +43,11 @@ On the right side, use a pie chart to show the correlation between each pathway 
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

@@ -45,6 +45,11 @@ More ways of displaying correlation by the package corrplot can be found at <htt
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 ```{r}

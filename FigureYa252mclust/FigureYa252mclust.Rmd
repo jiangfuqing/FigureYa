@@ -40,6 +40,11 @@ For more time series data results, see FigureYa16fitting, FigureYa94STEMbox, and
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

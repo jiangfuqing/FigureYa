@@ -41,6 +41,11 @@ The author later wrote a more robust R package `ImmuneSubtypeClassifier`, <https
 Classify samples based on immune infiltration quantification results.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment Setup
 
 使用国内镜像安装包

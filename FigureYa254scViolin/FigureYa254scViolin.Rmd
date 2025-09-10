@@ -57,6 +57,11 @@ In addition, Figure S6H uses color and shape to display the grouping information
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

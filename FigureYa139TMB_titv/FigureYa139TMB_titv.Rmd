@@ -56,6 +56,11 @@ Show the TMB of TCGA pan-cancer samples and the six base conversions and transve
 You can also customize the grouping, such as comparing different subtypes of the same disease.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

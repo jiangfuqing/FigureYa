@@ -71,6 +71,11 @@ For the original article in this crowdfunding project, the authors could have ac
 We even think that a randomization test might not need a null hypothesis at all, focusing only on the calculated probabilities. As computed in this crowdfunding project: in 1000 random samplings, DEGs had a 95.6% probability of appearing in normally expressed genes, meaning only a 4.4% probability of appearing in abnormally expressed genes.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

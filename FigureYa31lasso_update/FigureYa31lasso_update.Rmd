@@ -42,6 +42,11 @@ After screening for differential genes, genes with prognostic significance are f
 LASSO is more suitable for high-dimensional, strongly correlated, and small-sample survival data.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 采用R包`glmnet`，它是目前最好用的拟合广义线性模型的R包，由`LASSO` 回归的发明人，斯坦福统计学家 Trevor Hastie 领衔开发。 

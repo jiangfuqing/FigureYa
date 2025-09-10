@@ -62,6 +62,11 @@ Using the output of the Java version of GSEA as input, do-it-yourself result map
 If you do GSEA analysis with clusterProfiler and want to DIY the result plots, plot multiple pathways to a single plot, or plot multiple comparisons of the same pathway to a single plot, use FigureYa60GSEA_clusterprofiler.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 使用国内镜像安装包

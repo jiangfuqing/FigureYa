@@ -12,6 +12,11 @@ output: 'html_document'
 
 小丫编辑校验
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

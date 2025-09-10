@@ -33,6 +33,11 @@ This is logistic regression. If you want cox regression, you can refer to Figure
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

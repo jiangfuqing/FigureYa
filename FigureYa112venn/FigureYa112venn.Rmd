@@ -37,6 +37,11 @@ Display 4 groups of elements (such as differentially expressed genes) with overl
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

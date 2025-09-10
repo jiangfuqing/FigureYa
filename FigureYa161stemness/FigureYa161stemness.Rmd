@@ -37,6 +37,11 @@ This tool is used to calculate stemness indices for tumor gene expression and DN
 For the analysis plots in Figure 6, please refer to FigureYa131CMap. For other code, please refer to the article author's shared code: <https://github.com/richie2019/MBpanel>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

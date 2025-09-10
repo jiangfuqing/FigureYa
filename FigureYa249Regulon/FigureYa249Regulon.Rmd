@@ -74,6 +74,11 @@ Next, we will continue to crowdfund Figure3a, welcome to add Xiaoya as a friend 
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

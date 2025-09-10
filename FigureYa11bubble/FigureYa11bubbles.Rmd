@@ -34,6 +34,11 @@ Scenario 1: Present the results of gene function enrichment analysis
 Scenario 2: Multi-dimensional data information display
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

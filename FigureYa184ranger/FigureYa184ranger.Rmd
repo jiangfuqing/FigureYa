@@ -32,6 +32,11 @@ The weighted random forest was used to reduce the dimension of the survival data
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

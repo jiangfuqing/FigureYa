@@ -61,6 +61,11 @@ Suitable for overlaps of 2, 3, or 4 lists, with upsetR being more appropriate fo
 
 安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Installation package

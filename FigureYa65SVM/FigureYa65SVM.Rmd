@@ -39,6 +39,11 @@ lasso lr (logistic regression) is also one of the machine learning methods that 
 It is mainly used to filter the feature variables to construct the best classification model.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 ```{r, message=FALSE}

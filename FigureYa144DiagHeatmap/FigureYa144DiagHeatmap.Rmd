@@ -36,6 +36,11 @@ For example, the example shows that a gene in a certain cancer has opposing leve
 Or simultaneously display the expression level (activation) and DNA methylation level (inhibition) of a gene in multiple samples, etc.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

@@ -41,6 +41,11 @@ Here it is drawn using base plot. You can also try to draw it using ggplot2.
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

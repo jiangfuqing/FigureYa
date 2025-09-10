@@ -36,6 +36,11 @@ Source: <https://jitc.bmj.com/content/10/2/e003534>
 Show how to use the monocle2 package in single-cell data to predict cell developmental trajectories.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

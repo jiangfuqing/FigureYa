@@ -37,6 +37,11 @@ Shen R, Li P, Li B, Zhang B, Feng L, Cheng S. Identification of Distinct Immune 
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

@@ -53,6 +53,11 @@ from<https://www.aging-us.com/article/101829/text>
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

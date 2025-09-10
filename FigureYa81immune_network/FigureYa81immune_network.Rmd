@@ -57,6 +57,11 @@ Using a network diagram to simultaneously display relevant relationships pvalue�
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 ```{r}

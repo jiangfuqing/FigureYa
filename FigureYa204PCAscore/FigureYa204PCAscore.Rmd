@@ -34,6 +34,11 @@ According to the isoforms obtained by Figure201ClusterCorrelation and the ICI si
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

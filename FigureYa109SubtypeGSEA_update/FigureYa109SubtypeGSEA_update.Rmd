@@ -39,6 +39,11 @@ Multiple sets of enrichment analysis results can be compared and displayed toget
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Use domestic image installation package

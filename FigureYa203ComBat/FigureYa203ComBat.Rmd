@@ -44,6 +44,11 @@ Here, the ComBat method from the sva R package was used.
 Additionally, some studies employ non-classical batch effect removal approaches, such as FigureYa117multilinearDE.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

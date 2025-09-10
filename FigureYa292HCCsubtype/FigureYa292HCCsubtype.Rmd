@@ -64,6 +64,11 @@ Figure 2. Liver Cancers Show Distinct Gene Hypermethylation Patterns. (A) Unsupe
 Clustering of HCC samples based on expression profiles and comparison with other existing classifiers.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

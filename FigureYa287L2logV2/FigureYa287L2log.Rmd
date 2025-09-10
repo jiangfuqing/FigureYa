@@ -56,6 +56,11 @@ Implements nested cross-validation, Holm-Bonferroni correction, and L2-regulariz
 > Important: Please read README.txt first to understand function usage, parameters and notes.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

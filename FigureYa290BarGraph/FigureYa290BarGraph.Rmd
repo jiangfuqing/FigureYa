@@ -44,6 +44,11 @@ The single-cell data were processed and typed, the cell proportion bar chart was
 More single-cell FigureYa at: <https://k.youshop10.com/McawGY6=>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

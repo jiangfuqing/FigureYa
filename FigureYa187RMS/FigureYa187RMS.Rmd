@@ -32,6 +32,11 @@ Calculate the restrictive survival time and compare the prognostic value of diff
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

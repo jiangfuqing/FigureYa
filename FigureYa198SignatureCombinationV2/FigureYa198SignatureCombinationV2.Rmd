@@ -37,6 +37,11 @@ The core idea is permutation and combination.
 Based on the variables screened by random survival forest analysis, gene combinations are evaluated using the log-rank test, and the combination with a significant p-value and a smaller number of genes is selected as the prognostic signature.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 使用国内镜像安装包

@@ -35,6 +35,11 @@ Figure 3. Intratumoral Heterogeneity in Liver Cancer. (E) Diversity score of tum
 Use single-cell DNA sequencing data to calculate the diversity score to evaluate tumor heterogeneity.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

@@ -60,6 +60,11 @@ We have previously crowdsourced several mutation-related plots <https://k.yousho
 - Figure 5a: Forest plot (refer to FigureYa90subgroup  <https://k.youshop10.com/HD4mSqRP>)
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

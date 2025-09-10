@@ -43,6 +43,11 @@ For example, in the example text, there is one sample per column and one gene pe
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

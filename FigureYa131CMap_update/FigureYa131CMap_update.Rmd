@@ -43,6 +43,11 @@ The author still uses CMap build 02 for this query step.
 In the analysis of mechanism of actions (MoA) and drug-target, [CLUE](https://clue.io/) is used to perform MoA drug action mechanism analysis on the small molecules of interest and explore their common intrinsic mechanisms of action.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

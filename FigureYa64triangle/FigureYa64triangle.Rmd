@@ -58,6 +58,11 @@ Follow “Xiaoya Drawing” official account, reply “triangle” to see the us
 Use your imagination to develop more application scenarios.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 ```{r,message=FALSE}

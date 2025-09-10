@@ -75,6 +75,11 @@ Analyze somatic copy number variations (SCNAs) related to ferroptosis across pan
 For more pan-cancer analysis and visualization (FigureYa), visit: <https://k.youshop10.com/C8RkTgR3>.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

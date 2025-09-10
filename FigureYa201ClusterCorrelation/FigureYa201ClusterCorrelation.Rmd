@@ -67,6 +67,11 @@ When prior knowledge guides the analysis (e.g., a predefined cluster number in a
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

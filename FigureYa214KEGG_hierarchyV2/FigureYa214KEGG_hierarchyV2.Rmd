@@ -50,6 +50,11 @@ In addition, the drawing method of Fig. 4B can be found in Figure Ya142circosBar
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

@@ -50,6 +50,11 @@ In addition, it will also show the process from downloading TCGA DNA methylation
 Use pie charts to show percentages, and then arrange the pie charts into a matrix to correspond to multiple sets of data.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

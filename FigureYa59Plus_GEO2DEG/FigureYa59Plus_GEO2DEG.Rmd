@@ -24,6 +24,11 @@ Download chip data from the GEO database, screen for differentially expressed ge
 Applicable to chip data in the GEO database.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 加载包

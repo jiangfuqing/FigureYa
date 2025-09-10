@@ -65,6 +65,11 @@ I'm going to take you through the repetition of this approach.
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

@@ -56,6 +56,11 @@ Many of the figures in the example article were crowdfunded, for example:
 - For Figure S4a, refer to FigureYa251NPHSurv
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

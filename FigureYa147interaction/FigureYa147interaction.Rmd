@@ -55,6 +55,11 @@ Like the protein interaction in the example text, or the relationship between tr
 The relationship between transcription factor-target gene can be designed as follows: draw the transcription factor in the center and the target gene around it; the connecting line represents various evidences such as motif, ATAC-seq peak, H3K27ac peak, etc.; give these evidence weights by yourself and calculate an overall score as the length of the connecting line.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

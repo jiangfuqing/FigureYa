@@ -50,6 +50,11 @@ Later, you can take the `FigureYa36 two-factor survival analysis` to compare the
 Follow “Xiaoya drawing” WeChat official account, reply “35”, to see how these two graphs are used in the article, as well as partners on the statistical method of the graph of the discussion.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

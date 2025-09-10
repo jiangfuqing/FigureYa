@@ -43,6 +43,11 @@ You can also use your own data to draw such a heat map with local secondary labe
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

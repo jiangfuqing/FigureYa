@@ -38,6 +38,11 @@ MAGIC特别有利于找时序变化基因、度量基因间的关系。发表MAG
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{r eval=FALSE}
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")

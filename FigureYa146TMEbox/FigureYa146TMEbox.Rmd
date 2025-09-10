@@ -30,6 +30,11 @@ Figure 2. Construction of TME signatures and functional annotation. E, The fract
 This process explores whether the distribution of microenvironment-related signatures of different TME clusters is different. It can also be applied to recurrence, metastasis, cancer and adjacent phenotypic data.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

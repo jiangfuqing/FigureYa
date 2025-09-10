@@ -48,6 +48,11 @@ It can also be used to convert and display correlations or other continuous vari
 Here we use complexheatmap to draw the picture, but you can also use pheatmap to draw the picture. You can refer to FigureYa114ternaryCluster, which is divided into 3 groups (high/low/unchanged) according to the expression level to draw the picture.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

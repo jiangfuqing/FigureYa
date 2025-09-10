@@ -39,6 +39,11 @@ Fig. 1. Dissection of melanoma with single-cell RNA-seq. (B) Chromosomal landsca
 Calculate CNVs using single-cell RNA-seq data and compare differences between multiple groups.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

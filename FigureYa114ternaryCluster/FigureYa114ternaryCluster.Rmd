@@ -39,6 +39,11 @@ At the same time, samples can be grouped based on the gene expression profile of
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 ```{r warning=FALSE}

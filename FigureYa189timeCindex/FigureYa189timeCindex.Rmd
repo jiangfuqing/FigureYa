@@ -35,6 +35,11 @@ Time-dependent C-index, evaluating the consistency index of different models.
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

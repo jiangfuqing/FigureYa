@@ -46,6 +46,11 @@ Based on two groups of specific gene data, single gene set enrichment analysis (
 For more pan-cancer analysis and visualization (FigureYa), check here<https://k.youshop10.com/C8RkTgR3>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

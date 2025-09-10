@@ -87,6 +87,11 @@ If you want to systematically study the interrelationships between genes, you ne
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

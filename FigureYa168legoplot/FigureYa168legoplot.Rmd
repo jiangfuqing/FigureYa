@@ -44,6 +44,11 @@ The height of the bar represents the third feature (here, the count). Besides us
 Simultaneously displaying three features is particularly suitable when one of the features has an m x n structure, such as the 4 bases x 4 bases in the article.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 ```{r}

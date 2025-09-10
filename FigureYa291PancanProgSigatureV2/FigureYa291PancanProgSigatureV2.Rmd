@@ -64,6 +64,11 @@ FigureYa can be used to reproduce multiple figures from the example article, suc
 - Figures 2B & 6FGH (forest plots) → See <https://k.youshop10.com/Bc4bKvk3>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

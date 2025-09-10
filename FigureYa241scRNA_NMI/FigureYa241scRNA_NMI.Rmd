@@ -48,6 +48,11 @@ Problem: The same sample contains multiple cells. Note that the transcriptome we
 In Figures 2D and 2G of the example paper, expression programs were extracted using cNMF. Gene set analysis was then used to infer the biological significance of these expression programs by integrating with other published data. For instructions, see FigureYa226scRNA_cNMF <https://k.koudai.com/T9Zd8Fu9>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

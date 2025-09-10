@@ -51,6 +51,11 @@ Submap algorithm website https://cloud.genepattern.org/gp
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 ```{r}

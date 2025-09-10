@@ -78,6 +78,11 @@ Similar articles <https://www.sciencedirect.com/science/article/abs/pii/S0888754
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

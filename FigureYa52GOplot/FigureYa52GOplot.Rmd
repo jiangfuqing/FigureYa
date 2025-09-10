@@ -52,6 +52,11 @@ In addition to being proficient in GO enrichment analysis, clusterProfiler can a
 
 安装需要的包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Install the required packages

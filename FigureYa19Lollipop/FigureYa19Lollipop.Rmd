@@ -38,6 +38,11 @@ Scenario 1: Show the mutation site of a gene in a cancer type in TCGA.
 Scenario 2: Compare the mutation sites of different cancers/subtypes.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 ```r

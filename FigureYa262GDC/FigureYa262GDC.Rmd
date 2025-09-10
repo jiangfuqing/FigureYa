@@ -42,6 +42,11 @@ TCGA pancancer突变数据的可视化，自己提供感兴趣的基因名即可
 The visualization of TCGA pancancer mutation data can be achieved by providing the gene names of interest yourself
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

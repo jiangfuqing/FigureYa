@@ -36,6 +36,11 @@ Similar to FigureYa68friends, half is violin, box, and half is original data.
 Why draw this way? For the principle, please refer to this article <https://mp.weixin.qq.com/s/kd-WbPXPrg6K2RFNydK-mQ>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

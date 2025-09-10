@@ -65,6 +65,11 @@ Reply "R2" on the "Xiaoya Painting" official account to check the usage of simil
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Use domestic image installation package

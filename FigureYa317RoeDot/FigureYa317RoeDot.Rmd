@@ -54,6 +54,11 @@ Output: Line graph (Proportion.pdf) and Ro/e table
 Plot the Ro/e values of multiple groups as a heatmap, refer to FigureYa312CellPreference<https://k.youshop10.com/2Pg4u-pL> for guidance.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

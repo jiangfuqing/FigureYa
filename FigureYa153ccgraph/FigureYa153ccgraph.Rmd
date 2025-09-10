@@ -71,6 +71,11 @@ Displaying hierarchical structures. For example:
 - Not limited to two-level relationships; more levels are supported.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 加载R包

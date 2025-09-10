@@ -59,6 +59,11 @@ Show the relationship between classification, grouping and elements. For example
 Taking the TF-GO-target gene interaction as an example, the transcriptome finds several genes in the GO pathway and can be placed on the outer points. The color represents different GO terms, and the size of the point represents the gene expression level or fold change. The rectangle inside is the transcription factor that can bind to these peripheral genes found in our public database. As a result, it is clear at a glance which transcription factors activate genes and which inhibit them. If there is HiC or ChIA-pet data, the interaction between hub sites and target genes is the same.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 使用国内镜像安装包

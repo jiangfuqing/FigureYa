@@ -42,6 +42,11 @@ If you use this package in a published paper, please cite this paper:
 Hao Z, Lv D, Ge Y, Shi J, Weijers D, Yu G, Chen J. 2020. RIdeogram: drawing SVG graphics to visualize and map genome-wide data on the idiograms. PeerJ Comput. Sci. 6:e251 http://doi.org/10.7717/peerj-cs.251
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 ```{r}

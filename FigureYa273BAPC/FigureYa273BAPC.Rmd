@@ -40,6 +40,11 @@ Figure 3 Trends in **observed (solid lines) and predicted (dashed lines)** age-s
 Bayesian age-period-cohort prediction model (Bayesian-age-period-cohort [BAPC] model)
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

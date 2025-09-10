@@ -46,6 +46,11 @@ Figure 1. Identification of Two Hepatoblas- toma Subclasses by Expression Profil
 It's somewhat like consensus clustering, just overly complex. The algorithmic workflow is documented in the `Readme.txt` file—this was written by me and a computer science junior student, heavily leaning toward statistics + computing.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Requirements Description
 
 运行classpredict包，需要用**windows系统**

@@ -66,6 +66,11 @@ The calculation methods of various scores in the figure can be referred to our c
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

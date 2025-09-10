@@ -54,6 +54,11 @@ Gaujoux R , Seoighe C . A flexible R package for nonnegative matrix factorizatio
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

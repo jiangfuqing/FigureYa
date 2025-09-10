@@ -56,6 +56,11 @@ The referenced study (Yang et al. Elife 2022, https://elifesciences.org/articles
 If you use the methods described in the following demonstration, please cite the referenced paper (PMID: 35191375).
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

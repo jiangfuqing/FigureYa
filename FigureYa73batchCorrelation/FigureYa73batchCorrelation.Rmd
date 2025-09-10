@@ -44,6 +44,11 @@ When plotting thousands of loci such as ChIP-seq, ATAC-seq, or DNA methylation, 
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 ```{r}

@@ -35,6 +35,11 @@ When performing enrichment analysis or GSEA using a differentially expressed gen
 Alternatively, the R package GSVA can also perform similar functions. For usage, see FigureYa61GSVA.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

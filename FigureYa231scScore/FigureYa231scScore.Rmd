@@ -59,6 +59,11 @@ You need to compare and contrast the presentation from various angles to find th
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

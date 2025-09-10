@@ -42,6 +42,11 @@ Step 4: Use FW-SVM to further select feature numbers
 ## Application Scenario
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment Setup
 
 使用国内镜像安装包

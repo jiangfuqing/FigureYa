@@ -32,6 +32,11 @@ Draw the conditional probability survival curve and provide the conditional surv
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

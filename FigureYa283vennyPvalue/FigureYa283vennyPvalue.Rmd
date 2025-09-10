@@ -44,6 +44,11 @@ Venn diagram is associated with the intersection (exact test of multiset interse
 Venn diagram and p-value calculation (exact test of multiset intersections)
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

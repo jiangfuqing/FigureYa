@@ -50,6 +50,11 @@ If there are too many genes, a linear layout can be used (refer to FigureYa10chr
 If you also want to illustrate relationships between genes, refer to FigureYa74OmicCircos.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

@@ -46,6 +46,11 @@ Plot the correlation between a variable of interest and the objective response r
 The ORR calculation process is not included; precomputed ORR values for 21 TCGA cancer types are used directly.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

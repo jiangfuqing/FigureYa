@@ -66,6 +66,11 @@ For more immune infiltration figures, check FigureYa here: <https://k.youshop10.
 For transcriptional regulatory mechanism exploration, check FigureYa here: <https://k.youshop10.com/ohh48vwq>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

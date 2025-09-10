@@ -42,6 +42,11 @@ Explore additional pan-cancer visualizations here: <https://k.koudai.com/Wi1xos9
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Configuration
 
 Use domestic mirrors for package installation to accelerate downloads and bypass international network restrictions.

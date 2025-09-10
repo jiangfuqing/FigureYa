@@ -68,6 +68,11 @@ This is a solid approach—using a model-based method to identify markers before
 References available in the "Literatures" folder.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

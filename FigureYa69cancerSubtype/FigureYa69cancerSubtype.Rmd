@@ -45,6 +45,11 @@ CancerSubtypes contains 5 computational methods for molecular typing identificat
 
 用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 Installing packages with domestic mirrors

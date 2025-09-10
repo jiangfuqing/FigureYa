@@ -32,6 +32,11 @@ The Bland-Altman plot was used to compare the agreements among different evaluat
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

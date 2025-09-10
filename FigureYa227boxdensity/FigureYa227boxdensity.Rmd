@@ -48,6 +48,11 @@ Similarly, FigureYa68friends has drawn half violin, half box plot, and scatter p
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

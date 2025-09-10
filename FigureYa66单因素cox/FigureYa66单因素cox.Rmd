@@ -57,6 +57,11 @@ One-way cox analysis is used to explore the independent prognostic impact of ind
 Cox analysis can be used for transcriptome, methylation, miRNA, LncRNA, variable shear, etc.
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 ```{r, message=FALSE}

@@ -62,6 +62,11 @@ The METHOD DETAILS section under Integrated analysis describes the computational
 - NMF: Refer to FigureYa110mutationSignature, FigureYa158MutationPattern, and FigureYa169sigHeatmap
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

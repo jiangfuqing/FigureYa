@@ -30,6 +30,11 @@ Source: <https://www.ncbi.nlm.nih.gov/pubmed/25296969>
 After obtaining paired differentially expressed genes for at least three subtypes, we calculated the set of upregulated/downregulated genes for each subtype and plotted a heatmap of specific gene expression.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

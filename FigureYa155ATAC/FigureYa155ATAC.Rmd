@@ -42,6 +42,11 @@ Figure d in the original article primarily indicates that under GW3965 treatment
 Using heatmaps to display differences in chromatin accessibility is also applicable to ChIP-seq data.
 
 # 环境设置   
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 安装要用到的软件：

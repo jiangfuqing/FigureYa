@@ -6,6 +6,11 @@ output: html_document
 ---
 
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{r}
 knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE)
 ```

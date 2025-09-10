@@ -48,6 +48,11 @@ What this code is going to do is extract its color scheme from your preferred pa
 If you need a lot of colors, then pick a colorful paper.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 用到Y叔推荐的`rPlotter`包<https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>，先安装它

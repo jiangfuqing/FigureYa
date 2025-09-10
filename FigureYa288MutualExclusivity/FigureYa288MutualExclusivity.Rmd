@@ -71,6 +71,11 @@ As demonstrated in the Fisher's test implementation:
 "less" alternative indicates mutual exclusivity (competitive pattern; OR < 1), "greater" alternative denotes co-occurrence (cooperative pattern; OR > 1)
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

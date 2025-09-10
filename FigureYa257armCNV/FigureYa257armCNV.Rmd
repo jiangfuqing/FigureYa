@@ -47,6 +47,11 @@ In addition, for the distribution chart of Figure 5E, 7D, and 9, please refer to
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

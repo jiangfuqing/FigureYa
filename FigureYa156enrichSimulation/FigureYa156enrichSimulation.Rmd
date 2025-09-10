@@ -36,6 +36,11 @@ Calculate the empirical probability of an observed event through (Monte Carlo) r
 This method can help determine whether an observed event is a low-probability event from a statistical perspective.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

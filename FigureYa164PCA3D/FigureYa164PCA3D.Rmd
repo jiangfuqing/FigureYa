@@ -40,6 +40,11 @@ Scenario 2: Showing differences in specific genes between groups. Compare Figure
 Similarly, Figure 1 A uses the immune-related gene set for PCA, indicating distinct immune phenotypes among histologic grades.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

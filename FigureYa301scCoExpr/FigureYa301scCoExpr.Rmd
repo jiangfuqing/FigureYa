@@ -68,6 +68,11 @@ For more single-cell FigureYa, check here<https://k.youshop10.com/McawGY6=>
 For correlation visualization FigureYa, check here<https://k.youshop10.com/Eig1YOB4>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

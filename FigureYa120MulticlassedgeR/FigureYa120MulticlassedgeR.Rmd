@@ -43,6 +43,11 @@ For the case where the read count expression matrix is used as input, FigureYa11
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

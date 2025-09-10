@@ -43,6 +43,11 @@ Dual-axis charts are often used to compare and display trends and correlations b
 - Bar chart + line chart, like the example in this article, one showing quantity and the other showing proportion.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 下载R包[ImmuLncRNA](http://bio-bigdata.hrbmu.edu.cn/ImmLnc/download_loading.jsp?path=jt_download/ImmuLncRNA_0.1.0.tar.gz&name=ImmuLncRNA_0.1.0.tar.gz)后本地安装

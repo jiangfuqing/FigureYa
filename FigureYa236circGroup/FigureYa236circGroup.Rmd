@@ -41,6 +41,11 @@ We have also crowdfunded Figure 1ABC for example, which selects co-expressed gen
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

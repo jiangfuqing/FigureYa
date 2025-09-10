@@ -83,6 +83,11 @@ This is from <https://seaborn.pydata.org/tutorial/distributions.html#tutorial-ec
 We had a similar requirement in FigureYa278heatmapPoints <https://k.youshop10.com/IZWXWn32>, where we used the `kruskal.test`. This statistical method can also be used to compute the p-value between two distributions.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

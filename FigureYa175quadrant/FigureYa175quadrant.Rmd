@@ -59,6 +59,11 @@ In addition, you can refer to these two figureYa:
 
 # 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包

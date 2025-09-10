@@ -47,6 +47,11 @@ Not limited to RNA seq, it also applies to other types of data.
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 ```{r}

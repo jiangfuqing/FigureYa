@@ -46,6 +46,11 @@ Single-cell RNA-seq expression profiles and gene functional enrichment analysis 
 The expression heatmap on the left corresponds to the enrichment analysis results on the right, providing a more intuitive visualization.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

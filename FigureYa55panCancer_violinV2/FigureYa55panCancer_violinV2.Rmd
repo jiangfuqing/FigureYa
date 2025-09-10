@@ -34,6 +34,11 @@ Applicable to:
 2. Display expression data using split violin plots
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 安装需要用到的包

@@ -57,6 +57,11 @@ There are several diagrams in the article that can be implemented with our Figur
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation packages

@@ -37,6 +37,11 @@ Used to determine whether there is a global change in genome-wide binding. Appli
 - Standard ChIP-seq with calibration. For calibration methods, see this article <https://www.notion.so/Paper-191102-ChIPseqSpikeInFree-8e225f58252144d0b1a0a15f99020b66>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 根据自己的系统选择下载链接

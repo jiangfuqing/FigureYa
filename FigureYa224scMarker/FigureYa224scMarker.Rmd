@@ -43,6 +43,11 @@ Single-cell data showing cell ratios and marker genes.
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

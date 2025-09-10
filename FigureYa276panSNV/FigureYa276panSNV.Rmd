@@ -48,6 +48,11 @@ Analysis of mutation patterns in specific pathway genes across pan-cancer.
 For more pancancer analysis and visualization resources, visit: <https://k.youshop10.com/C8RkTgR3>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

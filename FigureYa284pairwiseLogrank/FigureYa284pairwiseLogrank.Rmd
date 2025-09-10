@@ -46,6 +46,11 @@ Survival analysis for 3+ subgroups with pairwise comparison statistics table.
 Reference: compSurv() function from MOVICS package <https://github.com/xlucpu/MOVICS/blob/master/R/compSurv.R>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

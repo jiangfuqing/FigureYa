@@ -41,6 +41,11 @@ Multidimensional correlation studies, e.g., to infer the extent to which somatic
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 Installation of packages using domestic mirrors

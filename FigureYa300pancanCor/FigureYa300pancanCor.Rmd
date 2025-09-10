@@ -70,6 +70,11 @@ FigureYa can be used to create multiple figures as shown in the example article,
 - Figures 2B and 6FGH forest plots, refer to: <https://k.youshop10.com/Bc4bKvk3>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

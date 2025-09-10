@@ -60,6 +60,11 @@ Analyze the correlation between gene transcriptome expression and promoter methy
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 Use domestic image installation package

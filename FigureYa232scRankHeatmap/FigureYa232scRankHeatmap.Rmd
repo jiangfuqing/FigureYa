@@ -57,6 +57,11 @@ Many figures of the same type appear in [Example 2] (<https://www.cell.com/devel
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation packages

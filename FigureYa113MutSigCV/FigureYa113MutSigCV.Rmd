@@ -57,6 +57,11 @@ If you only want to download MAF files directly from TCGA for drawing, you can u
 
 （其实Matlab的使用方式很傻瓜，比R更容易，更像Excel）
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 #Environment settings
 
 First, prepare the input data required for MutSigCV in R, then infer SMG using MutSigCV, and finally draw a waterfall plot using MutSigCV's output file in R.

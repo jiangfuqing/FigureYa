@@ -29,6 +29,11 @@ Q：Lazy, can I use the output file easy_input.csv of FigureYa55pancancer_violin
 A: Yes. Thanks to Chris Lou for helping to update and share two versions of the solution: ggpubr version and pure ggplot2 version
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 ```{r}

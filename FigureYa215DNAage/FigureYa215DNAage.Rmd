@@ -60,6 +60,11 @@ for Fig.4f, you can refer to FigureYa99smoothHR.
 For more works by Big Fish & Begonia, see: <https://k.koudai.com/OFad8N0w>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

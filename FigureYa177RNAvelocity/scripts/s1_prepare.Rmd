@@ -5,6 +5,11 @@ date: "2020/4/25"
 output: html_document
 ---
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ```{r}
 knitr::opts_chunk$set(eval = FALSE)
 ```

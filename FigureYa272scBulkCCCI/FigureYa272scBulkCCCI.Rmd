@@ -70,6 +70,11 @@ After downloading and extracting the package, you can view its contents:
 - Example execution code: ScBulkCCCI.R, located in ScBulkCCCI/example
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

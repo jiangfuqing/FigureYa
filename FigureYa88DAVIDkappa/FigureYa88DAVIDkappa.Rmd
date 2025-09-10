@@ -68,6 +68,11 @@ The principle is as follows:< https://david.ncifcrf.gov/helps/linear_search.html
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Use domestic image installation package

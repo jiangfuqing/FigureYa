@@ -34,6 +34,11 @@ Simultaneously calculate and display the correlation of 3 groups of data, A vs. 
 For example, the sample text simultaneously shows the correlation of B7-H3 expression with mir-29a, as well as with methylation. From this, it can be seen: In IDH‐wild grade II gliomas, B7‐H3 expression seemed to be downregulated by both methylation on cg10586317 and microRNA‐29a, rationalizing the paradox in grade II gliomas with wild‐type IDH.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 使用国内镜像安装包

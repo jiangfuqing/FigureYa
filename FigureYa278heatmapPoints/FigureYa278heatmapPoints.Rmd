@@ -52,6 +52,11 @@ Dr.Y's evaluation: A better alternative to upper and lower triangles. The upper 
 Simultaneously displaying two characteristics of the same object, such as showing both the expression levels and DNA methylation levels of multiple genes across multiple samples, etc.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

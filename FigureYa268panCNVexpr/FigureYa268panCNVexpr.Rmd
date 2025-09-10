@@ -68,6 +68,11 @@ The crowdfunding for Figure 1DE will be launched successively, so stay tuned.
 Analyze the correlation between somatic copy number and gene expression (using ferroptosis as an example) and plot a scatter diagram.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

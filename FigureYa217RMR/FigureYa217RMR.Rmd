@@ -34,6 +34,11 @@ from<https://www.frontiersin.org/articles/10.3389/fbioe.2020.00167/full>
 Differential genes are identified using the minimal Redundancy Maximal Relevance method, followed by the application of SVM + LOOCV (Support Vector Machine + Leave-One-Out Cross-Validation) to determine the smallest and most optimal gene combination based on the MCC for constructing the predictive model.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

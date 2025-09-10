@@ -66,6 +66,11 @@ Here are three methods:
 
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment settings
 
 ```{r}

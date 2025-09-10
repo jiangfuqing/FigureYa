@@ -45,6 +45,11 @@ If you want to simultaneously demonstrate the correlation between two genes and 
 
 加载包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 Load Package

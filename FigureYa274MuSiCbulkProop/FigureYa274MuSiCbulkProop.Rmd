@@ -73,6 +73,11 @@ We will cover two scenarios to help you successfully complete the analysis:
 
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

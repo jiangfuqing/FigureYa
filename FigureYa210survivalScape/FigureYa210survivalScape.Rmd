@@ -69,6 +69,11 @@ Visualization of results. Examples are written in red, blue, and white for risk,
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

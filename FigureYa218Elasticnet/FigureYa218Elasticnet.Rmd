@@ -46,6 +46,11 @@ Construct a classification model by selecting variables based on the elastic net
 For more machine learning-related FigureYa, please refer to this link <https://k.koudai.com/ZkmRxldV>
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # environment setting
 
 使用国内镜像安装包

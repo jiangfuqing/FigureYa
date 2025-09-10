@@ -53,6 +53,11 @@ ggplot2 to generate a bubble plot (reference: FigureYa178receptorLigand <https:/
 - Use CellChat to analyze and compare ligand-receptor differences between **two sample groups** (reference: FigureYa267scCellChat <https://k.youshop10.com/qruuYZow>).
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

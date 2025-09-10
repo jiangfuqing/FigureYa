@@ -47,6 +47,11 @@ When performing correlation analysis between multiple genes (or immune cells, or
 This is suitable for displaying correlation results with consistent horizontal and vertical coordinates, as such correlation matrices can be drawn as triangles (the lower left and upper right are the same). If the horizontal and vertical coordinates are inconsistent, a rectangle should be drawn. For calculation and drawing methods, refer to Figure Ya97correlation. If you need to display two groups simultaneously, refer to Figure Ya144DiagHeatmap.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment Setup
 
 使用国内镜像安装包

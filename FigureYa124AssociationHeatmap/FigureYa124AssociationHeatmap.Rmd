@@ -45,6 +45,11 @@ In my personal opinion, such a "relationship" diagram can be used as an annotati
 
 ## 环境设置
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ##Environment settings
 
 ```{r}

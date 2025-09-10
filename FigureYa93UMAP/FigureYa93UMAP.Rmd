@@ -45,6 +45,11 @@ UMAP, one of the three mainstream latitude reduction methods. the advantage of U
 
 Mac系统这样添加环境变量：
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## Environment Setup
 
 First check install_UMAP.md to install anaconda and UMAP and add environment variables.

@@ -65,6 +65,11 @@ Many of the pictures in the article have been crowdfunded, such as:
 
 使用国内镜像安装包
 
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment settings
 
 Use the domestic mirror installation package

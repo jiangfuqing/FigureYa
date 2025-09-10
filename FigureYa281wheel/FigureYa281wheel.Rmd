@@ -66,6 +66,11 @@ Particularly suitable for data with two independent grouping methods: the periph
 Additionally, you can refer to the visualization method in FigureYa235scDEG<https://k.youshop10.com/m=E-yK5Z>, where the first grouping is arranged from left to right in a straight line, the second grouping is plotted on the upper and lower sides (if there are more than two groups, additional features like color and shape need to be introduced to differentiate them), and the distance from points to the horizontal axis represents the magnitude of values.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 使用国内镜像安装包。

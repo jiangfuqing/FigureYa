@@ -72,6 +72,11 @@ Disadvantages: slow speed. 2 cores were used, and only the first 100 probe seque
 Disadvantages: All kinds of scores are not output, and there is only one num_mismatch.
 
 ## 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 ## environment setting
 
 **Windows系统：**见压缩包中的word文档。

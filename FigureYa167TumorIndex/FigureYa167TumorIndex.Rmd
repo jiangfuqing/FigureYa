@@ -46,6 +46,11 @@ The article already provides [code](https://github.com/wanyewang1/Index_model), 
 We've repackaged the code here to provide a simpler way to use it.
 
 # 环境设置
+
+```{r}
+source("install_dependencies.R")
+```
+
 # Environment Setup
 
 加载包
