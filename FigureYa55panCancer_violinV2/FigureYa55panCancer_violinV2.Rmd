@@ -40,15 +40,6 @@ Applicable to:
 
 Install the required packages
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-
-install.packages("stringr")
-install.packages("dplyr")
-install.packages("ggplot2")
-install.packages("RColorBrewer")
-```
 
 加载需要用到的包
 

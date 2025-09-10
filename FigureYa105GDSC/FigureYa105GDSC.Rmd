@@ -54,10 +54,6 @@ It is also possible to screen drugs with significant differences between groups 
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-```
 
 GDSC数据库里的内容可以用R包pRRophetic来访问和计算。
 

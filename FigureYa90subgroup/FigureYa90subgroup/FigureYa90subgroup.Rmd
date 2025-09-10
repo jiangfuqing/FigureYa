@@ -39,11 +39,6 @@ Clinical subgroup analysis.
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("forestplot")
-```
 
 加载包
 

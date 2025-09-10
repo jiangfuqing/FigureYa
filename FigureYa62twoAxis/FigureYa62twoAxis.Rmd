@@ -38,11 +38,6 @@ For example, the sample text simultaneously shows the correlation of B7-H3 expre
 
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("ggplot2")
-```
 
 加载包
 

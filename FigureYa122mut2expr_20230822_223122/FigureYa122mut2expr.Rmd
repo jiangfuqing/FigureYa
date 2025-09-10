@@ -89,10 +89,6 @@ If you want to systematically study the interrelationships between genes, you ne
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-```
 
 加载包
 

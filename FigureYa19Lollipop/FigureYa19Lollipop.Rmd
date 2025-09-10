@@ -41,8 +41,6 @@ Scenario 2: Compare the mutation sites of different cancers/subtypes.
 ## environment setting
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 install("trackViewer")
 install("TCGAbiolinks")
 

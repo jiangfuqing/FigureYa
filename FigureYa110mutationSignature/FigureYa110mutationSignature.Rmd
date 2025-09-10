@@ -56,10 +56,6 @@ Gaujoux R , Seoighe C . A flexible R package for nonnegative matrix factorizatio
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-```
 
 deconstructsigs的安装：从github下载<https://github.com/raerose01/deconstructSigs>，解压缩，然后压缩为.tar.gz格式，本地安装。
 

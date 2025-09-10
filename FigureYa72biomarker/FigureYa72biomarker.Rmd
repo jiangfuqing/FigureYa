@@ -42,13 +42,6 @@ Ref: Robert Tibshirani, Trevor Hastie, Balasubramanian Narasimhan, and Gilbert C
 
 ## Environment settings
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("pamr")
-install.packages('R.utils') # required by data.table::fread to read gipped file
-install.packages("data.table")
-```
 
 加载包
 

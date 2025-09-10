@@ -53,10 +53,6 @@ reference: <https://journals.sagepub.com/doi/10.4137/CIN.S13495>
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-```
 
 加载包
 

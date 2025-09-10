@@ -39,11 +39,6 @@ If you also want to add the expression data of a certain gene, and calculate the
 
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("kableExtra")
-```
 
 加载包
 

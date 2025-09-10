@@ -42,12 +42,6 @@ Use heatmaps, bar charts, and heatmaps on the circle chart to display multiple s
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("readxl", dependencies = TRUE)
-install.packages("xlsx", dependencies = TRUE)
-```
 
 加载包
 

@@ -54,11 +54,6 @@ Enrichment analysis yields too many similar GO terms, which need to be merged an
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-
-```
 
 加载包
 

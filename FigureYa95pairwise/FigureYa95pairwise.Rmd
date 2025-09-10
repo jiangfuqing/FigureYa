@@ -43,11 +43,6 @@ Multidimensional correlation studies, e.g., to infer the extent to which somatic
 ## Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("ClassDiscovery")
-```
 
 加载包
 

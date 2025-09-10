@@ -71,11 +71,6 @@ Applicability: Suitable for microarray and RNA seq expression matrices, perform 
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("statmod")
-```
 
 加载包
 

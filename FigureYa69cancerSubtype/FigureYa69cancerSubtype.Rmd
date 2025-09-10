@@ -47,12 +47,6 @@ CancerSubtypes contains 5 computational methods for molecular typing identificat
 ## Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("iCluster_2.1.0.tar.gz", repos = NULL, type = "source")
-
-```
 
 加载包
 

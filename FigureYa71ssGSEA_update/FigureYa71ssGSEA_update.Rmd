@@ -53,11 +53,6 @@ The example paper extracted 27 kinds of immune cells, contacting the original au
 ## Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("circlize")
-```
 
 加载包
 

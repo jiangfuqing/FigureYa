@@ -61,11 +61,6 @@ Sys.getenv("PATH") #再次检查
 
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("Seurat")
-```
 
 加载包
 

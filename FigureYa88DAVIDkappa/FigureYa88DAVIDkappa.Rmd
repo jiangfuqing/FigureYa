@@ -70,11 +70,6 @@ The principle is as follows:< https://david.ncifcrf.gov/helps/linear_search.html
 ##Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-
-```
 
 加载包
 

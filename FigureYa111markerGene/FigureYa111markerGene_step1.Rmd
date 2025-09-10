@@ -59,9 +59,6 @@ requirement:
 
 Install Seurat package
 
-```r
-install.packages('Seurat')
-```
 
 加载包
 

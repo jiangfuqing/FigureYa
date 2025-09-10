@@ -58,7 +58,6 @@ Use the `rPlotter` package recommended by Uncle Y <https://mp.weixin.qq.com/s/Zr
 #options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 #options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
-install.packages(c("ggplot2", "stringr", "reshape2", "dichromat"))
 install("EBImage")
 
 library(devtools)

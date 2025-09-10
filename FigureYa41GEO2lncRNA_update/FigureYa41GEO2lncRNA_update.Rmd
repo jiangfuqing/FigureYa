@@ -72,10 +72,6 @@ Scenario 3: If the cancer type of interest in TCGA has too few samples or is not
 
 
 
-```r
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-```
 
 加载包
 

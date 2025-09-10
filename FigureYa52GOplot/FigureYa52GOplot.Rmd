@@ -56,13 +56,6 @@ In addition to being proficient in GO enrichment analysis, clusterProfiler can a
 
 Install the required packages
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-
-
-install.packages('GOplot')
-```
 
 加载需要用到的包
 

@@ -42,11 +42,6 @@ Use the signature found by TCGA data and then use other data sets for verificati
 ## Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages(c("dendsort", "squash"))
-```
 
 加载包
 Load package

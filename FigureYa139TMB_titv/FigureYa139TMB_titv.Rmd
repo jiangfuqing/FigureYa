@@ -59,10 +59,6 @@ You can also customize the grouping, such as comparing different subtypes of the
 ## Environment settings
 
 
-```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-```
 
 加载包
 Loading Packages
