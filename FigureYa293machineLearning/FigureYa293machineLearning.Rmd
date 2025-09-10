@@ -92,6 +92,10 @@ library(devtools)
 install_github("binderh/CoxBoost")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 加载包
 # Loading packages
 

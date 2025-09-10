@@ -76,6 +76,10 @@ install.packages("matlab")
 install.packages("EnvStats")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 加载包
 load packages
 
