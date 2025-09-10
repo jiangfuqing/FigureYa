@@ -6,6 +6,7 @@ date: "2025-5-20"
 output: html_document
 ---
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -53,9 +54,6 @@ Alternatively, the data from TCGA can be used to calculate the FGA, FGG and FGL 
 Use the domestic mirror installation package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages(c("stringr", "magrittr", "ggplot2","patchwork","Rmisc","Cairo"))
 ```
 
 加载包

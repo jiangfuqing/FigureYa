@@ -60,7 +60,6 @@ requirement:
 Install Seurat package
 
 ```r
-install.packages('Seurat')
 ```
 
 加载包
@@ -68,6 +67,7 @@ install.packages('Seurat')
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载dplyr包，提供数据处理和转换的函数
 # Load the dplyr package, which provides functions for data manipulation and transformation
 library(dplyr)

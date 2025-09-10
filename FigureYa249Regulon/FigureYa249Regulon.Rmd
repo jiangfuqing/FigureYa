@@ -79,9 +79,7 @@ Next, we will continue to crowdfund Figure3a, welcome to add Xiaoya as a friend 
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("RTN")
+source("install_dependencies.R")
 ```
 
 加载包

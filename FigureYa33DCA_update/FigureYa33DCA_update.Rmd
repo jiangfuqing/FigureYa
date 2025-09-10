@@ -41,10 +41,7 @@ In cohort studies, like the B-figure in the example, there are both opt-in and o
 use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("magick")
-install.packages("cmprsk")
+source("install_dependencies.R")
 ```
 
 加载包

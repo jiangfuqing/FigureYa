@@ -7,6 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -42,9 +43,6 @@ This method can help determine whether an observed event is a low-probability ev
 Use a domestic mirror to install the package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if(!require('cgdsr')) install.packages("cgdsr") # cdgsr package @ http://www.cbioportal.org/rmatlab
 ```
 
 加载包

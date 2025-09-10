@@ -41,11 +41,7 @@ Scenario 2: Compare the mutation sites of different cancers/subtypes.
 ## environment setting
 
 ```r
-#使用国内镜像安装包
 #use the domestic mirror installation package
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("BiocManager")
 library(BiocManager)
 install("trackViewer")
 install("TCGAbiolinks")
@@ -55,6 +51,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 ```
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(maftools)
 library(trackViewer)

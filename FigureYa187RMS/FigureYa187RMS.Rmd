@@ -6,6 +6,7 @@ date: "2025-5-20"
 output: html_document
 ---
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -38,10 +39,6 @@ Calculate the restrictive survival time and compare the prognostic value of diff
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("survcomp")
-install.packages("survRM2")
 ```
 
 加载包

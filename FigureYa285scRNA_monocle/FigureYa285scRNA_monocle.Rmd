@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -43,10 +44,6 @@ Show how to use the monocle2 package in single-cell data to predict cell develop
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("monocle")
-install.packages("https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz",repos = NULL)
 ```
 
 # 加载包
@@ -93,7 +90,6 @@ For your own data, it is recommended to predict developmental trajectories only 
 
 # InstallData("pbmc3k") 
 # Or download and install manually，http://seurat.nygenome.org/src/contrib/pbmc3k.SeuratData_3.1.4.tar.gz
-# install.packages("pbmc3k.SeuratData_3.1.4.tar.gz", repos = NULL, type = "source")
 
 # 加载数据集
 # load dataset

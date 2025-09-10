@@ -60,9 +60,7 @@ Cox analysis can be used for transcriptome, methylation, miRNA, LncRNA, variable
 ## Environment settings
 
 ```{r, message=FALSE}
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-#install.packages("ggstatsplot")
+source("install_dependencies.R")
 library(tidyverse)
 library(ggplot2)
 library(ggstatsplot)

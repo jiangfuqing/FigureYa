@@ -71,10 +71,7 @@ The calculation methods of various scores in the figure can be referred to our c
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("ComplexHeatmap")
-BiocManager::install("pheatmap")
+source("install_dependencies.R")
 ```
 
 加载包

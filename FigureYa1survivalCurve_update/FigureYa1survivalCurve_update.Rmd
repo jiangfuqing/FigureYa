@@ -81,11 +81,7 @@ Or instead of using expression grouping, use known subtypes (obtained by cluster
 Install the required packages
 
 ```r
-#使用国内镜像安装包
 #Installation of packages using domestic mirrors
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-install.packages("survival")
-install.packages("survminer")
 ```
 
 加载需要用到的包
@@ -93,6 +89,7 @@ install.packages("survminer")
 Load the required packages
 
 ```{r}
+source("install_dependencies.R")
 library("survival")
 library("survminer")
 

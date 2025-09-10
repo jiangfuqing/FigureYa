@@ -47,16 +47,13 @@ Simultaneously displaying three features is particularly suitable when one of th
 # Environment settings
 
 ```{r}
+source("install_dependencies.R")
 if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
 if (!("BSgenome.Hsapiens.UCSC.hg19" %in% rownames(installed.packages()))) {
-  BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
 }
 if (!("VariantAnnotation" %in% rownames(installed.packages()))) {
-  BiocManager::install("VariantAnnotation")
 }
 if (!("rgl" %in% rownames(installed.packages()))) {
-  install.packages("rgl")
 }
 
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error message

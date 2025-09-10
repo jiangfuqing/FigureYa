@@ -55,10 +55,7 @@ Maftools are rich in functions, browse <https://bioconductor.org/packages/releas
 use the domestic mirror installation package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("TCGAbiolinks")
-BiocManager::install("maftools")
+source("install_dependencies.R")
 ```
 
 加载包

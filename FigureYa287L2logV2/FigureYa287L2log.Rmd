@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -63,12 +64,6 @@ Implements nested cross-validation, Holm-Bonferroni correction, and L2-regulariz
 Install packages using domestic mirror
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("sampling")
-install.packages("InformationValue")
-install.packages("pROC")
-install.packages("glmnet")
 ```
 
 # 加载包

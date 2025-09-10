@@ -13,6 +13,7 @@ output: html_document
 小丫编辑校验
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

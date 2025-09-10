@@ -48,13 +48,10 @@ For example, in the example text, there is one sample per column and one gene pe
 Use domestic image installation package
 
 ```{r}
-# 设置CRAN镜像为清华大学镜像源
+source("install_dependencies.R")
 # Set CRAN mirror to Tsinghua University mirror source
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 
-# 设置Bioconductor镜像为中国科学技术大学镜像源
 # Set Bioconductor mirror to University of Science and Technology of China mirror source
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```
 
 加载包

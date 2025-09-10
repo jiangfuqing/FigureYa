@@ -58,8 +58,7 @@ Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional gen
 use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 ```
 
 加载包

@@ -73,12 +73,8 @@ The principle is as follows:< https://david.ncifcrf.gov/helps/linear_search.html
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("ggtree", version = "3.8")
 ```
 
 加载包
@@ -86,6 +82,7 @@ BiocManager::install("ggtree", version = "3.8")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载ape包，用于系统发育树分析和比较基因组学
 # Load the ape package for phylogenetic tree analysis and comparative genomics
 library(ape)

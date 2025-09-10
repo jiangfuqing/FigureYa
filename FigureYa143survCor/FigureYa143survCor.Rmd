@@ -44,8 +44,7 @@ If you only want to calculate and display the correlation and draw a similar gra
 Use domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 ```
 
 加载包

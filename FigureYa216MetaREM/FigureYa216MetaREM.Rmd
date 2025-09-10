@@ -13,6 +13,7 @@ output: html_document
 小丫编辑校验
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -41,9 +42,6 @@ knitr::opts_chunk$set(echo = TRUE)
 使用国内镜像安装包
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("meta")
 ```
 
 加载包

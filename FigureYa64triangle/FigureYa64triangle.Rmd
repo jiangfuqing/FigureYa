@@ -61,13 +61,8 @@ Use your imagination to develop more application scenarios.
 ## environment setting
 
 ```{r,message=FALSE}
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 #devtools::install_git('https://bitbucket.org/nicholasehamilton/ggtern')
-#install.packages("tidyverse")
-#install.packages('ggtern')
-#install.packages("proto")
-#install.packages("directlabels")
 library(ggtern)
 citation(package = 'ggtern')
 library(tidyverse)

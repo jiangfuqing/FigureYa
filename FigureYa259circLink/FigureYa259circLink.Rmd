@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date`  
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -69,8 +70,6 @@ To create this visualization, we enhanced the crosslink R package, which will co
 Using domestic mirrors for package installation.
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 # 安装crosslink（确保按照最新版本）
 # Install crosslink (ensure you're using the latest version)

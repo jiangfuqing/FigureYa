@@ -80,10 +80,7 @@ Step 2: Copy the 'MutSigCV. m' file to the current folder to use.
 ##Install and load the R package required for drawing
 
 ```{r}
-# 使用国内镜像安装所需的R包 | Use domestic mirror to install required R packages
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-#BiocManager::install("ComplexHeatmap")
+source("install_dependencies.R")
 
 # 加载R包 | Load R packages
 library(tidyverse)      # 数据处理和可视化工具集 | Data processing and visualization toolkit

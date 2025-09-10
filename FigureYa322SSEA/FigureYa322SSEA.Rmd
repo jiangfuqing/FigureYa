@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -55,9 +56,6 @@ A single dataset with multiple features or multiple datasets with a single featu
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("fmsb")
 ```
 
 # 加载包

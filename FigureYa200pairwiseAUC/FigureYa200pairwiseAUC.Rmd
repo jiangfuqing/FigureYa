@@ -41,8 +41,7 @@ The training set defines the candidate genes, and then looks for the set of gene
 Use the domestic Mirror Installer
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

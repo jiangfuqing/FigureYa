@@ -69,22 +69,18 @@ You can use the pheatmap in the latest version of ComplexHeatmap on github for d
 Method 1: Install the github version of ComplexHeatmap (I personally tested it and found it to work)
 
 ```{r eval=FALSE}
+source("install_dependencies.R")
 library(devtools)
 install_github("jokergoo/ComplexHeatmap") 
 # 如果github网速困难，可本地安装
 # If the network speed of GitHub is slow, you can install it locally
-install.packages("ComplexHeatmap-master.tar.gz", repos = NULL, type = "source")
 ```
 
 方式二：如果安装github版有困难，可以安装bioconductor版，然后加载最新的函数（小丫亲测有效）
 Method 2: If you have difficulty installing the GitHub version, you can install the Bioconductor version and then load the latest function (Xiaoya's personal test is effective)
 
 ```{r eval=FALSE}
-#使用国内镜像安装包
 # Use the domestic mirror installation package
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("ComplexHeatmap")
 ```
 
 加载新ComplexHeatmap包里的pheatmap函数

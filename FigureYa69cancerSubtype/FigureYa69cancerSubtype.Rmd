@@ -50,12 +50,7 @@ CancerSubtypes contains 5 computational methods for molecular typing identificat
 Installing packages with domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-install.packages("iCluster_2.1.0.tar.gz", repos = NULL, type = "source")
-BiocManager::install("CancerSubtypes", version = "3.20")
 
 ```
 
@@ -64,6 +59,7 @@ BiocManager::install("CancerSubtypes", version = "3.20")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载stringr包 - 用于字符串处理和操作
 # Load the stringr package - used for string processing and manipulation
 library(stringr)

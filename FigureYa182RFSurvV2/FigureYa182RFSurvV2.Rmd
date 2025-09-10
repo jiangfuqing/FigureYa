@@ -6,6 +6,7 @@ date: "2025-5-20"
 output: html_document
 ---
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -41,13 +42,8 @@ Reply "182" on the "Xiaoya Drawing" public account to see your friends' discussi
 Use the domestic mirror installation package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("survival")
-install.packages("randomForestSRC")
 
 # randomSurvivalForest包来源：https://cran.r-project.org/src/contrib/Archive/randomSurvivalForest/
-install.packages("randomSurvivalForest_3.6.4.tar.gz", repos = NULL, type="source")
 ```
 
 加载包

@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -49,7 +50,6 @@ dim(df)
 #calculate the correlation coefficient between each pair of samples, method can be "pearson" (default), "kendall", or "spearman"
 cormat<-round(cor(df,method = "spearman"),2)
 
-#install.packages("pheatmap")
 library(pheatmap)
 pheatmap(cormat,cellwidth = 8, cellheight = 8,fontsize = 8,
          color = colorRampPalette(c("#3C7DAF", "#EAF4F1","#FFFCBA", "#E83140"))(20),

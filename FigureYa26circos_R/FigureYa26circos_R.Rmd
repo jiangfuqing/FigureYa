@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -105,8 +106,6 @@ GeneID$GeneID <- factor(GeneID$GeneID, levels = GeneID$GeneID)
 **Note:** If you run it by copying and pasting the code, you need to copy all the statements between pdf and dev.off at once.
 
 ```{r,message=FALSE,warning=FALSE}
-#install.packages("circlize")
-#install.packages("stringi")
 library(stringi)
 library(circlize)
 

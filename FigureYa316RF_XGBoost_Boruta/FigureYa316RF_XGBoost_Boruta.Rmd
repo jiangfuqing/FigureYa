@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -132,9 +133,6 @@ In addition, the FigureYa we have crowdfunded can realize several of the images 
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("randomForest")
 ```
 
 
@@ -243,13 +241,11 @@ dev.off()
 ```{r fig.width=5, fig.height=5}
 library(xgboost)
 library(Matrix)
-#install.packages("Ckmeans.1d.dp")
 #如果此处报错，例如
 #Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
 #Try removing ‘C:\Users\96251\Documents\R\win-library\4.1/00LOCK’
 #只需要去上述所指定的路径下（例子为C:\Users\96251\Documents\R\win-library\4.1/）删除00LOCK文件夹即可
 
-#install.packages("Ckmeans.1d.dp")
 #If encountering errors like:
 #Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
 #Try removing the ‘00LOCK’ folder at the specified path (e.g., C:\Users\96251\Documents\R\win-library\4.1/)

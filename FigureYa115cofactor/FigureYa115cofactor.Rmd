@@ -94,9 +94,6 @@ conda install -c bioconda intervene
 install packages
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("corrplot")
 ```
 
 加载R包
@@ -104,6 +101,7 @@ install.packages("corrplot")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载corrplot包，用于绘制相关系数矩阵图 | Load the corrplot package for visualizing correlation matrices
 library(corrplot)
 

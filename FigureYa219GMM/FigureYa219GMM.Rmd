@@ -42,11 +42,7 @@ All possible logistic regressions were constructed through permutations and comb
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("miRBaseVersions.db")
-BiocManager::install("miRBaseConverter")
-BiocManager::install("SimDesign")
+source("install_dependencies.R")
 ```
 
 加载包

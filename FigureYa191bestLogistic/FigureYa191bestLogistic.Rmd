@@ -6,6 +6,7 @@ date: "2025-5-20"
 output: html_document
 ---
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -34,9 +35,6 @@ ROC was used to find the best cutoff for continuous variables, and two groups we
 Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("tdROC")
 ```
 
 加载包

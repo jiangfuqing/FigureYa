@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -67,9 +68,6 @@ We have previously crowdsourced several mutation-related plots <https://k.yousho
 Using domestic mirrors for package installation.
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("trackViewer")
 ```
 
 # 加载包

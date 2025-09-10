@@ -15,6 +15,7 @@ output: html_document
 小丫编辑校验
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -51,12 +52,7 @@ Figure 6. Roles of Siglec15 in predicting immune phenotypes in the Xiangya cohor
 使用国内镜像安装包
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("ggnewscale")
-install.packages("ade4")
 # 下载自https://github.com/hannet91/ggcor
-install.packages("ggcor-master.tar.gz", repos = NULL, type = "source")
 ```
 
 加载包

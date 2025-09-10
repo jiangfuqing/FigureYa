@@ -15,6 +15,7 @@ output: html_document
 小丫编辑校验
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -76,9 +77,6 @@ Chen Yang, Xiaowen Huang, Yan Li, Junfei Chen, Yuanyuan Lv, Shixue Dai, Prognosi
 使用国内镜像安装包
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("pRRophetic_0.5.tar.gz", repos = NULL, type = "source")
 ```
 
 加载包
@@ -579,7 +577,6 @@ plot_grid(p1, p3, p2, p4, labels=c("A", "", "B", ""),
           rel_widths = c(2, 2)) #左右两列的宽度比例
 ggsave(filename = "drug target.pdf",width = 8,height = 8)
 
-# 保存镜像
 #save.image("drug.RData")
 ```
 

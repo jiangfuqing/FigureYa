@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -71,8 +72,6 @@ Clustering of HCC samples based on expression profiles and comparison with other
 Install packages using domestic mirror
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 devtools::install_github("Lothelab/CMScaller")
 ```
 
@@ -413,7 +412,6 @@ for (i in c("iCluster","Chiang","Boyault","Hoshida","Lee","CTNNB1")) {
 write.table(outTabGroup, file = "independent test between group and other classification.txt",sep = "\t",row.names = F,col.names = T,quote = F)
 write.table(outTabMS, file = "independent test between ms and other classification.txt",sep = "\t",row.names = F,col.names = T,quote = F)
 
-# 保存工作镜像
 # Save workspace image
 #save.image(file = "LIHC.RData")
 ```

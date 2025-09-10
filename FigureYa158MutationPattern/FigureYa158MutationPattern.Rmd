@@ -7,6 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -39,13 +40,6 @@ Here, we use maftools + MutationalPatterns to perform this analysis.
 Use a domestic mirror to install the package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("MutationalPatterns")
-BiocManager::install("BSgenome")
-BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
-install.packages("tidyverse")
-install.packages("haven")
 ```
 
 加载包

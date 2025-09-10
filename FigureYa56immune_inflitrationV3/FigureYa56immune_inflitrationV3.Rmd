@@ -63,10 +63,8 @@ reference material:
 Install the required packages
 
 ```{r}
-# 使用国内镜像安装包
+source("install_dependencies.R")
 # Use domestic mirror to install packages
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-install.packages("devtools")
 
 # 加载devtools包
 # Load the devtools package

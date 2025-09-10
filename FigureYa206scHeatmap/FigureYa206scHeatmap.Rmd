@@ -12,6 +12,7 @@ output: html_document
 **Date**: `r params$date` 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -53,11 +54,6 @@ The expression heatmap on the left corresponds to the enrichment analysis result
 Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("batchelor")
-install.packages("Seurat")
-install.packages("Hmisc")
 ```
 
 # 加载包

@@ -7,6 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -47,8 +48,6 @@ Classify samples based on immune infiltration quantification results.
 Using a domestic mirror to install the package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 library(devtools)
 install_github("Gibbsdavidl/ImmuneSubtypeClassifier")
 ```

@@ -83,8 +83,7 @@ Similar articles <https://www.sciencedirect.com/science/article/abs/pii/S0888754
 Use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

@@ -42,10 +42,6 @@ If you also want to add the expression data of a certain gene, and calculate the
 use the domestic mirror installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("TCGAbiolinks")
-install.packages("kableExtra")
 ```
 
 加载包
@@ -53,6 +49,7 @@ install.packages("kableExtra")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(dplyr)
 library(kableExtra)

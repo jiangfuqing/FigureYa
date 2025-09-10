@@ -48,10 +48,6 @@ Using FigureYa116supervisedCluster, analyze the differentially expressed genes b
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("affy")
-BiocManager::install("affyPLM")
 ```
 
 加载包
@@ -59,6 +55,7 @@ BiocManager::install("affyPLM")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载limma包 - 用于基因表达数据分析和差异表达分析
 # Load the limma package - for gene expression data analysis and differential expression analysis
 library(limma)

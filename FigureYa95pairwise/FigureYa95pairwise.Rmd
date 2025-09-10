@@ -46,12 +46,7 @@ Multidimensional correlation studies, e.g., to infer the extent to which somatic
 Installation of packages using domestic mirrors
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("GSVA")
-install.packages("ClassDiscovery")
 ```
 
 加载包
@@ -59,6 +54,7 @@ install.packages("ClassDiscovery")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载GSVA包，用于基因集变异分析 (Load the GSVA package for gene set variation analysis)
 library(GSVA)
 # 加载ClassDiscovery包，用于外部聚类分析 (Load the ClassDiscovery package for external clustering analysis)

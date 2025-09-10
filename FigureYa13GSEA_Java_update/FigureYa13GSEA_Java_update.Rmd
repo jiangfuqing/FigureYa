@@ -69,8 +69,7 @@ If you do GSEA analysis with clusterProfiler and want to DIY the result plots, p
 use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+source("install_dependencies.R")
 ```
 
 加载包

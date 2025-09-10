@@ -42,11 +42,8 @@ Display 4 groups of elements (such as differentially expressed genes) with overl
 Use domestic image installation package
 
 ```{r}
-# 设置CRAN镜像为清华大学镜像源（Set CRAN mirror to Tsinghua University mirror source）
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+source("install_dependencies.R")
 
-# 设置Bioconductor镜像为中国科学技术大学镜像源（Set Bioconductor mirror to University of Science and Technology of China mirror source）
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```
 
 加载包

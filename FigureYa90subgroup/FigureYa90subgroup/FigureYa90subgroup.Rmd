@@ -42,9 +42,6 @@ Clinical subgroup analysis.
 Use domestic image installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-install.packages("forestplot")
 ```
 
 加载包
@@ -52,6 +49,7 @@ install.packages("forestplot")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载tidyverse包，提供数据处理和可视化工具
 # Load the tidyverse package, which provides data processing and visualization tools
 library(tidyverse)
