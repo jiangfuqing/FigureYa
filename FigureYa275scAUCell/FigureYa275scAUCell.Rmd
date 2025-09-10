@@ -7,6 +7,11 @@ params:
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r params$date`  
@@ -171,7 +176,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
   x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
 })
 
-
 # 计算两个数据中排完rank后top2000的高变异基因
 # Identify top 2000 highly variable genes after ranking across both datasets
 features <- SelectIntegrationFeatures(object.list = ifnb.list, nfeatures = 2000)
@@ -183,7 +187,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
   x <- RunPCA(x, features = features, verbose = T)
 })
 
-
 # 对两个数据集进行整合
 # 首先使用findinintegrationanchors函数标识锚点，然后使用IntegrateData函数将两数据集整合在一起
 # 可以通过调整k.anchor参数调整两个样本整合的强度，默认为5，数字越大整合强度越强
@@ -192,7 +195,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
 # The integration strength can be adjusted via the k.anchor parameter (default=5). Higher values indicate stronger integration.
 immune.anchors <- FindIntegrationAnchors(object.list = ifnb.list, anchor.features = features, reduction = "rpca", k.anchor = 20)
 immune.combined <- IntegrateData(anchorset = immune.anchors)
-
 
 # 对整合后的数据进行后续分析
 # Downstream Analysis of Integrated Data

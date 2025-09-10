@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -89,7 +94,6 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 If your data has been organized into “easy_input.csv” format, you can skip this step and go directly to “Input file”.
 
 Download the original supplementary material Table2.pdf and organize it as “not_easy_input.csv”.
-
 
 ### 直接用原文数据画图
 ### Draw a graph directly using the original data

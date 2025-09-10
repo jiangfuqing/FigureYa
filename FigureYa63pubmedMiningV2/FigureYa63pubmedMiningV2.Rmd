@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -113,7 +118,6 @@ One gene per row. It contains gene names, aliases, and loci. [Module 3] will cou
 head(HGNCdata)
 ```
 
-
 ## 参数设置
 ## parameter setting
 
@@ -153,7 +157,6 @@ term
 #term <- "CD274 OR PD-L1 OR PDL1"
 ```
 
-
 ## 【模块一】文章的增长趋势
 ## [Module 1] Trends in the growth of articles
 
@@ -178,7 +181,6 @@ papers <- sapply(year, search_year, term=term, USE.NAMES=FALSE)
 
 plot(year, papers, type='b', main="The PD-L1 papers")
 ```
-
 
 ## 【模块二】发表了哪些文章
 ## [Module 2] What articles are published
@@ -261,7 +263,6 @@ y <- DT::datatable(res,escape = F,rownames=F)
 #save to web format file
 DT::saveWidget(y,"output_paper.html")
 ```
-
 
 ## 【模块三】从摘要找好朋友
 ## [Module 3] **Find a good friend from the abstract***
@@ -388,7 +389,6 @@ y <- DT::datatable(res,escape = F,rownames=F)
 #save to web format file
 DT::saveWidget(y,"output_friends.html")
 ```
-
 
 ## 功能扩展
 ## Function expansion

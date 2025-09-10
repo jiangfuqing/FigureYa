@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -59,7 +64,6 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion
 
 ## 输入文件
 ## Input file
-
 
 easy_input_amp.txt和easy_input_del.txt，两个矩阵。分别对应热图中的左上角（amplification）和右下角（deletion）。例文是突变数据，每行一个基因，每列一种癌症类型，两个文件一一对应。还可以是基因表达量等数值。数据来源：例文的Additional file 1<https://static-content.springer.com/esm/art%3A10.1186%2Fs12943-019-1066-3/MediaObjects/12943_2019_1066_MOESM1_ESM.xlsx>
 easy_input_amp.txt and easy_input_del.txt, two matrices. They correspond to the upper left corner (amplification) and lower right corner (deletion) in the heat map respectively. The example text is mutation data, one gene per row, one cancer type per column, and the two files correspond one to one. It can also be numerical values such as gene expression. Data source: Additional file 1 of the example article <https://static-content.springer.com/esm/art%3A10.1186%2Fs12943-019-1066-3/MediaObjects/12943_2019_1066_MOESM1_ESM.xlsx>

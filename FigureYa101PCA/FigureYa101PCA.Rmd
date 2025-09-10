@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
@@ -336,7 +341,6 @@ pca2batch(
   pos1 = "bottomright", pos2 = "topright", # 图例位置 / Legend positions
   withoutgrid = F                     # 有网格背景（示例） / With grid background (example)
 )
-
 
 # 直接出图 - 不带网格背景的PCA图
 # Generate PCA plot directly - without grid background

@@ -5,6 +5,12 @@ reviewer: "Ying Ge, Junyi Shen"
 date: "2025-5-20"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -295,7 +301,6 @@ text(26,2.25, "DS", pos = 4)
 points(25, 1.5, #位置坐标   # position coordinates
        col = jcoRed, pch = 8, cex = 1.5, lwd = 3)
 text(26,1.5, "Missing", pos = 4)
-
 
 #你可能还想标注蓝色和黄色线的图例，就这样画
 # You might also want to mark the legend with blue and yellow lines. Just draw it like this

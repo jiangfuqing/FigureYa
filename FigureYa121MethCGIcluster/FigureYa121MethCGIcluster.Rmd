@@ -6,6 +6,10 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -115,7 +119,6 @@ orgmeth <- as.data.frame(orgmeth); rownames(orgmeth) <- orgmeth[,1]; orgmeth <- 
 # View the first 3 rows and 3 columns of the data (for initial data structure inspection)
 orgmeth[1:3,1:3]
 
-
 # ----------------------- 模拟年龄数据（注释中说明为模拟数据，实际使用时可取消注释） -----------------------
 # ----------------------- Simulate age data (note that it is simulated data, uncomment when actually using) -----------------------
 # 生成模拟年龄数据（在ncol(orgmeth)个样本中，生成30-60岁的随机整数年龄）
@@ -124,7 +127,6 @@ orgmeth[1:3,1:3]
 # 将模拟年龄数据写入文本文件（便于后续读取）
 # Write simulated age data to a text file (for subsequent reading)
 #write.table(Sinfo, "easy_input_age.txt", sep = "\t", quote = F)
-
 
 # 读取实际年龄数据文件（从文本文件中加载样本年龄信息）
 # Read actual age data file (load sample age information from text file)
@@ -177,7 +179,6 @@ myFilter <- champ.filter(
 # 查看过滤后数据的维度（行数=探针数，列数=样本数）
 # Check dimensions of filtered data (rows = probes, columns = samples)
 dim(myFilter$beta)
-
 
 ### 挑选感兴趣区域（启动子CpG Island） ###
 ### Select regions of interest (promoter CpG Islands) ###
@@ -297,7 +298,6 @@ yellow <- "#fde74c"  # 定义黄色（用于聚类C3）
                     # Define yellow color (for cluster C3)
 green  <- "#9bc53d"  # 定义绿色（用于聚类C2）
                     # Define green color (for cluster C2)
-
 
 # 绘制甲基化聚类热图（可参考FigureYa91cluster_heatmap）
 # Draw methylation clustering heatmap (refer to FigureYa91cluster_heatmap)

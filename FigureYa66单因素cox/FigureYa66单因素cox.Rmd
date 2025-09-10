@@ -8,6 +8,11 @@ output:
   html_document: default
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
@@ -114,7 +119,6 @@ samplepair <- read.delim("samplepair.txt", as.is = TRUE)  # as.is=TRUE保持字�
 tissue <- samplepair$TCGA  # 提取TCGA缩写列/extract TCGA code column
 names(tissue) <- samplepair$Detail  # 设置详细名称为向量名称/set full names as vector names
 
-
 # 提取LUAD的样本资料
 # Extract LUAD (Lung Adenocarcinoma) sample information
 
@@ -158,7 +162,6 @@ head(tcgatable)
 # Filter LUAD tumor samples
 lung <- filter(tcgatable, tissue == "LUAD", type2 == "tumor")  # LUAD=肺腺癌/Lung Adenocarcinoma
 
-
 # 找到LUAD病人的生存资料，并与RNA-Seq样本比对
 # Find LUAD patient survival data and match with RNA-Seq samples
 
@@ -181,7 +184,6 @@ LUADsur <- LUADsur[, c(1, 2, 3, 4, 14, 26, 27)]  # 包含样本ID、生存时间
 # 设置行名为样本ID（便于后续操作）
 # Set row names as sample IDs (for easier manipulation)
 rownames(LUADsur) <- LUADsur$sample
-
 
 # 取交集（匹配有表达数据和生存数据的样本）
 # Find intersection (match samples with both expression and survival data)

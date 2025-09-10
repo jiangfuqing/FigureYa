@@ -5,6 +5,11 @@ date: "2023/2/7"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -45,7 +50,6 @@ SCLC_epithelial_cells.rds，Seurat对象。作者已将例文的数据上传至<
 ![](download1.png)
 
 ![](download2.png)
-
 
 1. 将ENSEMBL GENE ID转换为GENE NAME
 

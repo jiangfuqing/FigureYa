@@ -5,6 +5,11 @@ date: "2020/4/25"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE)
 ```
@@ -63,7 +68,6 @@ pData(monocle_cds)$age <- factor(pData(monocle_cds)$age, levels = c("young", "ol
 monocle_cds <- readRDS("tmp/s6-fib_monocle.rds")
 ```
 
-
 ```{r, eval=TRUE}
 monocle_cds
 ```
@@ -111,7 +115,6 @@ monocle_cds <- reduceDimension(monocle_cds,
 ```{r}
 monocle_cds <- clusterCells(monocle_cds, rho_threshold = 2, delta_threshold = 5)
 ```
-
 
 ```{r, fig.width=10, fig.height=5, eval=TRUE}
 p1 <- plot_cell_clusters(monocle_cds, color_by = "age", cell_size = .5)
@@ -164,5 +167,3 @@ cowplot::plot_grid(p1,p2, ncol = 2)
 ```{r}
 saveRDS(monocle_cds, "tmp/s6-fib_monocle.rds")
 ```
-
-

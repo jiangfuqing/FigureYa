@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -168,7 +173,6 @@ Download file "comppi--interactors_of_Q9NZQ7.txt".
 
 comppi--interactors_of_Q0GN75.txt，上一步获得的interaction信息。每行一个蛋白质，所有证据和分数都在Major.Loc.With.Loc.Score里面，用｜分隔，需要拆开成每条证据单独一行。
 comppi--interactors_of_Q0GN75.txt, interaction information obtained in the previous step. One protein per line, all evidence and scores are in Major.Loc.With.Loc.Score, separated by |, need to be split into a separate line for each piece of evidence.
-
 
 ```{r}
 idata <- read.table(file = "comppi--interactors_of_Q0GN75.txt", sep = "\t", header = T, quote = "")

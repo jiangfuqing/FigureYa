@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -141,7 +146,6 @@ Idents(seu) <- factor(seu$clusterK12)
 DimPlot(seu, group.by = "clusterK12", reduction = "phate")
 ```
 
-
 # 1. 选择基因集合(特征选择)
 # 1. Selecting Gene Sets (Feature Selection)
 
@@ -183,7 +187,6 @@ comb.genes <- c(de.genes, nmf.genes) %>% unique()
 length(comb.genes)
 ```
 
-
 # 2. 单细胞转录组离散化 Single cell transcriptome discretization
 
 > We discretized expression per gene into 10 bins.
@@ -214,7 +217,6 @@ disc.expr[1:5,1:5]
 # View binning results
 plot(dat[,1], col=disc.expr[,1])
 ```
-
 
 # 3. 抽样 & 计算NMI
 # 3. Sampling & Calculating NMI
@@ -449,7 +451,6 @@ cl <- makeCluster(20) # 设定CPU数量 # Set the number of CPUs
 registerDoParallel(cl)
 ```
 
-
 #### whole lung: multiple tumors
 
 ```{r}
@@ -533,7 +534,6 @@ data.use %>%
   annotate("text", x = 11, y = text.y, label="Single tumors") + 
   theme(axis.text.x = element_text(angle=45, hjust = 1))
 ```
-
 
 # 4. 计算统计显著性
 # 4. Calculate statistical significance

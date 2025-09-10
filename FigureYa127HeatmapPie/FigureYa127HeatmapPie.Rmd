@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
@@ -81,7 +86,6 @@ Sys.setenv(LANGUAGE = "en")
 # 禁止字符串自动转换为因子类型，避免意外的数据类型转换（Disable automatic conversion of strings to factors to avoid unexpected data type changes）
 options(stringsAsFactors = FALSE) 
 ```
-
 
 ## 输入文件
 

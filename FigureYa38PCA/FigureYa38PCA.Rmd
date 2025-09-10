@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ![](http://oex750gzt.bkt.clouddn.com/18-9-3/64881053.jpg)
 
 ```{r setup, include=FALSE}
@@ -376,7 +381,6 @@ p2
 #save as PDF file
 ggsave('PCA_DIY2.pdf',width = 5.5,height = 4)
 ```
-
 
 ## 附录
 ## Appendix

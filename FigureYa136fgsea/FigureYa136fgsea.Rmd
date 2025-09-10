@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -63,7 +68,6 @@ Here are three methods:
 - Method 1: fgsea directly outputs the picture, which needs to be processed by AI and other software later;
 - Method 2: Use clusterProfiler to do GSEA and DIY the picture in the paper;
 - Method 3: Use the output file of the Java version of GSEA as input to DIY the picture in the paper.
-
 
 ## 环境设置
 ## Environment settings

@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
@@ -151,7 +156,6 @@ ifnb <- UpdateSeuratObject(ifnb)
 head(ifnb@meta.data)  # 查看元数据前几行 (View first few rows of metadata)
 table(ifnb@meta.data$stim)  # 统计各组细胞数量 (Count cells in each condition)
 
-
 ## 数据拆分成两组(STIM和CTRL)
 # 使用splitobject将ifnb数据集分割成两个seurat对象的列表(STIM和CTRL)
 # Split the dataset into two Seurat objects based on stimulation condition (STIM vs CTRL)
@@ -174,7 +178,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
   x <- ScaleData(x, features = features, verbose = T)  # 数据缩放 (Scale data)
   x <- RunPCA(x, features = features, verbose = T)  # 主成分分析 (Perform PCA)
 })
-
 
 ## 对两个数据集进行整合
 # 首先使用findinintegrationanchors函数标识锚点，然后使用IntegrateData函数将两数据集整合在一起

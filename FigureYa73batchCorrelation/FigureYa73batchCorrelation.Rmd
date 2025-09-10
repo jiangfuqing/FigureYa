@@ -6,6 +6,10 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -96,7 +100,6 @@ easy_input.csv, gene expression matrix, the first column is gene symbol, followe
 
 The example data is taken from the file not_easy_input_expr.txt of FigureYa71ssGSEA, replace the first column of gene_id of the expression matrix with the gene symbol, refer to the handling of FigureYa71ssGSEA or FigureYa56immune_inflitration The way. For the convenience of transmission, the 1000 genes with the highest expression were taken.
 
-
 ```{r}
 # 读取TCGA表达数据 / Read TCGA expression data
 # 从CSV文件读取表达矩阵，第一列作为行名 / Read expression matrix from CSV file, using first column as row names
@@ -131,7 +134,6 @@ colnames(sgcor) <- "r_pearson"  # 重命名列 / Rename column
 
 # 计算Pearson相关系数的p值（耗时操作） / Calculate p-values for Pearson correlation (time-consuming)
 sgcor$pval_pearson <- apply(other.expr, 1, function(x) (cor.test(x, t(target.exps))$p.value))
-
 
 # 计算Spearman相关系数 / Calculate Spearman correlation
 sgcor_spearman <- as.data.frame(cor(t(other.expr), t(target.exps), method = "spearman"))

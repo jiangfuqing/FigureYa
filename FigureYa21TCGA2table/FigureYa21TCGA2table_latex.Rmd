@@ -5,6 +5,11 @@ date: "7/21/2018"
 output: latex_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r,message=FALSE}
 library(dplyr)
 x = read.csv("easy_input.csv")
@@ -105,7 +110,6 @@ print(sgv2)
 
 res = rbind(sex, age) %>% rbind(sgv2) %>% as.data.frame
 print(res)
-
 
 #install.packages("kableExtra")
 require(kableExtra)

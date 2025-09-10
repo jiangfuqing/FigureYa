@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ![](guozixueshengxin.jpeg)
 
 ```{r setup, include=FALSE}
@@ -237,7 +242,6 @@ for (i in 1:length(fnames)){
   write.csv(genelist_expr,paste0(unlist(strsplit(fnames[i],".txt"))[1],".csv"),quote = F)
 }
 ```
-
 
 ```{r}
 sessionInfo()

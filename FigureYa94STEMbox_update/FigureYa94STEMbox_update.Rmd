@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
@@ -180,7 +185,6 @@ head(exp_rep1)  # 查看数据前6行（View the first 6 rows of the data）
 exp_rep2 <- read.delim("g27_2.txt", check.names = F, row.names = 1,
                        colClasses = c("SPOT" = "character"))
 
-
 # ----------------------
 # 提取时间点信息（Extract time point information）
 # ----------------------
@@ -188,7 +192,6 @@ exp_rep2 <- read.delim("g27_2.txt", check.names = F, row.names = 1,
 # Extract time points from the column names of the first sample (exclude the first column "SPOT")
 # colnames(exp_rep1)[2:ncol(exp_rep1)]：选取第2列到最后一列的列名（Select column names from column 2 to the last column）
 tp <- colnames(exp_rep1)[2:ncol(exp_rep1)]
-
 
 # ----------------------
 # 读取元数据表格（Read metadata tables）
@@ -237,7 +240,6 @@ exp_all <- rbind(exp_rep1, exp_rep2)
 # Note: Subtraction of 1 here needs verification with actual data (may exclude a column)
 colnames(exp_all)[2:ncol(exp_all)] <- as.character(seq(1:length(tp) - 1))
 
-
 # ----------------------
 # 提取共同基因符号（Extract common gene symbols）
 # ----------------------
@@ -247,7 +249,6 @@ colnames(exp_all)[2:ncol(exp_all)] <- as.character(seq(1:length(tp) - 1))
 # base::intersect: Take the intersection of two vectors (avoids dplyr package function name conflicts)
 GeneSymbolp <- base::intersect(genetable$`Gene Symbol`, exp_all$`Gene Symbol`)
 length(GeneSymbolp)  # 查看共有基因数量（Check the number of common genes）
-
 
 # ----------------------
 # 过滤并聚合表达数据（Filter and aggregate expression data）
@@ -263,7 +264,6 @@ exp_all <- exp_all[exp_all$`Gene Symbol` %in% GeneSymbolp, ]
 exp_all <- aggregate(.~`Gene Symbol`, exp_all, median)
 dim(exp_all)  # 查看聚合后数据维度（Check dimensions after aggregation）
 head(exp_all)  # 查看前6行数据（View the first 6 rows of data）
-
 
 # ----------------------
 # 关联基因所属的Profile信息（Associate gene profile information）

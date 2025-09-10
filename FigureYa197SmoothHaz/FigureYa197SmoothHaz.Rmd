@@ -5,6 +5,12 @@ reviewers: "Ying Ge,Hui Huang"
 date: "2025-5-20"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -58,7 +64,6 @@ For extended implementations of this visualization approach in peer-reviewed stu
 - [Oncotarget. 2018;9(87):35742-35751.](https://pubmed.ncbi.nlm.nih.gov/30515266/)
 - [JAMA Oncol. 2018;4(3):309-315.](https://pubmed.ncbi.nlm.nih.gov/29270608/)
 - Diagram reference for this reproduction: [Neuro Oncol. 2015 Jul;17(7):999-1006.](https://pubmed.ncbi.nlm.nih.gov/25688120/)
-
 
 # 环境设置
 # Environment settings
@@ -313,7 +318,6 @@ p1
 
 下面是作者给出的升级版：加上风险表
 
-
 This makes a diagram like the example text.
 
 Here's an upgraded version given by the author: plus the risk table
@@ -390,8 +394,6 @@ Kernel Function: Defines the shape of the weighting function used in KDE. Common
 
 kern Parameter in the muhaz Package
 The kern parameter in the muhaz function specifies the kernel type. As per the package's user manual, available options include:(Above plot)
-
-
 
 上图摘自[基迪奥生物](https://mp.weixin.qq.com/s/Kkc7kNUaUl0nU0Y8EQoMbA)
 

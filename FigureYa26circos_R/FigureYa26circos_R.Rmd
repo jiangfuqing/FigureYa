@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -122,7 +127,6 @@ circos.par(start.degree = 90, #从哪里开始画，沿着逆时针顺序 start 
            cell.padding = c(0,0,0,0) #？
            )
 
-
 #### 根据"Gene_ID.txt"画组
 #### Draw group according to “Gene_ID.txt”
 
@@ -231,7 +235,6 @@ for(i in 1:nrow(Links)){
               #h.ratio = Links$link_height[i] #在输入文件中指定拱形高度 specify the arch height in the input file
   )
 }
-
 
 #基因的图例
 #Legend of gene

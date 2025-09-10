@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
@@ -373,7 +378,6 @@ cgsites = c("cg08995609", "cg25247520", "cg13309012", "cg11201447")
 cols = c("red", "green")
 labels = c("Normal", "Tumor")
 
-
 phenotype <- read.table(
   file = gzfile("TCGA-KIRC.clinical.tsv.gz"),  # 读取gzip压缩文件 / Read gzipped file
   header = TRUE,                            # 第一行作为列名 / First row as column names
@@ -400,7 +404,6 @@ sample_type <- na.omit(sample_type)
 # 识别正常组织和原发肿瘤样本
 # Identify normal and tumor samples
  
-
 normal_number <- length(which(sample_type == "Normal"))  # 正常样本数量（中文注释）
 # Number of normal samples (English comment)
 isTumor <- sample_type == "Tumor"  # 肿瘤样本逻辑索引（中文注释）

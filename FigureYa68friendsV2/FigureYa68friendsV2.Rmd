@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
@@ -175,7 +180,6 @@ cc <- godata('org.Hs.eg.db', ont="CC", computeIC = FALSE)
 # Commented BP ontology construction code (can be uncommented if needed)
 # bp <- godata('org.Hs.eg.db', ont="BP", computeIC = FALSE)
 
-
 # 用mgeneSim来计算MF本体，基因之间的语义相似度，结果为一个行列相同的矩阵
 # Using mgeneSim to calculate semantic similarity between genes for MF ontology, returns a symmetric matrix
 # 参数说明/Parameters:
@@ -193,7 +197,6 @@ simcc <- mgeneSim(id_gsym$ENTREZID, semData = cc, measure = "Wang", drop = NULL,
 # 注释掉的BP本体相似度计算代码
 # Commented BP ontology similarity calculation code
 # simbp <- mgeneSim(id_gsym$ENTREZID, semData = bp, measure = "Wang", drop = NULL, combine = "BMA")
-
 
 # 提取既有CC又有MF的基因（交集）
 # Extract genes that have both CC and MF annotations (intersection)
@@ -213,7 +216,6 @@ simcc <- simcc[comlist, comlist]
 # Set dataframe row names as ENTREZID and filter for common genes
 row.names(id_gsym) <- id_gsym$ENTREZID
 id_gsym <- id_gsym[comlist,]
-
 
 # 计算基因在MF和CC本体下的几何平均值
 # Calculate geometric mean of gene similarities from MF and CC ontologies

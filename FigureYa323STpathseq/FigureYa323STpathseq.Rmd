@@ -7,6 +7,11 @@ params:
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r params$date` 
@@ -140,7 +145,6 @@ Description of the functions and usage of the S1~S3.sh scripts in the Codes fold
 Seurat对象【Results/*/outs/ST.seu.rds】，文件较大，从百度网盘下载<https://pan.baidu.com/s/1BnnoAelzwYhIWjxpKcXWHg?pwd=frhw>，下载后保存到`STpathseq/Results/CRC_16/outs/`文件夹下
 
 Seurat object 【Results/*/outs/ST.seu.rds】, large file size, download from Baidu Netdisk <https://pan.baidu.com/s/1BnnoAelzwYhIWjxpKcXWHg?pwd=frhw>, after downloading save to `STpathseq/Results/CRC_16/outs/` folder
-
 
 微生物组RNA总量空间分布图【Results/*/outs/*TotalMicrobe.pdf】
 

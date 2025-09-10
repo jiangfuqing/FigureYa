@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
@@ -68,7 +73,6 @@ More ways of displaying correlation by the package corrplot can be found at <htt
 # options(repos=c(getOption("repos"), "http://ccb.nki.nl/software/discover/repos/r"))
 # install.packages("discover")
 
-
 # ====================== 加载所需包 ======================
 # ====================== Load Required Packages ======================
 
@@ -99,7 +103,6 @@ library(corrplot)
 # Excel文件操作包：读写Excel文件
 # Excel file manipulation package: read/write Excel files
 library(openxlsx)
-
 
 # ====================== 系统环境设置 ======================
 # ====================== System Environment Settings ======================

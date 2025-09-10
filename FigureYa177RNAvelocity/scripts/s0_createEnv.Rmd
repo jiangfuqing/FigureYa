@@ -5,6 +5,11 @@ date: "2020/4/25"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 指定一个新的包环境目录
 ```{r}
 oldpath <- .libPaths()[1]
@@ -51,4 +56,3 @@ library(scmap, lib.loc = newpath)
 library(DESeq2, lib.loc = newpath)
 library(IHW, lib.loc = newpath)
 ```
-

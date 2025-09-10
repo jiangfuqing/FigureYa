@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -298,7 +303,6 @@ plot(expr[mss.sam,"CD274"], expr[mss.sam,"CD8A"],ylim = ylim,xlim = xlim,
      col="grey40",
      cex = 1.2,
      type = "p",pch = 19) # 圆形为MSS # Circle is MSS
-
 
 # 添加MSI # Add MSI
 points(expr[msi.sam,"CD274"], expr[msi.sam,"CD8A"],

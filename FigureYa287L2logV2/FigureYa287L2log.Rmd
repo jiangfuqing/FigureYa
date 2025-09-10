@@ -7,6 +7,11 @@ params:
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r params$date` 
@@ -119,7 +124,6 @@ str_sample<-function(data,strataname,size){
   result<-data.frame(select=c(select0_id,select1_id))
   return(result)
 }
-
 
 # 构建一个函数strata_nfolds()，用于分层抽样来构建交叉验证中每一折的样本，保证每一折都包含至少两种不同类型的样本,每折所包含的样本的编号用列表形式进行返回
 # data为包含各建模特征，且二分类outcome列名为“outcome”并处于最后一列的数据框,注意：二分类outcome要以0，1表示
@@ -610,7 +614,6 @@ roc.plot<-function(model_list,roc_color=NULL,model_name=NULL){
   return(graph)
 }
 
-
 # 构建一个函数ttest_HB(),来对不同模型的mean_AUROC进行Holm–Bonferroni校正的非配对双尾t检验
 # model_list为数个repeat_ncv()函数outcome的列表(同roc.plot()函数中的model_list),model_name为列表中每个模型的名称向量，按model_list顺序一一对应
 # 函数ttest_HB()的返回值为一个数据框，model列为进行t检验的两个模型的名称；Pvalue列为检验P值，带"*"代表显著；order为Pvalue的降序排列的序号
@@ -723,7 +726,6 @@ outcome <- c(1,0,1,1,0,1,0,0,0,0,0,0,0,1,1)
 dat <- data.frame(age, health, weight, outcome)
 write.table(dat, "easy_input.txt",sep = "\t",row.names = F,col.names = T,quote = F)
 ```
-
 
 ```{r}
 # 加载输入文件

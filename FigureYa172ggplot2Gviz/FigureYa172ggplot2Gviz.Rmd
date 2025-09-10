@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -210,7 +215,6 @@ pe1 <- ggplot(ebf24)+
 		coord_cartesian(xlim=c(16858001,16868347),ylim=c(0,170))+
 		track_axis_theme
 
-
 pe2 <- ggplot(ebf72)+
 		geom_line(aes((V2+V3)/2,V4),color="#D95F02")+
 		geom_area(aes((V2+V3)/2,V4),fill="#D95F02",alpha=.5)+
@@ -218,7 +222,6 @@ pe2 <- ggplot(ebf72)+
 		labs(x="",y="")+
 		coord_cartesian(xlim=c(16858001,16868347),ylim=c(0,170))+
 		track_axis_theme
-
 
 pe3 <- ggplot(ebf_prob)+
 		geom_line(aes((V2+V3)/2,V4),color="#D95F02")+

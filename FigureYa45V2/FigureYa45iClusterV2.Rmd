@@ -6,6 +6,11 @@ date: "2025-05-20"
 output: 'html_document'
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ![](hoptop.jpg)
 
 ```{r setup, include=FALSE}
@@ -323,7 +328,6 @@ gbm.cn[1:10,1:5]
 - nProbes: 根据长度对片段进行过滤,和-rmSmallseg=TRUE联用
 
 如果你知道设置细胞的区间，设置`rmCNV=TRUE`, 且`cnv`参数不能为空. CNV信息可从 <http://dgv.tcag.ca/dgv/app/downloads?table=DGV_Content_Summary.txt> 下载
-
 
 Important parameter description:
 

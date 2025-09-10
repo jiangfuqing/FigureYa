@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr代码块的全局选项 / Set global options for knitr code chunks
@@ -459,7 +464,6 @@ NMF的方法有许多的数学要求，对于稀疏矩阵（0较多的矩阵）�
 
 此外，大n大p情况运行共识非负矩阵分解，请保持足够的耐心...建议先进行降维操作
 
-
 ### Method 3.ExecuteCNMF
 
 This method is a combination of hierarchical clustering and non-negative matrix factorization
@@ -533,4 +537,3 @@ Xu T, Le T D, Liu L, et al. CancerSubtypes: an R/Bioconductor package for molecu
 ```{r}
 sessionInfo()
 ```
-

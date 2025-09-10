@@ -7,6 +7,11 @@ params:
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r params$date` 
@@ -79,7 +84,6 @@ Boruta
 - Figure 5K，可参考FigureYa131CMap<https://k.youshop10.com/7kOjUwPe>
 - Figure 6D，可参考FigureYa102multipanelROC<https://k.youshop10.com/7bYkTnXu>
 
-
 Figure S2 displays the results of four algorithms (LASSO, XGBoost, Random Forest [RF], and Boruta), while the Methods section describes five algorithms (LASSO, SVM-RFE, XGBoost, RF, and Boruta).
 
 This represents our first crowdfunding initiative for XGBoost implementation. FigureYa65SVM has already covered the first two algorithms (LASSO and SVM-RFE), while this document implements the remaining three (XGBoost, RF, and Boruta).
@@ -136,7 +140,6 @@ options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 BiocManager::install("randomForest")
 ```
-
 
 ```{r}
 # 显示英文报错信息

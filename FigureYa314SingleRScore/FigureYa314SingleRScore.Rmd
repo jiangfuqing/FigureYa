@@ -7,6 +7,11 @@ params:
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 **Author(s)**: `r params$author`  
 **Reviewer(s)**: `r params$reviewer`  
 **Date**: `r params$date` 
@@ -207,7 +212,6 @@ plot.data <- CalScore(GetAssayData(seu, layer = "data"), sig.gene)
 # 如果emat使用原始表达矩阵，则得分宜用对数化
 # If using log-normalized data, scores don't need log-transformation
 # If using raw counts, scores should be log-transformed
-
 
 ## 打分策略二：AUCell
 ## Scoring Method 2: AUCell

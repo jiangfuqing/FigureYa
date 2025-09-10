@@ -4,6 +4,12 @@ author: "小丫画图出品"
 date: "10/14/2018"
 output: 'html_document'
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 微信ID: epigenomics  E-mail: epigenomics@rainbow-genome.com
 
 本代码作者：徐洲更<https://www.jianshu.com/u/9ea40b5f607a>
@@ -72,13 +78,11 @@ library(lattice)
 data(gbm)
 ```
 
-
 测试数据集为GBM，包含如下部分
 
 - gbm.mut: 体细胞突变数据, 行为样本, 列为基因ID
 - gbm.exp: 基因表达量数据, 行为样本, 列为基因ID
 - gbm.seg: DNA 拷贝数变异, 行为样本
-
 
 #### 数据预处理
 
@@ -183,7 +187,6 @@ after_run <- Sys.Date()
 paste0("Running time is ", after_run-before_run)
 ```
 
-
 这里的"K1=5"是主要的遍历参数, 而lambda根据使用数据集数目选择, 参考下表. 当然实在不会选就用`lambda=NULL`用默认值。
 
 ```{r}
@@ -270,7 +273,6 @@ head(sigfeatures[[3]])
 ```
 
 如果你发现某一个数据集没有显著的特征，那你就需要调整“高级分析”第一段`tune.iClusterPlus`函数中的`scale.lambda`, 比如说设置成`c(0.05,1,1)`然后重新跑。
-
 
 **热图展示**: 基于最优拟合画热图
 

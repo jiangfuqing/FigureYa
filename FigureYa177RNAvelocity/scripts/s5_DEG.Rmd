@@ -5,6 +5,11 @@ date: "2020/4/28"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE)
 ```
@@ -94,7 +99,6 @@ names(dat.list) <- cell_types.forDEG
 saveRDS(dat.list, "tmp/s5.1-dat_forDEG.list.rds")
 ```
 
-
 差异表达分析，这里我们只分析 fibroblasts
 构建dds对象
 ```{r}
@@ -149,5 +153,3 @@ p1 + ylab("ln(CPM/10+1)") + xlab("Sample") +
 ```{r, eval=FALSE}
 saveRDS(res, "tmp/s5.2-DEG_fibroblast.rds")
 ```
-
-

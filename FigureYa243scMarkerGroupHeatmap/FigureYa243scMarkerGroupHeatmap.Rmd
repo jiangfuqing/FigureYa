@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -71,7 +76,6 @@ head(ifnb@meta.data)
 table(ifnb@meta.data$stim)
 ```
 
-
 ```{r}
 # 使用splitobject将ifnb数据集分割成两个seurat对象的列表(STIM和CTRL)
 # Use SplitObject to split the ifnb dataset into a list of two Seurat objects (STIM and CTRL)
@@ -84,7 +88,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
   x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
 })
 
-
 # 计算两个数据中排完rank后top2000的高变异基因
 # Compute the top 2000 highly variable genes after ranking in both datasets
 features <- SelectIntegrationFeatures(object.list = ifnb.list, nfeatures = 2000)
@@ -96,7 +99,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
   x <- RunPCA(x, features = features, verbose = T)
 })
 
-
 # 对两个数据集进行整合
 # Integrate the two datasets
 # 首先使用findinintegrationanchors函数标识锚点，然后使用IntegrateData函数将两数据集整合在一起
@@ -106,7 +108,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
 immune.anchors <- FindIntegrationAnchors(object.list = ifnb.list, anchor.features = features, reduction = "rpca", k.anchor = 20)
 immune.combined <- IntegrateData(anchorset = immune.anchors)
 
-
 # 对整合后的数据进行后续分析
 # Proceed with downstream analysis on the integrated data
 DefaultAssay(immune.combined) <- "integrated"
@@ -114,8 +115,6 @@ DefaultAssay(immune.combined) <- "integrated"
 
 常规单细胞流程 | Routine scRNA-seq Workflow
 reasonml
-
-
 
 ```{r}
 # 常规流程，scale数据，跑PCA，使用前30个PC进行降维跑UMAP，计算Neighbors，分cluster
@@ -147,8 +146,6 @@ pdf("./immune.combined.UMAP.pdf", height = 5,width = 12)
 p1 + p2
 dev.off()
 
-
-
 ### 为了后续画图简洁，这里将部分细胞类型进行合并，按照自己数据决定
 ### For cleaner plotting later, merge some cell types; adjust based on your data
 immune.combined@meta.data$CellType <- ""
@@ -161,7 +158,6 @@ immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annota
 immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("pDC"))] <- "pDC"
 immune.combined@meta.data$CellType[which(immune.combined@meta.data$seurat_annotations%in%c("DC"))] <- "DC"
 
-
 immune.combined@meta.data$CellType_group <- paste(immune.combined@meta.data$CellType, immune.combined@meta.data$stim, sep = "_")
 
 DefaultAssay(immune.combined) <- "RNA"
@@ -173,10 +169,8 @@ plan("multiprocess", workers = 10)
 
 celltype.markers <- FindAllMarkers(immune.combined, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
 
-
 # 筛选用于后续绘图的基因 | Filter genes for downstream plotting
 marker <- subset(celltype.markers, p_val_adj < 0.05 & avg_log2FC>0.5&pct.1>0.5)
-
 
 celltype <- c("B_cell", "DC", "Eryth", "Monocyte", "NK", "Mk", "pDC", "T_cell")
 group <- c("CTRL", "STIM")
@@ -198,8 +192,6 @@ select_gene <- unique(as.vector(marker$gene))
 Idents(immune.combined) <- "CellType_group"
 AveExpression <- AverageExpression(immune.combined, assays = "RNA", 
                                    features = select_gene,verbose = TRUE) %>% .$RNA %>% .[,celltype_group_all]
-
-
 
 # 确定热图按行排列顺序，同一细胞类型的group放在一起
 # Determine row order: keep groups of the same cell type together

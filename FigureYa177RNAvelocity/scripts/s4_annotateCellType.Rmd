@@ -5,6 +5,11 @@ date: "2020/4/25"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE)
 ```
@@ -47,7 +52,6 @@ seu.CCA <- readRDS("tmp/s4.2-seu_CCA_clustering_cellAnnotation.rds")
 all.markers %>% group_by(cluster) %>% top_n(n = 3, wt = myAUC)
 ```
 
-
 利用已知marker注释细胞类型<br>
 B-Cells => Cd79a <br>
 Pericytes => Kcnj8 <br>
@@ -76,7 +80,6 @@ plot.list <- lapply(seq_along(known.markers), function(i) {
 cowplot::plot_grid(plotlist = plot.list, ncol = 3)
 ```
 
-
 利用public标注数据集对注释细胞类型(scmap)
 
 > The assignment of each cluster to a specifc cell type was done manually by making use of published
@@ -84,7 +87,6 @@ gene expression data and by single-cell profle projection using scmap. We projec
 the Tabula Muris consortium set onto our single nuclei to identify the similar cell types and show the
 reproducibility from both approaches. All default parameters were used; the numbers of selected features
 were defned as the top 40.
-
 
 导入公共数据<br>
 Heart cell type annotation derived from data of the [Tabula Muris consortium](https://tabula-muris.ds.czbiohub.org/)
@@ -273,4 +275,3 @@ DimPlot(seu.CCA, reduction.use = "tsne", group.by = "cell_type_label",
 ```{r, eval=FALSE}
 saveRDS(seu.CCA, "tmp/s4.2-seu_CCA_clustering_cellAnnotation.rds")
 ```
-

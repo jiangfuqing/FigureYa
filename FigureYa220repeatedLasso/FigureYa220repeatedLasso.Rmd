@@ -5,6 +5,12 @@ reviewers: "Ying Ge,Hui Huang"
 date: "2025-5-20"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -121,8 +127,6 @@ expr <- expr[,apply(expr, 2, function(x) sum(x == 0) < pct * nrow(expr))]
 # 4. 防止基因名出错
 # 4. Prevent gene name errors
 colnames(expr) <- make.names(colnames(expr))
-
-
 
 ## 加载免疫基因集
 ## Load the immune gene set

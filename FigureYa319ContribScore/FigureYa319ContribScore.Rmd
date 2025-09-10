@@ -4,6 +4,12 @@ author: "小丫画图出品"
 date: "2023-7-21"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 欢迎关注“小丫画图”公众号，回复“小白”，看小视频，实现点鼠标跑代码。
 
 小丫微信: epigenomics  E-mail: figureya@126.com

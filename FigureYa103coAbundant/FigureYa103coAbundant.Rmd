@@ -6,6 +6,10 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -121,7 +125,6 @@ example.data <- as.data.frame(t(example.data))
 
 # 是否需要测试样本或特征质量，或是否需要移除离群点，不属于本需求的目的，可参考FigureYa15WGCNA了解更多预处理工作
 # Whether to test sample/feature quality or remove outliers is not the purpose of this requirement. Refer to FigureYa15WGCNA for more preprocessing steps
-
 
 ### 读取表型数据（其他变量）
 # 从easy_input_anno.txt文件读取表型数据，使用制表符分隔，禁用列名检查和字符串转因子

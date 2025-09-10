@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
@@ -361,7 +366,6 @@ p1 <- corrplot(as.matrix(log2(est + 1)),
 ## 开始画图
 
 作者提供了三种画法展示以上结果，这里展示画法一，画法二三见压缩包里的2_3_ggplot2.R文件
-
 
 ## Start drawing
 

@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ![](hoptop.png)
 
 ```{r setup, include=FALSE}
@@ -269,7 +274,6 @@ my.reduce <- function(x){
   length(unique(total))
 }
 
-
 ```
 
 > 目前只测试了拟南芥和人类。其他物种报错或者没有返回预期结果，请将物种的URL和你遇到的问题，以【小丫画图|Count2TPM 问题】为邮件标题，发送到邮箱 xuzhougeng@163.com
@@ -453,7 +457,6 @@ write.table(expMatrix_tpm, "output_count2tpm.txt", sep="\t", quote=F, row.names=
 - <https://biology.stackexchange.com/questions/64860/what-is-the-length-of-gene-when-calculating-tpm-transcripts-per-million>
 - `Seurat::getBMFeatureAnnos`
 
-
 注1: 直接比较FPKM转成的TPM和count转换而成的TPM，完全一致。
 
 Note 1: Direct comparison of FPKM converted TPM and count converted TPM is identical.
@@ -483,11 +486,9 @@ cor(x=count2tpm.mt$TCGA.DD.A11D.01A.11R.A131.07,
 
 以第一列为例，raw count 和 count2tpm的相关系数是0.898，raw count 和fpkm2tpm的相关系数也是 0.898。而count2tpm和fpkm2tpm的相关系数是1, 证明了count2tpm的代码是有效的。
 
-
 注2: biomaRt支持多物种, 通过更改参数biomart 和 host 来获取，植物的host跟动物的不同
 
 Take the first column as an example, the correlation coefficient between raw count and count2tpm is 0.898, and the correlation coefficient between raw count and fpkm2tpm is also 0.898. The correlation coefficient between count2tpm and fpkm2tpm is 1, which proves that the code of count2tpm is valid.
-
 
 Note 2: biomaRt supports multi-species, by changing the parameters biomart and host, the host of plants is different from that of animals.
 
@@ -531,4 +532,3 @@ BiocInstaller::biocLite()
 ```{r}
 sessionInfo()
 ```
-

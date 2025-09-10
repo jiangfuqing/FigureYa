@@ -6,6 +6,11 @@ date: "2025-05-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
@@ -97,7 +102,6 @@ colors <- c("darkorange","navy","darkgreen")
 sampling_number <- 5000 # 0 for no sampling, smaller than each bed rows
 ```
 
-
 ## 输入文件
 
 8cell.K4me3.bw：ChIP/DNase/ATAC-seq的bw文件
@@ -153,7 +157,6 @@ average_signal <- average_signal / normalization_constant
 # This step is time-consuming. Save extracted signals to `average_signal.txt`.
 write.table(average_signal,"average_signal.txt",quote = F,row.names = F,col.names = F)
 ```
-
 
 ## 开始画图
 

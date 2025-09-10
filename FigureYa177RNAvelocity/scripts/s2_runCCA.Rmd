@@ -5,6 +5,11 @@ date: "2020/4/25"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r}
 knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE)
 ```
@@ -112,4 +117,3 @@ VlnPlot(seu.CCA, features.plot = c("ACC1", "ACC2"), group.by = "sample_id", poin
 ```{r}
 saveRDS(seu.CCA, "tmp/s2-seu_CCA.rds")
 ```
-

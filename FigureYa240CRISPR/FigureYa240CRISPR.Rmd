@@ -5,6 +5,12 @@ reviewers: "Ying Ge,Hui Huang"
 date: "2025-5-20"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -146,7 +152,6 @@ com_code <- intersect(t.code, n.code) # 取出相同患者的前段barcode # Rem
 pair.t.sam <- paste0(com_code, "-01A") # 添加肿瘤的尾部barcode # Add the tail barcode of the tumor
 pair.n.sam <- paste0(com_code, "-11A") # 添加正常的尾部barcode # Add normal tail barcode
 ```
-
 
 ```{r}
 ## CRISPR screening数据

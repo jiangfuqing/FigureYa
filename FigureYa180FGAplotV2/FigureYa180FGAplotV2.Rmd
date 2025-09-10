@@ -5,6 +5,12 @@ reviewer: "Ying Ge, Junyi Shen"
 date: "2025-5-20"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -372,7 +378,6 @@ p2 <- ggplot(tableGL, aes(x = subgroup,
   scale_y_continuous(limits = c(-mar(tableGL[tableGL$class=='FGG',]),mar(tableGL[tableGL$class=='FGL',])),breaks =seq(-0.5,0.5,gap),
                      labels=abs(seq(-0.5,0.5,gap)),expand = c(0.01,0),
                      name  = "FGG or FGL (Fraction of Genome Gained or lost)")
-
 
 p4 <- p2+ 
   facet_grid(rows = vars(group),scales = "free_y",space = "free_y",switch = "y")+

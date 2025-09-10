@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -143,7 +148,6 @@ gene_loc %<>%
   dplyr::mutate(chr = factor(CHRLOCCHR, levels = chr_used)) %<>% # set levels for chr
   dplyr::arrange(chr, abs(CHRLOC)) # sort genes by genomic location
 
-
 gene_loc_uniq <- gene_loc[!duplicated(gene_loc$SYMBOL),] # gene deduplication
 
 # set row-order of exprdata  
@@ -277,7 +281,6 @@ phAnno <- annodata[annodata$tumor == "MEEI5",]
 phAnno <- phAnno[order(phAnno$type),]
 
 phData <- t(final_cnv[,rownames(phAnno)])
-
 
 phData <- minmax(phData, min = -1, max = 1)
 

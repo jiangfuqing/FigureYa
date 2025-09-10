@@ -6,6 +6,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # 设置knitr的全局代码块选项 / Set global chunk options for knitr
@@ -535,17 +540,12 @@ library(dplyr)
 # Filter high-confidence marker genes
 marker2 <- markers[ markers$pct.1 > 0.1 & markers$pct.2 < 0.1 ,]
 
-
-
-
 # 为每个细胞簇选择最具代表性的前10个标记基因
 # Select the top 10 representative marker genes for each cell cluster
 marker3 <- marker2 %>% 
   group_by(cluster) %>%
   top_n(n = 10, wt = avg_logFC)
   
-         
-
 # 将筛选后的标记基因保存为CSV文件
 # Save the filtered marker genes to a CSV file
 write.table(marker3, "markers.csv", 
@@ -703,7 +703,6 @@ p12 <- cowplot::plot_grid(p1, p2, ncol = 1)
 print(p12)
 ```
 
-
 默认颜色不是特别的好看，我们需要给聚类自定义颜色
 
 第一步: 先看看有多少个levels
@@ -737,7 +736,6 @@ mycols <- c(
   "Trichoblast" = "#04889d",           
   "Unknown" = "#b4b4b5"                
 )
-
 
 ```
 

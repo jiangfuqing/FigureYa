@@ -4,6 +4,12 @@ author: "小丫画图出品"
 date: "2022-3-18"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 欢迎关注“小丫画图”公众号，回复“小白”，看小视频，实现点鼠标跑代码。
 
 小丫微信: epigenomics  E-mail: figureya@126.com
@@ -100,7 +106,6 @@ InstallData("ifnb")
 head(ifnb@meta.data)
 table(ifnb@meta.data$stim)
 
-
 ## 数据拆分成两组(STIM和CTRL)
 # 使用splitobject将ifnb数据集分割成两个seurat对象的列表(STIM和CTRL)
 ifnb.list <- SplitObject(ifnb, split.by = "stim")
@@ -119,7 +124,6 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
   x <- ScaleData(x, features = features, verbose = T)
   x <- RunPCA(x, features = features, verbose = T)
 })
-
 
 ## 对两个数据集进行整合
 # 首先使用findinintegrationanchors函数标识锚点，然后使用IntegrateData函数将两数据集整合在一起

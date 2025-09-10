@@ -5,6 +5,12 @@ reviewers: "Ying Ge,Hui Huang"
 date: "2025-5-20"
 output: html_document
 ---
+
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -239,7 +245,6 @@ for (i in 1:breakpoint) {
 # Finish the first half
 up + plot_layout(guides = 'collect',widths = width_up)
 
-
 ## 画下半部分
 # 画下面第1个
 ## Draw the bottom half
@@ -277,7 +282,6 @@ for (i in (breakpoint + 1):length(file)) {
 down + plot_layout(guides = 'collect',widths = width_down)
 ```
 
-
 ```{r fig.width=10, fig.height=15}
 ## 上下组合
 ## Combination of top and bottom
@@ -298,7 +302,6 @@ ggsave("TIMER.pdf",
 # EPIC
 
 IOBR is highly recommended for immunoinfiltration algorithms （[GitHub - IOBR/IOBR: IOBR is an R package to perform comprehensive analysis of tumor microenvironment and signatures for immuno-oncology.](https://github.com/IOBR/IOBR)）
-
 
 ![](IOBR.png)
 

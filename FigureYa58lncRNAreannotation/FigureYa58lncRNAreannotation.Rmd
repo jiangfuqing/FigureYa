@@ -5,6 +5,11 @@ date: "2025-5-20"
 output: html_document
 ---
 
+# Academic Citation
+If you use this code in your work or research, we kindly request that you cite our publication:
+
+Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -183,8 +188,6 @@ GPL does not provide the SEQUENCE sequence of Affymetrix chips. If you need to d
 - GPL5188 platform used in the example, official website chip platform page: <http://www.affymetrix.com/support/technical/byproduct.affx?product=huexon-st>, download the probeset fasta file: <http://www.affymetrix.com/Auth/analysis/downloads/data/HuEx-1_0-st-v2.hg18.probeset.fa.zip>
 
 ![](Affy_GPL5188.png)
-
-
 
 ### 序列比对
 ### Sequence comparison
