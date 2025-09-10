@@ -128,6 +128,9 @@ gosets <- gosets$V1
 ##Perform GSVA on the GO pathway of interest to obtain the expression matrix of the pathway and calculate the correlation coefficient
 
 ```{r}
+# 连接到Ensembl数据库的人类基因数据集（使用亚洲镜像）
+# Connect to the human gene dataset in Ensembl database (using Asian mirror)
+ensembl <- useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl", mirror = "asia")
 
 # 初始化空列表存储每个GO term对应的基因（Initialize empty list to store genes for each GO term）
 go.list <- list()

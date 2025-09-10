@@ -36,6 +36,8 @@ Fig. 4. Spatial topology of myeloid cell populations in the mature kidney. (A) H
 
 # Application Scenarios
 
+适用于单细胞转录组数据。跟网页版相比，本地安装运行CellPhoneDB更加灵活。
+Applicable to single-cell transcriptome data. Compared with the web version, installing and running CellPhoneDB locally is more flexible.
 
 可参考CellPhoneDB的作者发表的这篇Nature Protocol<https://doi.org/10.1038/s41596-020-0292-x>
 Refer to the author published this Nature CellPhoneDB Protocol < https://doi.org/10.1038/s41596-020-0292-x
@@ -58,7 +60,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息
 options(stringsAsFactors = FALSE) #禁止chr转成factor
 ```
 
+CellPhoneDB需要在终端（Linux、MAC系统）安装和运行。Windows用户用wsl<https://docs.microsoft.com/en-us/windows/wsl/install-win10>
+CellPhoneDB needs to be installed and run on the terminal (Linux or MAC system). Windows users with WSL < https://docs.microsoft.com/en-us/windows/wsl/install-win10 >
 
+安装CellPhoneDB，参考<https://github.com/Teichlab/cellphonedb>
 Install CellPhoneDB, reference < https://github.com/Teichlab/cellphonedb >
 
 ```bash
@@ -69,6 +74,7 @@ python -m venv cpdb-venv
 source cpdb-venv/bin/activate
 
 #Install CellPhoneDB
+pip install cellphonedb
 ```
 
 # 输入文件

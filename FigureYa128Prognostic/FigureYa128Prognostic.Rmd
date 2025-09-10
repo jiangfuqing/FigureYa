@@ -17,12 +17,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 出自<https://clincancerres.aacrjournals.org/content/18/21/6001>
 
+这里有文章解读：<https://www.jianshu.com/p/58eab0d8ac22?from=singlemessage&isappinstalled=0>
 
 ##Requirement description
 
 How were the 7 genes selected in the article?
 
 From< https://clincancerres.aacrjournals.org/content/18/21/6001 >
+
+Here is an article interpretation:< https://www.jianshu.com/p/58eab0d8ac22?from=singlemessage&isappinstalled=0 >
 
 
 ## 应用场景
