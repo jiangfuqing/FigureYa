@@ -71,6 +71,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件的下载
 
 下载原文的数据<https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE111672>，解压缩GSE111672_RAW.rar

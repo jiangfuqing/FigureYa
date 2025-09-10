@@ -68,6 +68,10 @@ Analyze the methylation status of iron death genes in tumors and normal tissues 
 Use domestic image installation package
 
 ```{r eval=FALSE}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置CRAN镜像为清华大学镜像源，加速R包下载
 # Set CRAN mirror to Tsinghua University mirror source to speed up R package downloads
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

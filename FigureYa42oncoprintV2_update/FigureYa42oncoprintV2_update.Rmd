@@ -72,6 +72,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion of chr to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 场景一：01矩阵代表的一种变异类型
 # Scenario 1: A variant type represented by the 01 matrix
 

@@ -71,6 +71,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件及预处理
 
 以Seurat官网PBMC数据为例，跟FigureYa111markerGene和FigureYa160scGSVA用的是同一套数据，出自不同作者之手，可相互参考。

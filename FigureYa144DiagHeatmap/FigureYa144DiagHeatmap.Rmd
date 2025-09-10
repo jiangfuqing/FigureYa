@@ -68,6 +68,10 @@ easy_input_amp.txt and easy_input_del.txt, two matrices. They correspond to the 
 In short, just replace your own data according to the format of these two files.
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 左上角的数据
 # Data in the upper left corner
 up <- read.table("easy_input_amp.txt",sep = "\t",row.names = NULL,check.names = F,stringsAsFactors = F,header = T)

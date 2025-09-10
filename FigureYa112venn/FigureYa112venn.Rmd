@@ -42,6 +42,10 @@ Display 4 groups of elements (such as differentially expressed genes) with overl
 Use domestic image installation package
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置CRAN镜像为清华大学镜像源（Set CRAN mirror to Tsinghua University mirror source）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

@@ -81,6 +81,14 @@ options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("pRRophetic_0.5.tar.gz", repos = NULL, type = "source")
 ```
 
+
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 加载包
 
 ```{r}

@@ -121,6 +121,10 @@ add.vertex.shape("fcircle", clip=igraph.shape.noclip,
 ## Parameter settings
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # Give your focus official gene_symbol
 sourceGene <- "CD274"
 

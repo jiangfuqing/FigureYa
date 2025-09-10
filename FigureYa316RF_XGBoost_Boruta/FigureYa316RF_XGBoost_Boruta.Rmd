@@ -125,6 +125,14 @@ In addition, the FigureYa we have crowdfunded can realize several of the images 
 - Figure 6D, Reproduce using FigureYa102multipanelROC <https://k.youshop10.com/7bYkTnXu>.
 
 # 环境设置
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # Requirements Description
 
 使用国内镜像安装包。

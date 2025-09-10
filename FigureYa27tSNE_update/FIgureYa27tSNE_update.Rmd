@@ -51,6 +51,10 @@ Scenario 2: Hundreds of tumor samples, identify subtypes, find marker genes. Use
 Install the R package `Seurat`. The previous version corresponded to 2.x, the current version corresponds to 3.x.x.
 
 ```{r, warning=FALSE,message=FALSE}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 加载Seurat
 # loading Seurat
 if (! require("Seurat")){

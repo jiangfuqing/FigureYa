@@ -85,6 +85,10 @@ Here, we use the ssGSEA_output.csv file (Figure Ya71) to demonstrate how to calc
 tcga_gsva <- read.csv("ssGSEA_output.csv", row.names = 1, check.names = F)
 tcga_gsva[1:3,1:3]
 #这里将计算每列之间的相关性
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # This will calculate the correlation between each column.
 #如果要计算行之间的相关性就运行下面这行转置（把行变成列，列变成行）
 # To calculate the correlation between rows, run the following transposition line (convert rows to columns and columns to rows).

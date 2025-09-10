@@ -79,6 +79,10 @@ standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=
 }
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 tcga.expr.simplified.txt，表达矩阵。

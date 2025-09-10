@@ -81,6 +81,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # error messages are disp
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 标准的seurat流程
 
 GSE135437，从<https://github.com/rsankowski/sankowski-et-al-microglia>下载数据并解压到当前文件夹

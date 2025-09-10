@@ -77,6 +77,10 @@ Using domestic mirrors for package installation.
 ```{r}
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # devtools::install_github('satijalab/seurat-data')
 ```
 

@@ -59,6 +59,14 @@ options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 install.packages("showtext")
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 安装IOBR，参照https://github.com/IOBR/IOBR
 # Install the IOBR, refer to https://github.com/IOBR/IOBR
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")

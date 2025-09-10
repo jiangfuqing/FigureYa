@@ -81,6 +81,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of 
 Custom drawing function
 
 ```{r plot, fig.width=12, fig.height=12}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 自定义颜色
 # Custom colors
 pink <- "#F814A7"

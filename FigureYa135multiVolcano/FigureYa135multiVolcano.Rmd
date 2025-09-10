@@ -51,6 +51,10 @@ Use domestic mirror installation package
 ```{r}
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # BiocManager::install("janitor")
 ```
 

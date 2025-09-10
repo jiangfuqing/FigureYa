@@ -70,6 +70,10 @@ BiocManager::install(c("Gviz", "GenomicRanges", "rtracklayer"))
 #install.packages("devtools")
 devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")
 #小丫用上面的命令安装不成功，改从github下载后，重新压缩，本地安装，成功
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # Xiaoya failed to install it using the above command. Instead, she downloaded it from github, re-compressed it and installed it locally. It was successful
 #install.packages("cicero-release-master.tar.gz", repos = NULL, type = "source", ref = "monocle3")
 
@@ -79,6 +83,10 @@ devtools::install_github('cole-trapnell-lab/leidenbase')
 devtools::install_github('cole-trapnell-lab/monocle3')
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 加载包
 Loading package
 

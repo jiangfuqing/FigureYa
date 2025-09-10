@@ -135,6 +135,10 @@ head(Glycan)
 The inner side of the outer arc is 1.1 times the radius of the circle, and the outer side is 1.15 times
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 取Gly.clu列
 # Get the Gly.clu column
 curve <- Glycan[,3, drop=F]

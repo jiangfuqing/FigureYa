@@ -47,6 +47,10 @@ When plotting thousands of loci such as ChIP-seq, ATAC-seq, or DNA methylation, 
 ## Environment settings
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置国内镜像源以加速R包下载 / Set domestic mirror to speed up package installation
 # options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))  # 清华大学CRAN镜像 / Tsinghua University CRAN mirror
 # options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")  # 中科大Bioconductor镜像 / USTC Bioconductor mirror

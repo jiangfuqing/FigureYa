@@ -122,6 +122,10 @@ IRGP.generator <- function(expr = NULL, immuneGene = NULL) {
   IRGP_matrix_1 <- expr[as.character(imm_mat$IRGP1),] # 取出对应的表达 # Take out the corresponding expression
   IRGP_matrix_2 <- expr[as.character(imm_mat$IRGP2),]
   
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
   # Original text：An IRGP score of 1 was assigned if IRG 1 was less than IRG 2; otherwise the IRGP score was 0. 
   IRGP_matrix <- IRGP_matrix_1 - IRGP_matrix_2  # IRGP矩阵为IRGP1和IRGP2的差值 # The IRGP matrix is the difference between IRGP1 and IRGP2
   for( p in 1:ncol(IRGP_matrix)){

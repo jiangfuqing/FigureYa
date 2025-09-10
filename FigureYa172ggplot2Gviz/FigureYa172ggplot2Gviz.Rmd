@@ -80,6 +80,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息
 options(stringsAsFactors = FALSE) #禁止chr转成factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件的准备
 # Preparing input files
 

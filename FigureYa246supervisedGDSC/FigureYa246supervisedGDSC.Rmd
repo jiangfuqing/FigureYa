@@ -74,6 +74,10 @@ standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=
 }
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 大文件已上传至微云<https://share.weiyun.com/AW2ZOfhr>，建议小伙伴亲自去官网下载。

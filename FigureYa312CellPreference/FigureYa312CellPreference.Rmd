@@ -73,6 +73,14 @@ Calculation method: Actual cell count / Expected cell count, where the expected 
 For more single-cell analysis visualization tools from FigureYa: <https://k.youshop10.com/McawGY6=>
 
 # 环境设置
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # Requirements Description
 
 使用国内镜像安装包。

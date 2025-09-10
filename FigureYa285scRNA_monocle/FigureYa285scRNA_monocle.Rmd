@@ -49,6 +49,14 @@ BiocManager::install("monocle")
 install.packages("https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz",repos = NULL)
 ```
 
+
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 加载包
 # Loading packages
 

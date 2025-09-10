@@ -86,6 +86,10 @@ Here, the median is used as the cutoff group. You can also use X-tile to find th
 
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # risk score，用于画顶部散点图
 # risk score, used to draw the top scatter plot
 rs <- data$riskscore

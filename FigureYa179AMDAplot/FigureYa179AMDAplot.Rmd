@@ -73,6 +73,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from be
 > 如果你对AMDA score算法不感兴趣，只想画带二级分类标签的热图，就直接跳到“开始画图”。
 > If you are not interested in the AMDA score algorithm and only want to draw a heat map with secondary classification labels, just jump directly to "Start Drawing".
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # AMDA score算法讲解
 
 # Explanation of the AMDA score Algorithm

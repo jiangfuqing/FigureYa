@@ -46,10 +46,18 @@ options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 install.packages("survival")
 install.packages("randomForestSRC")
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # randomSurvivalForest包来源：https://cran.r-project.org/src/contrib/Archive/randomSurvivalForest/
 install.packages("randomSurvivalForest_3.6.4.tar.gz", repos = NULL, type="source")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 加载包
 Loading package
 

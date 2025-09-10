@@ -69,6 +69,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件及预处理
 
 ## 输入文件

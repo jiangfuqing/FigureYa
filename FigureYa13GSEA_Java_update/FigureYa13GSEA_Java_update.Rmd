@@ -105,6 +105,10 @@ result <- ldply(fdataset, data.frame)
 result$pathway <- unlist(strsplit(result$.id,split = ".xls"))
 head(result)
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # pathway的颜色，自定义足够多的颜色
 # color of the pathway, customize enough colors
 mycol <- c("red","navy","darkgreen","blueviolet","chocolate4")

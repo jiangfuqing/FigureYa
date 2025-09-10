@@ -135,6 +135,10 @@ plot_condsurv <- function (survdt = NULL,
                            lwd = 1.2,
                            legend.pos = "top") 
 {
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
   # survdat: 生存数据，至少包含两列，生存时间（futime，年为单位）和生存状态（fustat）
   # survdat: Survival data, at least two columns, survival time (futime, in years) and survival status (fustat)
   # at：一个数值序列，表示条件生存时间中的附加时间，如在第三年存活的基础上额外存活at年的概率

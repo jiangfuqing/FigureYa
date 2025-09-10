@@ -65,6 +65,10 @@ Single-cell analysis can be quite complex and tedious. To keep the script concis
 source("seurat_pipeline.R")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 # Input files
 

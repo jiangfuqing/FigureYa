@@ -66,6 +66,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to co
 Custom functions
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 自定义函数显示进度 # Custom functions display progress
 display.progress = function ( index, totalN, breakN=20) {
   if ( index %% ceiling(totalN/breakN)  ==0  ) {

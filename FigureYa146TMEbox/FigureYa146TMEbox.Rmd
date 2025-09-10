@@ -71,6 +71,10 @@ Tumor microenvironment characterization in gastric cancer identifies prognostic 
 - eset, gene expression matrix for each sample. The example paper integrates multiple data sets, and the amount of data is huge. In order to minimize the size of the transfer file, the expression matrix here is the matrix selected by signature_gene (from GSE62254), so the pvalues in the final figure are very small.
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # phenotype data
 pdata <- read.table("easy_input_cluster.txt", header = T, sep = "\t")
 head(pdata)

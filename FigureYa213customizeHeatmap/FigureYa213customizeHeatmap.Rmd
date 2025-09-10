@@ -71,6 +71,14 @@ Method 1: Install the github version of ComplexHeatmap (I personally tested it a
 ```{r eval=FALSE}
 library(devtools)
 install_github("jokergoo/ComplexHeatmap") 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 如果github网速困难，可本地安装
 # If the network speed of GitHub is slow, you can install it locally
 install.packages("ComplexHeatmap-master.tar.gz", repos = NULL, type = "source")

@@ -69,6 +69,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 Display English error mess
 options(stringsAsFactors = FALSE) #禁止chr转成factor Disable conversion of chr to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # PART 1: 重复出文章Figure 7A
 # PART 1: Repeat Figure 7A
 

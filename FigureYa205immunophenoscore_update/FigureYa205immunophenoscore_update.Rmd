@@ -122,6 +122,10 @@ mapbw<-function (x) {
 }
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 easy_input_expr.csv，表达矩阵。例如log2(TPM+1)，每行一个基因，每列一个样本。

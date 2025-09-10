@@ -65,6 +65,10 @@ Using domestic mirrors for package installation.
 ```{r eval=FALSE}
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 渐变柱状图用到了ggpattern包中的pattern_fill参数，共两个参数
 # pattern_fill和pattern_fill2，只能设置两个渐变色
 # The gradient bar chart uses the pattern_fill parameter from the ggpattern package
@@ -74,6 +78,10 @@ remotes::install_github("coolbutuseless/ggpattern")
 install.packages("magick")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 加载包
 # Loading packages
 

@@ -42,6 +42,10 @@ At the same time, samples can be grouped based on the gene expression profile of
 ##Environment settings
 
 ```{r warning=FALSE}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 使用国内镜像安装包
 # Use domestic mirror sources to install packages
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

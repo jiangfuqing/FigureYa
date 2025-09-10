@@ -69,6 +69,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 用GenePattern上的GISTIC分析可得到broad_data_by_genes.txt以及all_data_by_genes.txt文件，或可参照FigureYa79CNV。

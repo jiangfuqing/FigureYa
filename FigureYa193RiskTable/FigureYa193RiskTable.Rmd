@@ -63,6 +63,10 @@ display.progress = function (index, totalN, breakN=20) {
 }  
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 # Input File

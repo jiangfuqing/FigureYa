@@ -60,6 +60,10 @@ The left side line chart is more suitable for time series data, such as developm
 Use domestic image installation package
 
 ```{r eval=FALSE}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置R包安装源为清华大学镜像站（Set R package installation source to Tsinghua University mirror）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

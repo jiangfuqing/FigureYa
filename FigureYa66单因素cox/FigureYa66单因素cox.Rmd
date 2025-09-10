@@ -102,6 +102,10 @@ Data Source:
 - Survival_SupplementalTable_S1_20171025_xena_sp, cell processing optimized survival information, download address: <https://pancanatlas.xenahubs.net/download/Survival_ SupplementalTable_S1_20171025_xena_sp.gz>
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 建立疾病全称跟缩写的对应关系
 # Create mapping between disease full names and abbreviations
 

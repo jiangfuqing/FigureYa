@@ -48,6 +48,10 @@ The usage and parameter settings of STEM are not the topics to be discussed here
 Use domestic image installation package
 
 ```{r, eval=FALSE}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置CRAN镜像为清华大学镜像站（中国用户推荐使用，提升下载速度）
 # Set the CRAN mirror to Tsinghua University mirror (recommended for Chinese users to improve download speed)
 options("repos" = c(CRAN = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))

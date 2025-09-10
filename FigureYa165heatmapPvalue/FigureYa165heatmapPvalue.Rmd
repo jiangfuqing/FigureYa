@@ -65,6 +65,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of
 Load a custom function
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 显示进程
 # Display progress
 display.progress = function (index, totalN, breakN=20) {

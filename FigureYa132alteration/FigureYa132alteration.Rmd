@@ -83,6 +83,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable chr conversion
 Custom function
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 让SAMPLE_BARCODE作为rowname
 # Let SAMPLE_BARCODE be rowname
 setIndex <- function(df, index = 'SAMPLE_BARCODE'){

@@ -48,6 +48,10 @@ On the right side, use a pie chart to show the correlation between each pathway 
 Use domestic image installation package
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置CRAN镜像为清华大学镜像站（Set CRAN mirror to Tsinghua University mirror site）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

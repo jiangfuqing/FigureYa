@@ -90,6 +90,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # error messages are displ
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件的获得
 
 需要表达矩阵和生存数据，如果你已经准备好easy_input_gene.txt、easy_input_expr.csv和easy_input_surv.csv文件，就可以跳过这步，直接进入“输入文件”。

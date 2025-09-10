@@ -22,6 +22,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # 环境设置 / Environment Setup
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 使用国内镜像安装包 / Use domestic mirror to install packages
 
 ```{r}

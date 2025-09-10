@@ -74,6 +74,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # error messages are disp
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 例文旨在开发一个预测尿脓毒症的个性化模型，结局事件是尿脓毒症，并且纳入了性别、肾积水平均CT值、功能性孤立肾、尿WBC数、尿亚硝酸盐等五个因素

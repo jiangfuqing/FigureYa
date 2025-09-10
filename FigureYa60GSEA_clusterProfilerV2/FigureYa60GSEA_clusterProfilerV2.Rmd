@@ -78,6 +78,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 Here we select the pathways “hsa03030” and “hsa03050” to highlight several genes in these pathways.
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 要画的通路
 # pathways to be drawn
 geneSetID <- c("hsa03030", "hsa03050")

@@ -67,6 +67,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of
 用到的两个文件：pcbc-stemsig.tsv和pcbc-stemsig.p219.Rda，来自<https://www.cell.com/cell/fulltext/S0092-8674(18)30358-1>，跑自己的数据就用这个作为输入跑就行了。
 Two files used: pcbc-stemsig.tsv and pcbc-stemsig.p219.Rda, from <https://www.cell.com/cell/fulltext/S0092-8674(18)30358-1>. Just use this as input to run your own data.
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # mRNAsi
 
 ## 输入文件

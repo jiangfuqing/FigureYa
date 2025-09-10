@@ -47,6 +47,10 @@ install.packages("devtools")
 devtools::install_github('satijalab/seurat-data',force = TRUE)
 
 ### 安装scMetabolism计算代谢通路
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 如果安装不成功，先去升级R
 # 先安装依赖包
 install.packages("BiocManager")
@@ -58,6 +62,10 @@ devtools::install_github("wu-yc/scMetabolism")
 BiocManager::install("clusterProfiler")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 加载包
 
 ```{r}

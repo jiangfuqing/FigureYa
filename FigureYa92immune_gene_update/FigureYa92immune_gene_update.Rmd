@@ -70,6 +70,10 @@ Reply "R2" on the "Xiaoya Painting" official account to check the usage of simil
 Use domestic image installation package
 
 ```{r eval=FALSE}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 设置CRAN镜像为清华大学镜像源，提高包下载速度（Set CRAN mirror to Tsinghua University source for faster package downloads）
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 

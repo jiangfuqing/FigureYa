@@ -61,6 +61,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # displays an English err
 options(stringsAsFactors = FALSE) #禁止chr转成factor  # prohibit chr from being converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 # Input File

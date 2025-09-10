@@ -97,6 +97,10 @@ Next, take train as the input to filter the variables of lasso and SVM-REF respe
 ### Find features
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 转为lasso需要的格式
 # convert to lasso required format
 x <- as.matrix(train[,-1])  

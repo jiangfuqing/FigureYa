@@ -65,6 +65,10 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息 # messages are displayed i
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 
 easy_input.txt，多组分类信息。也可用于FigureYa25Sankey，画成桑基图。

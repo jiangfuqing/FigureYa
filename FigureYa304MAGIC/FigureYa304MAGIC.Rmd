@@ -51,6 +51,14 @@ reticulate::py_install("magic-impute") # this will install py packages: `magic` 
 install.packages("Rmagic") # R interface for magic package
 ```
 
+
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 加载包
 
 ```{r}

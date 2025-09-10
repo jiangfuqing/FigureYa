@@ -61,6 +61,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of
 > Here, edgeR is used. If you are using DESeq2 or limma, simply replace the corresponding functions in FigureYa118MulticlassDESeq2 or FigureYa119MulticlassLimma for seamless integration.
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 创建需要配对比较的列表
 # Create a list for paired comparison
 createList <- function(group=NULL) {

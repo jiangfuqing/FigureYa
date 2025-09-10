@@ -74,6 +74,10 @@ msi_results.rda，下载的MSI信息保存在这里，以便重复使用。
 msi_results.rda, the downloaded MSI information is saved here for reuse.
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 表达矩阵
 # Expression matrix
 expr <- read.table("easy_input_expr.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = 1)

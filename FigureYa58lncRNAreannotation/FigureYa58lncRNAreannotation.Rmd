@@ -382,6 +382,10 @@ row.names(lncRNA.probe.expr) <- lncRNA.probe.expr$probe_id
 lncRNA.probe.expr$probe_id <- NULL
 head(lncRNA.probe.expr)
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 合并具有相同gene symbol的探针
 # combine probe sets with same gene symbol
 lncRNA.expr_uniq <- aggregate(.~gsym, lncRNA.probe.expr, median)

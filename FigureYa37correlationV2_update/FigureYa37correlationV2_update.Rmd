@@ -73,6 +73,10 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 load custom function
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 计算相关系数的函数
 # function to calculate correlation coefficients
 genecor.parallel <- function(data,gene,cl){

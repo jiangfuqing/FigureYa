@@ -71,6 +71,10 @@ It contains at least three columns: gene name, fold change (logFC), P value (P.V
 At least include the first column: gene name. The second column is the pathway of the gene, which is optional.
 
 ```{r}
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 全部基因差异表达分析结果
 # differential Expression Analysis Results of All Genes
 x <- read.csv("easy_input_limma.csv")

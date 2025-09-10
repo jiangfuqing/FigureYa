@@ -69,6 +69,10 @@ Load custom functions
 source("functions.R")
 ```
 
+
+```{r install_dependencies}
+source("install_dependencies.R")
+```
 # 输入文件
 # Input file
 
