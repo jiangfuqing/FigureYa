@@ -52,12 +52,10 @@ Use pie charts to show percentages, and then arrange the pie charts into a matri
 ## 环境设置
 ## Environment settings
 
-使用国内镜像安装包
-Use domestic mirror installation package
 
 ```{r}
+source("install_dependencies.R")
 setRepositories(ind=1:6)
-options(repos="http://cran.rstudio.com/")
 if(!require(devtools)) { install.packages("devtools") }
 library(devtools) 
 

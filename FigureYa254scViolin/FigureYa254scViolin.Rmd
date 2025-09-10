@@ -55,15 +55,12 @@ In addition, Figure S6H uses color and shape to display the grouping information
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 
@@ -281,10 +278,6 @@ The following code is from 'FigureYa206scHeatmap' and will generate a 'sc.seurat
 
 ![](download.png)
 
-```{r download, eval=FALSE}
-#download.file("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE130664&format=file&file=GSE130664%5Fmerge%5FUMI%5Fcount%2Etxt%2Egz", 
-              #destfile = "GSE130664_merge_UMI_count.txt.gz")
-```
 
 2) metadata，从[例文的](https://doi.org/10.1016/j.cell.2020.01.009)Supplementary Tables获得：`1-s2.0-S0092867420300568-mmc1.xlsx`
 

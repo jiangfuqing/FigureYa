@@ -38,12 +38,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # 环境设置
 
-使用国内镜像安装包
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("meta")
+source("install_dependencies.R")
 ```
 
 加载包
@@ -126,9 +123,6 @@ dev.off()
 - 两种方式计算获得的合并的效应量HR基本一致；
 - 出图存在一定的差异，可以生成pdf文件，是矢量图，借助Illustrator进一步修改图和文字。或用export包导出ppt文件，进一步修改；如果安装export包遇到问题，可[参考此帖](https://www.jianshu.com/p/ff5bcf46c34a)
 
-```{r}
-# export::graph2ppt(file = "MetaREM forest.pptx",width = 18/2.54,height = 12/2.54)
-```
 
 还可以套用RevMan 5风格
 

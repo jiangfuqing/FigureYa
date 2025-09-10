@@ -38,12 +38,9 @@ This time, subtypes derived from the TCGA expression profile are extrapolated to
 
 # 环境设置
 
-使用国内镜像安装包 Use domestic mirrors to install packages
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("lolR")
+source("install_dependencies.R")
 ```
 
 加载包 Load packages
@@ -218,12 +215,6 @@ Build nearest centroid classifier and assign cell line subtypes
 构建nearest centroid classifier，然后用classifier预测GDSC细胞系数据，让细胞系按照TCGA分型结果分成对应的三组。
 构建nearest centroid classifier，然后用classifier预测GDSC细胞系数据，让细胞系按照TCGA分型结果分成对应的三组。 Build a nearest centroid classifier from TCGA and use it to predict GDSC cell lines, assigning them to the three TCGA-derived groups.
 
-```{r}
-# 中位数中心化
-#indata <- sweep(luad.expr[comgene,names(group)], 1, apply(luad.expr[comgene,names(group)], 1, median))
-# 中位数中心化 | median-centering
-#indata <- sweep(luad.expr[comgene,names(group)], 1, apply(luad.expr[comgene,names(group)], 1, median))
-```
 
 原文采用中心化来构建预测模型，但是我这里的结果不是很好，所以换用z-score标准化的结果。 The original paper used centering to build the classifier; results here were suboptimal, so z-score standardization was used instead.
 

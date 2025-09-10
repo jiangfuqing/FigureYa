@@ -61,15 +61,10 @@ Here, using breast cancer as an example, the PAM50 classification includes five 
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("genefu")
-```
+source("install_dependencies.R")
 
 # 加载包
 # Loading packages

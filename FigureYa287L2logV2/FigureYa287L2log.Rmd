@@ -58,17 +58,10 @@ Implements nested cross-validation, Holm-Bonferroni correction, and L2-regulariz
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
 
-Install packages using domestic mirror
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("sampling")
-install.packages("InformationValue")
-install.packages("pROC")
-install.packages("glmnet")
+source("install_dependencies.R")
 ```
 
 # 加载包

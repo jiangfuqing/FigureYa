@@ -49,11 +49,9 @@ The clone evolution diagram is a bit like a sankey. I compared it with FigureYa2
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
@@ -67,6 +65,7 @@ install_github("chrisamiller/fishplot")
 加载包
 
 ```{r}
+source("install_dependencies.R")
 # 加载fishplot包，用于生成白血病克隆演化的鱼群图
 # Load the fishplot package for generating fish plots of leukemia clonal evolution
 library(fishplot)

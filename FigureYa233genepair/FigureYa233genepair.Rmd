@@ -63,17 +63,12 @@ I'm going to take you through the repetition of this approach.
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("matlab")
-install.packages("EnvStats")
+source("install_dependencies.R")
 ```
 
 加载包

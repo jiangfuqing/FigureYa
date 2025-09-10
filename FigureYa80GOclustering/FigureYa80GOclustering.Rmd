@@ -50,20 +50,14 @@ Enrichment analysis yields too many similar GO terms, which need to be merged an
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("GOSemSim", version = "3.8")
-BiocManager::install("ggtree", version = "3.8")
 ```
 
 加载包
@@ -71,6 +65,7 @@ BiocManager::install("ggtree", version = "3.8")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 中文注释：加载plyr包，用于数据处理和操作
 # English Comment: Load the plyr package for data manipulation and processing
 library(plyr)

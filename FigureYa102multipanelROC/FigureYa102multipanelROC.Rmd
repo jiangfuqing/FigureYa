@@ -48,6 +48,7 @@ If you need to calculate and plot the ROC of a single biomarker, please refer to
 ##Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # 加载pROC包，用于ROC曲线分析和计算
 # Load the pROC package for ROC curve analysis and calculation
 library(pROC)

@@ -49,18 +49,13 @@ reference: <https://journals.sagepub.com/doi/10.4137/CIN.S13495>
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("OmicCircos")
 ```
 
 加载包
@@ -68,6 +63,7 @@ BiocManager::install("OmicCircos")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载必要的R包 / Load necessary R packages
 library(S4Vectors)      # 提供S4向量数据结构 / Provides S4 vector data structures
 library(tidyverse)     # 数据清洗和分析工具集 / Data cleaning and analysis toolkit

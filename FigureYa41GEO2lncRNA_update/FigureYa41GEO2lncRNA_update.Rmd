@@ -70,17 +70,11 @@ Scenario 3: If the cancer type of interest in TCGA has too few samples or is not
 ## 环境设置
 ## environment setting
 
-使用国内镜像安装包
 
-Use the domestic mirror installation package
 
 ```r
-#使用国内镜像安装包
-#use the domestic mirror installation package
 #options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 #options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("GEOquery")
-BiocManager::install("biomaRt")
 ```
 
 加载包
@@ -88,6 +82,7 @@ BiocManager::install("biomaRt")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(Biobase)
 library(GEOquery)
 library(biomaRt)

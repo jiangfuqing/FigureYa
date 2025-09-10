@@ -50,6 +50,7 @@ Refer to the author published this Nature CellPhoneDB Protocol < https://doi.org
 Load the R package
 
 ```{r}
+source("install_dependencies.R")
 library(data.table)
 library(tidyverse)
 library(dplyr)

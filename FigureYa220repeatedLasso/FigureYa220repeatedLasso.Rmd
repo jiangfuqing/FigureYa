@@ -36,17 +36,12 @@ Using Cox proportional hazards model (iteration = 1000) with an lasso penalty to
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("survcomp")
-```
+source("install_dependencies.R")
 
 加载包
 load packages

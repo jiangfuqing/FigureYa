@@ -35,20 +35,15 @@ Used to demonstrate the correlation (independence) between mutations and express
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```{r}
-# 设置R包下载源为清华大学镜像，提高国内下载速度
+source("install_dependencies.R")
 # Set the R package download source to Tsinghua University mirror to improve download speed in China
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 
-# 设置Bioconductor包镜像为中国科学技术大学镜像，加速生物信息学相关包的下载
 # Set the Bioconductor package mirror to USTC mirror to accelerate the download of bioinformatics-related packages
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 ```
 
 加载包

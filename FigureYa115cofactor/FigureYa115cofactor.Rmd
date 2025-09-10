@@ -104,6 +104,7 @@ install.packages("corrplot")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载corrplot包，用于绘制相关系数矩阵图 | Load the corrplot package for visualizing correlation matrices
 library(corrplot)
 

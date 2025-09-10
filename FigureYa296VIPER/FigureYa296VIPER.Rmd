@@ -64,19 +64,10 @@ The METHOD DETAILS section under Integrated analysis describes the computational
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("dorothea")
-BiocManager::install("mixtools")
-BiocManager::install("viper")
-```
-
-# 加载包
+source("install_dependencies.R")
 # Loading packages
 
 ```{r}

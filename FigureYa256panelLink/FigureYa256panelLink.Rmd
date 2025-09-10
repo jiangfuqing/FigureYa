@@ -39,12 +39,9 @@ Bar plots in right panel indicate the number of cancer types with positive corre
 
 # 环境设置
 
-使用国内镜像安装包
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("remotes")
+source("install_dependencies.R")
 remotes::install_github("zzwch/crosslink", build = FALSE)
 ```
 

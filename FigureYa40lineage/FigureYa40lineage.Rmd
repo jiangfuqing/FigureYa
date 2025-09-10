@@ -8,6 +8,7 @@ output: html_document
 
 
 ```{r setup, include=FALSE}
+source("install_dependencies.R")
 # 使用knitr包设置全局代码块选项
 # Set global chunk options using knitr package
 knitr::opts_chunk$set(echo = TRUE)
@@ -39,9 +40,7 @@ Cell lineage analysis is mainly used for single-cell sequencing data, displaying
 
 细胞谱系分析目前用到的包主要是[Monocle2](https://bioconductor.org/packages/release/bioc/html/monocle.html)
 
-`monocle`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像. 
 
-CRAN镜像备选
 
 - 国科大: <https://mirrors.ustc.edu.cn/CRAN/>
 - 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
@@ -51,7 +50,6 @@ CRAN镜像备选
 
 The packages currently used for cell lineage analysis are mainly [Monocle2]（ https://bioconductor.org/packages/release/bioc/html/monocle.html )
 
-`Monocle needs to be installed through biocLite. If the speed is slow, remove the # from the # options (...) code below, and a domestic image will be used  
 
 CRAN image backup
 
@@ -61,8 +59,6 @@ CRAN image backup
 
 ```{r, message=FALSE, warning=FALSE}
 #source("https://bioconductor.org/biocLite.R")  # 加载Bioconductor包管理器 | Load Bioconductor package manager
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))  # 设置CRAN镜像为清华源 | Set CRAN mirror to Tsinghua source
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")  # 设置Bioconductor镜像为中科大源 | Set Bioconductor mirror to USTC source
 
 # 检查并安装monocle包：用于单细胞RNA-seq数据分析的轨迹推断工具 | Check and install monocle package: Trajectory inference tool for single-cell RNA-seq data analysis
 if ( ! require(monocle)) BiocInstaller::biocLite("monocle")
@@ -339,19 +335,6 @@ CDS <- newCellDataSet(as(rpc_matrix, "sparseMatrix"),
 
 If expressionFamily selects either 'negminomial. size()' or 'negminomial()', the following two steps need to be taken.
 
-```{r}
-# 估计细胞大小因子，用于表达量归一化（已注释掉，暂不执行） | Estimate cell size factors for expression normalization (commented out, not executed)
-# 参数说明 | Parameter explanation:
-# CDS: 细胞数据集对象，包含表达矩阵和注释信息 | CellDataSet object containing expression matrix and annotations
-# 功能: 计算每个细胞的大小因子，用于校正测序深度差异 | Function: Calculate size factors for each cell to correct for sequencing depth differences
-#CDS <- estimateSizeFactors(CDS)
-
-# 估计基因表达离散度参数（已注释掉，暂不执行） | Estimate gene expression dispersion parameters (commented out, not executed)
-# 参数说明 | Parameter explanation:
-# CDS: 细胞数据集对象 | CellDataSet object
-# 功能: 计算每个基因的表达离散度，用于后续差异表达分析 | Function: Calculate expression dispersion for each gene for differential expression analysis
-#CDS <- estimateDispersions(CDS)
-```
 
 ## 细胞谱系分析
 

@@ -48,16 +48,12 @@ In addition, the drawing method of Fig. 4B can be found in Figure Ya142circosBar
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("tidyjson")
+source("install_dependencies.R")
 ```
 
 加载包

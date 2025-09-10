@@ -52,17 +52,10 @@ If you also want to illustrate relationships between genes, refer to FigureYa74O
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
 
-Using domestic mirrors for package installation.
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("RCircos")
-BiocManager::install("TCGAbiolinks")
-```
-
+source("install_dependencies.R")
 # 加载包
 # Loading packages
 

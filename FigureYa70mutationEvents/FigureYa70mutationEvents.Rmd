@@ -48,14 +48,13 @@ More ways of displaying correlation by the package corrplot can be found at <htt
 ## Environment settings
 
 ```{r}
+source("install_dependencies.R")
 # ====================== 包安装设置 ======================
 # ====================== Package Installation Settings ======================
 
-# 使用国内镜像加速CRAN包下载 (注释状态)
 # Use Chinese mirror to accelerate CRAN package downloads (commented out)
 # options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 
-# 使用国内镜像加速Bioconductor包下载 (注释状态)
 # Use Chinese mirror for Bioconductor packages (commented out)
 # options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 

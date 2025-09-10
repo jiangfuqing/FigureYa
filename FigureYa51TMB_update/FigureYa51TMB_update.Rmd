@@ -45,6 +45,7 @@ In the next step, it is also possible to do survival analysis by grouping with h
 Load R package
 
 ```{r}
+source("install_dependencies.R")
 library(TCGAbiolinks)
 library(dplyr)
 library(stringr)

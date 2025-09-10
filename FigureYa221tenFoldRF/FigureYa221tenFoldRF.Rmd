@@ -38,11 +38,9 @@ cox模型的10折交叉验证可参考FigureYa220repeatedLasso
 
 # 环境设置
 
-使用国内镜像安装包
 
 ```{r}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+source("install_dependencies.R")
 
 ```
 

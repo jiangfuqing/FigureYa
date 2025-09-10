@@ -56,18 +56,12 @@ Which is easy to tell a story, in the end, choose which method and which databas
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("msigdbr")
-install.packages("shadowtext")
-install.packages("ggstance")
+source("install_dependencies.R")
 ```
 
 加载包

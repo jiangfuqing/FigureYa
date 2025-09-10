@@ -85,16 +85,13 @@ If you want to systematically study the interrelationships between genes, you ne
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("hgu133plus2.db")
 ```
 
 加载包
@@ -102,6 +99,7 @@ BiocManager::install("hgu133plus2.db")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载用于读取Excel文件的包
 # Load the package for reading Excel files
 library(openxlsx)

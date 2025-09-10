@@ -55,18 +55,12 @@ There are several diagrams in the article that can be implemented with our Figur
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation packages
 
 ```{r eval=TRUE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-BiocManager::install("maftools")
-install.packages("ggplot2")
-```
+source("install_dependencies.R")
 
 加载包
 load packages

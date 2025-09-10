@@ -45,17 +45,11 @@ You can also use your own data to draw such a heat map with local secondary labe
 
 # Environment Setup
 
-使用国内镜像安装包
-Use the domestic mirror installation package
 
 ```{r message=FALSE, warning=FALSE}
-options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
-options(repos=structure(c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))) 
+source("install_dependencies.R")
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(svglite, ggplot2, magrittr,patchwork,Rmisc,Cairo,stringr,tidyr,tidyfst,data.table,rlist,Hmisc,grid,gtable,gridExtra,ggpubr)
-if (!require("DESeq2")) BiocManager::install("DESeq2")
-if (!require("S4Vectors")) BiocManager::install("S4Vectors")
-if (!require("BiocParallel")) BiocManager::install("BiocParallel")
 ```
 
 加载R包

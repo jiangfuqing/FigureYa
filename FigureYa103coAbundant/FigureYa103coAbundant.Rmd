@@ -42,22 +42,13 @@ Calculate and display the correlation between the co expression modules identifi
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("impute")
-BiocManager::install("preprocessCore")
-BiocManager::install("GO.db")
-BiocManager::install("AnnotationDbi")
-BiocManager::install("WGCNA") #MAC系统，可能需要手动下载WGCNA后本地安装，下载链接：https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/WGCNA_1.67.tgz
 #MAC system, may require manual download of WGCNA and local installation. Download link: https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/WGCNA_1.67.tgz
 ```
 
@@ -66,6 +57,7 @@ BiocManager::install("WGCNA") #MAC系统，可能需要手动下载WGCNA后本�
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载WGCNA包，用于加权基因共表达网络分析
 # Load the WGCNA package for weighted gene co-expression network analysis
 library(WGCNA)

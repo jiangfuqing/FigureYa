@@ -36,9 +36,7 @@ For example, the sample text simultaneously shows the correlation of B7-H3 expre
 ## 环境设置
 ## environment setting
 
-使用国内镜像安装包
 
-use the domestic mirror installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
@@ -51,6 +49,7 @@ install.packages("ggplot2")
 load package
 
 ```{r}
+source("install_dependencies.R")
 library(ggplot2)
 library(gtable) #方法二要用到 Method 2 is to be used
 library(grid) #方法二要用到 Method 2 is to be used

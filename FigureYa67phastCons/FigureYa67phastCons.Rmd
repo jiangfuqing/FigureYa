@@ -126,6 +126,7 @@ Step6.Download Conservative Documents
 ## Parameter setting
 
 ```{r}
+source("install_dependencies.R")
 # 输出设置 / Output settings
 outputName <- "phastCons_example.pdf"  
 # 输出的PDF文件名 / Name of the output PDF file

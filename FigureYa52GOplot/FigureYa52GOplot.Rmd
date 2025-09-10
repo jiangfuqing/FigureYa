@@ -57,14 +57,9 @@ In addition to being proficient in GO enrichment analysis, clusterProfiler can a
 Install the required packages
 
 ```r
-#使用国内镜像安装包
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("clusterProfiler", version = "3.8")
-BiocManager::install("org.Mm.eg.db", version = "3.8")
 
 install.packages('GOplot')
 ```
@@ -74,6 +69,7 @@ install.packages('GOplot')
 Load the required packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载用于功能富集分析的包 | Load packages for functional enrichment analysis
 library(clusterProfiler)
 # 加载用于生物信息学注释资源的包 | Load package for bioinformatics annotation resources
@@ -319,14 +315,6 @@ Some enriched GO terms are similar, and semantic methods can be used to merge si
 
 Reference materials:< https://guangchuangyu.github.io/2015/10/use-simplify-to-remove-redundancy-of-enriched-go-terms/ >
 
-```{r}
-# 可选：简化富集结果，减少冗余 | Optional: Simplify enrichment results to reduce redundancy
-# ego2 <- simplify(ego, cutoff = 0.7, by = "p.adjust", select_fun = min)
-# 查看简化后的结果维度 | Check dimensions of simplified results
-# dim(ego2)
-# 将简化后的富集分析结果保存为CSV文件 | Save simplified enrichment results to CSV file
-# write.csv(ego2, "enrichGO_simplify_output.csv", quote = F)
-```
 
 用enrichplot自带的函数画⭕️
 

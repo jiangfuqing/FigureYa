@@ -30,6 +30,7 @@ pip install python-libmagic
 加载R包
 
 ```{r}
+source("install_dependencies.R")
 library(Seurat)
 library(tidyverse)
 library(ComplexHeatmap)

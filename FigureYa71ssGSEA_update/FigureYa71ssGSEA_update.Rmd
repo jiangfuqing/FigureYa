@@ -49,16 +49,13 @@ The example paper extracted 27 kinds of immune cells, contacting the original au
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ## Environment settings
 
-Installation of packages using domestic mirrors
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("GSVA")
 install.packages("circlize")
 ```
 
@@ -67,6 +64,7 @@ install.packages("circlize")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载生物信息学分析所需的R包 / Load R packages for bioinformatics analysis
 library(GSVA)          # 基因集变异分析 / Gene Set Variation Analysis
 library(org.Hs.eg.db)
@@ -439,46 +437,6 @@ msi_results <- data.frame(
 
 ### Download additional clinical information
 
-```{r}
-# # 获取TCGA-COAD临床数据 / Retrieve TCGA-COAD clinical data
-# coadclinical <- GDCquery(
-#   project = "TCGA-COAD",        # 结肠腺癌项目 / Colon adenocarcinoma project
-#   data.category = "Clinical",   # 临床数据类型 / Clinical data category
-#   file.type = "xml"             # 文件格式为XML / XML file format
-# )
-# 
-# # 下载临床数据 / Download clinical data
-# GDCdownload(coadclinical)
-# 
-# # 提取并整理患者临床信息 / Extract and organize patient clinical info
-# coadclinical <- GDCprepare_clinic(
-#   query = coadclinical,         # 查询对象 / Query object
-#   clinical.info = "patient"     # 患者级别临床信息 / Patient-level clinical data
-# )
-# 
-# # 获取TCGA-READ临床数据 / Retrieve TCGA-READ clinical data
-# readclinical <- GDCquery(
-#   project = "TCGA-READ",        # 直肠腺癌项目 / Rectal adenocarcinoma project
-#   data.category = "Clinical",
-#   file.type = "xml"
-# )
-# 
-# # 下载临床数据 / Download clinical data
-# GDCdownload(readclinical)
-# 
-# # 提取并整理患者临床信息 / Extract and organize patient clinical info
-# readclinical <- GDCprepare_clinic(
-#   query = readclinical,
-#   clinical.info = "patient"
-# )
-# 
-# # 验证列名一致性 / Verify column name consistency
-# # 确保两个数据框结构相同 / Ensure identical dataframe structures
-# all(colnames(readclinical) == colnames(coadclinical))  
-# 
-# # 合并临床数据 / Merge clinical data
-# clinical <- rbind(coadclinical, readclinical)  # 行合并 / Row binding
-```
 
 ### 组合所需要的临床信息
 

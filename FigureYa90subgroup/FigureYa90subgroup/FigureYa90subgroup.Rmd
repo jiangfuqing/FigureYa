@@ -35,11 +35,9 @@ Clinical subgroup analysis.
 
 ## 环境设置
 
-使用国内镜像安装包
 
 ##Environment settings
 
-Use domestic image installation package
 
 ```r
 options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
@@ -52,6 +50,7 @@ install.packages("forestplot")
 library packages
 
 ```{r}
+source("install_dependencies.R")
 # 加载tidyverse包，提供数据处理和可视化工具
 # Load the tidyverse package, which provides data processing and visualization tools
 library(tidyverse)

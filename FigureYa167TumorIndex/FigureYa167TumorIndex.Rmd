@@ -52,6 +52,7 @@ We've repackaged the code here to provide a simpler way to use it.
 Loading Packages
 
 ```{r}
+source("install_dependencies.R")
 library(GSA)
 library(randomForest)
 library(preprocessCore)

@@ -29,14 +29,10 @@ D, Gene ontologies of cell-specific differentially expressed genes. The heat map
 
 环境设置 | Environment Setup
 
-使用国内镜像安装包 Install packages using domestic mirrors
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("Seurat")
+source("install_dependencies.R")
 devtools::install_github("satijalab/seurat-data")
-install.packages("colorRamps")
 ```
  
 加载包  Load packages

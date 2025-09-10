@@ -63,23 +63,16 @@ For extended implementations of this visualization approach in peer-reviewed stu
 # 环境设置
 # Environment settings
 
-使用国内镜像安装包
-Use the domestic mirror installation package
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
-install.packages("muhaz")
-install.packages("export")
+source("install_dependencies.R")
 
 #下载export，https://cran.r-project.org/src/contrib/Archive/export/
 #Download export，https://cran.r-project.org/src/contrib/Archive/export/
 #安装依赖的包
 #Install the dependent packages
-install.packages(c("rvg", "flextable", "rgl", "stargazer"))
 #本地安装export
 #Install export locally
-install.packages("export_0.2.2.tar.gz", repos = NULL, type = "source")
 ```
 
 加载包

@@ -35,20 +35,9 @@ Here, we use maftools + MutationalPatterns to perform this analysis.
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
-Use a domestic mirror to install the package
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("MutationalPatterns")
-BiocManager::install("BSgenome")
-BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
-install.packages("tidyverse")
-install.packages("haven")
-```
-
-加载包
+source("install_dependencies.R")
 Load package
 
 ```{r}
