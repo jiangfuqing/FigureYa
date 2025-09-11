@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-#Description of requirements
+# Description of requirements
 
 求用R实现图1E或者文章中别的Transcriptional homogeneity (NMI)图
 Please use R to implement Figure 1E or other Transcriptional homogeneity (NMI) diagrams in the article.
@@ -357,7 +357,7 @@ sample.nmi(X = disc.expr, cells = cells, sample.on.cell.pairs = T)
 ### 方案一：抽样
 ### Solution 1: Sampling
 
-#### whole lung: multiple tumors
+#### Whole lung: multiple tumors
 ```{r}
 n.cells = 100    # 每次抽样的样本(细胞)数 # Number of samples (cells) sampled each time
 n.sampling = 100 # 抽样次数 # Number of sampling times
@@ -385,7 +385,7 @@ dat.nmi <- do.call(rbind, dat.nmi)
 saveRDS(dat.nmi, "dat.nmi.rds")
 ```
 
-#### single tumors
+#### Single tumors
 ```{r}
 table(cell.meta$mouseID)[table(cell.meta$mouseID) > 100]
 # 选择细胞数大于100的样本 # Select samples with > 100 cells
@@ -409,7 +409,7 @@ dat.nmi.2 <- do.call(rbind, dat.nmi.2)
 saveRDS(dat.nmi.2, "dat.nmi.2.rds")
 ```
 
-#### plot
+#### Plot
 ```{r}
 theme_set(
   theme_classic(base_size = 15) + 
@@ -457,7 +457,7 @@ registerDoParallel(cl)
 ```
 
 
-#### whole lung: multiple tumors
+#### Whole lung: multiple tumors
 
 ```{r}
 n.cells = 100    # 每次抽样的样本(细胞)数 # Number of samples (cells) sampled each time
@@ -489,7 +489,7 @@ dat.nmi <- do.call(rbind, dat.nmi)
 saveRDS(dat.nmi, "dat.nmi.parallel.rds")
 ```
 
-#### single tumors
+#### Single tumors
 ```{r}
 mouseIDs <- c("KP_20w_ND_m4", "KP_20w_ND_m5", "KP_20w_ND_m6", "KP_30w_ND_m1_T1", "KP_30w_ND_m1_T2", "KP_30w_ND_m1_T4", "KP_30w_ND_m2_T1", "KP_30w_ND_m2_T2", "KP_30w_ND_m3_T1", "KP_30w_ND_m3_T7", "KP_30w_ND_m3_T9")
 
@@ -521,7 +521,7 @@ stopCluster(cl)
 ## ==== do parallel end ====
 ```
 
-#### plot
+#### Plot
 ```{r, fig.width=9, fig.height=5}
 dat.nmi <- readRDS("dat.nmi.parallel.rds")
 dat.nmi.2 <- readRDS("dat.nmi.2.parallel.rds")

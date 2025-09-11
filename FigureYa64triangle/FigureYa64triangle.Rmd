@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R画出paper里的Triangle plot
 
@@ -41,7 +41,7 @@ Original analysis:
 - The color represents the relative mutation frequency
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 展示3种不同疾病或者3组之间某个指标的相关性，一目了然。
 
@@ -64,7 +64,7 @@ Follow “Xiaoya Drawing” official account, reply “triangle” to see the us
 Use your imagination to develop more application scenarios.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r,message=FALSE}
 source("install_dependencies.R")

@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - 增加了结果输出部分，用于调用其他R包做热图
 - 增加了几个统计学和机器学习概念的解释
 
-##Version update
+## Version update
 
 On the basis of the original, the following contents have been added and modified:
 
@@ -47,7 +47,7 @@ iCluster分析过程答疑。
 
 另外，需要输出分类和特征基因，用于画paper里的这种热图。
 
-##Requirement description
+## Requirement description
 
 Q&A on the iCluster analysis process.
 
@@ -81,7 +81,7 @@ You can use the 'FigureYa17 Classified Heatmap' to draw a heatmap, and take a co
 
 > lasso, elastic net, fused lasso 是机器学习中特征选择的实现算法, 也就是找到数据集中有代表性的属性(attribute)。
 
-##Application scenarios
+## Application scenarios
 
 Integrate multiple genomic data using iClusterPlus.
 
@@ -111,9 +111,9 @@ CRAN镜像备选
 - 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
 - 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
-##Environmental preparation
+## Environmental preparation
 
-###Install iClusterPlus
+### Install iClusterPlus
 
 `IClusterPlus needs to be installed through biocLite. If the speed is slow, remove the # from the # options (...) code below, and a domestic image will be used  
 
@@ -145,7 +145,7 @@ library("iClusterPlus")
 
 ### 其他工具
 
-###Other tools
+### Other tools
 
 ```{r}
 # 安装DNAcopy和GenomicRanges包（已注释，避免重复安装）
@@ -181,7 +181,7 @@ library("GenomicRanges")
 - gbm_exp.txt: 来自于不同平台的基因表达量归一化后数据
 - gbm_seg.txt: DNA 拷贝数变异. Level 3经标准化和片段化(normalized and segmented)数据集. 
 
-##Input data
+## Input data
 
 `IClusterPlus and iClusterBayes support the following types of data:
 
@@ -229,7 +229,7 @@ gbm.exp.raw[1:3,1:6]
 
 根据`iClusterBayes()`和`tune.iClusterBayes()`的要求，输入数据都必须是**矩阵**, 且每一行表示是不同的样本，每一列表示的基因组的特征,如基因名或者基因区间。
 
-##Data preprocessing
+## Data preprocessing
 
 According to the requirements of iClusterBayes() and tune. iClusterBayes(), the input data must be a * * matrix * *, with each row representing a different sample and each column representing genomic features such as gene names or gene intervals.
 
@@ -239,7 +239,7 @@ CNA(Copy Number Alteration): 过滤掉突变率不高的基因，例如设定阈
 
 用`apply`对每一个基因用`mean`计算变异频率，根据阈值进行过滤
 
-###CNA preprocessing
+### CNA preprocessing
 
 CNA (Copy Number Mutation): Filter out genes with low mutation rates, such as setting a threshold of 2%
 
@@ -275,7 +275,7 @@ gbm.mut2[1:5,1:5]
 
 由于原始或者标准化的拷贝数数据集具有很高维度和空间相关性, 因此iCluster推荐用R包`DNAcopy`处理, 得到片段化结果。
 
-###CNV preprocessing
+### CNV preprocessing
 
 Due to the high dimensionality and spatial correlation of raw or standardized copy number datasets, iCluster recommends using the R package 'DNAcopy' to obtain fragmented results.
 
@@ -345,7 +345,7 @@ If you know the interval for setting cells, set 'rmCNV=TRUE', and the 'cnv' para
 
 基因表达量数据, 选择样本间变化程度比较高的基因基因。
 
-###Preprocessing of chip expression level
+### Preprocessing of chip expression level
 
 Select genes with relatively high degree of variation between samples based on gene expression data.
 
@@ -431,7 +431,7 @@ if (identical(rownames(gbm.cn), rownames(gbm.exp)) &
 
 如果你确定最后可以分成多少类，那么直接用`iClusterBayes`.
 
-###Integrated analysis
+### Integrated analysis
 
 > For example, it took iClusterBayes about **2** h to analyze the simulated data sets using 6 cores of a 2.62 GHz 12-core Mac Pro computer. However, it took the iClusterPlus about **391** h.
 -- "A fully Bayesian latent variable model for integrative clustering analysis of multi-type omics data"
@@ -560,7 +560,7 @@ best.cluster.Bayes = bayfit$fit[[3]]$clusters
 
 `iCluster`的本质是数据分析，因此最后的热图展示不作为本次教程的重点。仅以自带的`plotHeatmap`展示下结果。
 
-###Draw a graph
+### Draw a graph
 
 `The essence of iCluster is data analysis, so the final heatmap display is not the focus of this tutorial. Only display the results using the built-in 'plotHeatmap'.
 
@@ -615,7 +615,7 @@ plotHeatmap(fit= bayfit$fit[[3]] ,
 
 把best.cluster.Bayes 、特征基因和值保存到文件，就可以用自己的heatmap代码画热图了。
 
-##Output file
+## Output file
 
 Save best.cluster.Bayes, feature genes, and values to a file, and you can use your own heatmap code to draw a heatmap.
 

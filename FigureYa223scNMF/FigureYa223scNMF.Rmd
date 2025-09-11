@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 对单细胞癌上皮数据每个样品进行NMF非负矩阵分解后得到的programs后进行无监督聚类，得到主要cluster后，定义其meta-signature，复现出下图。
 
@@ -53,7 +53,7 @@ Figure 3. Unbiased Clustering Reveals a Common Program of p-EMT in HNSCC Tumors
 (B) Heatmap depicts pairwise correlations of 60 intra-tumoral programs derived from ten tumors, as in (A). Clustering identifies seven coherent expression programs across tumors. Rows in the heatmap that correspond to programs derived from MEEI25 are indicated by arrows and numbered as in (A).
 
 # 应用场景
-# application scenario
+# Application scenario
 
 **提出问题：**像例文这种鼻咽癌的肿瘤样本，异质性较大。如果按照Seurat的降维聚类流程所聚集的类别，主要变异来源于样品，而不是其生物学特性，这不是我们想要的。
 
@@ -90,7 +90,7 @@ Read the entire text carefully, and Xiao Ya found that we have [corresponding Fi
 - `FigureYa178receptorLigand` can help you achieve Figure 6 from Example Text 1, using CellPhoneDB to identify ligand–receptor pairs and molecular interactions among the major cell types.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 
@@ -353,7 +353,7 @@ sapply(ProSig, length)
 The genes from seven programs are stored in ProSig, and enrichment analysis will now be performed in batches[Over Representation Analysis(ORA)](https://yulab-smu.top/clusterProfiler-book/chapter2.html#over-representation-analysis)
 
 # 功能注释
-# functional annotation
+# Functional annotation
 
 原文没有说具体用了哪个数据库，我们用最常用的GO BP和KEGG做富集分析，具体到自己的数据，可以参考FigureYa209batchEnrich，找到最适合自己的注释数据库。
 

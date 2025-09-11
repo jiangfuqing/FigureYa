@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用R代码画出paper里的基因功能富集分析泡泡图，按对角线排列很好看
 
@@ -29,7 +29,7 @@ Heat maps are solved with code 9, this code solves bubble maps
 ![](example.png)
 
 # 使用场景
-# usage scenario
+# Usage scenario
 
 场景一：展示基因功能富集分析的结果
 
@@ -40,7 +40,7 @@ Scenario 1: Present the results of gene function enrichment analysis
 Scenario 2: Multi-dimensional data information display
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

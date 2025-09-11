@@ -300,7 +300,7 @@ gmts$my_anno <- as_tibble(anno_data)
 # GSEA
 
 ## 输入文件
-## input files
+## Input files
 
 easy_input_limma.csv，差异表达分析结果。是[FigureYa59Plus_GEO2DEG](https://www.yuque.com/figureya/figureyaplus/figureya59p)的输出文件，可无缝对接。
 

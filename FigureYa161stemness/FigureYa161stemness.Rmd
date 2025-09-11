@@ -74,7 +74,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # Disable conversion of
 用到的两个文件：pcbc-stemsig.tsv和pcbc-stemsig.p219.Rda，来自<https://www.cell.com/cell/fulltext/S0092-8674(18)30358-1>，跑自己的数据就用这个作为输入跑就行了。
 Two files used: pcbc-stemsig.tsv and pcbc-stemsig.p219.Rda, from <https://www.cell.com/cell/fulltext/S0092-8674(18)30358-1>. Just use this as input to run your own data.
 
-# mRNAsi
+# MRNAsi
 
 ## 输入文件
 ## Input file
@@ -302,7 +302,7 @@ p
 save_plot("mRNAsi.pdf", p,base_width = 10,base_height = 8)
 ```
 
-# mDNAsi
+# MDNAsi
 
 ## 输入文件
 ## Input File

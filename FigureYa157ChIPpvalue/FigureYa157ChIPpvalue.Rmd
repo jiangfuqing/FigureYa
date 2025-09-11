@@ -118,13 +118,13 @@ The original article provides a bedgraph file. After downloading, convert it to 
 在原文中搜`GSE`，搜到`GSE80154`，进入页面<https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80154>，拉到底，在Supplementary file里点击custom，勾选3个时间点SHEP21的PolII ChIP-RX数据bedgraph文件，点击Download下载
 Search for `GSE` in the original article until you find `GSE80154`. Go to the page <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80154>, scroll to the bottom, click Custom in the Supplementary Files section, select the bedgraph file for the PolII ChIP-RX data from SHEP21 at three time points, and click Download.
 
-## bedgraph转bw
+## Bedgraph转bw
 ## Convert bedgraph to bw
 
 ```bash
 # 下载hg19的染色体长度的文件
 # Download the hg19 chromosome size file
-#wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
+# Wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
 for file in *.bedgraph; do ./wigToBigWig $file hg19.chrom.sizes $file.bw; done
 ```
 
@@ -182,7 +182,7 @@ ttest
 ttest$p.value
 ```
 
-# capture signal
+# Capture signal
 
 提取信号画图的方法跟FigureYa44profile一样，这里以TSS为例画图，供参考。
 The method for extracting the signal and plotting it is the same as FigureYa44profile. Here, we use TSS as an example for reference.

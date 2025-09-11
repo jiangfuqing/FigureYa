@@ -119,10 +119,10 @@ SETP 5 提取下载链接并下载SRR文件
 SETP 5 Extract the download link and download the SRR file.
 
 ```bash
-#awk '{FS = ","; print $10}' SraRunInfo.csv > SRRurl.txt
+# Awk '{FS = ","; print $10}' SraRunInfo.csv > SRRurl.txt
 #这里用wget，你可以尝试迅雷等工具
-#Using wget here, you can try tools like Xunlei.
-#wget -c -i SRRurl.txt
+# Using wget here, you can try tools like Xunlei.
+# Wget -c -i SRRurl.txt
 mkdir 0sra
 mv SRR* 0sra
 ```
@@ -131,8 +131,8 @@ SETP 6 把sra数据转换成fastq数据
 SETP 6 Convert SRA data to Fastq data
 
 ```bash
-# pfastq-dump，并行更快，代替fastq-dump
-# pfastq-dump, parallel and faster, replaces fastq-dump
+# Pfastq-dump，并行更快，代替fastq-dump
+# Pfastq-dump, parallel and faster, replaces fastq-dump
 for i in 0sra/*; do echo "pfastq-dump -t 10 --gzip -O ./ $i"; done > command.pfastq.sh
 sh command.pfastq.sh
 ```
@@ -152,9 +152,9 @@ fastqc -t 30 *.fastq.gz
 
 ## Alignment 并且去掉duplication
 ## Alignment and remove duplication
-#build index
+# Build index
 bowtie-build mm9.fa MM9
-#align
+# Align
 for i in *.fastq.gz; do x=${i/.fastq.gz/}; echo "bowtie2 -p 6 -x MM9 -U $i | samtools view -bS| samtools sort - | samtools rmdup -s - $x.bam"; done > command.bowtie.sh
 sh command.bowtie.sh
 
@@ -163,7 +163,7 @@ sh command.bowtie.sh
 for i in *.bam; do x=${i/.bam/}; echo "sambamba markdup -r -t 4 $i $x.rmdup.bam"; done > command.rmdup.sh
 sh command.rmdup.sh
 
-## bam转bigwiga,简单show一下开放程度
+## Bam转bigwiga,简单show一下开放程度
 ## Convert bam to bigwiga, a simple demonstration of its openness
 nohup samtools merge KO_GW.bam  SRR5388878.rmdup.bam SRR5388879.rmdup.bam SRR5388880.rmdup.bam SRR5388881.rmdup.bam &
 nohup samtools merge WT_GW.bam SRR5388870.rmdup.bam SRR5388871.rmdup.bam SRR5388872.rmdup.bam SRR5388873.rmdup.bam &
@@ -174,8 +174,8 @@ bamCoverage -bs 1 --effectiveGenomeSize 2620345972 --normalizeUsing RPKM -b WT_G
 cat samples.conf | while read line; do all=($line);SRR=${all[0]};study=${all[1]};old=$SRR.rmdup.bam; new=$study.bam; mv $old $new; done
 ```
 
-## washu brower 展示bigwig文件
-## washu browser displays bigwig files
+## Washu brower 展示bigwig文件
+## Washu browser displays bigwig files
 
 用[washu epigenome browser](https://epigenomegateway.wustl.edu/browser/)查看bigwig文件。这里截图出来，确实能够重复出原文的趋势。
 Use [washu epigenome browser](https://epigenomegateway.wustl.edu/browser/) to view bigwig files. The screenshots shown here do indeed reproduce the trends in the original article.
@@ -187,14 +187,14 @@ washu is also the visualization method used in most articles and can output SVG 
 
 ![](washu2.png)
 
-## call peak
+## Call peak
 
 ```bash
 for i in *.bam; do x=${i/.bam/}; echo "macs2 callpeak --nomodel -t $i -q 0.01 -f BAM -g mm --keep-dup all --llocal 10000 -n $x 2> $x.macs2.log"; done > command.macs2.sh
 sh command.macs2.sh
 ```
 
-## intersect and merge peak file
+## Intersect and merge peak file
 
 有多次生物学重复，下面是不同生物学重复之间peak overlap的处理方法：
 There are multiple biological replicates. Here's how to handle peak overlap between replicates:
@@ -229,7 +229,7 @@ rm -rf *.tmp.bed *.tmp_merge.bed
 cat *.bed |bedtools sort | bedtools merge -i - > allMerge.bed
 ```
 
-## peak注释
+## Peak注释
 ## Peak Annotation
 
 peak注释到基因层面，主要用Y叔的ChIPseeker。

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-#Description of requirements
+# Description of requirements
 
 绘制两组数据关于某一连续变量的箱型 + 小提琴图
 Draw box + violin plots of two sets of data on a continuous variable

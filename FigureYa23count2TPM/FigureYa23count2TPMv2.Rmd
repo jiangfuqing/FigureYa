@@ -12,14 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 RNA-seq read count转换成TPM。
 
 Convert RNA-seq read count to TPM.
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 只能拿到RNA-seq数据的read count，想转换成TPM。
 
@@ -67,25 +67,25 @@ Recommended method 2
 If you just want to get a rough idea of the expression, you can simply use the difference between the start and end positions of the gene on the chromosome as a normalized length.
 
 ```r
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("biomaRt")
+# Source("https://bioconductor.org/biocLite.R")
+# BiocLite("biomaRt")
 library(biomaRt)
 
 #查看基因组参数
-#view genomic parameter
+# View genomic parameter
 mart = useMart('ensembl')
 listDatasets(mart)
 
 #你需要哪个基因组，就复制它在dataset列里的词，放在下面这行的`dataset = `参数里
 #此处以人类为例，植物参考注一
-#Which genome you need, copy its word in the dataset column and put it in the `dataset = ` parameter on the following line
-#Here is an example for humans, for plants refer to note 1
+# Which genome you need, copy its word in the dataset column and put it in the `dataset = ` parameter on the following line
+# Here is an example for humans, for plants refer to note 1
 bmart <- biomaRt::useMart(biomart = "ENSEMBL_MART_ENSEMBL", 
                           dataset = "hsapiens_gene_ensembl",
                           host = "www.ensembl.org")
 
 # 从输入数据里提取基因名
-# extract gene names from input data
+# Extract gene names from input data
 feature_ids <- rownames(expMatrix)
 
 attributes = c(
@@ -105,7 +105,7 @@ feature_info_full <- feature_info[mm, ]
 rownames(feature_info_full) <- feature_ids
 
 # 计算基因的有效长度
-# calculate the effective length of the gene
+# Calculate the effective length of the gene
 eff_length <- abs(feature_info_full$end_position - feature_info_full$start_position)
 names(eff_length) <- feature_info_full$ensembl_gene_id
 ```
@@ -307,7 +307,7 @@ This version is used: `GDC.h38 GENCODE v22 GTF (used in RNA-Seq alignment and by
 Go to <https://www.gencodegenes.org/releases/22.html> to download the corresponding version of the gtf file
 
 ```r
-#url <- "ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_22/gencode.v22.annotation.gtf.gz"
+# Url <- "ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_22/gencode.v22.annotation.gtf.gz"
 
 file<- "gencode.v22.annotation.gtf"
 eff_length <- get_eff_len(file = file,
@@ -349,8 +349,8 @@ eff_length <- get_eff_len(file = file,
 If your own RNA-seq data has been saved in `easy_input.txt` format, skip this step and go directly to “Input data”.
 
 ```r
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("TCGAbiolinks")
+# Source("https://bioconductor.org/biocLite.R")
+# BiocLite("TCGAbiolinks")
 library(TCGAbiolinks)
 expquery <- GDCquery(project = "TCGA-LIHC", 
                 data.category = "Transcriptome Profiling",
@@ -362,10 +362,10 @@ expquery2 <- GDCprepare(expquery)
 expMatrix <- TCGAanalyze_Preprocessing(expquery2)
 
 #运行下面这行，会把read count保存到文件里，用来做更多其他的分析。
-#Running the following line will save the read count to a file that can be used for more other analysis.
-#write.table(expMatrix, "easy_input.txt", sep="\t", quote=F, row.names=T)
+# Running the following line will save the read count to a file that can be used for more other analysis.
+# Write.table(expMatrix, "easy_input.txt", sep="\t", quote=F, row.names=T)
 #此处保存前4个sample
-#Save the first 4 samples here
+# Save the first 4 samples here
 write.table(expMatrix[,1:4], "easy_input.txt", sep="\t", quote=F, row.names=T)
 ```
 
@@ -388,8 +388,8 @@ expMatrix <- read.table("easy_input.txt",
 expMatrix[1:3,]
 ```
 
-## read count转TPM
-## read count to TPM
+## Read count转TPM
+## Read count to TPM
 
 首先要保证表达矩阵的行名和存放基因长度向量的名字一致, 这一步非常重要
 
@@ -512,11 +512,11 @@ Download <https://bioconductor.org/biocLite.R> locally and open it, add the foll
 
 ```bash
 optionsoptions(BioC_mirror="https://mirrors.ustc.edu.cn/bioc/")
-#bioconductor
+# Bioconductor
 
 options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/",
 	CRANextra = "http://www.stats.ox.ac.uk/pub/RWin"))
-#cran
+# Cran
 ```
 
 然后使用 source调用本地biocLite.R文件安装bioclnstaller，再进行安装

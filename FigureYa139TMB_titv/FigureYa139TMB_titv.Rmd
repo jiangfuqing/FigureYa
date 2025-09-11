@@ -99,8 +99,8 @@ Here we use TCGAbiolinks to download the maf files. (You can also use the R pack
 
 ```r
 tumors <- TCGAbiolinks::getGDCprojects()$project_id %>% .[grep("TCGA", .)] %>% str_sub(., 6)
-# pipeline 可以选择muse, varscan2, somaticsniper, mutect2 在这里选用mutect2
-# pipeline can choose muse, varscan2, somaticsniper, mutect2. Here, mutect2 is selected
+# Pipeline 可以选择muse, varscan2, somaticsniper, mutect2 在这里选用mutect2
+# Pipeline can choose muse, varscan2, somaticsniper, mutect2. Here, mutect2 is selected
 maflist <- tumors %>% lapply(., GDCquery_Maf, save.csv = FALSE, directory = "GDCdata", pipelines = "mutect2") %>% lapply(., read.maf)
 names(maflist) <- tumors
 # 保存数据，以后可以反复使用

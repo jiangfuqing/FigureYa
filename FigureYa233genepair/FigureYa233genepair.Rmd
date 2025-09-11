@@ -368,7 +368,7 @@ pheatmap(dysTab,
 save.image(file = "GP.RData")
 ```
 
-## gene-pair关系的展示
+## Gene-pair关系的展示
 
 这些gene-pair的关系、CV值，以及上下调方向，可以画个网络图来展示，可参考`FigureYa199crosslink`。
 
@@ -384,7 +384,7 @@ Or use heat maps, scatter plots, etc. to show the correlation and p value of gen
 
 Alternatively, a scatter plot can be used to show the expression trend of gene pairs in two groups of samples, please refer to 'FigureYa96R2'
 
-## gene-pair 作为诊断marker的效果（Performance evaluation）
+## Gene-pair 作为诊断marker的效果（Performance evaluation）
 
 生存分析，Fig. 2 abc，可参考`FigureYa1survivalCurve`
 

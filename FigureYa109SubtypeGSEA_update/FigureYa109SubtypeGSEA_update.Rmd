@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 多组的富集分析及结果展示，用clusterProfiler做GSEA，挑选各组特异性top通路，画出paper里这样的对角热图。图中横坐标的6列对应6个亚型（分组），右侧文字的背景色对应6个亚组（分组）富集的通路。
 
-#Requirement description
+# Requirement description
 
 Perform enrichment analysis and result display for multiple groups, use clusterProfiler for GSEA, select specific top pathways for each group, and draw a diagonal heatmap as shown in the paper. The 6 columns on the horizontal axis in the figure correspond to 6 subtypes (groups), and the background color of the text on the right corresponds to the enriched pathways of the 6 subtypes (groups).
 ![](example.png)
@@ -37,7 +37,7 @@ Fig. 3c GSEA analysis reveals distinct enriched gene sets between subtypes. In t
 
 多组富集分析结果，画在一起对比展示，就能同时看到同一通路在其他分组里的富集状态。
 
-#Application scenarios
+# Application scenarios
 
 Multiple sets of enrichment analysis results can be compared and displayed together to simultaneously see the enrichment status of the same pathway in other groups.
 
@@ -45,7 +45,7 @@ Multiple sets of enrichment analysis results can be compared and displayed toget
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -96,7 +96,7 @@ easy_input_expr.csv，表达矩阵
 
 easy_input_subtype.txt，分组信息，此处是3种亚型
 
-#Input file
+# Input file
 
 Taking TCGA skin melanoma as an example, the input data includes standardized expression profiles downloaded from cBioPortal and three subtypes defined by TCGA (keratin, immune, MITF low), which are divided into three groups according to subtypes. The enrichment analysis of these three subtypes will be compared and displayed.
 
@@ -130,7 +130,7 @@ table(subt$TCGA_Subtype)
 
 示例数据样本较多，你的样本可能只有1-3个/组，速度会快很多。
 
-#Multiple differential expressions: One vs. Others
+# Multiple differential expressions: One vs. Others
 
 To do GSEA, it is necessary to sort all genes in the sample, using the log2FoldChange obtained from * * each group vs. all other groups * *. Below, the expression matrix will be used to obtain the log2FoldChange ranking for each group of genes.
 
@@ -232,7 +232,7 @@ for (i in 1:n.sub) {
 
 - 其余参数为GSEA参数
 
-#Custom analysis function
+# Custom analysis function
 
 First, customize a function to calculate the specific pathways for significantly upregulated and significantly downregulated groups separately.
 
@@ -342,7 +342,7 @@ if(mode == "up") {
 
 运行上面的函数来寻找显著上调的亚型特异性通路。
 
-#Search for significantly upregulated subtype specific pathways (recommended)
+# Search for significantly upregulated subtype specific pathways (recommended)
 
 Run the above function to find subtype specific pathways that are significantly upregulated.
 
@@ -423,7 +423,7 @@ pheatmap(gsva_gs.up_mean[rownames(annRows),],
 
 # 寻找显著下调的亚型特异性通路
 
-#Search for subtype specific pathways that are significantly downregulated
+# Search for subtype specific pathways that are significantly downregulated
 
 ```{r}
 # 设置富集分析模式为"dn"，分析下调通路（Set the enrichment analysis mode to "dn" for analyzing downregulated pathways）
@@ -494,7 +494,7 @@ pheatmap(gsva_gs.dn_mean[rownames(annRows),],
 
 生成的pdf文件是矢量图，可以用Illustrator等软件打开编辑，例如把左侧annotation拉到右侧作为行名的背景色。
 
-#Post processing
+# Post processing
 
 The color of the example text name should be added later.
 

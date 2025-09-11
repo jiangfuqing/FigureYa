@@ -72,7 +72,7 @@ input <- read.csv("easy_input.csv")
 head(input)
 ```
 
-# meta分析
+# Meta分析
 
 ```{r}
 input <- input %>%

@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **扩展阅读：**“小丫画图群”对富集分析的讨论记录：https://mp.weixin.qq.com/s/O1xd5l5h33fXUWOvX3UBGw
 
-##Requirement description
+## Requirement description
 
 I want to use my own gene set for enrichment analysis, using the ROAST barcode plot method as described in the paper.
 
@@ -58,7 +58,7 @@ roast和barcode分别用来做什么？
 
 简单讲就是：用roast来判断上/下调基因是否显著富集目标基因集，用barcode plot来展示上/下调基因在目标基因集中的分布。roast检验一个gene set，mroast做multiple roast tests。原文：
 
-##Application scenarios
+## Application scenarios
 
 What are roar and barcode used for respectively?
 
@@ -75,7 +75,7 @@ Applicability: Suitable for microarray and RNA seq expression matrices, perform 
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -116,7 +116,7 @@ options(stringsAsFactors = FALSE)
 
 用后两个文件做差异表达分析
 
-##Input file
+## Input file
 
 Three types of input files are required:
 
@@ -174,7 +174,7 @@ mroast(expr, list(Set1index,Set2index), design, 2)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r}
 # 读取表达矩阵数据，第一列作为行名（通常为基因ID）
@@ -230,7 +230,7 @@ microarray为例：<http://genomicsclass.github.io/book/pages/gene_set_analysis_
 
 limma包里的更多富集分析方法：<http://web.mit.edu/~r/current/arch/i386_linux26/lib/R/library/limma/html/10GeneSetTests.html>
 
-##Tips
+## Tips
 
 My friend is relatively unfamiliar with Rosta enrichment analysis. Attached are relevant materials:
 

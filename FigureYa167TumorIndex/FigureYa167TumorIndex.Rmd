@@ -144,7 +144,7 @@ Sample_index <- predict(fit, newx = TFcluster, s= c(0.1,0.05))
 ```
 
 # 画图
-# draw
+# Draw
 
 对应文章中的Figure 3E
 Corresponds to Figure 3E in the article
@@ -238,7 +238,7 @@ names(indexlist) <- names(datlist)
 ```
 
 ## 画图
-#calculate index
+# Calculate index
 
 ```{r}
 plotdat1 <- merge(indexlist$gse6764dat, gse6764pdata[, c("geo_accession", "characteristics_ch1")],

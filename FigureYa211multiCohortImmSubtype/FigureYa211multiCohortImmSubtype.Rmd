@@ -189,7 +189,7 @@ estimateScore("output_combined_expr.gct", "output_combined_expr_estimate_score.t
 
 - LM22.txt，注册后即可下载。
 
-# run CIBERSORT
+# Run CIBERSORT
 original paper:Infiltration levels for distinct immune cells in HNSC were quantified by using “CIBERSORT” R package and employing the LM22 signature and 1,000 permutations. 
 
 before use CIBERSORT Please register for <https://cibersort.stanford.edu> first to view the tutorial <http://cibersort.stanford.edu/tutorial.php>

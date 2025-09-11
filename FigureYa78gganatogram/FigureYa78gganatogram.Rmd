@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用FigureYa55panCancer输出的基因在TCGA + GTEx的表达量TPM值（easy_input.csv文件）作为输入，用gganatogram画出感兴趣的基因在各个器官里的表达分布。
 
-##Requirement description
+## Requirement description
 
 Use the TPM values of the expression levels of the genes output by FigureYa55panCancer in TCGA+GTEx (easy_input. csv file) as input, and plot the expression distribution of the genes of interest in various organs using gganatogram.
 
@@ -33,7 +33,7 @@ gganatogramR包介绍：<https://github.com/jespermaag/gganatogram>，<https://m
 
 在小丫画图公众号回复“器官”，查看更多介绍。
 
-##Application scenarios
+## Application scenarios
 
 Introduction to the GGanatoramR package:< https://github.com/jespermaag/gganatogram >，< https://mp.weixin.qq.com/s/BlRT8I0RB1o-Mi4TEWhFrQ >
 
@@ -43,7 +43,7 @@ Reply to "organ" on Xiaoya Pictorial official account for more information.
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -74,7 +74,7 @@ options(stringsAsFactors = FALSE)
 
 参照GEPIA help的Differential analysis：<http://gepia.cancer-pku.cn/help.html>，在此基础上添加gganatogram包的organ，整理成TCGA_organ.txt文件，欢迎来小丫画图群里探讨这些对应关系。
 
-##Input file preprocessing
+## Input file preprocessing
 
 If your data has already been organized into the format of very easy input. csv, you can skip this step and enter "Start Drawing".
 
@@ -196,7 +196,7 @@ very_easy_input.csv，organ对应的数值。
 
 其他物种按照very_easy_input_*.csv的格式整理好数据，就可以套用了
 
-##Start drawing
+## Start drawing
 
 The value corresponding to 'very easy input. csv' and 'organ'.
 

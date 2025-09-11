@@ -212,7 +212,7 @@ acc_lnc[1:3, 1:3]
 注：这里代码都可以从R包[ImmuLncRNA](http://bio-bigdata.hrbmu.edu.cn/ImmLnc/download_loading.jsp?path=jt_download/ImmuLncRNA_0.1.0.tar.gz&name=ImmuLncRNA_0.1.0.tar.gz)中得到。
 Note: The code here can be obtained from the R package [ImmuLncRNA](http://bio-bigdata.hrbmu.edu.cn/ImmLnc/download_loading.jsp?path=jt_download/ImmuLncRNA_0.1.0.tar.gz&name=ImmuLncRNA_0.1.0.tar.gz).
 
-## step1: estimate tumor purity
+## Step1: estimate tumor purity
 
 “小丫画图群-纯画图”讨论记录：
 "Xiaoya Drawing Group - Pure Drawing" Discussion Record:
@@ -252,7 +252,7 @@ names(Tumour_purity) <- samples_name %>% str_replace_all(., "\\.", "-")
 rm(acc_mrna2, samples_name, est_score_all, est_scores)
 ```
 
-## step2: pcc
+## Step2: pcc
 
 在矫正免疫浸润水平的基础上算lncRNA和mRNA的偏相关系数(pcc)，算出RS。
 Calculate the partial correlation coefficient (PCC) between lncRNA and mRNA based on the correction for immune infiltration level and calculate RS.
@@ -299,7 +299,7 @@ RS <- -log10(p.value)*sign(pcor)
 RS[1:5, 1:5]
 ```
 
-## step3: fgsea
+## Step3: fgsea
 
 接着采用fgsea对lncRNA做通路富集
 Then fgsea was used to enrich lncRNA pathways.

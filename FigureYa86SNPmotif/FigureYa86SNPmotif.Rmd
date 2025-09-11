@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 突变会影响转录因子结合吗？作出判断，并同时画出motif logo和SNP的图。
 
-#Requirement description
+# Requirement description
 
 Does mutation affect transcription factor binding? Make a judgment and draw the motif logo and SNP diagram simultaneously.
 
@@ -38,7 +38,7 @@ from<http://cancerres.aacrjournals.org/content/77/7/1649>
 
 运行下面这行，查看motifbreakR的官方手册
 
-#Application scenarios
+# Application scenarios
 
 Simultaneously displaying mutation sites and motifs on the genome provides quantitative (p-value, score) and visual evidence for the impact of mutations on transcription factor binding.
 
@@ -60,7 +60,7 @@ MotifbreakR can also be used in conjunction with other tools, with a series of r
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -138,7 +138,7 @@ options(stringsAsFactors = FALSE)
 
 motifbreakR可以用SNP的rs ID，或bed文件，或vcf文件作为输入。
 
-#Input data
+# Input data
 
 MotifbreakR can use SNP's rs ID, bed file, or vcf file as input.
 
@@ -146,7 +146,7 @@ MotifbreakR can use SNP's rs ID, bed file, or vcf file as input.
 
 输入文件可以只提供SNP的rsID，例如rs1006140
 
-##Provide rs ID for SNP
+## Provide rs ID for SNP
 
 The input file can only provide the rsID of SNP, for example rs1006140
 
@@ -181,7 +181,7 @@ SNPinfo
 
 easy_input.bed，整理自例文里的Table S1
 
-##Provide bed or vcf files for mutation sites
+## Provide bed or vcf files for mutation sites
 
 easy_input.bed， Organize Table S1 from the example text
 
@@ -200,7 +200,7 @@ easy_input.bed， Organize Table S1 from the example text
 
 # 判断SNP对motif的影响
 
-#Assessing the impact of SNPs on motif
+# Assessing the impact of SNPs on motif
 
 ```{r}
 # 运行motifbreakR分析SNP对转录因子结合位点的影响（中文注释）
@@ -249,7 +249,7 @@ result1pval$score <- result1pval$scoreAlt-result1pval$scoreRef
 
 # 开始画图
 
-#Start drawing
+# Start drawing
 
 ```{r}
 # 保存结果为PDF文件（当前已注释掉，直接显示图形）（中文注释）
@@ -276,7 +276,7 @@ plotMB(results = result1, rsid = "rs1927914",
 
 根据output.csv中的最后一列score，向图中添加每个转录因子的Altscore-Refscore
 
-#Post processing
+# Post processing
 
 Add the Altscore Refscore for each transcription factor to the graph based on the last column score in the output. csv
 

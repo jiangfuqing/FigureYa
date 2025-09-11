@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 MutSigCV是用matlab写成的，带我顺利用上它。
 
-#Requirement description
+# Requirement description
 
 Infer SMG (significantly mutated gene) using MutSigCV and draw the graph in the article.
 
@@ -46,7 +46,7 @@ Lawrence MS, Stojanov P, Polak P, Kryukov GV, Cibulskis K, Sivachenko A, Carter 
 
 如果只想直接从TCGA下载MAF文件画图，可直接使用FigureYa18oncoplot，还可以进一步用FigureYa42oncoprint自己定制瀑布图。
 
-#Application scenarios
+# Application scenarios
 
 When drawing a waterfall diagram of gene mutations, which genes are displayed? Can display significantly mutated genes. According to the example text description: We used MutSigCV_v1.41 (20) (www.broadinstitute.org) to infer significant cancer mutated genes (q < 0.05) across the two classes currently identified with default parameters.
 
@@ -63,7 +63,7 @@ If you only want to download MAF files directly from TCGA for drawing, you can u
 
 （其实Matlab的使用方式很傻瓜，比R更容易，更像Excel）
 
-#Environment settings
+# Environment settings
 
 First, prepare the input data required for MutSigCV in R, then infer SMG using MutSigCV, and finally draw a waterfall plot using MutSigCV's output file in R.
 
@@ -75,7 +75,7 @@ First, prepare the input data required for MutSigCV in R, then infer SMG using M
 
 第二步：把`MutSigCV.m`文件拷贝到当前文件夹就可以使用了。
 
-##Install MutSigCV
+## Install MutSigCV
 
 Step 1: Install Matlab. At present, the source code of MutSigCV is written in Matlab. You can register on the Matlab website and download the 30 day trial version:< https://ww2.mathworks.cn/campaigns/products/trials.highResolutionDisplay.html?prodcode=ML >.
 
@@ -83,7 +83,7 @@ Step 2: Copy the 'MutSigCV. m' file to the current folder to use.
 
 ## 安装并加载画图所需的R包
 
-##Install and load the R package required for drawing
+## Install and load the R package required for drawing
 
 ```{r}
 source("install_dependencies.R")
@@ -112,7 +112,7 @@ meta.mut.rda和local.mut.rda，用于画图时展示两组，非必需。里面�
 
 另外，在后面的“使用MutSigCV推断SMG”的“参数设置”部分需要下载默认文件。
 
-#Input file
+# Input file
 
 Easyinput_ceta.local mutation.full.txt, MAF file, used for inferring SVG. The method of downloading MAF files from TCGA can refer to FigureYa19Lollipop.
 
@@ -136,7 +136,7 @@ local.mut <- read.table("easy_input_local.mut.txt")[,1]  # 原发组样品名 | 
 
 阅读MutSigCV教程，了解数据格式要求，就能理解下面的预处理过程了
 
-#Input file preprocessing
+# Input file preprocessing
 
 Organize the MAF file into the input file format required by MutSigCV, and generate the file: meta. local mutation.full_for_SutSig_input. txt
 
@@ -175,7 +175,7 @@ write.table(outTable,              # 输出表格 | Output table
 
 也可以在GenePattern云服务器上运行，不想使用Matlab的小伙伴就自行探究在线模式吧。
 
-#Inferring SMG using MutSigCV
+# Inferring SMG using MutSigCV
 
 This step requires the use of Matlab, which will generate the meta.local mutation.full_SutSig_out.sig_genes. txt file for the next step of drawing.
 
@@ -193,7 +193,7 @@ MutSigCV算法，这里采用：
 
 若对该算法非常熟悉，或者有其他个性化需求，可以自定义这些文件，技术细节请参考：<http://software.broadinstitute.org/cancer/software/genepattern/modules/docs/MutSigCV>
 
-##Parameter settings
+## Parameter settings
 
 The MutSigCV algorithm is used here:
 
@@ -211,7 +211,7 @@ If you are very familiar with the algorithm or have other personalized needs, yo
 
 现在，在Matlab的Current Folder里选择进入当前文件夹，然后把下面这行代码复制粘贴到Matlab的Command Window，敲回车，就开始运行啦！
 
-##Run MutSigCV
+## Run MutSigCV
 
 I have already collected all the input files and saved them in the current folder.
 
@@ -261,7 +261,7 @@ The suffix sig_genes in these four files represents significantly mutated genes,
 
 提取显著突变基因SMGs，用q < 0.05筛选
 
-#Start drawing
+# Start drawing
 
 Extract significant mutated genes SMGs and screen with q<0.05
 
@@ -409,7 +409,7 @@ dev.off()
 
 小丫使用的是Matlab R2019a的30天试用版本，已运行成功。
 
-#Attachment:
+# Attachment:
 
 The author is using Matlab R2017a version, which can be downloaded and cracked on their own from Baidu, or downloaded from the following Baidu cloud drive. The cracking method is attached and can be found in the MATLAB R2017a installation method. pdf folder.
 Link: https://pan.baidu.com/s/1koGMNmEALL1FmDakNwHa9A  

@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 提示：pRRophetic的示例可参考：https://github.com/paulgeeleher/pRRophetic/blob/master/vignetteOutline.pdf
 
-##Requirement description
+## Requirement description
 
 Using the pRRophetic algorithm, a ridge regression model was constructed based on the expression profiles of GDSC<www.cancerrxgene. org/>cell lines and TCGA gene expression profiles to predict drug IC50 (using the original data and reproducing the original image)
 
@@ -48,7 +48,7 @@ Lu X, Jiang L, Zhang L, et al. Immune Signature-Based Subtypes of Cervical Squam
 
 还可以通过批量计算，筛选出组间差异显著的药物。
 
-##Application scenarios
+## Application scenarios
 
 Predict the IC50 of the patient for the drug and draw a box plot to compare different groups.
 
@@ -58,7 +58,7 @@ It is also possible to screen drugs with significant differences between groups 
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -72,7 +72,7 @@ GDSC数据库里的内容可以用R包pRRophetic来访问和计算。
 
 <!-- 点击链接下载pRRophetic_0.5.tar.gz：<https://osf.io/dwzce/?action=download>，然后本地安装。 -->
 # 上述链接的R包有误，有问题，如要用pRRophetic包请用果子公众号更新维护版本<https://github.com/ixxmu/mp_duty/issues/2691>
-#The R package of the above link is incorrect. If you want to use the pRRophic package, please update the maintenance version with the fruit official account< https://github.com/ixxmu/mp_duty/issues/2691 >
+# The R package of the above link is incorrect. If you want to use the pRRophic package, please update the maintenance version with the fruit official account< https://github.com/ixxmu/mp_duty/issues/2691 >
 
 加载包
 
@@ -118,7 +118,7 @@ drug.txt，要计算和画图的药物的名字，药物名必须存在与GDSC�
 
 getCGPinfo函数内部是2016版药物的名字，共251种；GDSC数据库的网站上2019版的药物名字有266种：<https://www.cancerrxgene.org/translation/Drug#t-all>；然而pRRopheticPredict函数的drug参数the name of the drug for which you would like to predict sensitivity, one of...，其中的药物名字只有138个，下面就对这138种药物进行计算和画图。把pRRopheticPredict函数的drug参数中的药物整理后保存在drug.txt文件中。
 
-##Input file
+## Input file
 
 Three files are required: expression data, grouping information, and drug names. The sample IDs of the first two files must be consistent.
 
@@ -166,7 +166,7 @@ GCP.drug <- GCP.drug[1:12]
 
 ## 药物敏感性预测和画图
 
-##Drug sensitivity prediction and plotting
+## Drug sensitivity prediction and plotting
 
 ```{r}
 # 自定义足够多的box颜色，颜色数量至少等于分组数量
@@ -255,7 +255,7 @@ ggsave("boxplot of predicted IC50_multiple.pdf", width = 12, height = 6)
 
 ## 检验组间差异
 
-##Test group differences
+## Test group differences
 
 ```{r}
 # 初始化向量存储每种药物的Wilcoxon检验p值（中文注释）

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 绘制相关性热图并添加相关系数扇形图，使用TCGA GBM数据，原图复现。
 
-##Requirement description
+## Requirement description
 
 Draw a correlation heatmap and add a correlation coefficient pie chart. Use TCGA GBM data to reproduce the original image.
 
@@ -39,7 +39,7 @@ Figure 4. TIM-3-related T cell immunity and inflammatory activities in glioma. (
 
 右侧用饼图展示各个通路跟某一个基因（例文用的是TIM-3）的相关性，若正相关则顺时针填充扇形图（红色），若负相关则逆时针填充扇形图（绿色）
 
-##Application scenarios
+## Application scenarios
 
 On the left is the expression matrix of the pathway (calculated using GSVA) heatmap. In fact, just drawing this diagram to show the expression changes of pathways can be included in the article. You can also refer to the display method of FigureYa61GSVA.
 
@@ -49,7 +49,7 @@ On the right side, use a pie chart to show the correlation between each pathway 
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -96,7 +96,7 @@ easy_input_expr.csv，TCGA-GBM.htseq_fpkm，基因表达谱。跟FigureYa126Corr
 
 easy_input_GO.txt，感兴趣的通路的GO ID。
 
-##Input file
+## Input file
 
 easy_input_expr.csv，TCGA-GBM.htseq_fpkm， Gene expression profile. The same file is used as FigureYa126CorrelationHeatmap. Downloaded from XENA, the value is log2 (FPKM+1), with 2 decimal places reserved for ease of transmission. We need to change the gene name to gene symbol.
 
@@ -137,7 +137,7 @@ gosets <- gosets$V1
 
 ## 对感兴趣GO通路做GSVA，从而获得通路的表达矩阵，并计算相关系数
 
-##Perform GSVA on the GO pathway of interest to obtain the expression matrix of the pathway and calculate the correlation coefficient
+## Perform GSVA on the GO pathway of interest to obtain the expression matrix of the pathway and calculate the correlation coefficient
 
 ```{r}
 # 连接到Ensembl数据库的人类基因数据集（使用亚洲镜像）
@@ -184,7 +184,7 @@ cor.res
 
 这里提供两种绘图方式：baseplot，或pheatmap + pie + 后期
 
-##Start drawing
+## Start drawing
 
 There are two drawing methods provided here: baseplot or pheatmap+pie+post production
 
@@ -194,7 +194,7 @@ There are two drawing methods provided here: baseplot or pheatmap+pie+post produ
 
 如果希望快速出图，或者有一定PPT/AI技巧的小伙伴，可直接移步方法二，方法二采用pheatmap + pie + PPT/AI（后期）也能完美解决。
 
-###Method 1: Draw a hardcore baseplot directly
+### Method 1: Draw a hardcore baseplot directly
 
 **Off topic: * * Using baseplot for plotting is very flexible and an important way to learn plotting ideas, but for most users, baseplot for complex graphics is time-consuming, especially for fine-tuning parameters.
 
@@ -478,7 +478,7 @@ invisible(dev.off())
 
 方法二依赖输出子图再后期拼接的方式，方便快捷，对有PPT/AI基础的小伙伴很友好，推荐使用。
 
-###Method 2: pheatmap+pie+PPT/AI (later stage)
+### Method 2: pheatmap+pie+PPT/AI (later stage)
 
 **Off topic: * * I personally think complexheatmap can also be implemented, but I didn't find any examples of adding pie charts in the tutorial, so I can only wait for other friends to explore.
 

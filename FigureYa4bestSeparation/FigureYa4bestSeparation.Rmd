@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 做生存分析，Best separation和Median separation，后者很简单，很想学前者，求Best separation的代码
 
 Do survival analysis, Best separation and Median separation. The latter is very simple. If you really want to learn the former, look for the code for Best separation.
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 在展示基因表达水平（连续变量）对生存期的影响时找到最佳分组
 
@@ -52,7 +52,7 @@ head(svdata)
 sortsv<-svdata[order(svdata$expression),]
 ```
 ## 输出
-## output
+## Output
 
 中位值分组的生存曲线、最佳分组生存曲线、遍历所有分组情况下的P值和Hazard Ratio的分布情况
 

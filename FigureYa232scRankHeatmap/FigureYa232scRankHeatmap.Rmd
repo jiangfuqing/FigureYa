@@ -274,16 +274,16 @@ cells <- qc %>%
            UMI >= 3000) %>%
   pull(Rename)
 
-# seurat object
+# Seurat object
 sc <- CreateSeuratObject(counts = umi[,cells], meta.data = meta)
 
-# expression transformation
+# Expression transformation
 sc@assays$RNA@data <- sc@assays$RNA@counts %>% 
   apply(2, function(x){
     log2(10^5*x/sum(x)+1)
     })
 
-# remove other cells
+# Remove other cells
 sc <- sc[,sc$cluster != "other"]
 
 # 给cluster改名
@@ -306,7 +306,7 @@ save(sc, cluster_colors, file = "sc.seurat.Rdata")
 
 # 还可以把表达矩阵输出到文件
 # It is also possible to output the expression matrix to a file
-#write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
+# Write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
 ```
 
 ## Seurat自带的无监督聚类
@@ -333,7 +333,7 @@ prData <- SummarizedExperiment::assay(sc_oo_mnn)
 sc_oo %<>% FindVariableFeatures(selection.method = "mvp", mean.cutoff = c(1,8))
 VariableFeatures(sc_oo) %>% length()
 
-# unsupervised clustering based on mnn matrix
+# Unsupervised clustering based on mnn matrix
 sc_oo %<>% ScaleData 
 sc_oo@assays$RNA@scale.data <- prData[rownames(sc_oo@assays$RNA@scale.data), colnames(sc_oo@assays$RNA@scale.data)]
 sc_oo %<>% RunPCA

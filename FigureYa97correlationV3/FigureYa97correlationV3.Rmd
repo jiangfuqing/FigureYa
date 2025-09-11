@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 计算多个基因和免疫浸润的相关性，画出类似于文章中这种热图，用颜色展示相关系数，用**标出显著的。
 
-##Requirement description
+## Requirement description
 
 Calculate the correlation between multiple genes and immune infiltration, draw a heatmap similar to the one in the article, display the correlation coefficients with colors, and mark the significant ones with * *.
 
@@ -39,7 +39,7 @@ from<https://www.nature.com/articles/s41586-019-1032-7>
 
 如果要同时展示两个基因之间的相关性，及其与免疫浸润之间的关系，请参考“FigureYa96R2”。
 
-##Application scenarios
+## Application scenarios
 
 Evaluate the impact of genes on immune infiltration, and even screen candidate genes that affect immune infiltration in batches.
 
@@ -51,7 +51,7 @@ If you want to simultaneously demonstrate the correlation between two genes and 
 
 加载包
 
-##Environment settings
+## Environment settings
 
 Load Package
 
@@ -82,7 +82,7 @@ options(stringsAsFactors = FALSE)
 - easy_input_expr.csv，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。
 - genelist.txt，基因名，将要计算这些基因跟免疫浸润的相关性。要求跟easy_input_expr.csv里的基因名一致。
 
-##Input file
+## Input file
 
 Require the sample names of the first two files to be consistent
 
@@ -138,7 +138,7 @@ genelist <- genelist$V1
 
 其中method可以改为"pearson"或"kendall"
 
-##Batch calculation of correlation
+## Batch calculation of correlation
 
 Write a function first
 
@@ -180,7 +180,7 @@ immuscore("FOXP3")
 
 ### 批量计算genelist跟免疫浸润相关性的结果
 
-###Batch calculation of the correlation between genelist and immune infiltration results
+### Batch calculation of the correlation between genelist and immune infiltration results
 
 ```{r, warning=FALSE}
 # 对基因列表中的每个基因应用免疫评分函数，并将结果合并为一个数据框
@@ -204,7 +204,7 @@ write.csv(data, "correlation.csv",
 
 使用两个ifelse实现三分类
 
-###Add a column to distinguish the size of p-values
+### Add a column to distinguish the size of p-values
 
 Implement three classification using two ifelses
 
@@ -230,7 +230,7 @@ data$pstar[1:20]
 
 - 有差异的把*号打印在热图上
 
-##Start drawing
+## Start drawing
 
 When using ggplot2 for drawing, the main function used is the geom_tile function:
 

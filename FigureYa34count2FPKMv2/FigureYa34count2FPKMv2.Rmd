@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### 需求描述
-### requirement description
+### Requirement description
 
 RNA-seq read count转换成FPKM。
 
 RNA-seq read count converted to FPKM.
 
 ### 应用场景
-### application scenario
+### Application scenario
 
 只能拿到RNA-seq数据的read count，想转换成FPKM。
 
@@ -63,35 +63,35 @@ Code to calculate gene length by biotrainee tang
 
 ```r
 ###获取gene有效长度 用来计算FPKM TPM  RPKM
-###get the effective length of the gene and use it to calculate FPKM, TPM, RPKM
+### Get the effective length of the gene and use it to calculate FPKM, TPM, RPKM
 rm(list = ls())
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("GenomicFeatures")
+# Source("https://bioconductor.org/biocLite.R")
+# BiocLite("GenomicFeatures")
 library(GenomicFeatures)
 #导入GTF 或者GFF3文件，ensembl或者gencode网站GTF注释皆可
-#import GTF or GFF3 files, either ensembl or gencode GTF annotations.
+# Import GTF or GFF3 files, either ensembl or gencode GTF annotations.
 txdb <- makeTxDbFromGFF("gencode.v22.annotation.gtf",format="gtf")
 #获取外显子
-#obtain exons
+# Obtain exons
 exons_gene <- exonsBy(txdb, by = "gene")
 ##并行计算
-##parallel computing
-#install.packages('parallel')
+## Parallel computing
+# Install.packages('parallel')
 library(parallel)
 #检测核心数
-#detect the number of cores
+# Detect the number of cores
 cores<-detectCores(logical = F)
 #设定个核心
-#set a core
+# Set a core
 cl <- makeCluster(cores)
 #对外显子重叠部分通过reduce 去冗余，并计算总长度
-#for the overlapping parts of exons, perform redundancy reduction using reduce and calculate the total length
+# For the overlapping parts of exons, perform redundancy reduction using reduce and calculate the total length
 results <- parLapply(cl,exons_gene,function(x){sum(width(reduce(x)))})
 stopCluster(cl)#停止 stop
 gene_length22 <- do.call(rbind,lapply(results, data.frame))
 #或者plyr得到结果
-#or plyr to get the result
-#install.packages('plyr')
+# Or plyr to get the result
+# Install.packages('plyr')
 library (plyr)
 gene_length22<- ldply(results, data.frame)
 colnames(gene_length22)<-c('gene_id','eff_length')
@@ -114,7 +114,7 @@ Download TCGA RNA-seq read count and FPKM here, the former is used to demonstrat
 The sample is the same as `FigureYa22 FPKM2TPM` and `FigureYa23 count2TPM`.
 
 #### 先下载read count，用于转换成FPKM
-#### download read count first, and use it to convert to FPKM
+#### Download read count first, and use it to convert to FPKM
 
 ```r
 library(TCGAbiolinks)
@@ -179,8 +179,8 @@ expMatrix <- read.csv("easy_input.csv",
 expMatrix[1:3,]
 ```
 
-### read count转FPKM
-### read count to FPKM
+### Read count转FPKM
+### Read count to FPKM
 
 首先要保证表达矩阵的行名和存放基因长度向量的名字一致, 这一步非常重要。
 

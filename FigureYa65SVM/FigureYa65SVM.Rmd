@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 利用svm-rfe和lasso logistic regression进行特征变量筛选，重现原文方法
 
@@ -29,7 +29,7 @@ Feature variable screening using svm-rfe and lasso logistic regression to reprod
 from<http://ascopubs.org/doi/full/10.1200/JCO.2016.68.2153>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 svm-rfe（support vector machine - recursive feature elimination）是基于支持向量机的机器学习方法，
 通过删减svm产生的特征向量来寻找最佳变量。
@@ -45,7 +45,7 @@ lasso lr (logistic regression) is also one of the machine learning methods that 
 It is mainly used to filter the feature variables to construct the best classification model.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r, message=FALSE}
 source("install_dependencies.R")

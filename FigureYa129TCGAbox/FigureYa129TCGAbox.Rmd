@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用TCGA数据画这种图，在不同分期对比不同分型里某个基因的表达量。从数据下载到出图。
 
-##Requirement description
+## Requirement description
 
 Draw this graph using TCGA data to compare the expression level of a certain gene in different stages and subtypes. Download data to generate images.
 
@@ -43,7 +43,7 @@ To investigate the molecular relevance between PD-L1 and glioma, we asked the di
 
 甚至你可以写成循环，批量画出多个基因，看看哪几个基因的分型效果更好。
 
-##Application scenarios
+## Application scenarios
 
 At which stage can genes distinguish different subtypes? Draw this picture at a glance.
 
@@ -55,7 +55,7 @@ You can even write it as a loop and draw multiple genes in batches to see which 
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -111,7 +111,7 @@ options(stringsAsFactors = FALSE)
 
 - phenotype，Phenotypes (n=530) TCGA hub，下载地址：<https://tcga.xenahubs.net/download/TCGA.LGG.sampleMap/LGG_clinicalMatrix.gz>
 
-##Download the input file:
+## Download the input file:
 
 I have uploaded the following 4 files to Weiyun, download link:< https://share.weiyun.com/5F4J859 >You can choose to download from Weiyun or use the download addresses below to download separately, the same way.
 
@@ -131,7 +131,7 @@ Go back to the page where LGG's WHO grade information is located, TCGA Lower Gra
 
 ## 输入文件预处理
 
-##Input file preprocessing
+## Input file preprocessing
 
 ```{r}
 ### 读入表达矩阵（Read expression matrix）
@@ -190,7 +190,7 @@ alldata$CD274 <- as.numeric(alldata$CD274)
 
 ## 开始画图
 
-## start plot
+## Start plot
 
 ```{r}
 # 创建基于IDH突变状态分组的PD-L1表达箱线图，按肿瘤分级分面展示（Create boxplot of PD-L1 expression grouped by IDH mutation status, faceted by tumor grade）

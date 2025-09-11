@@ -231,7 +231,7 @@ if(n.sum == 2^num.imp-1) { # 如果总和不等则报错 # If the sum is not equ
 
 # Start drawing
 
-#Draw a volcano map
+# Draw a volcano map
 
 ```{r}
 sigpoints <- Coxoutput.OS[which(Coxoutput.OS$pvalue < cox.pcutoff),]

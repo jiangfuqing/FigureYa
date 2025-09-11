@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 方法在文章method部分的Differential expression analyses里面描述。
 结果图可以放两个热图进行比较
 
-##Requirement description
+## Requirement description
 
 Remove confounding factors such as age, gender, race, batch, etc. that affect RNAseq expression levels.
 The method is described in the differential expression analyses section of the article.
@@ -52,7 +52,7 @@ Or reference: Evaluation of logistic regression models and effect of covariates 
 
 下面这篇文章详细探讨了第一种方式的缺点，并给出了实际操作时的指导意见：2016年的Biostatistics，Methods that remove batch effects while retaining group differences may lead to exaggerated confidence in downstream analyses，<https://t.zsxq.com/3j2beI6>
 
-##Application scenarios
+## Application scenarios
 
 Used for differential expression analysis. Large scale sequencing data is often mixed with various covariates, which affect differential gene screening. There are two common strategies:
 
@@ -65,7 +65,7 @@ The following article discusses in detail the drawbacks of the first approach an
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -194,7 +194,7 @@ easy_input_expr.txt，表达矩阵。
 
 easy_input_info.txt，样品信息，包含亚型、年龄、性别。
 
-##Input file
+## Input file
 
 easy_input_expr.txt， Expression matrix.
 
@@ -229,7 +229,7 @@ emat <- expr[,rownames(sinfo)]
 
 ## 多变量逻辑回归确定显著转录本
 
-##Multivariate logistic regression to determine significant transcripts
+## Multivariate logistic regression to determine significant transcripts
 
 ```{r}
 # 创建年龄的二次项作为额外协变量（Create age squared as an additional covariate）
@@ -260,7 +260,7 @@ write.table(outTab,
 
 通过绘制热图查看分型效果
 
-##Start drawing
+## Start drawing
 
 View the typing effect by drawing a heat map
 

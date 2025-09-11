@@ -70,7 +70,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to co
 ```
 
 # 输入文件
-# input files
+# Input files
 
 easy_input.txt
 
@@ -114,7 +114,7 @@ for (i in vname) {
 
 # 开始画图
 
-# start plotting
+# Start plotting
 
 用base plot画图，如果你要查看某部分代码的效果，请从plot所在的行到当前位置一起，整段运行。
 

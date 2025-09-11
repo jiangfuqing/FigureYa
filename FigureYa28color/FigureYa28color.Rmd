@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 虽然有那么多调色板：
 
@@ -43,7 +43,7 @@ I still get unsure of my own aesthetic when it comes to picking colors for the p
 Then mimic the color scheme of your (or your boss's) preferred paper!
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 本套代码要做的就是从你心仪的paper里提取它的配色方案。
 
@@ -54,7 +54,7 @@ What this code is going to do is extract its color scheme from your preferred pa
 If you need a lot of colors, then pick a colorful paper.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 用到Y叔推荐的`rPlotter`包<https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>，先安装它
 
@@ -62,9 +62,9 @@ Use the `rPlotter` package recommended by Uncle Y <https://mp.weixin.qq.com/s/Zr
 
 ```r
 #使用国内镜像安装包
-#use the domestic mirror installation package
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+# Use the domestic mirror installation package
+# Options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+# Options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 install.packages(c("ggplot2", "stringr", "reshape2", "dichromat"))
 install("EBImage")
@@ -173,11 +173,11 @@ Have fun!
 
 ```r
 #转换为RGB
-#convert to RGB
+# Convert to RGB
 allcol_rgb<-data.frame(t(col2rgb(allcol)))
 allcol_rgb$col<-allcol
 
-#install.packages("rgl")
+# Install.packages("rgl")
 library(rgl)
 plot3d(allcol_rgb$red,allcol_rgb$green,allcol_rgb$blue,
        xlab = "red",ylab = "green",zlab = "blue",
@@ -187,12 +187,12 @@ plot3d(allcol_rgb$red,allcol_rgb$green,allcol_rgb$blue,
        lit = F)
 
 #保存颜色
-#save colors
+# Save colors
 write.table(allcol,"allcol.txt",row.names = F,col.names = F)
 ```
 
 ## 增减颜色
-## add or subtract colors
+## Add or subtract colors
 
 - 增加过渡色。为了产生同一色系，让画图效果更协调，有时会在几种颜色中间添加过渡色。
 
@@ -266,10 +266,10 @@ Find a statement like the following in the drawing code:
 ```r
 palette <- c("red","blue")
 #或者
-#or
+# Or
 colours <- c("#2381B3","#F0E366")
 #或者
-#or
+# Or
 mycol <- c("#223D6C","#D20A13","#088247","#FFD121","#11AA4D","#58CDD9","#7A142C","#5D90BA","#431A3D","#91612D","#6E568C","#E0367A","#D8D155","#64495D","#7CC767")
 ```
 

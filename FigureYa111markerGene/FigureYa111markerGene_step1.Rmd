@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用Seurat找marker基因，用scanpy画出文章里这种热图，中间顺利衔接。
 
-##Requirement description
+## Requirement description
 
 Use Seurat to find marker genes, and use scanpy to draw this heatmap in the article, smoothly connecting the middle.
 
@@ -39,7 +39,7 @@ Fig. 2d, Heat map illustrating the row-normalized mean expression of marker gene
 
 这里是前面用Seurat，后面只是用scanpy的画图功能。当然你也可以从头到尾都用Scanpy来做，这个不包含在本文档范围内。
 
-##Application scenarios
+## Application scenarios
 
 This document uses Seurat for single-cell upstream analysis to obtain clustering information and cluster annotation information. Use the function I wrote to save the results, then open the FigureYa111markerGene.ipynb file and draw a beautiful image using Scanpy.
 
@@ -55,7 +55,7 @@ Here, Seurat was used earlier, and only the drawing function of scanpy was used 
 
 安装Seurat包
 
-##Environment settings
+## Environment settings
 
 requirement:
 
@@ -97,7 +97,7 @@ options(stringsAsFactors = FALSE)
 
 示例文件保存在当前文件夹下的filtered_gene_bc_matrices/hg19/文件夹里
 
-##Input file
+## Input file
 
 The example file is saved in the filtered_gene-bc_tricks/hg19/folder in the current folder
 
@@ -126,7 +126,7 @@ pbmc <- CreateSeuratObject(
 
 数据预处理
 
-##Seurat clustering analysis
+## Seurat clustering analysis
 
 >The following steps are the conventional single-cell data processing flow, mainly clustering analysis of cells to determine which category each cell belongs to, and selecting marker genes based on the results of differential analysis.
 
@@ -223,13 +223,13 @@ DimPlot(pbmc, reduction = "umap", label = T)
 
 用Seurat展示标记基因
 
-##Start drawing
+## Start drawing
 
 Display marker genes using Seurat
 
 ### 定义基因
 
-###Define genes
+### Define genes
 
 ```{r}
 # 定义标记基因向量，用于后续的细胞类型鉴定和可视化
@@ -258,7 +258,7 @@ marker_gene <- c(
 
 ### 热图
 
-###Heat map
+### Heat map
 
 ```{r}
 # 绘制热图展示标记基因在不同细胞聚类中的表达模式
@@ -270,7 +270,7 @@ DoHeatmap(pbmc,
 
 ### 小提琴图
 
-###Violin Diagram
+### Violin Diagram
 
 ```{r}
 # 绘制小提琴图展示IL7R和CCR7基因在各细胞聚类中的表达分布
@@ -306,7 +306,7 @@ Scanpy provides many visually appealing display options, see< https://scanpy-tut
 
 So how to combine the results of Seruat with Scanpy? We first need to output the results to a file, and then use Scanpy to draw beautiful images.
 
-##Output Seurat results
+## Output Seurat results
 
 The expression level data of Seurat is stored under '@ assay $RNA',
 
@@ -349,7 +349,7 @@ The subsequent operations will be carried out in the Jupyter notebook. You need:
 -Open the FigureYa111markerGene_step2.nuxmAC.ipynb or FigureYa111markerGene_step2w_in10.ipynb document with Jupyter notebook to continue drawing.
 -The usage of the ipynb document can be found in this article: https://mp.weixin.qq.com/s/G-CQhNEJBmMRuDe2kxND_w
 
-##Reference materials
+## Reference materials
 
 - < https://scanpy.readthedocs.io/ >
 

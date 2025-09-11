@@ -200,7 +200,7 @@ Pvalue_data <- df %>%
 (CLIP.RIP_P <- Pvalue_data$p[2])
 ```
 
-## kruskal-wallis rank sum statistic
+## Kruskal-wallis rank sum statistic
 
 我们在 `FigureYa278heatmapPoints` 中也有类似的一个需求，用的是 `kruskal.test`，这种统计方法也可用来计算两种分布的P值。
 

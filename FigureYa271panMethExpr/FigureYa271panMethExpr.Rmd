@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 这次众筹Figure 1E，铁死亡转录组表达与启动子甲基化相关性的点图。
 
-#Requirement description
+# Requirement description
 
 Hello Xiaoya, I have many other friends who want to crowdfund for this iron death pan cancer image, mainly Figure 1. I feel that this routine can be tested by simply changing the pathway. I saw that Professor Dayu wrote Figure 2A (Box plot of differences in ferroptosis genes between pan cancer tumors and normal, Figure Ya208FPI) and Figure 3B (Correlation between ferroptosis and immune pathways) in this article, FigureYa253panGSEA）， Could you please ask Teacher Big Fish to write the relevant code for Figure 1 in detail?
 
@@ -58,7 +58,7 @@ Figure 1. The Dysregulation of Ferroptosis Regulator Genes (FRGs)
 
 分析基因（以铁死亡为例）转录组表达与启动子甲基化相关并绘制点图。
 
-#Application scenarios
+# Application scenarios
 
 Analyze the correlation between gene transcriptome expression and promoter methylation (using iron death as an example) and draw a dot plot.
 
@@ -66,7 +66,7 @@ Analyze the correlation between gene transcriptome expression and promoter methy
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -117,7 +117,7 @@ merged_sample_quality_annotations.tsv，下载自<https://gdc.cancer.gov/about-d
 
 tcga_methy450文件夹里面是甲基化数据，过滤掉了有空值的探针，均已保存为RData文件，微云链接：<https://share.weiyun.com/jRry4rlU>。下载后把tcga_methy450文件夹放到当前文件夹。跟FigureYa270panMeth使用的是同一文件。
 
-#Input file
+# Input file
 
 EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.tsv， The expression matrix consists of genes in the first column, followed by their expression levels in each sample. Download from< http://api.gdc.cancer.gov/data/3586c0da-64d0-4b74-a449-5ff4d9136611 >Similar to FigureYa263panDiff and FigureYa268panCNVexpr, users who have already downloaded them do not need to download them again.
 
@@ -249,7 +249,7 @@ gc()  # 最终清理内存
 
 # 相关性分析
 
-#Correlation analysis
+# Correlation analysis
 
 ```{r}
 # 初始化存储基因表达与甲基化相关性结果的数据框
@@ -326,7 +326,7 @@ The example text shows the correlation by drawing a point chart, which can also 
 
 # 开始画图
 
-# start plot
+# Start plot
 
 ```{r}
 # 设置绘图颜色（用于后续相关性泡泡图的颜色映射）

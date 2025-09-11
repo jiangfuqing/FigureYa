@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 这次众筹Figure 1D，铁死亡基因肿瘤与正常组织甲基化状态点图。
 
-#Requirement description
+# Requirement description
 
 Hello Xiaoya, I have many other friends who want to crowdfund for this iron death pan cancer image, mainly Figure 1. I feel that this routine can be tested by simply changing the pathway. I saw that Professor Dayu wrote Figure 2A (Box plot of differences in ferroptosis genes between pan cancer tumors and normal, Figure Ya208FPI) and Figure 3B (Correlation between ferroptosis and immune pathways) in this article, FigureYa253panGSEA）， Could you please ask Teacher Big Fish to write the relevant code for Figure 1 in detail?
 
@@ -61,7 +61,7 @@ Figure 1. The Dysregulation of Ferroptosis Regulator Genes (FRGs)
 
 分析铁死亡基因肿瘤与正常组织甲基化状态并绘制点图
 
-#Application scenarios
+# Application scenarios
 
 Analyze the methylation status of iron death genes in tumors and normal tissues and draw a point map
 
@@ -69,7 +69,7 @@ Analyze the methylation status of iron death genes in tumors and normal tissues 
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -160,7 +160,7 @@ merged_sample_quality_annotations.tsv，下载自<https://gdc.cancer.gov/about-d
 
 tcga_methy450文件夹里面是甲基化数据，过滤掉了有空值的探针，均已保存为RData文件，微云链接：<https://share.weiyun.com/jRry4rlU>。下载后把tcga_methy450文件夹放到当前文件夹。
 
-#Input file
+# Input file
 
 merged_sample_quality_annotations.tsv， Download from< https://gdc.cancer.gov/about-data/publications/pancanatlas >, download link< http://api.gdc.cancer.gov/data/1a7d7be8-675d-4e60-a105-19d4121bdebf >The same set of data is used for FigureYa263panDiff, FigureYa265panCNV, and FigureYa268panCNVexpr, so users who have already downloaded it do not need to download it again.
 
@@ -239,7 +239,7 @@ gc()
 
 # 提取甲基化数据
 
-#Extract methylation data
+# Extract methylation data
 
 ```{r}
 # 初始化存储差异甲基化结果的数据框
@@ -326,7 +326,7 @@ write.table(deltaMeth, "TCGA_pancan_delta_meth_subset.txt",sep = "\t",row.names 
 
 # 开始画图
 
-# start plot
+# Start plot
 
 ```{r}
 # 设置颜色（用于后续绘图的颜色映射）

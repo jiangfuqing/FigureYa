@@ -16,21 +16,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 从GEO数据库下载芯片数据，筛选差异表达基因，无缝对接FigureYa59volcano画火山图。
 
 Download chip data from the GEO database, screen for differentially expressed genes, and seamlessly connect with FigureYa59volcano to plot a volcano map.  
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 适用于GEO数据库里的芯片数据。
 
 Applicable to chip data in the GEO database.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 加载包
 

@@ -59,15 +59,15 @@ Requires awk, python2.7
 
 Download bigWigSummary:
 ```r
-## choose by platform & cpu type
-## macOSX
-#download.file("http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/bigWigSummary","bigWigSummary")
-## linux x86_64
-#download.file("http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bigWigSummary","bigWigSummary")
-## linux x86_64 v369
-#download.file("http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64.v369/bigWigSummary","bigWigSummary")
+## Choose by platform & cpu type
+## MacOSX
+# Download.file("http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/bigWigSummary","bigWigSummary")
+## Linux x86_64
+# Download.file("http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bigWigSummary","bigWigSummary")
+## Linux x86_64 v369
+# Download.file("http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64.v369/bigWigSummary","bigWigSummary")
 
-#Sys.chmod(c("bigWigSummary"),755)
+# Sys.chmod(c("bigWigSummary"),755)
 ```
 
 ## 输入文件

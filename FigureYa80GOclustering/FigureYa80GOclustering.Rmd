@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 富集分析得到太多GO term，其中好多还是相似的，怎样合理的合并？clusterProfiler有一个simplify函数，能给富集分析结果瘦身by removing redundancy of enriched GO terms，但有时瘦的不够多。小丫找到这样一篇例文，它列出了富集的 term，同时在旁边给出一个短语来概括性的描述这几个相似的term：
 
-##Requirement description
+## Requirement description
 
 Enrichment analysis yields too many GO terms, many of which are still similar. How to merge them reasonably? ClusterProfiler has a simplify function that can thin down enriched GO terms by removing redundancy of enriched GO terms, but sometimes not enough weight is lost. Xiaoya found an example article that lists enriched terms and provides a phrase next to them to summarize these similar terms:
 
@@ -48,7 +48,7 @@ The description in the example text about how these similar terms are merged onl
 
 富集分析得到太多相似的GO term，需要合并相似的，再结合背景知识概括出合适的pathway。
 
-##Application scenarios
+## Application scenarios
 
 Compare multiple sets of GO enrichment analysis results together;
 
@@ -58,7 +58,7 @@ Enrichment analysis yields too many similar GO terms, which need to be merged an
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -125,7 +125,7 @@ options(stringsAsFactors = FALSE)
 
 此处用clusterProfier的enrichGO函数做的富集分析结果为例(FigureYa52GOplot的输出文件enrichGO_output.csv)，其中有一列BgRatio，斜线左侧是全基因组范围内该term里基因的数量。例文以300为阈值，去掉了基因数量超过300的term。如果你的数据没有这一列，也可以不做这一步筛选。
 
-##Input file
+## Input file
 
 The enrichment analysis results should include at least GO term ID (in the format GO: 0046777) and a list of statistical measures (such as p-value, p-ajdust, FDR, etc.).
 
@@ -153,7 +153,7 @@ names(fdataset) <- fnames
 
 ## 纵向合并多组富集结果，用于给GO term分类
 
-##Vertically merge multiple sets of enrichment results for GO term classification
+## Vertically merge multiple sets of enrichment results for GO term classification
 
 ```{r}
 # 中文注释：将多个富集分析结果合并为一个数据框，保留来源文件名信息
@@ -204,7 +204,7 @@ head(ego.ID)
 
 MyMerge函数出自：<https://stackoverflow.com/questions/16666643/merging-more-than-2-dataframes-in-r-by-rownames>
 
-##Horizontally merge multiple sets of enrichment results for drawing heat maps
+## Horizontally merge multiple sets of enrichment results for drawing heat maps
 
 The MyMerge function comes from:< https://stackoverflow.com/questions/16666643/merging-more-than-2-dataframes-in-r-by-rownames >
 
@@ -249,7 +249,7 @@ head(ego.m)
 
 ## 按GO term的相似性聚类
 
-##Cluster based on GO term similarity
+## Cluster based on GO term similarity
 
 ```{r, fig.width=6, fig.height=8}
 # 人
@@ -301,7 +301,7 @@ p
 
 **注：**根据实际情况，调整offset的值
 
-##Start drawing
+## Start drawing
 
 **Note: * * Adjust the offset value according to the actual situation
 

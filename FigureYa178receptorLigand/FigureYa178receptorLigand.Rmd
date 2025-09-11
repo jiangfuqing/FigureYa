@@ -73,13 +73,13 @@ CellPhoneDB needs to be installed and run on the terminal (Linux or MAC system).
 Install CellPhoneDB, reference < https://github.com/Teichlab/cellphonedb >
 
 ```bash
-#Installing CellPhoneDB
+# Installing CellPhoneDB
 python -m venv cpdb-venv
 
-#Activate virtualenv
+# Activate virtualenv
 source cpdb-venv/bin/activate
 
-#Install CellPhoneDB
+# Install CellPhoneDB
 pip install cellphonedb
 ```
 
@@ -130,7 +130,7 @@ Since the raw data of the article is too large and not normalized, small data wi
 cellphonedb method statistical_analysis test_meta.txt test_counts.txt --iterations=1000 --threads=10
 
 #参数说明：
-#Parameter description
+# Parameter description
 #--iterations: Number of iterations for the statistical analysis [1000]
 #--threads: Number of threads to use. >=1
 #--counts-data: [ensembl | gene_name | hgnc_symbol] Type of gene identifiers in the counts data，表达矩阵中基因的identifier（identifier of genes in the expression matrix）

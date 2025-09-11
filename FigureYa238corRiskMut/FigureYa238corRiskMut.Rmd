@@ -401,7 +401,7 @@ ggsave(filename = "scatter and boxplot for non-synonymous mutation counts.pdf", 
 ```
 
 # 图B
-# image B
+# Image B
 
 Forest plot of genes mutating differentially in patients of the low- and the high-TMErisk groups. 
 
@@ -426,7 +426,7 @@ invisible(dev.off())
 ![](forestplot.pdf)
 
 # 图C
-#image C
+# Image C
 
 Interaction effect of genes mutating differentially in patients in the low- and the high-TMErisk groups. 
 

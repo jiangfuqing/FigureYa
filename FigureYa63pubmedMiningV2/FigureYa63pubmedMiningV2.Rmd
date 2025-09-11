@@ -16,14 +16,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 通过API检索NCBI的Pubmed数据库，批量获得文章信息，整理出摘要里基因的词频。
 
 NCBI's Pubmed database is searched through the API to obtain article information in bulk and organize the word frequencies of the genes in the abstracts.
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 - 老板交给我的这个基因好陌生，用这套代码跑出表格，一眼望去，发现它的好朋友我都很熟，于是，熟悉的思路、方法都能用上了。
 - 文章做到第三部分卡住了，我的基因到底调控了谁，或者谁调控了它，或者它跟谁是好朋友一同发挥作用？用这套代码跑出表格，一眼望去，发现目的基因跟我熟悉的一类分子一同出现在某篇文章的摘要里，我们实验室有非常完善的研究这类分子的实验体系，接下来就瞄准这个分子了。
@@ -53,7 +53,7 @@ It contains three modules that are relatively independent and can be run separat
 [Module 3] **Find a good friend from the abstract**
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 使用国内镜像安装包
 
@@ -122,7 +122,7 @@ head(HGNCdata)
 
 
 ## 参数设置
-## parameter setting
+## Parameter setting
 
 在这里设置检索词、检索的文章发表时间范围
 
@@ -285,10 +285,10 @@ pre.result <- entrez_search(db="pubmed", term=term, retmode = "xml", retmax = 0)
 pre.result$count 
 
 #返回所有检索到的结果
-#return all retrieved results
-#result <- entrez_search(db="pubmed", term=term, retmode = "xml", retmax = pre.result$count)
+# Return all retrieved results
+# Result <- entrez_search(db="pubmed", term=term, retmode = "xml", retmax = pre.result$count)
 #此处返回前200条记录
-#return the first 200 records here
+# Return the first 200 records here
 result <- entrez_search(db="pubmed", term=term, retmode = "xml", retmax = 200)
 ```
 
