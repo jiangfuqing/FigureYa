@@ -81,7 +81,7 @@ xtitle="mRNA expression"
 ylefttitle="miRNA"
 yrighttitle="cg10586317"
 
-##Aspect ration of picture，图的宽高比例
+## Aspect ration of picture，图的宽高比例
 AspectRatio = 5/2
 ```
 
