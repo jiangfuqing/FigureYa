@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 利用纯化细胞系计算免疫相关指数的计算方法，想学习框里的这个复现方法
 
-#Requirement description
+# Requirement description
 
 I want to learn the replication method in the box for calculating immune related indices using purified cell lines
 
@@ -39,7 +39,7 @@ A prognostic signature by focusing tumor-infiltrating immune-related lncRNAs (TI
 
 从表达数据鉴定肿瘤免疫浸润相关lncRNA。
 
-#Application scenarios
+# Application scenarios
 
 Identify tumor immune infiltration related lncRNAs from expression data.
 
@@ -47,7 +47,7 @@ Identify tumor immune infiltration related lncRNAs from expression data.
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -59,9 +59,9 @@ options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
 options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 # 下载DealGPL570，下载地址https://cran.r-project.org/src/contrib/Archive/DealGPL570/
-# DealGPL570 package version 2.0 will report errors during operation, so I installed version 1.0 locally. 
-# Place the compressed package DealGPL570_0.0.1.tar.gz in the current working directory. 
-# In Rstudio, click Install in the lower right corner, select the second option for "Install from", 
+# DealGPL570 package version 2.0 will report errors during operation, so I installed version 1.0 locally.
+# Place the compressed package DealGPL570_0.0.1.tar.gz in the current working directory.
+# In Rstudio, click Install in the lower right corner, select the second option for "Install from",
 # click Browse and select DealGPL570_0.0.1.tar.gz, then click Install.
 # Or install from the command line
 # 从本地源安装DealGPL570包（Install the DealGPL570 package from a local source）
@@ -75,9 +75,9 @@ library packages
 ```{r}
 # 加载DealGPL570包，用于处理GPL570平台的表达谱数据（Load the DealGPL570 package to process expression profile data from the GPL570 platform）
 # 由于所有免疫细胞系的表达谱数据均来自GPL570平台([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array)，因此这里使用DealGPL570包来处理GPL570平台的表达谱数据。
-# Since the expression profile data of all immune cell lines are from the GPL570 platform ([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array), 
+# Since the expression profile data of all immune cell lines are from the GPL570 platform ([HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array),
 # the DealGPL570 package is used here to process the expression profile data from the GPL570 platform.
-library(DealGPL570) 
+library(DealGPL570)
 
 # 加载字符串处理包（Load the string processing package）
 library(stringr)
@@ -99,10 +99,10 @@ library(survival)
 library(rtracklayer)
 
 # 设置环境变量，显示英文报错信息（Set environment variable to display English error messages）
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止将字符向量自动转换为因子类型（Disable automatic conversion of character vectors to factors）
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 # 输入文件
@@ -114,9 +114,9 @@ options(stringsAsFactors = FALSE)
 包括19种免疫细胞系表达谱数据，GENECODE注释文件，RefSeq注释文件。
 CCLE表达谱数据，TCGA胃癌表达谱数据和临床数据，count数据转换为TPM数据的参考数据集。
 
-#Input file
+# Input file
 
-##Data collection
+## Data collection
 
 The large data used in the article has been uploaded to Baidu Cloud, link:< https://pan.baidu.com/s/1mpYgfy1cCZPQPzmkv4VQDA >Extract code: ibzk.
 
@@ -125,7 +125,7 @@ The reference dataset for converting CCLE expression profile data, TCGA gastric 
 
 ## 来自GEO的表达数据处理
 
-##Expression data processing from GEO
+## Expression data processing from GEO
 
 ```{r}
 # 使用DealGPL570处理16个表达谱数据，包含114个细胞系，19种免疫细胞类型
@@ -189,7 +189,7 @@ for (i in ls(pattern = "^GSE")) {
 }
 
 # 从PMID: 28052254文献的补充材料中（文件名:1-s2.0-S2211124716317090-mmc3.xlsx）提取每个样本对应的细胞类型，整理后的文件命名为Immune_cell_line.txt
-# Extract the cell type corresponding to each sample from the supplementary materials of the literature PMID: 28052254 
+# Extract the cell type corresponding to each sample from the supplementary materials of the literature PMID: 28052254
 # (file name: 1-s2.0-S2211124716317090-mmc3.xlsx), and name the organized file Immune_cell_line.txt
 # 读取注释信息（Read annotation information）
 ann <- read.table("Immune_cell_line.txt",header=T,sep="\t",quote="",check.name=F)
@@ -211,16 +211,16 @@ for (j in ls(pattern = "^GSE")) {
 }
 
 # 将数据合并（Merge the data）
-data <- cbind(GSE13906, GSE23371, GSE25320, GSE27291, GSE27838, GSE28490, GSE28698, 
-            GSE28726, GSE37750, GSE39889, GSE42058, GSE49910, GSE51540, 
+data <- cbind(GSE13906, GSE23371, GSE25320, GSE27291, GSE27838, GSE28490, GSE28698,
+            GSE28726, GSE37750, GSE39889, GSE42058, GSE49910, GSE51540,
             GSE59237, GSE6863, GSE8059)
 
 # 主成分分析查看数据集间批次效应
 # Perform principal component analysis to check batch effects between datasets
 source("batchPCA.R")
-batchPCA(indata = t(scale(t(data))), 
-         batch = rep(c("GSE13906", "GSE23371", "GSE25320", "GSE27291", "GSE27838", "GSE28490", "GSE28698", 
-                       "GSE28726", "GSE37750", "GSE39889", "GSE42058", "GSE49910", "GSE51540", 
+batchPCA(indata = t(scale(t(data))),
+         batch = rep(c("GSE13906", "GSE23371", "GSE25320", "GSE27291", "GSE27838", "GSE28490", "GSE28698",
+                       "GSE28726", "GSE37750", "GSE39889", "GSE42058", "GSE49910", "GSE51540",
                        "GSE59237", "GSE6863", "GSE8059"),
                      times=c(2,3,4,8,8,5,2,14,8,4,4,26,9,10,3,4)),
          fig.dir = ".",
@@ -232,8 +232,8 @@ batchPCA(indata = t(scale(t(data))),
          pos = "bottomright")
 
 # 去除批次效应（Remove batch effects）
-batch <- data.frame(batch = rep(c("GSE13906", "GSE23371", "GSE25320", "GSE27291", "GSE27838", "GSE28490", "GSE28698", 
-                                "GSE28726", "GSE37750", "GSE39889", "GSE42058", "GSE49910", "GSE51540", 
+batch <- data.frame(batch = rep(c("GSE13906", "GSE23371", "GSE25320", "GSE27291", "GSE27838", "GSE28490", "GSE28698",
+                                "GSE28726", "GSE37750", "GSE39889", "GSE42058", "GSE49910", "GSE51540",
                                 "GSE59237", "GSE6863", "GSE8059"),
                               times=c(2,3,4,8,8,5,2,14,8,4,4,26,9,10,3,4)))
 modcombat <- model.matrix(~1,data = batch)
@@ -244,8 +244,8 @@ write.table(data_combat,"data_combat.txt",quote = F,row.names = T,col.names = T,
 
 # 批次效应校正后的主成分分析（Principal component analysis after batch effect correction）
 batchPCA(indata = t(scale(t(data_combat))),
-         batch = rep(c("GSE13906", "GSE23371", "GSE25320", "GSE27291", "GSE27838", "GSE28490", "GSE28698", 
-                       "GSE28726", "GSE37750", "GSE39889", "GSE42058", "GSE49910", "GSE51540", 
+         batch = rep(c("GSE13906", "GSE23371", "GSE25320", "GSE27291", "GSE27838", "GSE28490", "GSE28698",
+                       "GSE28726", "GSE37750", "GSE39889", "GSE42058", "GSE49910", "GSE51540",
                        "GSE59237", "GSE6863", "GSE8059"),
                      times=c(2,3,4,8,8,5,2,14,8,4,4,26,9,10,3,4)),
          fig.dir = ".",
@@ -259,7 +259,7 @@ batchPCA(indata = t(scale(t(data_combat))),
 
 ## 提取lncRNA表达谱数据
 
-##Extract lncRNA expression profile data
+## Extract lncRNA expression profile data
 
 ```{r}
 # 提取lncRNA表达谱数据（Extract lncRNA expression profile data）
@@ -290,7 +290,7 @@ write.table(data_lncRNA, "explncRNA_114line.txt", col.names = T, row.names = T, 
 
 # 对每个免疫细胞系的lncRNA进行排序
 
-#Sort the lncRNAs of each immune cell line
+# Sort the lncRNAs of each immune cell line
 
 ```{r}
 # 提取lncRNA表达谱数据的免疫细胞系注释信息（Extract annotation information of immune cell lines for lncRNA expression profile data）
@@ -307,7 +307,7 @@ mean_lncRNA$CellType <- ann_114$Population  # 添加细胞类型注释列（Add 
 CellType <- ann_114$Population  # 存储细胞类型向量（Store cell type vector）
 
 # 按细胞类型聚合表达值并计算均值（Aggregate expression values by cell type and calculate mean）
-mean_lncRNA <- aggregate(mean_lncRNA, by = list(CellType), FUN = mean)  # 
+mean_lncRNA <- aggregate(mean_lncRNA, by = list(CellType), FUN = mean)  #
 # by=list(CellType)：按CellType列分组（Group by CellType column）
 # FUN=mean：对每组计算均值（Calculate mean for each group）
 
@@ -320,7 +320,7 @@ top_outTab <- data.frame()  # 创建空数据框存储排序结果（Create empt
 
 for (m in c(seq(0.01, 1, 0.01))) {  # 按1%间隔遍历阈值（Traverse thresholds at 1% intervals）
   outTab <- data.frame(ID = 1:(nrow(rank_lncRNA) * m))  # 初始化每行阈值对应的空表（Initialize empty table for each threshold）
-  
+
   # 对每种免疫细胞系中的lncRNA表达值进行降序排列（Descending sort of lncRNA expression values for each cell line）
   for (i in 1:ncol(rank_lncRNA)) {
     top <- rownames(rank_lncRNA[order(rank_lncRNA[, i], decreasing = T), ])[1:(nrow(rank_lncRNA) * m)]
@@ -329,7 +329,7 @@ for (m in c(seq(0.01, 1, 0.01))) {  # 按1%间隔遍历阈值（Traverse thresho
     outTab[, i] <- top  # 将排序结果存入表中（Store ranking results in table）
   }
   colnames(outTab) <- colnames(rank_lncRNA)  # 设置列名为细胞类型（Set column names as cell types）
-  
+
   # 方法1：提取19种细胞系的共有lncRNA（交集）（Method 1: Extract common lncRNA across 19 cell lines (intersection)）
   inter <- Reduce(intersect, list(
     v1 = outTab[, 1], v2 = outTab[, 2], v3 = outTab[, 3], v4 = outTab[, 4], v5 = outTab[, 5],
@@ -338,7 +338,7 @@ for (m in c(seq(0.01, 1, 0.01))) {  # 按1%间隔遍历阈值（Traverse thresho
     v16 = outTab[, 16], v17 = outTab[, 17], v18 = outTab[, 18], v19 = outTab[, 19]
   ))
   # Reduce(intersect, list(...))：对所有细胞系的top基因取交集（Intersect top genes across all cell lines）
-  
+
   # 方法2：提取19种细胞系的共有lncRNA（并集）（Method 2: Extract common lncRNA across 19 cell lines (union)）
   union <- Reduce(union, list(
     v1 = outTab[, 1], v2 = outTab[, 2], v3 = outTab[, 3], v4 = outTab[, 4], v5 = outTab[, 5],
@@ -347,11 +347,11 @@ for (m in c(seq(0.01, 1, 0.01))) {  # 按1%间隔遍历阈值（Traverse thresho
     v16 = outTab[, 16], v17 = outTab[, 17], v18 = outTab[, 18], v19 = outTab[, 19]
   ))
   # Reduce(union, list(...))：对所有细胞系的top基因取并集（Union top genes across all cell lines）
-  
+
   # 合并结果（Merge results）
   union <- data.frame(top_index = rep(m, length(union)), gene = union)  # 构建并集结果表（Build union result table）
   top_outTab <- rbind(union, top_outTab)  # 按行合并结果（Row-wise merge results）
-  
+
   # （交集方法的代码已注释，如需使用请取消注释下方两行）
   # inter <- data.frame(top_index = rep(m, length(inter)), gene = inter)
   # top_outTab <- rbind(inter, top_outTab)
@@ -367,7 +367,7 @@ head(top_outTab)  # 查看结果前几行（View first few rows of results）
 
 则原文公式中的X(A,i)值分别为(1-1)/(5-1)=0,(2-1)/(5-1)=0.25,(3-1)/(5-1)=0.5,(4-1)/(5-1)=0.75,(5-1)/(5-1)=1
 
-#Calculate TSI and extract ihk lnc
+# Calculate TSI and extract ihk lnc
 
 To calculate TSI, we need to explain the calculation idea of TSI. For example, the expression values of lncRNA (named A) in five immune cell lines are 1, 2, 3, 4, and 5, respectively
 
@@ -382,7 +382,7 @@ for (n in unique(top_outTab$top_index)) {  # 遍历所有唯一的阈值（Trave
   # 对前1%到100%的lncRNA进行TSI计算（Calculate TSI for lncRNA from top 1% to 100%）
   TSI <- data.frame(TSI = top_outTab[which(top_outTab$top_index == n), "gene"])  # 提取当前阈值下的lncRNA（Extract lncRNA under current threshold）
   rownames(TSI) <- TSI$TSI  # 设置行名为lncRNA名称（Set row names as lncRNA names）
-  
+
   # 实现TSI计算公式（Implement TSI calculation formula）
   for (j in top_outTab[which(top_outTab$top_index == n), "gene"]) {  # 遍历每个lncRNA（Traverse each lncRNA）
     y <- 0  # 初始化累加变量（Initialize accumulation variable）
@@ -395,7 +395,7 @@ for (n in unique(top_outTab$top_index)) {  # 遍历所有唯一的阈值（Trave
     TSI[j, 1] <- y / (ncol(rank_lncRNA) - 1)  # 计算TSI值（Calculate TSI value）
     # TSI = 累加和 / (细胞类型数量 - 1)
   }
-  
+
   TSI$gene <- rownames(TSI)  # 添加lncRNA名称列（Add lncRNA name column）
   # 合并阈值信息和TSI结果（Merge threshold information and TSI results）
   TSI <- merge(top_outTab[which(top_outTab$top_index == n), ], TSI, by = "gene")
@@ -417,7 +417,7 @@ ihk_lnc <- unique(tsi_0.4$gene)  # 去重得到ihk-lnc（Remove duplicates to ge
 
 # 筛选TILncRNA
 
-#Screening TILncRNA
+# Screening TILncRNA
 
 ```{r}
 # 读取lncRNA表达谱数据（Read lncRNA expression profile data）
@@ -484,9 +484,9 @@ write.table(DEG, "output_DEG.txt",
 TILncRNA <- DEG$symbol
 ```
 
-# 构建TILSig打分 
+# 构建TILSig打分
 
-#Build TILSig scoring system
+# Build TILSig scoring system
 
 ```{r}
 # 读取TCGA表达谱数据（包含226个癌症样本和22个正常样本，预后分析仅用癌症样本）
@@ -525,7 +525,7 @@ for (i in colnames(unicox[, 3:ncol(unicox)])) {  # 遍历所有基因列
   # Fit Cox proportional hazards model (Surv(OS time, OS status) ~ gene expression)
   cox <- coxph(Surv(OStime, OSstat) ~ unicox[, i], data = unicox)
   coxSummary <- summary(cox)  # 获取模型汇总结果
-  
+
   # 提取关键指标：HR、95%置信区间、p值
   # Extract key metrics: HR, 95% confidence interval, p-value
   coxP <- coxSummary$coefficients[,"Pr(>|z|)"]

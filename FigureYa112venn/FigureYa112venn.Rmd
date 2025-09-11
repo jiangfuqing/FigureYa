@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 venny<http://bioinfogp.cnb.csic.es/tools/venny/>，新出来个选项，颜色填充by%，然而只能填充灰色，我想要彩色，而且venny只能保存成png，我想要pdf矢量图。没有现成的R包能直接实现这样的按百分比填充颜色的效果。输入四个基因列表，画出venn图。
 
-##Requirement description
+## Requirement description
 
 venny< http://bioinfogp.cnb.csic.es/tools/venny/ >A new option has been introduced, color filling by%, but only gray can be filled. I want color, and Venny can only save as PNG. I want a PDF vector image. There is no ready-made R package that can directly achieve the effect of filling colors by percentage. Enter four gene lists and draw a Venn diagram.
 
@@ -35,7 +35,7 @@ from<http://bioinfogp.cnb.csic.es/tools/venny/>
 
 展示4组元素（例如差异表达基因）数量重叠，数量多颜色深，数量少颜色浅，一目了然。
 
-##Application scenarios
+## Application scenarios
 
 Display 4 groups of elements (such as differentially expressed genes) with overlapping quantities, with darker colors for larger quantities and lighter colors for smaller quantities, making it clear at a glance.
 
@@ -43,7 +43,7 @@ Display 4 groups of elements (such as differentially expressed genes) with overl
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -89,17 +89,17 @@ library(tibble)
 library(tidyr)
 
 # 设置英文环境以显示英文报错信息（Set English environment to display English error messages）
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止字符串自动转换为因子类型（Disable automatic conversion of strings to factors）
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
 
 四个基因列表文件，每个文件中是这组内的所有基因名。
 
-##Input file
+## Input file
 
 Four gene list files, each containing the names of all genes within this group.
 
@@ -136,34 +136,34 @@ Below, we will use the colorfulVennPlot package to draw Venn diagrams, which is 
 
 ```
 plotVenn4d(x, labels = c('A','B','C','D'),
-  Colors = c('red', 'yellow', 'green', 'pink','darkgreen','blue','lightblue','tan', 
+  Colors = c('red', 'yellow', 'green', 'pink','darkgreen','blue','lightblue','tan',
   'yellowgreen','orange','purple','white','grey','plum','brown'),
   Title = NULL, shrink = 1, rot=45)
 ```
 
-**参数解释：**    
+**参数解释：**
 
-* `x`, 一个带有`names`属性的数字向量，其长度与韦恩图中**子区域**数量一致,   
-  通常用数字代表**子区域**中元素的数量。    
-  其名称属性为`0`与`1`的组合的字符串，`1`表示在韦恩图中某个类别为**肯定**，`0`表示否定。  
-  如`"1010"`表示在左起第1个椭圆内，且在左起第3个椭圆内，且不在左起第2个或第4个椭圆内。  
-* `labels`, 表示指定椭圆的标签，从左到右排列，字符串向量指定。  
-* `Colors`, 表示指定**子区域**的fill颜色，顺序与`x`一一对应。  
-* `rot`, 表示指定韦恩图的旋转角度。  
-* `Title`, 表示指定标题。  
+* `x`, 一个带有`names`属性的数字向量，其长度与韦恩图中**子区域**数量一致,
+  通常用数字代表**子区域**中元素的数量。
+  其名称属性为`0`与`1`的组合的字符串，`1`表示在韦恩图中某个类别为**肯定**，`0`表示否定。
+  如`"1010"`表示在左起第1个椭圆内，且在左起第3个椭圆内，且不在左起第2个或第4个椭圆内。
+* `labels`, 表示指定椭圆的标签，从左到右排列，字符串向量指定。
+* `Colors`, 表示指定**子区域**的fill颜色，顺序与`x`一一对应。
+* `rot`, 表示指定韦恩图的旋转角度。
+* `Title`, 表示指定标题。
 
 下面将根据`plotVenn4d`的特点构造数据：
 
-* 计算**子区域**编号。  
-* 根据**子区域**编号计算各个**子区域**中元素的数量。  
-* 计算**子区域**的数量占所有区域数量之和的**百分比**。    
-* 根据**百分比**构造颜色向量。  
+* 计算**子区域**编号。
+* 根据**子区域**编号计算各个**子区域**中元素的数量。
+* 计算**子区域**的数量占所有区域数量之和的**百分比**。
+* 根据**百分比**构造颜色向量。
 
 Parameter explanation: x is a numerical vector with the name attribute, whose length is consistent with the number of subregions in the Venn diagram, and is usually represented by numbers to indicate the number of elements in the subregions. A string whose name attribute is a combination of 0 and 1, where 1 represents a positive category in the Venn diagram and 0 represents a negative category. For example, "1010" indicates that it is within the first ellipse from the left, within the third ellipse from the left, and not within the second or fourth ellipse from the left. labels, Indicate the label of the specified ellipse, arranged from left to right, with a string vector specified. Colors, Indicate the fill color of the specified subregion, in order corresponding to x one by one. rot, Indicates the rotation angle of the specified Venn diagram. Title, Indicate the specified title. The following will construct data based on the characteristics of plotFenn4d: calculate the subregion number. Calculate the number of elements in each subregion based on the subregion number. Calculate the percentage of the number of subregions to the sum of all regions. Construct color vectors based on percentages.
 
 ## 计算子区域元素数量、百分比
 
-##Calculate the number and percentage of elements in the subregion
+## Calculate the number and percentage of elements in the subregion
 
 ```{r}
 # 计算子区域数量（Calculate the number of sub-regions）
@@ -189,27 +189,27 @@ x_area <- seq(number_area) %>% map(., ~intToBin(.x)) %>%  # 转换为二进制�
   map_chr(., ~str_pad(.x, width = length(data_ls), side = "left", pad = "0"))  # 左侧补零（Pad with zeros on the left）
 ```
 
-**计算子区域中元素的数量、百分比：**    
+**计算子区域中元素的数量、百分比：**
 
 **Calculate the number and percentage of elements in the subregion:**
 
 ```{r}
 # 计算所有数据集的并集（Calculate the union of all datasets）
-G_union <- data_ls$G1 %>% union(data_ls$G2) %>% 
+G_union <- data_ls$G1 %>% union(data_ls$G2) %>%
   union(data_ls$G3) %>% union(data_ls$G4)
 
 # 自定义函数：计算特定子区域中的元素（Custom function: Calculate elements in a specific sub-region）
 area_calculate <- function(data_ls, character_area){
   # 将二进制编码转换为逻辑向量（Convert binary code to logical vector）
-  character_num <- 1:4 %>% map_chr(., ~substr(character_area, .x, .x)) %>% 
+  character_num <- 1:4 %>% map_chr(., ~substr(character_area, .x, .x)) %>%
     as.integer() %>% as.logical()
-  
+
   # 初始化元素集合为并集（Initialize element set as the union）
   element_alone <- G_union
-  
+
   # 对每个数据集进行交集或差集运算（Perform intersection or difference operations for each dataset）
   for (i in 1:4) {
-    element_alone <- 
+    element_alone <-
       if (character_num[i]) {
         intersect(element_alone, data_ls[[i]])  # 如果编码位为1，则取交集（If code bit is 1, take intersection）
       } else {
@@ -232,11 +232,11 @@ percent_area <- (percent_area * 100) %>% paste0("%")  # 转换为百分比格式
 
 ## 计算每个区域的颜色
 
-使用`RColorBrewer`中的色板构造颜色向量。  
+使用`RColorBrewer`中的色板构造颜色向量。
 
-##Calculate the color of each region
+## Calculate the color of each region
 
-Construct color vectors using the palette in RColorBrewer.   
+Construct color vectors using the palette in RColorBrewer.
 
 ```{r}
 # 计算色板长度（Calculate the length of the color palette）
@@ -250,22 +250,22 @@ color_area <- colorRampPalette(brewer.pal(n = 7, name = "YlGn"))(length_pallete)
 
 # 创建颜色映射表（Create color mapping table）
 color_tb <- tibble(quantity = seq(min(quantity_area), max(quantity_area), by = 1),
-                   color = color_area) 
+                   color = color_area)
 
 # 数据整理与颜色映射（Data organization and color mapping）
 # 按元素数量分组并嵌套数据（Group and nest data by element count）
 # 连接颜色映射表（Join color mapping table）
 # 按数量排序并展开数据（Sort by quantity and unnest data）
-nest1 <- tibble(quantity = quantity_area, percent = percent_area, area = x_area) %>% 
-  group_by(quantity) %>% nest() %>% 
-  left_join(color_tb, by = "quantity") %>% 
-  arrange(quantity) %>% 
+nest1 <- tibble(quantity = quantity_area, percent = percent_area, area = x_area) %>%
+  group_by(quantity) %>% nest() %>%
+  left_join(color_tb, by = "quantity") %>%
+  arrange(quantity) %>%
   unnest()
 ```
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r}
 # 准备Venn图数据：显示数量（Prepare Venn diagram data: Show quantities）
@@ -281,7 +281,7 @@ plot.new()  # 初始化绘图（Initialize plotting）
 # Colors: 颜色映射（Color mapping）
 # Title: 标题（Title）
 # labels: 各组标签（Labels for each group）
-plotVenn4d(regions, Colors = nest1$color, Title = "", 
+plotVenn4d(regions, Colors = nest1$color, Title = "",
            labels = paste0("G", 1:4)) # 标签顺序与输入文件对应（Labels correspond to input files）
 dev.off()  # 关闭绘图设备以保存文件（Close plotting device to save file）
 
@@ -292,7 +292,7 @@ names(regions) <- nest1$area
 # 创建百分比版本的Venn图（Create percentage version of Venn diagram）
 CairoPDF(file = "venn_percent.pdf", width = 8, height = 6)
 plot.new()  # 初始化绘图（Initialize plotting）
-plotVenn4d(regions, Colors = nest1$color, Title = "", 
+plotVenn4d(regions, Colors = nest1$color, Title = "",
            labels = paste0("G", 1:4)) # 标签顺序与输入文件对应（Labels correspond to input files）
 dev.off()  # 关闭绘图设备以保存文件（Close plotting device to save file）
 ```
@@ -303,19 +303,19 @@ dev.off()  # 关闭绘图设备以保存文件（Close plotting device to save f
 
 ---
 
-**参考来源：**    
+**参考来源：**
 
-* [一些漂亮的venn图](https://www.cnblogs.com/xianghang123/archive/2013/03/25/2980623.html)   
-* [如何使用R来绘制韦恩图（Venn Diagram）](http://blog.sciencenet.cn/home.php?mod=space&uid=2985160&do=blog&id=957210)  
-* [用 R 的 venn 包画五组数据的文氏图](https://nachtzug.xyz/2019/01/19/venn-diagram-with-R-venn-package/)  
-* [R语言画维恩图--VennDiagram](https://www.jianshu.com/p/a653ea616407)   
-* [R语言基础绘图——韦恩图](https://shengxin.ren/article/130)   
-* [详解R语言画韦恩图](https://blog.csdn.net/u011808596/article/details/80974250)   
-* [colorfulVennPlot](https://github.com/BITS-VIB/venn-tools)   
-* [colorfulVennPlot源代码](https://github.com/cran/colorfulVennPlot/tree/master/R)   
-* [数字转二进制](https://stackoverflow.com/questions/12088080/how-to-convert-integer-number-into-binary-vector)   
+* [一些漂亮的venn图](https://www.cnblogs.com/xianghang123/archive/2013/03/25/2980623.html)
+* [如何使用R来绘制韦恩图（Venn Diagram）](http://blog.sciencenet.cn/home.php?mod=space&uid=2985160&do=blog&id=957210)
+* [用 R 的 venn 包画五组数据的文氏图](https://nachtzug.xyz/2019/01/19/venn-diagram-with-R-venn-package/)
+* [R语言画维恩图--VennDiagram](https://www.jianshu.com/p/a653ea616407)
+* [R语言基础绘图——韦恩图](https://shengxin.ren/article/130)
+* [详解R语言画韦恩图](https://blog.csdn.net/u011808596/article/details/80974250)
+* [colorfulVennPlot](https://github.com/BITS-VIB/venn-tools)
+* [colorfulVennPlot源代码](https://github.com/cran/colorfulVennPlot/tree/master/R)
+* [数字转二进制](https://stackoverflow.com/questions/12088080/how-to-convert-integer-number-into-binary-vector)
 
-##Post processing
+## Post processing
 
 The output PDF is a vector image, which can be opened with software such as Illustrator and adjusted for font size.
 
@@ -323,15 +323,15 @@ The output PDF is a vector image, which can be opened with software such as Illu
 
 **Reference source:**
 
-*[Some beautiful Venn pictures]（ https://www.cnblogs.com/xianghang123/archive/2013/03/25/2980623.html )   
-*How to use R to draw Venn Diagram（ http://blog.sciencenet.cn/home.php?mod=space&uid=2985160&do=blog&id=957210 )  
-*[Draw Venn diagrams of five sets of data using R's Venn package]（ https://nachtzug.xyz/2019/01/19/venn-diagram-with-R-venn-package/ )  
-*[R Language Drawing VennDiagram]（ https://www.jianshu.com/p/a653ea616407 )   
-*[Basic Drawing of R Language - Wayne Diagram]（ https://shengxin.ren/article/130 )   
-*[Detailed explanation of R language drawing Wayne diagram]（ https://blog.csdn.net/u011808596/article/details/80974250 )   
-* [colorfulVennPlot]( https://github.com/BITS-VIB/venn-tools )   
-*[ColorfulVennPlot Source Code]（ https://github.com/cran/colorfulVennPlot/tree/master/R )   
-*[Convert numbers to binary]（ https://stackoverflow.com/questions/12088080/how-to-convert-integer-number-into-binary-vector )   
+*[Some beautiful Venn pictures]（ https://www.cnblogs.com/xianghang123/archive/2013/03/25/2980623.html )
+*How to use R to draw Venn Diagram（ http://blog.sciencenet.cn/home.php?mod=space&uid=2985160&do=blog&id=957210 )
+*[Draw Venn diagrams of five sets of data using R's Venn package]（ https://nachtzug.xyz/2019/01/19/venn-diagram-with-R-venn-package/ )
+*[R Language Drawing VennDiagram]（ https://www.jianshu.com/p/a653ea616407 )
+*[Basic Drawing of R Language - Wayne Diagram]（ https://shengxin.ren/article/130 )
+*[Detailed explanation of R language drawing Wayne diagram]（ https://blog.csdn.net/u011808596/article/details/80974250 )
+* [colorfulVennPlot]( https://github.com/BITS-VIB/venn-tools )
+*[ColorfulVennPlot Source Code]（ https://github.com/cran/colorfulVennPlot/tree/master/R )
+*[Convert numbers to binary]（ https://stackoverflow.com/questions/12088080/how-to-convert-integer-number-into-binary-vector )
 
 ```{r}
 sessionInfo()

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 计算免疫浸润跟基因的相关性，画图。
 
-#Requirement description
+# Requirement description
 
 Calculate the correlation between immune infiltration and genes and draw a graph.
 
@@ -41,7 +41,7 @@ The original crowdfunding was due to the idea of Guozi, which showed the relatio
 
 from<https://s3-us-west-1.amazonaws.com/paperchase-aging/pdf/GpDPdC6dMaFhzrxao.pdf>
 
-Figure  5.  Validation  of  hub  genes  and  PPI  map  construction.  (A)  Relationship  between  10  hub  genes  expression  and  CD8+  T  cell  infiltration  level;  P  <  0.05  is  considered  statistically  significant.  (B)  Scatter  plot  of  CCL5 expression  and  CD8+ T  cell  infiltration  level.  
+Figure  5.  Validation  of  hub  genes  and  PPI  map  construction.  (A)  Relationship  between  10  hub  genes  expression  and  CD8+  T  cell  infiltration  level;  P  <  0.05  is  considered  statistically  significant.  (B)  Scatter  plot  of  CCL5 expression  and  CD8+ T  cell  infiltration  level.
 
 ![](example3.png)
 
@@ -59,7 +59,7 @@ Fig. 3 Construction of a prognostic immune-related gene signature. g ssGSEA reve
 
 在“小丫画图”公众号回复“R2”查看类似的图在文章里的用法。
 
-#Application scenarios
+# Application scenarios
 
 Evaluate the impact of genes on immune infiltration, and even write it as a cycle to batch screen candidate genes that affect immune infiltration.
 
@@ -71,7 +71,7 @@ Reply "R2" on the "Xiaoya Painting" official account to check the usage of simil
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -92,26 +92,26 @@ install.packages("ggstatsplot")
 library packages
 
 ```{r}
-# 加载数据可视化和统计分析相关的包  
-# Load packages for data visualization and statistical analysis  
-library(ggstatsplot)  # 用于ggplot2扩展的统计可视化  
-# Package for extended statistical visualization based on ggplot2  
-library(data.table)   # 高性能数据处理  
-# Package for high-performance data processing  
-library(dplyr)        # 数据操作工具  
-# Package for data manipulation operations  
-library(tidyr)        # 数据整理工具  
-# Package for data tidying and reshaping  
-library(ggplot2)      # 强大的绘图系统  
-# Powerful plotting system  
+# 加载数据可视化和统计分析相关的包
+# Load packages for data visualization and statistical analysis
+library(ggstatsplot)  # 用于ggplot2扩展的统计可视化
+# Package for extended statistical visualization based on ggplot2
+library(data.table)   # 高性能数据处理
+# Package for high-performance data processing
+library(dplyr)        # 数据操作工具
+# Package for data manipulation operations
+library(tidyr)        # 数据整理工具
+# Package for data tidying and reshaping
+library(ggplot2)      # 强大的绘图系统
+# Powerful plotting system
 
 
-# 环境设置  
-# Environment settings  
-Sys.setenv(LANGUAGE = "en")  # 设置英文报错信息，便于问题排查  
-# Set error messages to English for easier troubleshooting  
-options(stringsAsFactors = FALSE)  # 禁止字符串自动转换为因子，避免意外的数据类型转换  
-# Disable automatic conversion of strings to factors to avoid unexpected data type conversion  
+# 环境设置
+# Environment settings
+Sys.setenv(LANGUAGE = "en")  # 设置英文报错信息，便于问题排查
+# Set error messages to English for easier troubleshooting
+options(stringsAsFactors = FALSE)  # 禁止字符串自动转换为因子，避免意外的数据类型转换
+# Disable automatic conversion of strings to factors to avoid unexpected data type conversion
 ```
 
 # 输入文件
@@ -121,7 +121,7 @@ options(stringsAsFactors = FALSE)  # 禁止字符串自动转换为因子，避�
 - ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本，由FigureYa71ssGSEA产生。在FigureYa71ssGSEA读取文件的命令行里添加`check.names = F`，避免行名TCGA id的“-”变成“.”。列也可以是基因，即基因表达矩阵。
 - easy_input_expr.txt，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。另外，作者还提供了从TCGA表达矩阵（例如not_easy_input_expr.txt）提取某一基因表达谱的代码，见pick1gene.R文件。
 
-#Input file
+# Input file
 
 Request that the sample names of the two files be consistent
 
@@ -172,7 +172,7 @@ tcga_gsva <- tcga_gsva[colnames(tcga_expr), ]
 # ---------------------- Data preprocessing ---------------------- #
 # 提取基因表达矩阵的行名（基因ID）
 # Extract row names (gene IDs) from the gene expression matrix
-index <- rownames(tcga_expr) 
+index <- rownames(tcga_expr)
 # 将基因表达量转换为数值型向量（若存在非数值数据会触发警告）
 # Convert gene expression values to a numeric vector (warnings will be triggered if non-numeric data exists)
 y <- as.numeric(tcga_expr)
@@ -185,7 +185,7 @@ head(y)
 
 进行spearman相关性分析，返回相关性系数和p值
 
-#The correlation between genes and immune cells
+# The correlation between genes and immune cells
 
 Perform Spearman correlation analysis, return correlation coefficient and p-value
 
@@ -204,11 +204,11 @@ for (i in 1:length(colnames)) {
   # 对第i个免疫细胞的富集度向量与基因表达向量进行相关性检验
   # Perform correlation test between the enrichment vector of the i-th immune cell and the gene expression vector
   test <- cor.test(as.numeric(tcga_gsva[, i]), y, method = "spearman")
-  
+
   # 提取相关系数（存储至数据框第2列）
   # Extract correlation coefficient (stored in the 2nd column of the dataframe)
-  data[i, 2] <- test$estimate                                            
-  
+  data[i, 2] <- test$estimate
+
   # 提取P值（存储至数据框第3列）
   # Extract p-value (stored in the 3rd column of the dataframe)
   data[i, 3] <- test$p.value
@@ -231,7 +231,7 @@ write.table(data, "output_cor.txt", sep = "\t", quote = F, row.names = F)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r,message=FALSE, warning=FALSE}
 # 读取预先计算好的相关性结果文件（需确保文件格式与output_cor.txt一致）
@@ -243,10 +243,10 @@ head(data)
 
 # 使用ggplot2绘制棒棒糖图（展示基因与免疫细胞的相关性）
 # Use ggplot2 to create a lollipop plot (show the correlation between genes and immune cells)
-data %>% 
+data %>%
   # 筛选显著性结果（如需隐藏非显著数据，取消此行注释）
   # Filter significant results (uncomment this line to hide non-significant data)
-  #filter(pvalue < 0.05) %>% 
+  #filter(pvalue < 0.05) %>%
   ggplot(aes(correlation, forcats::fct_reorder(symbol, correlation))) +  # 设定x轴为相关性值，y轴按相关性排序免疫细胞名称
   geom_segment(aes(xend = 0, yend = symbol)) +  # 绘制从x=0到相关性值的水平线段（棒棒糖的"杆"）
   geom_point(aes(col = pvalue, size = abs(correlation))) +  # 绘制点，颜色映射p值，大小映射相关性绝对值
@@ -265,7 +265,7 @@ ggsave("gene_Xcell.pdf")
 
 从上面的图可以看出基因跟不同免疫细胞的相关性有差异，可以进一步挑一个相关性最强的免疫细胞，例如TReg，画出基因表达跟免疫细胞浸润在每个样本里的分布。
 
-#The correlation between genes and one type of immune cell
+# The correlation between genes and one type of immune cell
 
 From the above graph, it can be seen that there are differences in the correlation between genes and different immune cells. Therefore, we can further select the immune cell with the strongest correlation, such as TReg, and draw the distribution of gene expression and immune cell infiltration in each sample.
 
@@ -289,7 +289,7 @@ head(plot_df)
 
 图好看，但是速度很慢。
 
-##Drawing with ggscatterstats package
+## Drawing with ggscatterstats package
 
 The picture looks good, but the speed is very slow.
 
@@ -325,14 +325,14 @@ ggscatterstats(
 
 先定义一个函数，返回计算的结果，最终会作为标题放在图上方，他接受两个参数，就是作图文件的两列，分别是免疫数据和表达量数据。
 
-##Draw with ggplot2
+## Draw with ggplot2
 
 First, define a function that returns the calculated result, which will be placed as a title above the graph. It takes two parameters, namely the two columns of the graph file, which are immune data and expression level data.
 
 ```{r}
 # ---------------------- 定义相关性方程生成函数 ---------------------- #
 # ---------------------- Define correlation equation generation function ---------------------- #
-# Function: Calculate Spearman correlation and generate a text string 
+# Function: Calculate Spearman correlation and generate a text string
 # containing sample size, correlation coefficient, and p-value
 # 功能：计算Spearman相关性并生成包含样本量、相关系数和P值的文本字符串
 # Parameters:

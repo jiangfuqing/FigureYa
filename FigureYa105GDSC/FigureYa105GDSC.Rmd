@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 提示：pRRophetic的示例可参考：https://github.com/paulgeeleher/pRRophetic/blob/master/vignetteOutline.pdf
 
-##Requirement description
+## Requirement description
 
 Using the pRRophetic algorithm, a ridge regression model was constructed based on the expression profiles of GDSC<www.cancerrxgene. org/>cell lines and TCGA gene expression profiles to predict drug IC50 (using the original data and reproducing the original image)
 
@@ -48,7 +48,7 @@ Lu X, Jiang L, Zhang L, et al. Immune Signature-Based Subtypes of Cervical Squam
 
 还可以通过批量计算，筛选出组间差异显著的药物。
 
-##Application scenarios
+## Application scenarios
 
 Predict the IC50 of the patient for the drug and draw a box plot to compare different groups.
 
@@ -58,7 +58,7 @@ It is also possible to screen drugs with significant differences between groups 
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -72,7 +72,7 @@ GDSC数据库里的内容可以用R包pRRophetic来访问和计算。
 
 <!-- 点击链接下载pRRophetic_0.5.tar.gz：<https://osf.io/dwzce/?action=download>，然后本地安装。 -->
 # 上述链接的R包有误，有问题，如要用pRRophetic包请用果子公众号更新维护版本<https://github.com/ixxmu/mp_duty/issues/2691>
-#The R package of the above link is incorrect. If you want to use the pRRophic package, please update the maintenance version with the fruit official account< https://github.com/ixxmu/mp_duty/issues/2691 >
+# The R package of the above link is incorrect. If you want to use the pRRophic package, please update the maintenance version with the fruit official account< https://github.com/ixxmu/mp_duty/issues/2691 >
 
 加载包
 
@@ -99,11 +99,11 @@ library(cowplot)
 
 # 设置环境语言为英文，使报错信息以英文显示
 # Set the environment language to English to display error messages in English
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止字符串自动转换为因子，保持数据原始格式
 # Disable automatic conversion of strings to factors to maintain original data format
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
@@ -118,7 +118,7 @@ drug.txt，要计算和画图的药物的名字，药物名必须存在与GDSC�
 
 getCGPinfo函数内部是2016版药物的名字，共251种；GDSC数据库的网站上2019版的药物名字有266种：<https://www.cancerrxgene.org/translation/Drug#t-all>；然而pRRopheticPredict函数的drug参数the name of the drug for which you would like to predict sensitivity, one of...，其中的药物名字只有138个，下面就对这138种药物进行计算和画图。把pRRopheticPredict函数的drug参数中的药物整理后保存在drug.txt文件中。
 
-##Input file
+## Input file
 
 Three files are required: expression data, grouping information, and drug names. The sample IDs of the first two files must be consistent.
 
@@ -166,7 +166,7 @@ GCP.drug <- GCP.drug[1:12]
 
 ## 药物敏感性预测和画图
 
-##Drug sensitivity prediction and plotting
+## Drug sensitivity prediction and plotting
 
 ```{r}
 # 自定义足够多的box颜色，颜色数量至少等于分组数量
@@ -181,12 +181,12 @@ plotp <- list()
 for (drug in GCP.drug) {
   # 设置随机种子，确保结果可重复
   # Set random seed for reproducibility, especially for the 10-fold cross-validation in prediction
-  set.seed(1248103) 
-  
+  set.seed(1248103)
+
   # 提示当前药物分析开始
   # Print message indicating start of analysis for current drug
-  cat(drug," starts!\n") 
-  
+  cat(drug," starts!\n")
+
   # 预测IC50值，使用pRRophetic包的默认参数
   # Predict IC50 values using pRRophetic with default parameters
   testMatrix <- as.matrix(dat[,rownames(ann)])
@@ -195,27 +195,27 @@ for (drug in GCP.drug) {
                                               tissueType = "allSolidTumors",
                                               selection = 1) # 1表示若有重复基因取均值处理
                                               # 1 indicates averaging duplicate genes if present
-  
+
   # 检查预测结果与样本注释的名称是否匹配
   # Check if the names in prediction results match the annotation data
   if(!all(names(predictedPtype[[drug]])==rownames(ann))) {stop("Name mismatched!\n")}
-  
+
   # 准备用于绘制箱线图的数据框
   # Prepare data frame for boxplot visualization
   predictedBoxdat[[drug]] <- data.frame("est.ic50"=predictedPtype[[drug]],
-                                        "ImmClust"=ifelse(ann$ImmClust == "C1","HPV16-IMM","HPV16-KRT"), 
-                                        row.names = names(predictedPtype[[drug]])) 
-  
+                                        "ImmClust"=ifelse(ann$ImmClust == "C1","HPV16-IMM","HPV16-KRT"),
+                                        row.names = names(predictedPtype[[drug]]))
+
   # 将免疫聚类转换为有序因子变量
   # Convert ImmClust to an ordered factor for proper plotting
   predictedBoxdat[[drug]]$ImmClust <- factor(predictedBoxdat[[drug]]$ImmClust,
                                             levels = c("HPV16-IMM","HPV16-KRT"),
                                             ordered = T)
-  
+
   # 使用ggplot2绘制箱线图
   # Create boxplot using ggplot2
   p <- ggplot(data = predictedBoxdat[[drug]], aes(x=ImmClust, y=est.ic50))
-  p <- p + geom_boxplot(aes(fill = ImmClust)) + 
+  p <- p + geom_boxplot(aes(fill = ImmClust)) +
     scale_fill_manual(values = jco[1:length(unique(ann$ImmClust))]) + # 自定义box的配色
                                                        # Customize box colors
     theme(legend.position="none") + # 不显示图例
@@ -228,11 +228,11 @@ for (drug in GCP.drug) {
                                          # Set axis labels
     ggtitle(drug) # 添加药物名称作为标题
                   # Add drug name as title
-  
+
   # 保存每个药物的箱线图到列表
   # Save each plot to a list for later combination
   plotp[[drug]] <- p
-  
+
   # 提示当前药物分析完成
   # Print message indicating completion of analysis for current drug
   cat(drug," has been finished!\n")
@@ -240,7 +240,7 @@ for (drug in GCP.drug) {
 
 # 合并图片 - 适合展示两种药物
 # Combine plots - suitable for displaying two drugs
-p1 <- plot_grid(plotp[[1]],plotp[[2]],labels = c("A","B"),nrow = 1) 
+p1 <- plot_grid(plotp[[1]],plotp[[2]],labels = c("A","B"),nrow = 1)
 ggsave("boxplot of predicted IC50.pdf", width = 6, height = 5)
 
 # 适合展示多种药物
@@ -255,7 +255,7 @@ ggsave("boxplot of predicted IC50_multiple.pdf", width = 12, height = 6)
 
 ## 检验组间差异
 
-##Test group differences
+## Test group differences
 
 ```{r}
 # 初始化向量存储每种药物的Wilcoxon检验p值（中文注释）
@@ -263,22 +263,22 @@ ggsave("boxplot of predicted IC50_multiple.pdf", width = 12, height = 6)
 p <- vector()
 
 # 对每种药物进行Wilcoxon秩和检验，比较HPV16-IMM和HPV16-KRT免疫聚类组的估计IC50值（中文注释）
-# Perform Wilcoxon rank-sum test for each drug to compare estimated IC50 values between 
+# Perform Wilcoxon rank-sum test for each drug to compare estimated IC50 values between
 # HPV16-IMM and HPV16-KRT immune clusters (English comment)
 for (drug in GCP.drug) {
   # 提取HPV16-IMM免疫聚类组的估计IC50值（中文注释）
   # Extract estimated IC50 values for HPV16-IMM immune cluster (English comment)
   group1 <- as.numeric(predictedBoxdat[[drug]][which(predictedBoxdat[[drug]]$ImmClust %in% "HPV16-IMM"), "est.ic50"])
-  
+
   # 提取HPV16-KRT免疫聚类组的估计IC50值（中文注释）
   # Extract estimated IC50 values for HPV16-KRT immune cluster (English comment)
   group2 <- as.numeric(predictedBoxdat[[drug]][which(predictedBoxdat[[drug]]$ImmClust %in% "HPV16-KRT"), "est.ic50"])
-  
+
   # 执行单侧Wilcoxon秩和检验，检验假设：HPV16-IMM组的IC50值低于HPV16-KRT组（中文注释）
-  # Perform one-sided Wilcoxon rank-sum test with the hypothesis that 
+  # Perform one-sided Wilcoxon rank-sum test with the hypothesis that
   # the IC50 values of HPV16-IMM group are lower than those of HPV16-KRT group (English comment)
   tmp <- wilcox.test(group1, group2, alternative = "less")$p.value
-  
+
   # 将p值添加到结果向量中（中文注释）
   # Append the p-value to the result vector (English comment)
   p <- append(p, tmp)
@@ -295,7 +295,7 @@ print(p)
 # 注释：由于存在不显著的结果，此处未将p值添加到箱线图上（中文注释）
 # Note: Since there are non-significant results, p-values are not added to the boxplot here (English comment)
 # 可根据需要将p值添加到ggplot的标题中，或参考FigureYa12box函数直接绘制在图上（中文注释）
-# They can be added to the title of a ggplot or directly plotted on the figure 
+# They can be added to the title of a ggplot or directly plotted on the figure
 # by referring to the FigureYa12box function if needed (English comment)
 
 # 将p值保存到文本文件（中文注释）

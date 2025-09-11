@@ -85,8 +85,8 @@ Here is a summary of the key steps in model training:
 - 1.WT adult liver and HCC的转录组数据用于训练模型。
 - 2.鉴定到61个显著改变的TFcluster。
 - 3.随机森林确定TFcluster里下游基因对结局变量的贡献度。
-- 4.计算每个样本的TF activity. 
-- 5.计算每个样本的tumor-promoting and -inhibiting strengths. 
+- 4.计算每个样本的TF activity.
+- 5.计算每个样本的tumor-promoting and -inhibiting strengths.
 - 6.广义线性模型拟合，计算index
 - 1. Transcriptome data from WT adult liver and HCC were used to train the model.
 - 2. 61 significantly altered TFclusters were identified.
@@ -130,7 +130,7 @@ z_test_m <- Prepare_input(x_train_m = train, z_test_m = test)$z_test_m
 M_weight <- Prepare_M_weight(z_test_m = z_test_m, Readout = Readout)
 
 #step4
-tfactivity <- Calculate_TFactivity(x_train_m = x_train_m, 
+tfactivity <- Calculate_TFactivity(x_train_m = x_train_m,
                                      z_test_m = z_test_m, M_weight = M_weight)
 A_TFactivity <- tfactivity$A_TFactivity
 sign_TF <- tfactivity$sign_TF
@@ -156,10 +156,10 @@ Sample_index <- as.data.frame(Sample_index)
 colnames(Sample_index) <- c("s0.1", "s0.05")
 Sample_index[, "group"] <- str_replace(rownames(Sample_index), "\\.y$", "") %>% str_replace(., "_[0-9]$", "") %>% str_replace(., "X7M_[0-9]_", "X7M_")
 
-Youth <- c("X1M_WT","X1M_SKO","X1M_PKO", "X1M_DKO"); 
+Youth <- c("X1M_WT","X1M_SKO","X1M_PKO", "X1M_DKO");
 WT <- c("X2M_WT", "X3M_WT", "X4M_WT", "X5M_WT","X7M_WT", "X9M_WT", "X12M_WT", "X16M_WT")
 SKO <- c("X2M_SKO", "X7M_SKO", "X12M_SKO")
-PKO <- c("X2M_PKO", "X3M_PKO", "X4M_PKO", "X5M_PKO", "X7M_PKO", "X9M_PKO", "X12M_PKO", 
+PKO <- c("X2M_PKO", "X3M_PKO", "X4M_PKO", "X5M_PKO", "X7M_PKO", "X9M_PKO", "X12M_PKO",
          "X7M_PKO_HCA", "X12M_PKO_HCA", "X16M_PKO_HCA", "X16M_PKO_HCC")
 DKO <- c("X2M_DKO","X7M_DKO", "X12M_DKO", "X7M_DKO_HCC", "X12M_DKO_HCC")
 group_l <- c(rep("Youth", length(Youth)), rep("WT", length(WT)), rep("SKO", length(SKO)),
@@ -171,10 +171,10 @@ Sample_index[, "group_l"] <- group_l[Sample_index$group]
 #这里对同一group采用平均值的方法
 #Here we use the average method for the same group
 p.dat <- Sample_index %>% data.table::as.data.table() %>% group_by(., group) %>% summarize(mean0.05 = mean(s0.05))
-ggplot(p.dat, aes(x = group, y = mean0.05)) + 
+ggplot(p.dat, aes(x = group, y = mean0.05)) +
   geom_bar(stat = "identity", width = 0.8, fill = "purple") +
-  theme_classic() + 
-  xlab("") + ylab("Mean TI") + 
+  theme_classic() +
+  xlab("") + ylab("Mean TI") +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
@@ -187,7 +187,7 @@ I'll repeat the steps for Figs. 5B and 5C here; the rest are similar.
 GSE6764数据集：10 nontumor liver samples, 17 dysplastic liver samples, 13 cirrhotic liver samples, and 35 HCC samples
 GSE6764 dataset: 10 nontumor liver samples, 17 dysplastic liver samples, 13 cirrhotic liver samples, and 35 HCC samples
 
-GSE56140数据集：Cirrhotic liver (n = 34) and HCC (n = 35) samples 
+GSE56140数据集：Cirrhotic liver (n = 34) and HCC (n = 35) samples
 GSE56140 dataset: Cirrhotic liver (n = 34) and HCC (n = 35) samples
 
 准备数据集：表达矩阵和其临床分组数据，常规的GEO数据集用法，放在Prepare_GEO.R里。
@@ -224,7 +224,7 @@ for (i in 1:length(datlist)){
   x_train_m <- Prepare_input(x_train_m = train, z_test_m = test)$x_train_m
   z_test_m <- Prepare_input(x_train_m = train, z_test_m = test)$z_test_m
   M_weight <- Prepare_M_weight(z_test_m = z_test_m, Readout = Readout)
-  tfactivity <- Calculate_TFactivity(x_train_m = x_train_m, 
+  tfactivity <- Calculate_TFactivity(x_train_m = x_train_m,
                                      z_test_m = z_test_m, M_weight = M_weight)
   A_TFactivity <- tfactivity$A_TFactivity
   sign_TF <- tfactivity$sign_TF
@@ -238,45 +238,45 @@ names(indexlist) <- names(datlist)
 ```
 
 ## 画图
-#calculate index
+# Calculate index
 
 ```{r}
 plotdat1 <- merge(indexlist$gse6764dat, gse6764pdata[, c("geo_accession", "characteristics_ch1")],
                   by.x = 0, by.y = 1)
 
-plotdat1$group <-  plotdat1$characteristics_ch1 %>% 
-  str_replace(., "normal liver tissue", "Non tumor") %>% 
+plotdat1$group <-  plotdat1$characteristics_ch1 %>%
+  str_replace(., "normal liver tissue", "Non tumor") %>%
   str_replace_all(., c("low-grade dysplastic liver tissue" = "Hyper plasia",
-                       "high-grade dysplastic liver tissue" = "Hyper plasia")) %>% 
-  str_replace_all(., c("cirrhotic liver tissue"="Cirrhotic", 
+                       "high-grade dysplastic liver tissue" = "Hyper plasia")) %>%
+  str_replace_all(., c("cirrhotic liver tissue"="Cirrhotic",
                        "cirrhotic liver tissue from patients without HCC"="Cirrhotic",
-                       "Cirrhotic from patients without HCC" = "Cirrhotic")) %>% 
-  str_replace_all(., c("very early HCC"="HCC", 
+                       "Cirrhotic from patients without HCC" = "Cirrhotic")) %>%
+  str_replace_all(., c("very early HCC"="HCC",
                        "very advanced HCC"="HCC",
                        "early HCC"="HCC",
                        "advanced HCC"="HCC"))
 
 plotdat1$group <- factor(plotdat1$group, levels = c("Non tumor", "Hyper plasia", "Cirrhotic", "HCC"))
-my_comparisons <- list( c("Non tumor", "Hyper plasia"), 
-                        c("Hyper plasia", "Cirrhotic"), 
+my_comparisons <- list( c("Non tumor", "Hyper plasia"),
+                        c("Hyper plasia", "Cirrhotic"),
                         c("Hyper plasia", "HCC") )
 
-p1 <- ggboxplot(plotdat1, x = "group", y = "s0.05", color = "group") + 
-  stat_compare_means(comparisons = my_comparisons, 
+p1 <- ggboxplot(plotdat1, x = "group", y = "s0.05", color = "group") +
+  stat_compare_means(comparisons = my_comparisons,
                      label = "p.signif", method = "t.test") +
-  scale_color_aaas() + 
+  scale_color_aaas() +
   xlab("") + ylab("Index")
 
-plotdat2 <- merge(indexlist$gse56140dat, 
+plotdat2 <- merge(indexlist$gse56140dat,
                   gse56140pdata[, c("geo_accession", "characteristics_ch1")],
                   by.x = 0, by.y = 1)
 
-plotdat2$group <- plotdat2$characteristics_ch1 %>% 
-  str_replace(., "tissue type: cirrhosis", "Cirrhosis") %>% 
-  str_replace(., "tissue type: hepatocellular carcinoma", "HCC") %>% 
+plotdat2$group <- plotdat2$characteristics_ch1 %>%
+  str_replace(., "tissue type: cirrhosis", "Cirrhosis") %>%
+  str_replace(., "tissue type: hepatocellular carcinoma", "HCC") %>%
   factor(., levels = c("Cirrhosis", "HCC"))
 
-p2 <- ggboxplot(plotdat2, x = "group", y = "s0.05", color = "group") + 
+p2 <- ggboxplot(plotdat2, x = "group", y = "s0.05", color = "group") +
   stat_compare_means(label = "p.signif", method = "t.test") +
   scale_color_aaas() + xlab("") + ylab("Index")
 

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 希望用cellchat来实现：
 
-#Requirement description
+# Requirement description
 
 I hope to use CellChat to achieve:
 
@@ -31,7 +31,7 @@ I hope to use CellChat to achieve:
 
 from<https://aacrjournals.org/cancerdiscovery/article/12/1/134/675646/Spatiotemporal-Immune-Landscape-of-Colorectal>
 
-Figure 3. MRC1+ CCL18+ macrophages in metastatic tumors exhibited terminally differentiated and suppressive states. 
+Figure 3. MRC1+ CCL18+ macrophages in metastatic tumors exhibited terminally differentiated and suppressive states.
 A, The ranked differential tumor–immune cell cross-talk [liver metastasis (LM) vs. colorectal cancer (CRC)] shows MRC1+ CCL18+ M2-like macrophages ranked the second among all ligand–receptor pairs.
 
 ![](method.png)
@@ -68,7 +68,7 @@ The friend who raised the request requested to use Cellchat to implement it, whi
 
 另外，CellPhoneDB的用法可参考FigureYa178receptorLigand<https://k.youshop10.com/YICoy-XB>
 
-#Application scenarios
+# Application scenarios
 
 Single cell RNA seq data was compared between two groups of samples (e.g. primary vs. metastasis, different subtypes, different developmental stages, etc.) using cellchat based on the differences in "receptor ligand".
 
@@ -78,7 +78,7 @@ In addition, the usage of CellPhoneDB can refer to FigureYa178receptorLigand< ht
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -93,7 +93,7 @@ install.packages("magrittr")
 # 从GitHub安装Seurat-data包（Install the Seurat-data package from GitHub）
 devtools::install_github('satijalab/seurat-data')
 # 从GitHub安装CellChat包用于细胞间通讯分析（Install the CellChat package from GitHub for cell-cell communication analysis）
-devtools::install_github("jinworks/CellChat") 
+devtools::install_github("jinworks/CellChat")
 install.packages("ifnb.SeuratData_3.1.0.tar.gz", repos = NULL, type = "source")
 devtools::install_github('immunogenomics/presto')
 ```
@@ -120,9 +120,9 @@ library(patchwork)
 library(ifnb.SeuratData)
 library(presto)
 # 设置系统环境以显示英文错误信息（Set system environment to display error messages in English）
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 # 禁止自动将字符串转换为因子类型（Prevent automatic conversion of strings to factors）
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 # 输入数据预处理
@@ -134,7 +134,7 @@ options(stringsAsFactors = FALSE)
 - 先拆分成两个seurat object，对两个数据集单独进行normalize并识别各自的高变异基因，使用高变异基因在两个基因集中分别执行PCA。
 - 然后对两个数据集进行整合，进行常规数据预处理，存入immune.combined，以便进行后续分析。
 
-#Input data preprocessing
+# Input data preprocessing
 
 `ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。 From< https://pubmed.ncbi.nlm.nih.gov/29227470/ >, has been packaged into SeuratData, we can directly install and load it.
 
@@ -188,7 +188,7 @@ ifnb.list <- lapply(X = ifnb.list, FUN = function(x) {
 # 可以通过调整k.anchor参数调整两个样本整合的强度，默认为5，数字越大整合强度越强
 # Identify integration anchors and integrate the two datasets
 # Adjust k.anchor to control integration strength (higher values = stronger integration)
-immune.anchors <- FindIntegrationAnchors(object.list = ifnb.list, anchor.features = features, 
+immune.anchors <- FindIntegrationAnchors(object.list = ifnb.list, anchor.features = features,
                                          reduction = "rpca", k.anchor = 20)
 immune.combined <- IntegrateData(anchorset = immune.anchors)  # 整合数据集 (Integrate datasets)
 
@@ -213,7 +213,7 @@ Idents(immune.combined) <- "CellType"  # 设置细胞类型标识 (Set cell type
 # 按刺激条件分组的UMAP图 (UMAP colored by stimulation condition)
 p1 <- DimPlot(immune.combined, reduction = "umap", group.by = "stim")
 # 按细胞类型分组的UMAP图 (UMAP colored by cell type annotation)
-p2 <- DimPlot(immune.combined, reduction = "umap", group.by = "seurat_annotations", 
+p2 <- DimPlot(immune.combined, reduction = "umap", group.by = "seurat_annotations",
              label = TRUE, repel = TRUE)
 
 # 保存UMAP可视化结果到PDF
@@ -235,7 +235,7 @@ STIM和CTRL两组，分别提取数据，创建CellChat对象。
 
 运行时间约10min
 
-#Extract data and create CellChat objects separately
+# Extract data and create CellChat objects separately
 
 Extract data from STIM and CTRL groups respectively, and create CellChat objects.
 
@@ -248,7 +248,7 @@ stim.object <- subset(immune.combined, stim == "STIM")
 # 获取RNA表达矩阵数据用于CellChat分析 (Retrieve normalized RNA expression matrix for CellChat)
 stim.data.input <- GetAssayData(stim.object, assay = "RNA", slot = "data")
 # 提取细胞类型注释和刺激条件元数据 (Extract cell type annotations and stimulation condition)
-stim.meta <- stim.object@meta.data[, c("seurat_annotations", "stim")] 
+stim.meta <- stim.object@meta.data[, c("seurat_annotations", "stim")]
 # 确保CellType列以向量形式存储 (Ensure CellType is stored as a vector)
 stim.meta$CellType %<>% as.vector(.)
 # 创建CellChat对象用于细胞间通讯分析 (Initialize CellChat object for communication analysis)
@@ -259,17 +259,17 @@ stim.cellchat <- addMeta(stim.cellchat, meta = stim.meta)
 stim.cellchat <- setIdent(stim.cellchat, ident.use = "seurat_annotations")
 
 # 使用CellChat提供的人类配受体相互作用数据库 (Use human ligand-receptor database provided by CellChat)
-stim.cellchat@DB <- CellChatDB.human 
+stim.cellchat@DB <- CellChatDB.human
 # 基于当前细胞类型子集数据库 (Subset database based on available cell types)
-stim.cellchat <- subsetData(stim.cellchat) 
+stim.cellchat <- subsetData(stim.cellchat)
 # 设置并行计算参数，使用10个工作线程 (Set parallel computation with 10 workers)
-future::plan("multisession", workers = 10) 
+future::plan("multisession", workers = 10)
 # 识别每个细胞类型中高表达的基因 (Identify overexpressed genes in each cell type)
 stim.cellchat <- identifyOverExpressedGenes(stim.cellchat)
 # 识别显著的配受体相互作用对 (Identify overexpressed ligand-receptor pairs)
 stim.cellchat <- identifyOverExpressedInteractions(stim.cellchat)
 # 将数据投影到人类蛋白质相互作用网络 (Project data onto human PPI network)
-stim.cellchat <- smoothData(stim.cellchat, adj = PPI.human)  
+stim.cellchat <- smoothData(stim.cellchat, adj = PPI.human)
 
 # 计算细胞间通讯概率 (Compute communication probabilities between cells)
 stim.cellchat <- computeCommunProb(stim.cellchat)
@@ -281,7 +281,7 @@ stim.cellchat <- computeCommunProbPathway(stim.cellchat)
 # 整合所有配受体对的通讯概率为网络矩阵 (Aggregate communication probabilities into a network)
 stim.cellchat <- aggregateNet(stim.cellchat)
 # 计算信号通路网络中的中心性指标 (Calculate network centrality measures for pathways)
-stim.cellchat <- netAnalysis_computeCentrality(stim.cellchat, slot.name = "netP") 
+stim.cellchat <- netAnalysis_computeCentrality(stim.cellchat, slot.name = "netP")
 # 保存STIM组的CellChat分析结果 (Save CellChat object for STIM group)
 saveRDS(stim.cellchat, "stim.cellchat.rds")
 
@@ -291,7 +291,7 @@ ctrl.object <- subset(immune.combined, stim == "CTRL")
 # 获取RNA表达矩阵数据用于CellChat分析 (Retrieve normalized RNA expression matrix for CellChat)
 ctrl.data.input <- GetAssayData(ctrl.object, assay = "RNA", slot = "data")
 # 提取细胞类型注释和刺激条件元数据 (Extract cell type annotations and stimulation condition)
-ctrl.meta <- ctrl.object@meta.data[, c("seurat_annotations", "stim")] 
+ctrl.meta <- ctrl.object@meta.data[, c("seurat_annotations", "stim")]
 # 确保CellType列以向量形式存储 (Ensure CellType is stored as a vector)
 ctrl.meta$CellType %<>% as.vector(.)
 # 创建CellChat对象用于细胞间通讯分析 (Initialize CellChat object for communication analysis)
@@ -301,17 +301,17 @@ ctrl.cellchat <- addMeta(ctrl.cellchat, meta = ctrl.meta)
 # 设置细胞标识为Seurat聚类注释 (Set cell identities to Seurat annotations)
 ctrl.cellchat <- setIdent(ctrl.cellchat, ident.use = "seurat_annotations")
 # 使用CellChat提供的人类配受体相互作用数据库 (Use human ligand-receptor database provided by CellChat)
-ctrl.cellchat@DB <- CellChatDB.human 
+ctrl.cellchat@DB <- CellChatDB.human
 # 基于当前细胞类型子集数据库 (Subset database based on available cell types)
-ctrl.cellchat <- subsetData(ctrl.cellchat) 
+ctrl.cellchat <- subsetData(ctrl.cellchat)
 # 设置并行计算参数，使用10个工作线程 (Set parallel computation with 10 workers)
-future::plan("multisession", workers = 10) 
+future::plan("multisession", workers = 10)
 # 识别每个细胞类型中高表达的基因 (Identify overexpressed genes in each cell type)
 ctrl.cellchat <- identifyOverExpressedGenes(ctrl.cellchat, do.fast = F)
 # 识别显著的配受体相互作用对 (Identify overexpressed ligand-receptor pairs)
 ctrl.cellchat <- identifyOverExpressedInteractions(ctrl.cellchat)
 # 将数据投影到人类蛋白质相互作用网络 (Project data onto human PPI network)
-ctrl.cellchat <- smoothData(ctrl.cellchat, adj = PPI.human)  
+ctrl.cellchat <- smoothData(ctrl.cellchat, adj = PPI.human)
 
 # 计算细胞间通讯概率 (Compute communication probabilities between cells)
 ctrl.cellchat <- computeCommunProb(ctrl.cellchat)
@@ -323,14 +323,14 @@ ctrl.cellchat <- computeCommunProbPathway(ctrl.cellchat)
 # 整合所有配受体对的通讯概率为网络矩阵 (Aggregate communication probabilities into a network)
 ctrl.cellchat <- aggregateNet(ctrl.cellchat)
 # 计算信号通路网络中的中心性指标 (Calculate network centrality measures for pathways)
-ctrl.cellchat <- netAnalysis_computeCentrality(ctrl.cellchat, slot.name = "netP") 
+ctrl.cellchat <- netAnalysis_computeCentrality(ctrl.cellchat, slot.name = "netP")
 # 保存对照组的CellChat分析结果 (Save CellChat object for control group)
 saveRDS(ctrl.cellchat, "ctrl.cellchat.rds")
 ```
 
 # 开始画图
 
-#Start drawing
+# Start drawing
 
 ```{r}
 ## 加载上面保存的运行结果文件，可以从微云下载<https://share.weiyun.com/xcfPWC0L>
@@ -347,7 +347,7 @@ cellchat <- mergeCellChat(object.list, add.names = names(object.list))
 
 ## 细胞间互作次数bar图
 
-##Bar chart of intercellular interaction frequency
+## Bar chart of intercellular interaction frequency
 
 Comparing the number of inferred communication links between different datasets
 
@@ -380,7 +380,7 @@ Circle plot showing differential cell-cell communication network **between two d
 
 两个数据集之间的细胞-细胞通信网络中的交互或交互强度的差异数量可以使用圆形图来可视化，其中红色(或蓝色)边表示第二个数据集相比于第一个数据集增加(或减少)的信号。
 
-##Network diagram of intercellular interaction frequency
+## Network diagram of intercellular interaction frequency
 
 Circle plot showing differential cell-cell communication network **between two datasets**
 
@@ -412,7 +412,7 @@ dev.off()
 
 ## 结果解读：
 
-##Interpretation of Results:
+## Interpretation of Results:
 
 ![](result.png)
 

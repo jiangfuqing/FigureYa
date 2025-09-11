@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R画出文章里的这个图
 
-##Requirement description
+## Requirement description
 
 Draw the image in the article using R
 
@@ -38,7 +38,7 @@ from<https://www.cell.com/cell/abstract/S0092-8674(17)30596-2>
 
 细胞谱系分析，主要用于单细胞测序数据，展示细胞在二维状态空间的拟时间（pseudotime）排列，即一群细胞怎样变成另一群细胞。
 
-##Application scenarios
+## Application scenarios
 
 Cell lineage analysis is mainly used for single-cell sequencing data, displaying the pseudotime arrangement of cells in a two-dimensional state space, that is, how a group of cells become another group of cells.
 
@@ -46,7 +46,7 @@ Cell lineage analysis is mainly used for single-cell sequencing data, displaying
 
 细胞谱系分析目前用到的包主要是[Monocle2](https://bioconductor.org/packages/release/bioc/html/monocle.html)
 
-`monocle`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像. 
+`monocle`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像.
 
 CRAN镜像备选
 
@@ -54,11 +54,11 @@ CRAN镜像备选
 - 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
 - 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
-##Software installation
+## Software installation
 
 The packages currently used for cell lineage analysis are mainly [Monocle2]（ https://bioconductor.org/packages/release/bioc/html/monocle.html )
 
-`Monocle needs to be installed through biocLite. If the speed is slow, remove the # from the # options (...) code below, and a domestic image will be used  
+`Monocle needs to be installed through biocLite. If the speed is slow, remove the # from the # options (...) code below, and a domestic image will be used
 
 CRAN image backup
 
@@ -99,7 +99,7 @@ library(pheatmap)
 
 如果用的是10X Genomics技术，表达矩阵是UMI，则不需要进行额外的TPM/FPKM标准化。
 
-##Input data
+## Input data
 
 There are two types of input data:
 
@@ -124,7 +124,7 @@ metadata_file <- 'easy_input_sample_sheet.txt'  # 样本元数据文件路径 | 
 # header: 是否将第一行作为列名 | Whether to treat the first row as column names
 # stringsAsFactors: 是否将字符串转换为因子 | Whether to convert strings to factors
 # check.names: 是否检查列名有效性 | Whether to check the validity of column names
-exprs_df <- read.table(file=exprs_file, sep='\t', header = TRUE, 
+exprs_df <- read.table(file=exprs_file, sep='\t', header = TRUE,
                  stringsAsFactors = FALSE, check.names = FALSE)
 
 # 读取样本元数据 | Read sample metadata
@@ -186,7 +186,7 @@ The first column here is the cell ID, the second column is the patient, the thir
 
 先构建表达矩阵。根据之前对数据集的简单了解，原先的数据集前两列是不必要信息，所以要去掉，而行名对应第一列
 
-##Build newCellDataset
+## Build newCellDataset
 
 Subsequent analysis relies on Monocle, so three datasets need to be compiled
 
@@ -325,17 +325,17 @@ fd <- new("AnnotatedDataFrame", data=as.data.frame(gene_annotation))
 # expr_matrix: 表达矩阵，包含基因表达值 | Expression matrix containing gene expression values
 # phenoData: 样本注释数据，包含样本元信息 | Sample annotation data containing metadata
 # featureData: 基因注释数据，包含基因信息 | Gene annotation data containing gene information
-# expressionFamily = tobit(): 指定表达值分布模型为Tobit模型，适合处理RNA-seq数据中的零膨胀问题 | 
+# expressionFamily = tobit(): 指定表达值分布模型为Tobit模型，适合处理RNA-seq数据中的零膨胀问题 |
 #                           Specify Tobit model for expression values, suitable for zero-inflated RNA-seq data
 rownames(pData(pd)) <- pData(pd)$UniqueCell_ID
-CDS <- newCellDataSet(expr_matrix, 
+CDS <- newCellDataSet(expr_matrix,
                       phenoData = pd,
                       featureData = fd,
                       expressionFamily = tobit())
 
 rpc_matrix <- relative2abs(CDS)
 
-CDS <- newCellDataSet(as(rpc_matrix, "sparseMatrix"), 
+CDS <- newCellDataSet(as(rpc_matrix, "sparseMatrix"),
                       phenoData = pd,
                       featureData = fd,
                       expressionFamily = negbinomial.size())
@@ -373,9 +373,9 @@ If expressionFamily selects either 'negminomial. size()' or 'negminomial()', the
 
 单细胞聚类分析见"FIgureYa27tSNE"
 
-##Cell lineage analysis
+## Cell lineage analysis
 
-###Step 1: Define sorting genes
+### Step 1: Define sorting genes
 
 There are many options for sorting genes:
 
@@ -406,8 +406,8 @@ expressed_genes <- row.names(subset(fData(CDS),
 # fullModelFormulaStr: 指定差异表达分析的模型公式 | Formula for differential expression model
 # cores: 指定并行计算的核心数 | Number of CPU cores for parallel computation
 CDS <- estimateSizeFactors(CDS)
-CDS <- estimateDispersions(CDS)  
-clustering_DEG_genes <- 
+CDS <- estimateDispersions(CDS)
+clustering_DEG_genes <-
   differentialGeneTest(CDS[expressed_genes,],
                        fullModelFormulaStr = '~majorCluster',
                        cores=9)
@@ -443,7 +443,7 @@ Finally, set the genes for sorting
 # 参数说明 | Parameter explanation:
 # CDS: 细胞数据集对象 | CellDataSet object
 # ordering_genes: 指定用于定义细胞轨迹的基因列表 | Genes used to define cell trajectory
-CDS <- setOrderingFilter(CDS, 
+CDS <- setOrderingFilter(CDS,
                          ordering_genes = ordering_genes)
 ```
 
@@ -454,7 +454,7 @@ CDS <- setOrderingFilter(CDS,
 
 降维有很多种方法, 不同方法的最后展示的图都不太一样, 其中"DDRTree"是Monocle2使用的默认方法，ICA则是Monocle2的方法
 
-###Step 2: Dimensionality Reduction
+### Step 2: Dimensionality Reduction
 
 This step is quite time-consuming Dimensionality reduction is to better display data.
 
@@ -466,7 +466,7 @@ There are many methods for dimensionality reduction, and the final images displa
 # CDS: 细胞数据集对象 | CellDataSet object
 # max_components: 指定降维后的维度数 | Number of dimensions to reduce to
 # method: 指定降维方法，DDRTree是monocle推荐的轨迹分析方法 | Dimensionality reduction method, DDRTree is recommended for trajectory analysis
-CDS <- reduceDimension(CDS, max_components = 2, 
+CDS <- reduceDimension(CDS, max_components = 2,
                        method="DDRTree")
 
 # 把最耗时的这步保存下来，即使关闭了R，后面也可以直接从这步开始
@@ -476,7 +476,7 @@ CDS <- reduceDimension(CDS, max_components = 2,
 
 ### 第三步: 在谱系上对细胞排序
 
-###Step 3: Sort the cells on the lineage
+### Step 3: Sort the cells on the lineage
 
 ```{r}
 # 读取上一步保存的CDS对象（已注释，当前未执行） | Read the previously saved CDS object (commented out, not executed)
@@ -488,7 +488,7 @@ CDS <- reduceDimension(CDS, max_components = 2,
 # 基于降维结果对细胞进行轨迹排序 | Order cells along a pseudotime trajectory based on dimensionality reduction
 # 参数说明 | Parameter explanation:
 # CDS: 细胞数据集对象，需已完成降维处理 | CellDataSet object after dimensionality reduction
-# 功能: 推断细胞分化轨迹，计算每个细胞在轨迹上的位置（伪时间） | 
+# 功能: 推断细胞分化轨迹，计算每个细胞在轨迹上的位置（伪时间） |
 #       Function: Infer cell differentiation trajectory and calculate pseudotime for each cell
 trace("project2MST",edit = T, where = asNamespace("monocle")) # nei()改为.nei()/Change nei() to. nei()
 CDS <- orderCells(CDS)
@@ -500,7 +500,7 @@ CDS <- orderCells(CDS)
 
 - 按照状态着色
 
-###Step 4: Drawing
+### Step 4: Drawing
 
 You can set enough colors by yourself. The coloring on the graph can be achieved by modifying the 'color-by' parameter, where the value can be the column name of the 'pData (CDS)' result. The size of the point can be modified through 'cell_2'
 
@@ -526,7 +526,7 @@ p1
 # 保存轨迹图到PDF文件 | Save trajectory plot to PDF file
 # 参数说明 | Parameter explanation:
 # filename: 输出文件名 | Output file name
-# 注意: 当前设置会保存当前活动绘图，确保p1是当前活动图 | 
+# 注意: 当前设置会保存当前活动绘图，确保p1是当前活动图 |
 #       Note: Current settings save the active plot. Ensure p1 is the active plot
 ggsave("monocle_State.pdf")
 ```

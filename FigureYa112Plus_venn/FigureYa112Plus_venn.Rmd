@@ -31,7 +31,7 @@ vennyhttp://bioinfogp.cnb.csic.es/tools/venny/，新出来个选项，颜色填�
 
 输入基因列表，画出按百分比填充颜色的venn图，并输出各个区域的基因名。
 
-#Requirement description
+# Requirement description
 
 vennyhttp://bioinfogp.cnb.csic.es/tools/venny/ A new option has emerged, color filling by%.
 
@@ -57,7 +57,7 @@ from<http://bioinfogp.cnb.csic.es/tools/venny/>
 
 适用于2、3或4个list的overlap，超过4个用upsetR更合适。
 
-#Application scenarios
+# Application scenarios
 
 Display overlapping relationships, such as shared and specific differentially expressed genes between multiple groups.
 
@@ -67,7 +67,7 @@ Suitable for overlaps of 2, 3, or 4 lists, with upsetR being more appropriate fo
 
 安装包
 
-#Environment settings
+# Environment settings
 
 Installation package
 
@@ -105,11 +105,11 @@ library(export)
 
 # 设置环境变量使R显示英文错误信息（便于查找解决方案）
 # Set environment variable to display R error messages in English (easier for finding solutions)
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止将字符向量自动转换为因子类型（避免意外的数据转换）
 # Disable automatic conversion of character vectors to factors (to avoid unexpected data transformations)
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 自定义函数
@@ -164,7 +164,7 @@ read_cut_ID <- function(file){
 read_cut_updown <- function(file){
   df <- read.table(file, header = T)
   DEG <- df[df$FDR <= adjcutoff, ]
-  return(list(up = DEG[DEG$log2FC > 0,]$id, 
+  return(list(up = DEG[DEG$log2FC > 0,]$id,
               down = DEG[DEG$log2FC < 0,]$id))
 }
 ```
@@ -181,7 +181,7 @@ SKCM_\*_test_result.\*.txt，差异表达结果，可以包含全部基因，这
 
 这里就以FigureYa118MulticlassDESeq2和FigureYa120MulticlassedgeR的输出文件作为输入，画出venn图展示不同对比的重叠情况。
 
-#Input file
+# Input file
 
 SKCM_\*_test_result.\*.txt， The differential expression results can include all genes, and here FDR is used to screen for significantly differentially expressed genes.
 
@@ -197,7 +197,7 @@ Here, taking the output files of FigureYa118MulticlassDESeq2 and FigureYa120Mult
 
 可参考`easy_input_info.txt`文件的格式，自己在Excel里写这个文件，至少要有第一列文件名和最后一列condition。
 
-##Organizing file information
+## Organizing file information
 
 You can refer to the format of the 'easy_input_info. txt' file and write this file yourself in Excel, with at least the first column of file names and the last column of conditions.
 
@@ -228,7 +228,7 @@ fnames <- Sys.glob("SKCM*.txt")
 #   method - Analysis method information extracted from file name (second part after splitting by "_")
 # Returns:
 #   Data frame containing file names, groups, methods, and combined conditions
-finfo <- data.frame(file = fnames, 
+finfo <- data.frame(file = fnames,
                  group = str_split_fixed(fnames, "\\.",3)[,2],
                  method = str_split_fixed(fnames, "_",3)[,2])
 finfo$condition <- paste(finfo$group, finfo$method, sep = "_")
@@ -257,7 +257,7 @@ write.table(finfo, "easy_input_info.txt", row.names = F,quote = F, sep = "\t")
 
 ## 差异表达基因筛选
 
-##Differential expression gene screening
+## Differential expression gene screening
 
 ```{r}
 # 读入文件信息：从制表符分隔的文本文件中读取先前整理的文件信息
@@ -303,7 +303,7 @@ names(fdataset) <- finfo$condition
 #   row.names = F - 不保存行名
 # 输出：
 #   包含多个工作表的Excel文件，可作为论文补充材料
-# Output to Excel file: each comparison result occupies one sheet, 
+# Output to Excel file: each comparison result occupies one sheet,
 # which can be used as Supplementary File after minor formatting
 # Use openxlsx package to write multiple data frames to Excel, each as a worksheet
 # Parameters:
@@ -323,9 +323,9 @@ openxlsx::write.xlsx(fdataset, file = paste0("DEG_adj", adjcutoff, ".xlsx"), row
 
 以SKCM_deseq2_test_result.immune_vs_Others.txt和SKCM_edgeR_test_result.immune_vs_Others.txt为例，展示在两种方法中都被筛到的差异基因。
 
-#Start drawing
+# Start drawing
 
-##Two circles
+## Two circles
 
 Compare two files
 
@@ -365,7 +365,7 @@ names(list_ID) <- finfo[finfo$group == "immune_vs_Others",]$method
 #   scale_fill_gradient - Set fill color gradient from white to light blue
 # Returns:
 #   ggplot object for displaying or saving the Venn diagram
-p <- ggVennDiagram(list_ID, label_alpha=0) + 
+p <- ggVennDiagram(list_ID, label_alpha=0) +
   scale_fill_gradient(low="white", high = "lightblue")
 p
 
@@ -433,7 +433,7 @@ write.xlsx(list(Intersect_1_2 = intersect_1_2), "venn_2.xlsx")
 
 以SKCM_deseq2_test_result.immune_vs_Others.txt和SKCM_edgeR_test_result.immune_vs_Others.txt为例，把上调和下调拆开，展示在两种方法中都被筛到的差异基因。
 
-##Four circles
+## Four circles
 
 Compare four files
 
@@ -449,7 +449,7 @@ list_ID <- list(deseq2_up = read_cut_updown(file1)$up,
 )
 
 # 画venn图
-p <- ggVennDiagram(list_ID, label_alpha=0) + 
+p <- ggVennDiagram(list_ID, label_alpha=0) +
   scale_fill_gradient(low="white", high = "lightblue")
 p
 
@@ -471,7 +471,7 @@ write.xlsx(list(Intersect_1_2 = intersect_1_2), "venn_4.xlsx")
 
 以DESeq2获得的三种差异表达基因为例，展示其overlap
 
-##Three circles
+## Three circles
 
 Compare three files
 
@@ -483,7 +483,7 @@ list_ID <- lapply(finfo[finfo$method == "deseq2", ]$file, read_cut_ID)
 names(list_ID) <- str_remove(finfo[finfo$method == "deseq2",]$group, "_vs_Others")
 
 # 画venn图，这次换个配色
-p <- ggVennDiagram(list_ID, label_alpha=0) + 
+p <- ggVennDiagram(list_ID, label_alpha=0) +
   scale_fill_gradient(low="yellow", high = "brown")
 p
 

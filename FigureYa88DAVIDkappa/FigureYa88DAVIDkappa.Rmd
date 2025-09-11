@@ -24,7 +24,7 @@ FigureYa80GOclustering用GOSemSim计算GO term之间的相似性，但是只能�
 
 想要合并来源于不同数据库的term，参考DAVID的方法。
 
-##Requirement description
+## Requirement description
 
 Enrichment analysis yields too many terms, many of which are still similar. How to merge them reasonably? ClusterProfiler has a simplify function that can thin down enriched GO terms by removing redundancy of enriched GO terms, but sometimes not enough weight is lost.
 
@@ -62,7 +62,7 @@ Calculate Kappa value based on the first part of the code provided in this artic
 
 原理见：<https://david.ncifcrf.gov/helps/linear_search.html#kappa>
 
-##Application scenarios
+## Application scenarios
 
 Measure the similarity between terms based on the overlap between genes in the term.
 
@@ -74,7 +74,7 @@ The principle is as follows:< https://david.ncifcrf.gov/helps/linear_search.html
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -126,7 +126,7 @@ easy_input.csv，注释信息跟Gene ID的对应关系。至少包含两列：
 - 第二列：Gene ID，此处是ENTREZ ID，也可以是gene symbol等无所谓什么来源的基因ID。
 - 后面画热图时需要的logFC、Pvalue、zscore等信息也放在这里。如果要多组富集分析结果做对比，也都放到这里。多组合并的方法可参考FigureYa80GOclustering。
 
-##Input file
+## Input file
 
 easy_input.csv， The correspondence between annotation information and Gene ID. Include at least two columns:
 
@@ -146,7 +146,7 @@ head(D)
 
 ## 计算Kappa value，用它来衡量注释之间的相似性
 
-##Calculate Kappa value to measure the similarity between annotations
+## Calculate Kappa value to measure the similarity between annotations
 
 ```{r}
 # 按基因标识符对数据框进行升序排序
@@ -222,7 +222,7 @@ for (i in 1:M){
   # 筛选出属于当前注释类别的所有记录
   D1 <- subset(D, Annotation_information == Gene_Cat_matrix[i+1,1])
   N1 <- nrow(D1)
-  
+
   # 遍历所有基因，标记哪些基因属于当前注释类别
   for (j in 1:N){
     for (k in 1:N1){
@@ -251,12 +251,12 @@ for(i in 2:(M+1)){
       # 初始化四格表的四个单元格计数
       # Initialize cells of the contingency table
       a <- 0; b <- 0; c <- 0; d <- 0
-      
+
       # 计算每个注释类别下的基因数量
       # Calculate number of genes in each category
       sum1 <- sum(as.numeric(Gene_Cat_matrix[i,2:(N+1)]))
       sum2 <- sum(as.numeric(Gene_Cat_matrix[j,2:(N+1)]))
-      
+
       # 计算四格表的四个单元格值
       # Compute contingency table cells
       for (k in 2:(N+1)){
@@ -264,18 +264,18 @@ for(i in 2:(M+1)){
           a <- a + 1  # 两个注释类别都有的基因数量 / Genes in both categories
         }
       }
-      
+
       # 计算其他三个单元格的值
       # Compute remaining cells
       b <- sum1 - a  # 只在第一个注释类别中的基因数量 / Genes only in category 1
       c <- sum2 - a  # 只在第二个注释类别中的基因数量 / Genes only in category 2
       d <- N + a - sum1 - sum2  # 两个注释类别都没有的基因数量 / Genes in neither category
-      
+
       # 使用四格表数据计算Kappa值（Cohen's Kappa）
       # Calculate Cohen's Kappa using contingency table
-      Kappa_matrix[i,j] <- ((a+d)*N - (a+b)*(a+c) - (c+d)*(b+d)) / 
+      Kappa_matrix[i,j] <- ((a+d)*N - (a+b)*(a+c) - (c+d)*(b+d)) /
                           (N^2 - (a+b)*(a+c) - (c+d)*(b+d))
-      
+
       # Kappa矩阵是对称的，因此i,j和j,i的值相同
       # Kappa matrix is symmetric, so copy value to symmetric position
       Kappa_matrix[j,i] = Kappa_matrix[i,j]
@@ -291,7 +291,7 @@ write.table(Kappa_matrix, "kappa_matrix.txt", sep="\t", quote = F, col.names = F
 
 下面的画图代码跟FigureYa80GOclustering相似。
 
-##Start drawing
+## Start drawing
 
 The following drawing code is similar to FigureYa80GOclustering.
 
@@ -303,13 +303,13 @@ The following drawing code is similar to FigureYa80GOclustering.
 ego.sim <- read.table("kappa_matrix.txt", sep="\t", header = T, row.names = 1)
 
 # 将相似性矩阵转换为距离矩阵(1-相似度)，并使用邻接法构建系统发育树
-# Convert the similarity matrix to a distance matrix (1-similarity) 
+# Convert the similarity matrix to a distance matrix (1-similarity)
 # and construct a phylogenetic tree using the Neighbor-Joining method
 tree <- nj(as.dist(1-ego.sim))
 
 # 使用ggtree包可视化系统发育树
 # Visualize the phylogenetic tree using the ggtree package
-p <- ggtree(tree) + 
+p <- ggtree(tree) +
   geom_tiplab() +                 # 在树的末端添加标签(注释术语) / Add tip labels (annotated terms) at tree ends
   geom_text2(aes(subset=!isTip, label=node), hjust=-.3) +  # 在内部节点添加节点编号 / Add node numbers to internal nodes
   coord_cartesian(xlim=c(-.1,1.3))  # 设置X轴坐标范围，为树的左右两侧留出适当空间 / Set X-axis range to leave space on both sides
@@ -335,7 +335,7 @@ gtree <- groupClade(tree, .node=node)
 # 不同颜色的树枝将直观展示我们之前定义的4个类别
 # Visualize the phylogenetic tree with branches colored by predefined groups
 # Each color represents one of the 4 predefined categories
-pbase <- ggtree(gtree, 
+pbase <- ggtree(gtree,
                 aes(color=group))
 
 # 为4类术语分别创建总结短语作为分类名，并标注在树的旁边
@@ -348,25 +348,25 @@ offset <- .8   # 标签向右偏移量，控制标签位置 / Right offset for l
 
 # 在基础树图上添加分类标签和调整显示范围
 # Add category labels to the tree and adjust the display range
-pnode <- pbase + 
+pnode <- pbase +
   # 显示叶节点标签并对齐
   # Display and align tip labels
   geom_tiplab(size=4, align=TRUE) +
-  
+
   # 为每个分类组添加标签，位置由node参数指定
   # 使用hue_pal()生成与树枝相同的颜色，确保视觉一致性
   # Add labels for each category group, positioned by node parameter
   # Use hue_pal() to generate colors consistent with the branches
-  geom_cladelabel(node=node[1], align=TRUE, 
-                  color = hue_pal()(length(node)+1)[2], 
+  geom_cladelabel(node=node[1], align=TRUE,
+                  color = hue_pal()(length(node)+1)[2],
                   fontsize = fontsize, offset=offset, label="pathway1") +
   geom_cladelabel(node=node[2], align=TRUE, color = hue_pal()(length(node)+1)[3], fontsize = fontsize, offset=offset, label="pathway2") +
   geom_cladelabel(node=node[3], align=TRUE, color = hue_pal()(length(node)+1)[4], fontsize = fontsize, offset=offset, label="pathway3") +
   geom_cladelabel(node=node[4], align=TRUE, color = hue_pal()(length(node)+1)[5], fontsize = fontsize, offset=offset, label="pathway4") +
-  
+
   # 调整X轴范围，确保图形有足够空间展示
   # Adjust X-axis range to ensure adequate display space
-  coord_cartesian(xlim=c(-.1,1.5)) 
+  coord_cartesian(xlim=c(-.1,1.5))
 
 # 准备热图数据：提取唯一的注释信息及其统计值(adj_pval和zscore)
 # Prepare heatmap data: extract unique annotations and their statistics (adj_pval and zscore)
@@ -387,7 +387,7 @@ head(ego.m)
 # width: Width of heatmap cells
 # colnames_angle: Rotation angle for column names
 # low/high: Colors for low and high values in the heatmap
-gheatmap(pnode, ego.m, 
+gheatmap(pnode, ego.m,
          offset=.7,        # 热图向右偏移量 / Heatmap horizontal offset
          width=0.12,       # 热图宽度 / Heatmap width
          colnames_angle=90, hjust=0,  # 列名旋转角度与水平对齐方式 / Column names rotation angle and alignment

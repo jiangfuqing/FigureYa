@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 3. 让热图中的样本按照文件中的顺序排序。
 
-##Requirement description
+## Requirement description
 
 1. Draw the cluster to the top of the heatmap, which is equivalent to using colors instead of a hierarchical structure for classification.
 
@@ -47,7 +47,7 @@ from<https://www.aging-us.com/article/101829/text>
 
 3. 让热图中的样本按照文件中的顺序排序，例如让样本按照亚型、表型排序。
 
-##Application scenarios
+## Application scenarios
 
 1. Cluster indicators such as gene expression levels and quantified immune infiltration, highlighting the effects of dividing into 2 or 3 categories (or more categories).
 
@@ -59,7 +59,7 @@ from<https://www.aging-us.com/article/101829/text>
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -77,28 +77,28 @@ library packages
 source("install_dependencies.R")
 # 加载用于外部聚类分析的R包
 # Load the R package for external clustering analysis
-library(ClassDiscovery) 
+library(ClassDiscovery)
 
 # 加载用于绘制热图的R包
 # Load the R package for plotting heatmaps
-library(pheatmap) 
+library(pheatmap)
 
 # 加载用于增强热图颜色功能的R包
 # Load the R package to enhance heatmap color functionality
-library(gplots) 
+library(gplots)
 
 # 设置环境变量，使报错信息以英文显示
 # Set environment variable to display error messages in English
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止字符串自动转换为因子类型
 # Disable automatic conversion of strings to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
 
-##Input file
+## Input file
 
 ```{r}
 # 从CSV文件读取表达矩阵数据，设置第一列为行名，禁用列名检查和字符串转因子
@@ -126,7 +126,7 @@ annCol[is.na(annCol) | annCol == ""] <- "N/A"
 
 配置注释的颜色列表
 
-##Start drawing
+## Start drawing
 
 Configure the color list for annotations
 
@@ -197,11 +197,11 @@ First, cluster using HCLUST, cut into 2 classes using Cutree, write the classifi
 ```{r}
 # 对样本进行层次聚类：计算表达矩阵行之间的Pearson相关性距离，使用Ward方法构建聚类树
 # Hierarchical clustering of samples: Calculate Pearson correlation distance between rows of the expression matrix and use Ward's method for clustering
-hcs <- hclust(distanceMatrix(as.matrix(mat), "pearson"), "ward.D") 
+hcs <- hclust(distanceMatrix(as.matrix(mat), "pearson"), "ward.D")
 
 # 对基因进行层次聚类：先转置矩阵使基因作为列，计算Pearson相关性距离，使用Ward方法构建聚类树
 # Hierarchical clustering of genes: Transpose the matrix to treat genes as columns, calculate Pearson correlation distance, and use Ward's method
-hcg <- hclust(distanceMatrix(t(as.matrix(mat)), "pearson"), "ward.D") 
+hcg <- hclust(distanceMatrix(t(as.matrix(mat)), "pearson"), "ward.D")
 
 # 将样本聚类树切割为2个簇，用于后续分组分析
 # Cut the sample clustering tree into 2 clusters for subsequent group analysis
@@ -313,7 +313,7 @@ Discard the tree structure, which is consistent with the noTree diagram above
 index <- order.dendrogram(as.dendrogram(hcs))
 # 按照聚类结果对样本重新排序
 # Reorder samples according to clustering results
-sam_order <- colnames(mat)[index] 
+sam_order <- colnames(mat)[index]
 
 # 绘制热图，使用聚类结果排序但不显示聚类树
 # Plot heatmap using clustering order but without showing the dendrogram
@@ -352,7 +352,7 @@ Reproduce the structures of Clust2 and Clust3 in the image, extract the sample o
 ```{r}
 # 将样本聚类树切割为3个簇（仍使用之前的层次聚类结果hcs）
 # Cut the sample clustering tree into 3 clusters (still using the previous hierarchical clustering result hcs)
-group <- cutree(hcs, k=3) 
+group <- cutree(hcs, k=3)
 
 # 在注释数据中添加新的3类聚类结果列，并设置对应颜色
 # Add a new column for 3-cluster results to the annotation data and set corresponding colors
@@ -404,18 +404,18 @@ Here we use euclidean and divide it into three categories (the sample order is d
 ```{r}
 # 使用欧氏距离和Ward法对样本进行层次聚类（替换原有的Pearson相关系数距离）
 # Hierarchical clustering of samples using Euclidean distance and Ward's method (replacing original Pearson correlation distance)
-hcs2 <- hclust(distanceMatrix(as.matrix(mat), "euclidean"), "ward.D") 
+hcs2 <- hclust(distanceMatrix(as.matrix(mat), "euclidean"), "ward.D")
 
 # 将新聚类树切割为3个簇
 # Cut the new clustering tree into 3 clusters
-group <- cutree(hcs2, k=3) 
+group <- cutree(hcs2, k=3)
 
 # 获取新聚类树的样本顺序索引（从左到右）
 # Get the sample order index (left to right) from the new clustering tree
-index <- order.dendrogram(as.dendrogram(hcs2)) 
+index <- order.dendrogram(as.dendrogram(hcs2))
 # 按新聚类结果重新排列样本顺序
 # Reorder samples according to the new clustering results
-sam_order <- colnames(mat)[index] 
+sam_order <- colnames(mat)[index]
 
 # 将新聚类方法产生的样本顺序保存为CSV文件（仅包含样本名称）
 # Save the sample order from the new clustering method to a CSV file (contains only sample names)

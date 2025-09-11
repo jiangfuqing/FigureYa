@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 限制性三次样条插值法（RCS）解决连续性变量对风险的非线性影响。
 
-##Requirement description
+## Requirement description
 
 Restricted cubic spline interpolation (RCS) is used to address the nonlinear impact of continuous variables on risk.
 
@@ -38,7 +38,7 @@ from<https://academic.oup.com/eurheartj/article/39/14/1181/4710060>
 
 具体理论推导和细节请见文档中“理论参考”文件夹
 
-##Application scenarios
+## Application scenarios
 
 The impact of continuous variables on risk may be non-linear, and ignoring this non-linear effect can interfere with the results;
 2. Quantify the risk ratio of continuous variables at each value point, using the baseline (reference point) as a reference.
@@ -49,7 +49,7 @@ Please refer to the "Theoretical References" folder in the document for specific
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -97,7 +97,7 @@ easy_input.csv，因为是生存分析的风险计算，所以生存状态（fst
 
 具体到实际问题，如果要控制其他因素对风险的影响，就要纳入更多的变量，这个没有固定的。这个众筹只是实现如何利用三次样条量化连续变量对HR的影响，具体要多少变量，具体问题具体分析，毕竟这是一个统计问题，没有通解。
 
-##Input file
+## Input file
 
 easy_input.csv， As it is a risk calculation for survival analysis, survival status (fstat), survival time (lenfol), and at least one covariate (continuous variable BMI) are necessary, and a covariate (binary variable gender) is also added here.
 
@@ -123,21 +123,21 @@ head(whas500)
 
 具体选择参考文献补充材料（supplementary_appendix，根据AIC准则筛选AIC最小的knots，一般为3）：
 
-The number of knots was chosen as the number that gave the best fit as assessed by the lowest value of the Akaike information criterion. 
+The number of knots was chosen as the number that gave the best fit as assessed by the lowest value of the Akaike information criterion.
 
-If results were similar (within 2 units of the best fit), the model with fewest knots were chosen to avoid overfitting. 
+If results were similar (within 2 units of the best fit), the model with fewest knots were chosen to avoid overfitting.
 
-##Start calculating
+## Start calculating
 
-###Find spline knot number
+### Find spline knot number
 
 For RCS, knots are generally between 3-5, and too many can cause overfitting.
 
 Specific selection of reference materials (supplementary.appendix, selecting the knots with the smallest AIC based on AIC criteria, generally 3):
 
-The number of knots was chosen as the number that gave the best fit as assessed by the lowest value of the Akaike information criterion. 
+The number of knots was chosen as the number that gave the best fit as assessed by the lowest value of the Akaike information criterion.
 
-If results were similar (within 2 units of the best fit), the model with fewest knots were chosen to avoid overfitting. 
+If results were similar (within 2 units of the best fit), the model with fewest knots were chosen to avoid overfitting.
 
 ```{r}
 # 循环测试不同节点数对模型的影响 - Iterate over different knot numbers to evaluate model performance
@@ -156,17 +156,17 @@ for (i in 3:5) {
   # data=whas500: Specify dataset
   # x=TRUE: Save model matrix for subsequent calculations
   fit <- coxph(Surv(lenfol, fstat)~rcspline.eval(whas500$bmi,nk=i,inclx = T)+gender,data=whas500, x=TRUE)
-  
+
   # 提取模型AIC信息准则值 - Extract Akaike Information Criterion (AIC) for model evaluation
   tmp <- extractAIC(fit)
-  
+
   # 初始化最优AIC和节点数 - Initialize optimal AIC and knot number
   if(i == 3) {AIC = tmp[2]; nk = 3}
-  
+
   # 比较并更新最优模型参数 - Compare and update optimal model parameters
   # nk保存最优的节点数目，样条数为nk-2（具体见参考文献“理论1.pdf”第2页2.3节公式1）
   # nk stores the optimal number of knots, spline count = nk-2 (see Formula 1, Section 2.3, Page 2 of Reference "理论1.pdf")
-  if(tmp[2] < AIC) {AIC = tmp[2]; nk = i} 
+  if(tmp[2] < AIC) {AIC = tmp[2]; nk = i}
 }
 ```
 
@@ -176,7 +176,7 @@ for (i in 3:5) {
 
 连续变量对风险的影响有时可能是非线性的，因此使用RCS样条化做非线性处理。
 
-###Fit Cox proportional hazards regression model###
+### Fit Cox proportional hazards regression model###
 
 Here, the Cox regression model considers two variables: BMI and gender, where BMI is a continuous variable and gender is a categorical variable
 
@@ -185,7 +185,7 @@ The impact of continuous variables on risk may sometimes be nonlinear, so RCS sp
 ```{r}
 # 连续变量bmi被样条化 - Continuous variable BMI transformed by restricted cubic spline
 # 使用之前循环确定的最优节点数nk构建最终Cox模型 - Build final Cox model using optimal knots (nk) from previous loop
-fit <- coxph(Surv(lenfol, fstat)~rcspline.eval(whas500$bmi,nk=nk,inclx = T)+gender,data=whas500, x=TRUE) 
+fit <- coxph(Surv(lenfol, fstat)~rcspline.eval(whas500$bmi,nk=nk,inclx = T)+gender,data=whas500, x=TRUE)
 # 这里Hmisc包中的rcspline.eval有多个参数，inclx=T表示包含被样条的数据本身，具体请参考?rcspline.eval
 # The rcspline.eval function from Hmisc package has multiple parameters. inclx=T includes the original variable in the spline transformation. See ?rcspline.eval for details
 
@@ -194,7 +194,7 @@ hr1 <- smoothHR(data=whas500, coxfit=fit) #光滑HR
 
 # 打印模型摘要，检查显著性 - Print model summary to check significance
 print(hr1) #注意到此时模型p值，协变量bmi以及样条p值均显著，说明该连续变量对生存的风险可能是非线性的
-# Note that if the global model p-value, BMI covariate p-value, and spline term p-values are all significant, 
+# Note that if the global model p-value, BMI covariate p-value, and spline term p-values are all significant,
 # it suggests a non-linear association between BMI and survival risk
 
 # 提取模型概要信息 - Extract model summary statistics
@@ -203,7 +203,7 @@ p <- summary(hr1$coxfit) #注意如果有超过3个knots，也就是多于2个�
 
 # 设置参考值 - Set reference value for hazard ratio calculation
 refvalue <- (18.5+25)/2 #这是一个具有生物/医学意义的参考值，见参考文献“理论2.pdf”第18页标黄。无论参考值为何，该点处的HR为1，即Zi=Ziref，具体见第6页公式2.6
-# This is a biologically/medically meaningful reference value (see highlighted text on page 18 of "理论2.pdf"). 
+# This is a biologically/medically meaningful reference value (see highlighted text on page 18 of "理论2.pdf").
 # HR is always 1 at the reference value (Zi=Ziref), as per Equation 2.6 on page 6
 
 # 将参考值转换为prob参数(predict函数中直接使用pred.value似乎存在bug)
@@ -211,13 +211,13 @@ refvalue <- (18.5+25)/2 #这是一个具有生物/医学意义的参考值，见
 prob <- max(which(quantile(whas500$bmi, seq(0, 1, len = 1000)) <= refvalue))/1000
 
 # 取出光滑的HR散点 - Generate smoothed HR points for visualization
-smoothlogHR.point <- as.data.frame(predict(hr1, 
+smoothlogHR.point <- as.data.frame(predict(hr1,
                           predictor="bmi", # 这是预测变量 - The predictor variable
-                          prob = prob, 
+                          prob = prob,
  #这里替代为参考值转换的prob，当然也可以直接根据分位数设置参考值，比如bmi的中位数，也可以设置上四分位等等，总之是有生物学意义的
- # Instead of using pred.value, we use the quantile probability converted from reference value. 
+ # Instead of using pred.value, we use the quantile probability converted from reference value.
  # This can also be set to median/quartiles with biological significance
-                          prediction.values = seq(min(whas500$bmi), max(whas500$bmi), length.out = 1000), conf.level=0.95)) 
+                          prediction.values = seq(min(whas500$bmi), max(whas500$bmi), length.out = 1000), conf.level=0.95))
 #预测精度，输出1000个散点用于自定义图形绘制 - Output 1000 points for custom visualization with 95% confidence interval
 ```
 
@@ -225,7 +225,7 @@ smoothlogHR.point <- as.data.frame(predict(hr1,
 
 绘制RCS曲线
 
-##Start drawing
+## Start drawing
 
 Draw RCS curve
 

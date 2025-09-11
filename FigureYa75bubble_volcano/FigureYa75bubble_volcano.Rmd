@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用base plot画美美的火山图
 
-##Requirement description
+## Requirement description
 
 Create a beautiful volcano map using a base plot
 
@@ -25,7 +25,7 @@ Create a beautiful volcano map using a base plot
 
 例如基因的火山图
 
-##Application scenarios
+## Application scenarios
 
 Display multiple features simultaneously, including P value, ajust P value, grouping, size, score, etc.
 
@@ -53,12 +53,12 @@ If you want to use ggplot2 to draw a volcanic map, please refer to Figure Ya59Vo
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 # 中文注释：设置R运行环境显示英文错误信息（便于国际交流或搜索解决方案）
 # English Comment: Set R environment to display error messages in English (for international communication or troubleshooting)
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 中文注释：全局设置字符串不自动转换为因子（避免旧版本R的默认行为导致问题）
 # English Comment: Globally disable automatic conversion of strings to factors (prevent issues from legacy R default behavior)
@@ -71,7 +71,7 @@ options(stringsAsFactors = FALSE)
 
 可以换成其他值，例如富集分析结果。
 
-##Input file
+## Input file
 
 The first column is the gene name, followed by 5 columns of feature values.
 
@@ -87,7 +87,7 @@ dat <- read.csv("easy_input.csv",  # 中文注释：文件路径/文件名
 
 # 中文注释：显示数据框前6行（默认6行，可通过n参数修改）
 # English Comment: Display first 6 rows of dataframe (default, adjustable via n parameter)
-head(dat) 
+head(dat)
 
 # 中文注释：显示数据框维度（行数 列数）
 # English Comment: Show dataframe dimensions (rows columns)
@@ -177,7 +177,7 @@ names(pp) <- rownames(dat)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r}
 # 中文注释：创建PDF输出文件（宽度7英寸，高度6英寸）
@@ -234,16 +234,16 @@ points(fc[w], p[w], pch=1, cex=ifelse(i[w], dat[w,"size"],1))  # 中文注释：
 add.alpha <- function(col, alpha=1){
   if(missing(col))
     stop("Please provide a vector of colours.")
-  apply(sapply(col, col2rgb)/255, 2, 
-        function(x) 
-          rgb(x[1], x[2], x[3], alpha=alpha))  
+  apply(sapply(col, col2rgb)/255, 2,
+        function(x)
+          rgb(x[1], x[2], x[3], alpha=alpha))
 }
 
 # 中文注释：为显著pathway添加半透明文本标签
 # English Comment: Add semi-transparent text labels for significant pathways
 cols.alpha <- add.alpha(cols.code[dat[w,]$group], alpha=0.6)  # 中文注释：60%透明度
                                                               # English Comment: 60% transparency
-text(fc[w], p[w], names(fc[w]), 
+text(fc[w], p[w], names(fc[w]),
      pos=4,  # 中文注释：文本位于点右侧（1=下，2=左，3=上，4=右）
             # English Comment: Text position (1=below, 2=left, 3=above, 4=right)
      col=cols.alpha)  # 中文注释：使用半透明颜色
@@ -265,7 +265,7 @@ legend("topright",
 
 # 中文注释：添加分组颜色图例
 # English Comment: Add group color legend
-legend("bottomright", 
+legend("bottomright",
        inset=c(-0.25,0),  # 中文注释：图例向右偏移25%
                          # English Comment: Legend offset 25% to right
        pch=16, col=cols.code, legend=cols.names, bty="n")  # 中文注释：无边框图例

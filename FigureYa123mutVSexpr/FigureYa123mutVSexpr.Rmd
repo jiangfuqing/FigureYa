@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 昨天在群里问了一下突变和表达的相关性，有小伙伴说只能做分组的bar图，我找到一个网站，可以做出这样的图，都是TCGA的数据，想用R复现：<http://tumorsurvival.org/TCGA/Lung_TCGA_LUAD/process.php?geneName=CD274&devidePatientN=median&LowVal=&HighVal=&subtype=All>
 
-##Requirement description
+## Requirement description
 
 Yesterday, I asked in the group about the correlation between mutations and expression, and a friend said that we can only make bar charts for grouping. I found a website that can make such charts, all of which are TCGA data, and I want to reproduce them using R< http://tumorsurvival.org/TCGA/Lung_TCGA_LUAD/process.php?geneName=CD274&devidePatientN=median&LowVal=&HighVal=&subtype=All >
 
@@ -35,7 +35,7 @@ fromTCGAportal<http://tumorsurvival.org/TCGA/Lung_TCGA_LUAD/data/expression_cBio
 
 用于展示突变与表达之间的相关性（独立性）
 
-##Application scenarios
+## Application scenarios
 
 Used to demonstrate the correlation (independence) between mutations and expression
 
@@ -43,7 +43,7 @@ Used to demonstrate the correlation (independence) between mutations and express
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -65,19 +65,19 @@ library packages
 ```{r}
 # 加载coin包，用于进行置换检验(非参数检验方法)
 # Load the coin package for permutation tests (non-parametric test methods)
-library(coin) 
+library(coin)
 
 # 加载ComplexHeatmap包，用于绘制复杂热图(支持柱状图等多种注释)
 # Load the ComplexHeatmap package for creating complex heatmaps (supports various annotations like bar charts)
-library(ComplexHeatmap) 
+library(ComplexHeatmap)
 
 # 设置系统环境变量，强制R显示英文错误信息(便于定位问题)
 # Set system environment variable to force R to display error messages in English (facilitates troubleshooting)
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 全局选项设置：禁止自动将字符向量转换为因子类型
 # Global option setting: prevent automatic conversion of character vectors to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 自定义函数
@@ -106,7 +106,7 @@ display.progress = function ( index, totalN, breakN=20) {
 - SKCM_EXP_CD274.txt，CD274的表达数据
 - SKCM_MUT.txt，突变的01矩阵，从XENA下载：<https://xenabrowser.net/datapages/?dataset=TCGA.SKCM.sampleMap%2Fmutation&host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>
 
-##Input file
+## Input file
 
 Need to express spectrum data and mutation data:
 
@@ -138,29 +138,29 @@ muta[1:3, 1:3]
 # Data preprocessing: Extract samples that exist in both datasets (intersection)
 # 确保后续分析基于相同的样本集合
 # Ensure subsequent analysis is based on the same set of samples
-com_sam <- intersect(colnames(expr),colnames(muta)) 
+com_sam <- intersect(colnames(expr),colnames(muta))
 
 # 表达量数据转换：对表达值进行log2(x+1)转换
 # Expression data transformation: Apply log2(x+1) transformation to expression values
 # 目的: 归一化表达量分布，减小高表达值的影响
 # Purpose: Normalize expression distribution, reduce impact of high expression values
-expr <- log2(expr[,com_sam] + 1) 
+expr <- log2(expr[,com_sam] + 1)
 
 # 突变数据过滤：仅保留在至少10%样本中发生突变的基因
 # Mutation data filtering: Retain only genes mutated in at least 10% of samples
 # 过滤低频率突变基因，避免噪声干扰后续分析
 # Filter out low-frequency mutation genes to avoid noise in subsequent analysis
-muta <- muta[rowSums(muta) > 0.1* ncol(muta),com_sam] 
+muta <- muta[rowSums(muta) > 0.1* ncol(muta),com_sam]
 ```
 
 ## 置换检验独立性
 
-##Substitution test independence
+## Substitution test independence
 
 ```{r}
 # 定义目标基因名称 - 本例中为PD-L1(CD274)
 # Define the target gene name - PD-L1 (CD274) in this example
-gene <- "CD274" 
+gene <- "CD274"
 
 # 初始化p值存储向量 - 用于保存每个基因与CD274表达的关联检验结果
 # Initialize vector to store p-values - Will hold association test results for each gene with CD274 expression
@@ -171,18 +171,18 @@ p <- c()
 for (i in 1:nrow(muta)) {
   # 显示当前循环进度 - 方便用户了解计算进度
   # Display current loop progress - Helps user track computation progress
-  display.progress(i,nrow(muta)) 
-  
+  display.progress(i,nrow(muta))
+
   # 创建临时数据框 - 包含CD274表达量和当前基因的突变状态
   # Create temporary dataframe - Contains CD274 expression and mutation status of current gene
-  tmp <- data.frame(exp=as.numeric(expr[gene,]), mut=sapply(muta[i,],as.factor),stringsAsFactors = F) 
-  
+  tmp <- data.frame(exp=as.numeric(expr[gene,]), mut=sapply(muta[i,],as.factor),stringsAsFactors = F)
+
   # 执行置换检验(独立性检验) - 评估基因突变状态与CD274表达量之间的关联性
-  # Perform permutation test (independence test) - 
+  # Perform permutation test (independence test) -
   # Assess association between gene mutation status and CD274 expression levels
   # 优势: 不依赖数据分布假设，适用于小样本和非正态分布数据
   # Advantage: Distribution-free, suitable for small samples and non-normal data
-  p <- c(p,pvalue(independence_test(exp ~ mut,data = tmp))) 
+  p <- c(p,pvalue(independence_test(exp ~ mut,data = tmp)))
 }
 
 # 为结果向量添加基因名称作为标识符
@@ -228,7 +228,7 @@ hm <- Heatmap(mat, # 注意这里是排序后的数据
               top_annotation = column_ha) # 顶部柱状图注释
 
 pdf("mutVSexpr.pdf",width = 10,height = 3.5)
-draw(hm, 
+draw(hm,
      row_title = "Significantly associated mutations", # 设置热图的行title
      column_title = paste("Expression of ",gene), # 设置热图的列title
      heatmap_legend_side = "right") # 确定legend的位置

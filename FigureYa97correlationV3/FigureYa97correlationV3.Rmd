@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 计算多个基因和免疫浸润的相关性，画出类似于文章中这种热图，用颜色展示相关系数，用**标出显著的。
 
-##Requirement description
+## Requirement description
 
 Calculate the correlation between multiple genes and immune infiltration, draw a heatmap similar to the one in the article, display the correlation coefficients with colors, and mark the significant ones with * *.
 
@@ -39,7 +39,7 @@ from<https://www.nature.com/articles/s41586-019-1032-7>
 
 如果要同时展示两个基因之间的相关性，及其与免疫浸润之间的关系，请参考“FigureYa96R2”。
 
-##Application scenarios
+## Application scenarios
 
 Evaluate the impact of genes on immune infiltration, and even screen candidate genes that affect immune infiltration in batches.
 
@@ -51,7 +51,7 @@ If you want to simultaneously demonstrate the correlation between two genes and 
 
 加载包
 
-##Environment settings
+## Environment settings
 
 Load Package
 
@@ -82,7 +82,7 @@ options(stringsAsFactors = FALSE)
 - easy_input_expr.csv，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。
 - genelist.txt，基因名，将要计算这些基因跟免疫浸润的相关性。要求跟easy_input_expr.csv里的基因名一致。
 
-##Input file
+## Input file
 
 Require the sample names of the first two files to be consistent
 
@@ -138,7 +138,7 @@ genelist <- genelist$V1
 
 其中method可以改为"pearson"或"kendall"
 
-##Batch calculation of correlation
+## Batch calculation of correlation
 
 Write a function first
 
@@ -152,7 +152,7 @@ The method can be changed to "Pearson" or "Kendall"
 gene <- genelist
 
 # 定义免疫评分函数，计算指定基因表达量与免疫细胞浸润得分的相关性
-# Define the immune score function to calculate the correlation between the expression of a specified gene 
+# Define the immune score function to calculate the correlation between the expression of a specified gene
 # and the infiltration score of immune cells
 immuscore <- function(gene){
   # 提取该基因在所有样本中的表达量数据
@@ -180,7 +180,7 @@ immuscore("FOXP3")
 
 ### 批量计算genelist跟免疫浸润相关性的结果
 
-###Batch calculation of the correlation between genelist and immune infiltration results
+### Batch calculation of the correlation between genelist and immune infiltration results
 
 ```{r, warning=FALSE}
 # 对基因列表中的每个基因应用免疫评分函数，并将结果合并为一个数据框
@@ -193,7 +193,7 @@ head(data)
 # 保存到文件
 # 将相关性分析结果保存为CSV文件
 # Save the correlation analysis results to a CSV file
-write.csv(data, "correlation.csv", 
+write.csv(data, "correlation.csv",
           quote = F,  # 不使用引号包裹字符串
           # Do not enclose strings in quotes
           row.names = F)  # 不保存行名
@@ -204,7 +204,7 @@ write.csv(data, "correlation.csv",
 
 使用两个ifelse实现三分类
 
-###Add a column to distinguish the size of p-values
+### Add a column to distinguish the size of p-values
 
 Implement three classification using two ifelses
 
@@ -230,7 +230,7 @@ data$pstar[1:20]
 
 - 有差异的把*号打印在热图上
 
-##Start drawing
+## Start drawing
 
 When using ggplot2 for drawing, the main function used is the geom_tile function:
 
@@ -247,12 +247,12 @@ When using ggplot2 for drawing, the main function used is the geom_tile function
 
 # 将免疫细胞列转换为因子，并按指定顺序排列
 # Convert the immune cell column to a factor with specified order
-# data$immune_cells <- factor(data$immune_cells, 
+# data$immune_cells <- factor(data$immune_cells,
 #                            levels = c("第一种细胞","第二种细胞",,,,))
 
 # 使用ggplot2绘制热图，展示基因与免疫细胞的相关性
 # Create a heatmap using ggplot2 to show correlations between genes and immune cells
-ggplot(data, aes(immune_cells, gene)) + 
+ggplot(data, aes(immune_cells, gene)) +
   # 绘制热力图瓦片，填充颜色根据相关系数决定
   # Draw heatmap tiles with color filled by correlation coefficient
   geom_tile(aes(fill = cor), colour = "white", size=1) +
@@ -264,7 +264,7 @@ ggplot(data, aes(immune_cells, gene)) +
   geom_text(aes(label=pstar), col ="black", size = 5) +
   # 使用简约主题
   # Apply minimal theme
-  theme_minimal() + 
+  theme_minimal() +
   # 自定义主题元素
   # Customize theme elements
   theme(
@@ -295,7 +295,7 @@ The color in the geome_tile function can change the color, such as black
 ```{r,fig.width=8, fig.height=4}
 # 使用ggplot2创建基因与免疫细胞相关性热图
 # Create a heatmap showing correlations between genes and immune cells using ggplot2
-ggplot(data, aes(immune_cells, gene)) + 
+ggplot(data, aes(immune_cells, gene)) +
   # 绘制热力图瓦片，设置边框颜色为黑色，边框粗细为1
   # Draw heatmap tiles with black borders of size 1
   geom_tile(aes(fill = cor), colour = "black", size=1) +
@@ -334,7 +334,7 @@ If color is missing, there will be no border color
 ```{r,fig.width=8, fig.height=4}
 # 使用ggplot2创建基因与免疫细胞相关性热图
 # Create a heatmap showing correlations between genes and immune cells using ggplot2
-ggplot(data, aes(immune_cells, gene)) + 
+ggplot(data, aes(immune_cells, gene)) +
   # 绘制热力图瓦片，根据相关系数填充颜色，边框粗细为1（默认透明）
   # Draw heatmap tiles filled by correlation coefficient with border size 1 (default transparent)
   geom_tile(aes(fill = cor), size=1) +
@@ -377,7 +377,7 @@ Not recommended this time, I don't think it looks good
 ```{r,fig.width=8, fig.height=4}
 # 使用ggplot2创建基因与免疫细胞相关性热图
 # Create a heatmap showing correlations between genes and immune cells using ggplot2
-ggplot(data, aes(immune_cells, gene)) + 
+ggplot(data, aes(immune_cells, gene)) +
   # 绘制热力图瓦片，同时根据相关系数映射填充颜色和边框粗细
   # Draw heatmap tiles with color and border size mapped to correlation coefficient
   geom_tile(aes(fill = cor, size = cor), colour = "white") +

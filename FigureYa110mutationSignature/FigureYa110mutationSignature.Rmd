@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 画出文章里的3个热图：
 
-##Requirement description
+## Requirement description
 
 Draw three heat maps from the article:
 
@@ -44,7 +44,7 @@ Rosenthal R, McGranahan N, Herrero J, Taylor BS, Swanton C. DeconstructSigs: del
 
 Gaujoux R , Seoighe C . A flexible R package for nonnegative matrix factorization[J]. BMC Bioinformatics, 2010, 11(1):367.
 
-##Application scenarios
+## Application scenarios
 
 Using decortructsigs to calculate mutation signature patterns, NMF performs clustering analysis to find subtype driven signatures, and draws a heatmap.
 
@@ -60,7 +60,7 @@ Gaujoux R , Seoighe C . A flexible R package for nonnegative matrix factorizatio
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -113,17 +113,17 @@ library(NMF)
 
 # 设置环境变量使R显示英文错误信息
 # Set environment variable to display R error messages in English
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 # 禁止将字符串自动转换为因子类型
 # Disable automatic conversion of strings to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
 
 blca.mut.maf.txt，基因突变数据。
 
-##Input file
+## Input file
 
 blca.mut.maf.txt， Genetic mutation data.
 
@@ -145,7 +145,7 @@ maf <- as.data.frame(maf)
 ```{r}
 # 定义保存突变特征细节图的文件夹路径
 # Define folder path to save mutation signature detail plots
-fig.path <- "Figures" 
+fig.path <- "Figures"
 # 若指定文件夹不存在则创建
 # Create the directory if it does not exist
 if (!file.exists(fig.path)) { dir.create(fig.path) }
@@ -159,30 +159,30 @@ jco <- c("#2874C5","#EABF00","#C6524A","#868686")
 
 ### 计算96种三核苷酸变化 ###
 
-###Calculate 96 types of trinucleotide changes###
+### Calculate 96 types of trinucleotide changes###
 
 ```{r}
 # 是否移除沉默突变（可根据实际需求移除其他SNP类型）
 # Whether to remove silent mutations (other SNP types can also be removed based on requirements)
 # 移除则改为T（默认保留）
 # Set to T to remove silent mutations (default: retain)
-rmSilence = F 
+rmSilence = F
 
 # 根据rmSilence参数过滤突变数据
 # Filter mutation data based on rmSilence parameter
 if (rmSilence) {
   # 仅保留SNP且移除沉默突变
   # Keep only SNPs and remove silent mutations
-  maf <- as.data.frame(maf[which(maf$Variant_Type == "SNP" & maf$Variant_Classification != "Silent"),]) 
+  maf <- as.data.frame(maf[which(maf$Variant_Type == "SNP" & maf$Variant_Classification != "Silent"),])
 } else {
   # 仅保留SNP类型突变（突变特征分析通常只考虑SNP）
   # Keep only SNPs (mutation signature analysis typically focuses on SNPs)
-  maf <- as.data.frame(maf[which(maf$Variant_Type == "SNP"),]) 
+  maf <- as.data.frame(maf[which(maf$Variant_Type == "SNP"),])
 }
 
 # 确保染色体名称格式符合deconstructSigs包要求（添加"chr"前缀）
 # Ensure chromosome names match deconstructSigs input format (add "chr" prefix)
-maf$Chromosome <- paste0("chr",maf$Chromosome) 
+maf$Chromosome <- paste0("chr",maf$Chromosome)
 
 # 转换突变数据为突变特征分析所需的输入格式
 # Convert mutation data to input format required by deconstructSigs
@@ -210,12 +210,12 @@ write.table(snp.count, "snp.count.txt", sep = "\t", row.names = T, col.names = N
 
 ### 计算单样本突变签名的权重 ###
 
-###Calculate the weight of a single sample mutation signature###
+### Calculate the weight of a single sample mutation signature###
 
 ```{r}
 # 设置突变特征贡献度阈值（默认6%，与参考论文一致）
 # Set threshold for signature contribution (default 6%, consistent with reference paper)
-cut.off <- 0.06 
+cut.off <- 0.06
 
 # 初始化数据结构存储结果
 # Initialize data structures to store results
@@ -232,7 +232,7 @@ for (sample in rownames(snp.count)) {
   # 打印进度信息
   # Print progress information
   cat(paste0(sample," starts and ",length(rownames(snp.count))-index," samples remain to be analyzed!\n"))
-  
+
   # 使用deconstructSigs包的whichSignatures函数进行突变特征分解
   # Decompose mutation signatures using whichSignatures function from deconstructSigs
   tmp <- whichSignatures(
@@ -249,23 +249,23 @@ for (sample in rownames(snp.count)) {
     signature.cutoff = cut.off               # 特征贡献度阈值，低于此值的特征将被忽略
                                              # Threshold for signature contribution
   )
-  
+
   index <- index + 1  # 更新计数器
-  
+
   # 输出每个样本的突变特征细节图
   # Generate and save detailed signature plots for each sample
   pdf(file.path(fig.path,paste0(sample,"_plotSignatures.pdf")))
   plotSignatures(tmp)                # 绘制特征贡献度柱状图
                                      # Plot signature contribution bar chart
   invisible(dev.off())
-  
+
   # 输出每个样本的特征权重饼图
   # Generate and save signature weight pie chart for each sample
   pdf(file.path(fig.path,paste0(sample,"_weightPie.pdf")))
   makePie(tmp)                       # 绘制特征权重饼图
                                      # Plot signature weight pie chart
   invisible(dev.off())
-  
+
   # 生成并存储突变特征权重矩阵
   # Generate and store mutation signature weight matrix
   sigs.out.list[[sample]] <- tmp     # 保存完整分析结果
@@ -284,7 +284,7 @@ write.table(mut.wt, "mutsig.weightMatrix.txt", sep = "\t", row.names = T, col.na
 
 ### 非负矩阵分解识别驱动性signature并绘图 ###
 
-###Non negative matrix factorization for identifying driving signatures and plotting them###
+### Non negative matrix factorization for identifying driving signatures and plotting them###
 
 ```{r}
 # 搜索最优NMF分解秩（聚类数量不宜过大）
@@ -330,9 +330,9 @@ rownames(nmf.input) <- gsub("Signature","Sig",rownames(nmf.input))  # 简化行�
 
 # 执行NMF分解，将样本分为4个亚型
 # Perform NMF decomposition to classify samples into 4 subtypes
-mut.nmf <- nmf(nmf.input, 
-               rank = rank, 
-               seed = seed, 
+mut.nmf <- nmf(nmf.input,
+               rank = rank,
+               seed = seed,
                method = "lee")  # 使用Lee和Seung的乘性迭代算法
                                 # Use Lee and Seung multiplicative update algorithm
 
@@ -351,9 +351,9 @@ sig.order <- unlist(index)  # 将特征列表展平为向量
 # Perform NMF decomposition again using selected signatures
 nmf.input2 <- nmf.input[sig.order,]  # 仅保留筛选出的特征
                                       # Keep only selected signatures
-mut.nmf2 <- nmf(nmf.input2, 
-                rank = rank, 
-                seed = seed, 
+mut.nmf2 <- nmf(nmf.input2,
+                rank = rank,
+                seed = seed,
                 method = "lee")  # 再次执行NMF
                                 # Repeat NMF decomposition
 group <- predict(mut.nmf2)  # 预测样本所属聚类（亚型）

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 已有一个表达谱进行了聚类，找到这个表达谱的signature genes ，同时对另外一个表达谱进行样本聚类。
 
-##Requirement description
+## Requirement description
 
 An expression profile has already been clustered, and the signature genes of this expression profile have been identified. At the same time, another expression profile has been subjected to sample clustering.
 
@@ -37,7 +37,7 @@ from<https://www.nature.com/articles/s41586-019-0987-8>
 
 以皮肤黑色素瘤（TCGA-SKCM）为例，采用监督层次聚类算法，用它的金标准亚型寻找marker。利用监督层次聚类在验证集（假设TCGA-SKCM本身就是验证集）上识别新亚型。
 
-##Application scenarios
+## Application scenarios
 
 Under the premise of existing subtypes (obtained through clustering or gold standard subtypes), search for subtype markers and perform supervised analysis on an independent dataset.
 
@@ -47,7 +47,7 @@ Taking skin melanoma (TCGA-SKCM) as an example, supervised hierarchical clusteri
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -74,10 +74,10 @@ library(survminer)
 # 加载pheatmap包，用于绘制热图（Load the pheatmap package for creating heatmaps）
 
 # 设置系统环境语言为英文，以便显示英文报错信息（Set system environment language to English to display error messages in English）
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止将字符串自动转换为因子类型，保持数据原始格式（Prevent automatic conversion of strings to factors, keeping data in original format）
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
@@ -90,7 +90,7 @@ easy_input_info.txt，包含样品的亚型、临床生存信息，用于做生�
 
 SKCM_deseq2_test_result.*_vs_Others.txt，多组差异分析结果，用于找到这个表达谱的signature genes，即marker基因。可以用FigureYa118MulticlassDESeq2，FigureYa119MulticlassLimma，FigureYa120MulticlassedgeR中任意一个的输出作为输入。
 
-##Input file
+## Input file
 
 easy_input_count.txt， Expression matrix, used for training. The use of supervised clustering belongs to cluster analysis, so please choose data types that are robust to cluster analysis, such as FPKM, TPM, standardized count values, and so on.
 
@@ -108,7 +108,7 @@ expr[1:3,1:3]  # 查看数据前几行几列的基本结构（View the basic str
 # 读取验证集表达矩阵数据（Read validation set expression matrix data）
 # expr_test <- read.table("easy_input_count_test.txt",sep = "\t",header = T,check.names = F,stringsAsFactors = F,row.names = 1)
 # 此处直接假设TCGA-SKCM本身为验证集（Here we directly assume TCGA-SKCM dataset itself as validation set）
-expr_test <- expr 
+expr_test <- expr
 
 # 读取生存分析相关临床信息（Read clinical information for survival analysis）
 Sinfo <- read.table("easy_input_info.txt",sep = "\t",header = T,check.names = F,stringsAsFactors = F,row.names = 1)
@@ -122,7 +122,7 @@ DEfiles <- c("SKCM_deseq2_test_result.immune_vs_Others.txt",
 
 ## 根据差异表达结果选取每种亚型特异性上调的marker
 
-##Select subtype specific upregulated markers based on differential expression results
+## Select subtype specific upregulated markers based on differential expression results
 
 ```{r}
 # 设置差异表达基因筛选阈值（Set thresholds for differential expression gene screening）
@@ -137,7 +137,7 @@ marker <- c()
 for (filek in DEfiles) {
   # 读取差异表达结果文件（Read differential expression results file）
   tmp <- read.table(filek,sep = "\t",header = T,check.names = F,stringsAsFactors = F,row.names = 1)
-  
+
   # 提取FDR小于阈值且log2FC大于0的基因（Extract genes with FDR < threshold and log2FC > 0）
   # 这些基因在对应亚型中显著上调（These genes are significantly upregulated in the corresponding subtype）
   marker <- c(marker,rownames(tmp[which(tmp$FDR < fdrcut & tmp$log2FC > 0),]))
@@ -156,17 +156,17 @@ topmarker <- list()
 for (filek in DEfiles) {
   # 读取差异表达结果（Read differential expression results）
   tmp <- read.table(filek,sep = "\t",header = T,check.names = F,stringsAsFactors = F,row.names = 1)
-  
+
   # 仅保留之前筛选出的非重复候选基因（Keep only non-duplicated candidate genes）
   tmp <- tmp[uqmarker,]
-  
+
   # 筛选符合FDR和log2FC条件的基因（Filter genes meeting FDR and log2FC criteria）
   tmp <- tmp[which(tmp$FDR < fdrcut & tmp$log2FC > 0),]
-  
+
   # 按log2FC降序排列，选取top个基因（Sort by log2FC descending and select top genes）
   # 如果符合条件的基因不足top个，则选取全部（Select all if fewer than top genes meet criteria）
   tmp <- rownames(tmp[order(tmp$log2FC,decreasing = T),])[1:ifelse(nrow(tmp) > top, top, nrow(tmp))]
-  
+
   # 将筛选结果存入列表，键为文件名（Store筛选结果 into list with file name as key）
   topmarker[[filek]] <- tmp
 }
@@ -179,7 +179,7 @@ if(!length(unique(as.character(unlist(topmarker)))) == top * length(DEfiles)) {c
 
 **注意：**理论上这里需要一个独立的验证集，可以是TCGA通过抽样出的测试集，也可以是GEO等数据库下载的，数据类型要满足聚类分析要求。此处直接假设TCGA-SKCM本身为验证集，也就是在原有数据集的基础上做监督聚类，实际处理自己的数据时另外再提供一个文件给expr_test。
 
-##Supervised hierarchical clustering
+## Supervised hierarchical clustering
 
 **Note: In theory, an independent validation set is required here, which can be a test set sampled by TCGA or downloaded from databases such as GEO. The data type should meet the requirements of cluster analysis. Here, we assume that TCGA-SKCM itself is the validation set, which means that supervised clustering is performed on the basis of the original dataset, and an additional file is provided to expr_test when processing its own data.
 
@@ -193,7 +193,7 @@ topmarker.sc <- as.character(unlist(gene_sel))
 
 # 提取测试集中的marker基因表达量并进行log2转换（Extract marker gene expression and perform log2 transformation）
 # +1处理避免log(0)错误（+1 to avoid log(0) error）
-indata <- log2(expr_test[topmarker.sc,] + 1) 
+indata <- log2(expr_test[topmarker.sc,] + 1)
 
 # 使用Pearson相关系数计算样本间距离矩阵，采用Ward方法进行层次聚类（Calculate sample distance matrix using Pearson correlation and perform hierarchical clustering with Ward's method）
 # 修改层次聚类参数请参阅??distanceMatrix（See ??distanceMatrix for clustering parameter modification）
@@ -208,13 +208,13 @@ scgroup <- paste0("scC", as.character(scgroup))
 names(scgroup) <- colnames(indata)  # 设置样本名称为聚类结果的名称（Set sample names for clustering results）
 ```
 
-## 画热图确定亚型对应关系 
+## 画热图确定亚型对应关系
 
 层次监督聚类法优点是很灵活，但缺陷是你不知道原本的C1是不是监督聚类后名义上的C1（可能变成了C2），因此最好是用监督聚类的marker画个热图，肉眼判断具体的亚型对应关系，并重新命名给出对应的颜色。
 
 这里简单画个热图判断具体的亚型对应关系，更复杂的外部聚类绘制热图可参考FigureYa91cluster_heatmap
 
-##Draw a heat map to determine the correspondence between subtypes
+## Draw a heat map to determine the correspondence between subtypes
 
 The advantage of hierarchical supervised clustering is that it is very flexible, but the drawback is that you do not know whether the original C1 is the nominal C1 after supervised clustering (it may become C2). Therefore, it is best to use a supervised clustering marker to draw a heatmap, visually determine the specific subtype correspondence, and rename it with the corresponding color.
 
@@ -289,7 +289,7 @@ Sinfo$scgroup <- scgroup[rownames(Sinfo)]
 
 如果只是想画生存曲线，可参考FigureYa1survivalCurve。
 
-###Survival analysis of the main classification (gold standard or training set clustering results)
+### Survival analysis of the main classification (gold standard or training set clustering results)
 
 If you just want to draw a survival curve, you can refer to FigureYa1survivalCurve.
 
@@ -309,12 +309,12 @@ p.val <- 1 - pchisq(fitd$chisq, length(fitd$n) - 1)
 # type="kaplan-meier"：指定使用K-M方法（Specify Kaplan-Meier method）
 # error="greenwood"：使用Greenwood公式计算标准误差（Calculate standard error using Greenwood formula）
 # conf.type="plain"：使用普通置信区间（Use plain confidence interval）
-fit <- survfit(Surv(futime, fustat) ~ subtype, data=Sinfo, 
-               type="kaplan-meier", error="greenwood", 
+fit <- survfit(Surv(futime, fustat) ~ subtype, data=Sinfo,
+               type="kaplan-meier", error="greenwood",
                conf.type="plain", na.action=na.exclude)
 
 # 绘制生存分析可视化结果（Plot survival analysis results）
-survp1 <- ggsurvplot(fit, 
+survp1 <- ggsurvplot(fit,
                      conf.int=F,                # 不显示置信区间（Do not show confidence interval）
                      risk.table=F,              # 不显示风险表（Do not show risk table）
                      risk.table.col="strata",   # 风险表按组别着色（Color risk table by group）
@@ -333,7 +333,7 @@ ggsave("training_data.pdf")
 
 ### 验证集的生存分析
 
-###Survival analysis of validation set
+### Survival analysis of validation set
 
 ```{r}
 # 执行对数秩检验比较不同聚类组的生存差异（Perform Log-rank test to compare survival differences between clustering groups）
@@ -345,18 +345,18 @@ p.val2 <- 1 - pchisq(fitd2$chisq, length(fitd2$n) - 1)
 
 # 拟合Kaplan-Meier生存曲线（Fit Kaplan-Meier survival curves）
 # 按scgroup聚类结果分组（Group by scgroup clustering results）
-fit2 <- survfit(Surv(futime, fustat) ~ scgroup, data=Sinfo, 
-                type="kaplan-meier", error="greenwood", 
+fit2 <- survfit(Surv(futime, fustat) ~ scgroup, data=Sinfo,
+                type="kaplan-meier", error="greenwood",
                 conf.type="plain", na.action=na.exclude)
 
 # 绘制生存分析可视化结果（Plot survival analysis results）
-survp2 <- ggsurvplot(fit2, 
+survp2 <- ggsurvplot(fit2,
                      conf.int=F,                # 不显示置信区间（Do not show confidence interval）
                      risk.table=F,              # 不显示风险表（Do not show risk table）
                      risk.table.col="strata",   # 风险表按组别着色（Color risk table by group）
                      # 根据热图中的聚类颜色手动指定对应颜色（Manually specify colors to match heatmap clustering）
                      # 顺序需与scC1, scC2, scC3对应（Order must match scC1, scC2, scC3）
-                     palette=c(gold, blue, red), 
+                     palette=c(gold, blue, red),
                      data=Sinfo,
                      size=0.8,                  # 设置曲线粗细（Set curve line width）
                      font.legend=10,            # 设置图例字体大小（Set legend font size）

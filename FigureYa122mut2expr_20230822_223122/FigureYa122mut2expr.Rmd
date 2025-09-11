@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 虽然原文附件给出了代码，但自己看着费劲，请高手带我们理解并复现原文的Figure 1b建模。
 
-##Requirement description
+## Requirement description
 
 Although the original attachment provides the code, it seems difficult for us to understand and reproduce the Figure 1b modeling in the original text. Please help us understand and reproduce it.
 
@@ -75,7 +75,7 @@ It's lonely to tinker with the code of an article by oneself, and no one will di
 
 如果想要系统的研究基因之间的相互关系，就需要更多的基因样本容量，所以该线性模型方法是相对小样本量的很好的方式。
 
-##Application scenarios
+## Application scenarios
 
 There is already genotype and transcription data available, and a linear model is used to analyze the contribution of mutations to gene expression, that is, how gene expression responds to different genotypes and how different mutations affect gene expression.
 
@@ -93,7 +93,7 @@ If you want to systematically study the interrelationships between genes, you ne
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -114,29 +114,29 @@ source("install_dependencies.R")
 library(openxlsx)
 # 加载用于芯片数据处理的包
 # Load the package for microarray data processing
-library(affy) 
+library(affy)
 # 加载用于芯片数据处理的包（GCRMA算法）
 # Load the package for microarray data processing (GCRMA algorithm)
-library(gcrma) 
+library(gcrma)
 # 加载人类基因注释包
 # Load the human gene annotation package
-library(org.Hs.eg.db) 
+library(org.Hs.eg.db)
 # 加载人类芯片(hgu133plus2)注释包
 # Load the human microarray (hgu133plus2) annotation package
-library(hgu133plus2.db) 
+library(hgu133plus2.db)
 # 加载线性模型分析包
 # Load the package for linear model analysis
-library(limma) 
+library(limma)
 # 加载颜色方案包
 # Load the package for color palettes
-library(RColorBrewer) 
+library(RColorBrewer)
 
 # 设置环境变量，使R显示英文报错信息
 # Set environment variable to display error messages in English
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 # 设置选项，禁止将字符串自动转换为因子类型
 # Set option to prevent automatic conversion of strings to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入数据的预处理
@@ -147,7 +147,7 @@ options(stringsAsFactors = FALSE)
 
 genotype和表型数据：Supplementary Data 1—ncomms6901-s2.xlsx，其中部分个体数据缺失。
 
-##Preprocessing of input data
+## Preprocessing of input data
 
 Two types of input data are required: expression data and genotype data
 
@@ -161,7 +161,7 @@ Genotype and phenotype data: Supplementary Data 1- ncomms6901-s2.xlsx, with some
 
 下面这一步需要较长的运行时间，我把运行结果gset保存在文件里，便于再次运行时读取
 
-###Chip data processing:
+### Chip data processing:
 
 The following is the chip data processing process, mainly using the affy and gcrma packages
 
@@ -180,7 +180,7 @@ load("gset.RData")
 
 # 处理样本名称，将格式为GSM1420467_MDS194.CEL.gz的样本名简化为GSM1420467
 # Process sample names: simplify from format like GSM1420467_MDS194.CEL.gz to GSM1420467
-samples <- sub("_.+","", sampleNames(gset)) 
+samples <- sub("_.+","", sampleNames(gset))
 sampleNames(gset) <- samples
 
 # 将探针ID转换为ENTREZID（基因ID）
@@ -211,7 +211,7 @@ expr.id <- merge(expr,tab,by="PROBEID")
 list <- split(expr.id, expr.id[,178])
 list_new <- list
 for (i in 1:length(list_new)){
-list_new[[i]] <- list[[i]][,2:177] 
+list_new[[i]] <- list[[i]][,2:177]
 }
 geneExpr <- t(sapply(list_new,colMeans))
 ```
@@ -244,7 +244,7 @@ list <- split(tab[,1], tab[,2])
 # 定义一个函数，用于计算表达矩阵e中特定行(基因)的平均表达值
 # Define a function to calculate the average expression values of specific rows (genes) in the expression matrix 'e'
 colmean <- function(ids){
-  colMeans(e[ids,,drop=FALSE])  
+  colMeans(e[ids,,drop=FALSE])
 }
 
 # 对列表中的每个元素(基因集合)应用colmean函数，计算平均表达矩阵
@@ -262,7 +262,7 @@ There is a small tip here, which is' e [ids, drop=FALSE] '. Generally speaking, 
 
 ### genotype突变信息
 
-###Genotype mutation information
+### Genotype mutation information
 
 ```{r}
 # 从Excel文件中读取MDS数据，从第2行开始加载（跳过标题行）
@@ -351,7 +351,7 @@ head(design)
 
 这里主要用到limma包，其中F.stat，是F-statistic检验，该值越大，一般p值越小，即差异显著。
 
-##Constructing a linear model
+## Constructing a linear model
 
 The limma package is mainly used here, where F.stat is the F-statistical test. The larger the value, the smaller the p-value, indicating a significant difference.
 
@@ -377,7 +377,7 @@ b图里有三个小图，我们分别来画。
 
 定义颜色，主要定义19种颜色，每种颜色在之后会代表每一个design的列信息：
 
-##Start drawing - b
+## Start drawing - b
 
 There are three small pictures in Figure B, let's draw them separately.
 
@@ -433,7 +433,7 @@ geneExpr <- geneExpr[, rownames(design)]
 
 大体思路就是：首先通过hclust对数据进行聚类，之后通过rasterImage按照聚类的顺序画heatmap。
 
-###B Middle image:
+### B Middle image:
 
 This is another method of drawing heatmaps, and it is also the most stunning part for me.
 
@@ -446,7 +446,7 @@ par(bty="n", mgp = c(2,.33,0), mar=rep(0,4), las=1, tcl=-.25, xpd=NA)
 
 # 创建一个空绘图区域，设置x轴为设计矩阵的列数，y轴为设计矩阵的行数
 # Create an empty plot area with x-axis set to the number of columns and y-axis to the number of rows in the design matrix
-plot(NA, NA, xlim=c(0, ncol(design)), ylim=c(0, nrow(design)), 
+plot(NA, NA, xlim=c(0, ncol(design)), ylim=c(0, nrow(design)),
      xaxt="n", yaxt="n", xlab="", ylab="", xaxs="i", yaxs="i")
 
 # 对设计矩阵的前16列进行层次聚类，以便后续对样本进行排序
@@ -461,7 +461,7 @@ j <- hclust(dist(t(z)))
 # 有突变的位置使用对应颜色，无突变位置使用白色
 # Create a heatmap: convert mutation status (z matrix) to a color matrix, sort using clustering results, and plot
 # Mutated positions use corresponding colors, non-mutated positions use white
-rasterImage(sapply(1:ncol(z), function(i) ifelse(z[,i] > 0, colMutations[i-1], "#FFFFFF"))[h$order, j$order], 
+rasterImage(sapply(1:ncol(z), function(i) ifelse(z[,i] > 0, colMutations[i-1], "#FFFFFF"))[h$order, j$order],
             0, 0, ncol(design), nrow(design), interpolate=FALSE)
 ```
 
@@ -480,7 +480,7 @@ rasterImage(matrix_order, 0, 0, ncol(design), nrow(design), interpolate=FALSE)
 
 首先是把基因表达的大小分成12份，然后换成11个颜色，之后组成颜色的矩阵。通过rasterImage画出来。rasterImage还有其他有意思的用法，可以参考Y叔的<https://guangchuangyu.github.io/cn/2017/04/ggimage/>
 
-###Left side image:
+### Left side image:
 
 Firstly, divide the size of gene expression into 12 parts, then replace them with 11 colors, and then form a matrix of colors. Draw it through RasterImage. RasterImage has other interesting uses, you can refer to Uncle Y's< https://guangchuangyu.github.io/cn/2017/04/ggimage/ >
 
@@ -491,7 +491,7 @@ par(bty="n", mgp = c(2,.33,0), mar=rep(0,4), las=1, tcl=-.25, xpd=NA)
 
 # 创建一个空绘图区域，设置x轴为设计矩阵的列数，y轴为设计矩阵的行数
 # Create an empty plot area with x-axis set to the number of columns and y-axis to the number of rows in the design matrix
-plot(NA, NA, xlim=c(0, ncol(design)), ylim=c(0, nrow(design)), 
+plot(NA, NA, xlim=c(0, ncol(design)), ylim=c(0, nrow(design)),
      xaxt="n", yaxt="n", xlab="", ylab="", xaxs="i", yaxs="i")
 
 # 对设计矩阵的前16列进行层次聚类，以便后续对样本进行排序
@@ -506,13 +506,13 @@ j <- hclust(dist(t(z)))
 # 有突变的位置使用对应颜色，无突变位置使用白色
 # Create a heatmap: convert mutation status (z matrix) to a color matrix, sort using clustering results, and plot
 # Mutated positions use corresponding colors, non-mutated positions use white
-rasterImage(sapply(1:ncol(z), function(i) ifelse(z[,i] > 0, colMutations[i-1], "#FFFFFF"))[h$order, j$order], 
+rasterImage(sapply(1:ncol(z), function(i) ifelse(z[,i] > 0, colMutations[i-1], "#FFFFFF"))[h$order, j$order],
             0, 0, ncol(design), nrow(design), interpolate=FALSE)
 ```
 
 ### b右侧图：
 
-###Right side image:
+### Right side image:
 
 ```{r}
 # 设置绘图参数，包括无边框、坐标轴标签位置、边距等
@@ -520,21 +520,21 @@ rasterImage(sapply(1:ncol(z), function(i) ifelse(z[,i] > 0, colMutations[i-1], "
 par(bty="n", mgp = c(2,.33,0), mar=rep(0,4), las=1, tcl=-.25, xpd=NA)
 
 # 创建一个空绘图区域，设置x轴为设计矩阵的列数减1(排除第一列)，y轴为1000个基因
-# Create an empty plot area with x-axis set to number of columns in design matrix minus 1 (excluding first column), 
+# Create an empty plot area with x-axis set to number of columns in design matrix minus 1 (excluding first column),
 # y-axis set to 1000 genes
-plot(NA, NA, xlim=c(0, ncol(design)-1), ylim=c(0, 1000), 
+plot(NA, NA, xlim=c(0, ncol(design)-1), ylim=c(0, 1000),
      xaxt="n", yaxt="n", xlab="", ylab="", xaxs="i", yaxs="i")
 
 # 创建热图：将线性模型系数矩阵(glm$coefficients)中的前1000个基因与突变类型的关系
 # 映射到红-蓝(RdBu)颜色渐变，使用之前的聚类结果排序后绘制
 # 颜色表示基因表达与突变类型之间的关联强度(-3到3之间分为12个等级)
-# Create a heatmap: visualize the relationship between the top 1000 genes and mutation types 
+# Create a heatmap: visualize the relationship between the top 1000 genes and mutation types
 # using linear model coefficients (glm$coefficients)
 # Map values to a red-blue (RdBu) color gradient, sort by previous clustering results, and plot
-# Colors represent the strength of association between gene expression and mutation types 
+# Colors represent the strength of association between gene expression and mutation types
 # (divided into 12 levels between -3 and 3)
-rasterImage(matrix(brewer.pal(11, "RdBu")[cut(glm$coefficients[w, -1][h$order, j$order], seq(-3, 3, length.out=12))], 
-                   ncol=ncol(design)-1), 
+rasterImage(matrix(brewer.pal(11, "RdBu")[cut(glm$coefficients[w, -1][h$order, j$order], seq(-3, 3, length.out=12))],
+                   ncol=ncol(design)-1),
             0, 0, ncol(design)-1, 1000, interpolate=FALSE)
 ```
 
@@ -544,7 +544,7 @@ rasterImage(matrix(brewer.pal(11, "RdBu")[cut(glm$coefficients[w, -1][h$order, j
 
 原文代码用baseplot画c和d图，我自己用ggplot2复现了c和d图。
 
-##C and D
+## C and D
 
 It is not perfect to answer how gene expression responds to different genotypes and how various mutations affect gene expression using only the heatmap in Figure B. The author has also drawn Figures C and D.
 
@@ -572,7 +572,7 @@ The method is the same as "building a linear model" above, except that phenotype
 
 ```{r}
 # 重新计算F统计量，仅考虑线性模型中第2到17列的变量（通常是突变类型相关变量）
-# Recompute F-statistics considering only variables in columns 2 to 17 of the linear model 
+# Recompute F-statistics considering only variables in columns 2 to 17 of the linear model
 # (typically mutation type-related variables)
 F.stat <- classifyTestsF(glm[,2:17], fstat.only=TRUE)
 
@@ -582,7 +582,7 @@ set.seed(42)
 
 # 构建随机化对照模型：对设计矩阵的每一列进行随机重排，破坏变量与样本的真实关联
 # 然后拟合线性模型并进行经验贝叶斯调节
-# Build a randomized control model: randomly permute each column of the design matrix to disrupt 
+# Build a randomized control model: randomly permute each column of the design matrix to disrupt
 # the true association between variables and samples, then fit a linear model and apply empirical Bayes
 rlm <- lmFit(geneExpr[, rownames(design)], apply(design, 2, sample))
 rlm <- eBayes(rlm)
@@ -639,7 +639,7 @@ df1 <- attr(F.stat, "df1")
 df2 <- attr(F.stat, "df2")
 
 # 基于F统计量计算p值，使用卡方分布近似（F统计量乘以分子自由度近似服从卡方分布）
-# Calculate p-values based on F-statistics using a chi-squared distribution approximation 
+# Calculate p-values based on F-statistics using a chi-squared distribution approximation
 # (F-statistic multiplied by numerator degrees of freedom approximates a chi-squared distribution)
 F.p.value <- pchisq(df1 * F.stat, df1, lower.tail = FALSE)
 
@@ -675,7 +675,7 @@ f <- 1
 
 # 绘制随机模型的密度曲线(灰色)，x轴为解释方差(R²)，y轴为密度
 # Plot the density curve of the randomized model (grey), x-axis is explained variance (R²), y-axis is density
-plot(d$x, d$y * f, col='grey', xlab=expression(paste("Explained variance per gene ", R^2)), 
+plot(d$x, d$y * f, col='grey', xlab=expression(paste("Explained variance per gene ", R^2)),
      main="", lwd=2, type="l", ylab="", xlim=c(0,0.7))
 title(ylab="Density", line=1.5)  # 添加y轴标签
 
@@ -752,9 +752,9 @@ par(bty="n", mgp = c(1.5,.33,0), mar=c(2.5,2.5,1,1)+.1, las=1, tcl=-.25)
 # 横坐标：预测表达值，纵坐标：实际表达值，共有141个样本点
 # Scatter plot of predicted vs. observed expression values for ABCB7 gene (ENTREZID 22)
 # X-axis: predicted expression, Y-axis: observed expression, 141 samples in total
-plot(glmPrediction["22",], geneExpr["22", rownames(design)], 
-     ylab=expression(paste("Observed ", italic("ABCB7"), " expression")), 
-     xlab=expression(paste("Predicted ", italic("ABCB7"), " expression")), 
+plot(glmPrediction["22",], geneExpr["22", rownames(design)],
+     ylab=expression(paste("Observed ", italic("ABCB7"), " expression")),
+     xlab=expression(paste("Predicted ", italic("ABCB7"), " expression")),
      pch=16, cex=.8)
 
 # 添加y=x参考线，表示预测完全准确的情况
@@ -795,13 +795,13 @@ w <- glm$p.value["22", -1] < 0.01
 
 # 为显著相关的基因型添加旋转标签
 # Add rotated labels for significantly associated genotypes
-rotatedLabel(y[w], x0[w] + 0.1, labels = colnames(design)[-1][w], 
-             font = ifelse(grepl("[[:lower:]]", colnames(design)[-1]), 1, 3)[w], 
+rotatedLabel(y[w], x0[w] + 0.1, labels = colnames(design)[-1][w],
+             font = ifelse(grepl("[[:lower:]]", colnames(design)[-1]), 1, 3)[w],
              cex = .66, pos = 1, col = colMutations[w])
 
 # 添加x轴刻度，显示相对于截距的系数值
 # Add x-axis ticks showing coefficient values relative to the intercept
-axis(at = -1:1 + glm$coefficients["22", 1], labels = -1:1, side = 1, 
+axis(at = -1:1 + glm$coefficients["22", 1], labels = -1:1, side = 1,
      cex.axis = .8, line = -1, mgp = c(1.5, .05, 0), tcl = -.15)
 
 # 在图的右上角添加R²值，表示模型对ABCB7表达的解释程度
@@ -823,7 +823,7 @@ Building data
 library(ggplot2)
 
 # 创建数据框，包含观察到的解释方差(Rgenetics)和随机模型的解释方差(Pgenetics)
-# Create a data frame containing observed explained variance (Rgenetics) and 
+# Create a data frame containing observed explained variance (Rgenetics) and
 # explained variance from the random model (Pgenetics)
 genetics <- data.frame(Observed = Rgenetics, Random = Pgenetics)
 
@@ -831,9 +831,9 @@ genetics <- data.frame(Observed = Rgenetics, Random = Pgenetics)
 # Label significant and non-significant genes based on threshold r
 for (i in 1:nrow(genetics)) {
   if (genetics[i, 1] > r) {
-    genetics[i, 3] <- "sign"  
+    genetics[i, 3] <- "sign"
   } else {
-    genetics[i, 3] <- "nc"   
+    genetics[i, 3] <- "nc"
   }
 }
 ```
@@ -846,44 +846,44 @@ plot
 # 使用ggplot2创建解释方差密度图，比较观察值与随机模型的分布差异
 # Create a density plot of explained variance using ggplot2 to compare observed vs. random distributions
 ggplot(genetics) +
-  
+
   # 绘制随机模型解释方差的密度曲线(灰色)
   # Plot density curve for explained variance from the random model (grey)
   geom_density(aes(Random, stat(count)), col="grey", adjust=0.01, size=1) +
-  
+
   # 绘制观察到的解释方差的密度曲线(红色)，并按显著性分组填充颜色
   # Plot density curve for observed explained variance (red) with color fill by significance
   geom_density(aes(Observed, stat(count), fill=V3), col="red", adjust=0.01, size=1, alpha=0.3) +
-  
+
   # 添加文本标注，显示显著基因数量(q<0.05)
   # Add text annotation showing the number of significant genes (q<0.05)
   geom_text(aes(r+0.2, 530000), label= paste(sum(Rgenetics > r), "genes q < 0.05"), size=5) +
-  
+
   # 添加箭头指向ABCB7基因的解释方差值
   # Add an arrow pointing to the explained variance value of ABCB7 gene
-  geom_segment(aes(x=Rgenetics["22"], xend=Rgenetics["22"], y=250000, yend=1), 
+  geom_segment(aes(x=Rgenetics["22"], xend=Rgenetics["22"], y=250000, yend=1),
                size=1.5, arrow=arrow(length=unit(0.3, "cm"))) +
-  
+
   # 添加ABCB7基因标签
   # Add label for ABCB7 gene
   geom_text(aes(Rgenetics["22"], 300000), label="ABCB7", size=5, fontface="italic") +
-  
+
   # 手动设置显著性分组的填充颜色(非显著=白色，显著=红色)
   # Manually set fill colors for significance groups (non-significant=white, significant=red)
   scale_fill_manual(values=c("white", "red")) +
-  
+
   # 设置x轴标签为解释方差(R²)
   # Set x-axis label to explained variance (R²)
   labs(x=expression(paste("Explained variance per gene ", R^2))) +
-  
+
   # 使用黑白主题并设置基础字体大小
   # Use black-and-white theme with specified base font size
   theme_bw(base_size=16) +
-  
+
   # 移除网格线并隐藏图例
   # Remove grid lines and hide legend
   theme(panel.grid=element_blank(), legend.position="none") +
-  
+
   # 设置x轴显示范围为0到0.7
   # Set x-axis limits from 0 to 0.7
   coord_cartesian(xlim=c(0, 0.7))
@@ -903,13 +903,13 @@ vio_data$color <- rownames(vio_data)
 # 创建预测值与观测值的散点图
 # Create scatter plot of predicted vs. observed expression values
 p1 <- ggplot(expr, aes(Predict, Observed)) +
-  geom_point(size=2) +  
-  geom_segment(aes(x=6, xend=10, y=6, yend=10), size=1) +  
+  geom_point(size=2) +
+  geom_segment(aes(x=6, xend=10, y=6, yend=10), size=1) +
   labs(x=expression(paste("Predicted ", italic("ABCB7"), " expression")),
-       y=expression(paste("Observed ", italic("ABCB7"), " expression"))) +  
-  geom_text(aes(6.5, 9.8, label="R^2 = 0.6"), size=8) +  
-  theme_bw(base_size=16) +  
-  theme(panel.grid=element_blank(), legend.position="none")  
+       y=expression(paste("Observed ", italic("ABCB7"), " expression"))) +
+  geom_text(aes(6.5, 9.8, label="R^2 = 0.6"), size=8) +
+  theme_bw(base_size=16) +
+  theme(panel.grid=element_blank(), legend.position="none")
 
 # 为小提琴图数据添加颜色标签（基因型名称）
 # Add color labels (genotype names) to violin plot data
@@ -918,25 +918,25 @@ vio_data$color <- rownames(vio_data)
 # 创建关联系数的小提琴图
 # Create violin plot of association coefficients
 p2 <- ggplot(vio_data, aes(x=1, y=coefficients)) +
-  geom_violin(bw=0.1) +  
-  geom_jitter(aes(color=color), size=4) +  
-  geom_text(aes(1.2, -1.5), label="SF3B1", size=5, col=colMutations["SF3B1"]) +  
-  geom_text(aes(1.2, -1), label="del(5q)", size=5, col=colMutations["del(5q)"]) +  
-  coord_flip() + 
-  scale_color_manual(values=colMutations) + 
-  theme_classic(base_size=16) +  
-  theme(panel.grid=element_blank(), legend.position="none", 
-        axis.title.y=element_blank(), 
-        axis.text.y=element_blank(),  
-        axis.ticks.y=element_blank(), 
-        axis.line.y=element_blank())  
+  geom_violin(bw=0.1) +
+  geom_jitter(aes(color=color), size=4) +
+  geom_text(aes(1.2, -1.5), label="SF3B1", size=5, col=colMutations["SF3B1"]) +
+  geom_text(aes(1.2, -1), label="del(5q)", size=5, col=colMutations["del(5q)"]) +
+  coord_flip() +
+  scale_color_manual(values=colMutations) +
+  theme_classic(base_size=16) +
+  theme(panel.grid=element_blank(), legend.position="none",
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.line.y=element_blank())
 
 # 使用cowplot包将两个图组合在一起
 # Combine the two plots using cowplot package
 library(cowplot)
 p1 +
-  annotation_custom(ggplotGrob(p2),  
-                    xmin=7, ymin=4.9, xmax=10, ymax=6.5)  
+  annotation_custom(ggplotGrob(p2),
+                    xmin=7, ymin=4.9, xmax=10, ymax=6.5)
 ```
 
 ```{r}

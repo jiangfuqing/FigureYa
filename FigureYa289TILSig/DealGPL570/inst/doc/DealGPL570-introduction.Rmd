@@ -20,13 +20,13 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-#Introduction
+# Introduction
 
 GEO provides a wealth of biology related data, and GPL570 (Affymetrix Human Genome U133 Plus 2.0 Array) is one of the the most common biological chip platform.Although the post-processed matrix data are always provided, but the RAW data are most convincing!
 Here we developed to deal GPL570 RAW.tar file using the robust multi-array average expression measure, and returns data frame which is expression profile.
 Plus: DealGPL570 function can filter cels which are not of GPL570 platform in the RAW.tar file.
 
-#Usage
+# Usage
 
 Load package.
 

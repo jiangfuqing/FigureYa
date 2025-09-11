@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R画出paper里的这种圆圈图。
 
-##Requirement description
+## Requirement description
 
 Draw the circle diagram in the paper using R.
 
@@ -38,7 +38,7 @@ Fig. 2 Candidates’ selection and characterization. a. Circos plot shows **58 u
 
 圆圈图上用热图、柱形图、热图展示多组数据、pvalue和log2FC，可灵活换成其他特征值。
 
-##Application scenarios
+## Application scenarios
 
 Use heatmaps, bar charts, and heatmaps on the circle chart to display multiple sets of data, p-values, and log2FC, which can be flexibly replaced with other feature values.
 
@@ -46,7 +46,7 @@ Use heatmaps, bar charts, and heatmaps on the circle chart to display multiple s
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -85,7 +85,7 @@ options(stringsAsFactors = FALSE)  # 禁止自动将字符串转换为因子类�
 
 另外，图中基因是按照Survival Reduction排列的，根据图反推survival Reduction，保存在survival.csv文件里。
 
-##Organizing input data
+## Organizing input data
 
 If your data has already been organized into easy_input.csv format, you can skip this step and directly enter "Start Drawing".
 
@@ -97,7 +97,7 @@ In addition, the genes in the figure are arranged according to the Survival Redu
 ## 读取第2个工作表
 # Read the second worksheet
 # 从Excel文件中读取指定范围数据，设置表头并限制数据探测行数
-sheet1 <- read_excel(path = "13059_2016_990_MOESM1_ESM.xls", sheet = 2, range = cell_cols("B:D"), col_names = TRUE, guess_max = 5) 
+sheet1 <- read_excel(path = "13059_2016_990_MOESM1_ESM.xls", sheet = 2, range = cell_cols("B:D"), col_names = TRUE, guess_max = 5)
 
 ## 读取第3个工作表
 # Read the third worksheet
@@ -109,7 +109,7 @@ sheet2 <- read_excel(path = "13059_2016_990_MOESM1_ESM.xls", sheet = 3, range = 
 colnames(sheet1) <- c("Gene", "log2FC", "P_value")  # 重命名工作表1的列名 / Rename columns of sheet1
 colnames(sheet2) <- c("Gene", "log2FC", "P_value")  # 重命名工作表2的列名 / Rename columns of sheet2
 
-# Circos plot shows 58 upregulated RNA-binding proteins (RBPs) in glioblastoma (GBM) samples from The Cancer Genome Atlas (TCGA) and glioma stem cell (GSC) lines. 
+# Circos plot shows 58 upregulated RNA-binding proteins (RBPs) in glioblastoma (GBM) samples from The Cancer Genome Atlas (TCGA) and glioma stem cell (GSC) lines.
 # 根据文献中的要求，首先筛选log2FC大于0的基因
 # Filter genes with log2 fold change >= 0 as required by the literature
 sheet1 %<>% filter(log2FC >= 0)  # 筛选工作表1中log2FC非负的基因 / Filter upregulated genes in sheet1
@@ -118,7 +118,7 @@ sheet2 %<>% filter(log2FC >= 0) %>% select(Gene)  # 筛选工作表2中log2FC非
 # Fold-changes and corrected p-values were extracted from the RNA-Seq analysis (GBM TCGA)
 # 根据Gene取交集，保留GBM的Fold-changes和corrected p-values
 # Merge datasets by gene intersection, retaining GBM fold changes and p-values
-sheet_bind <- inner_join(sheet1, sheet2, by = "Gene") %>% 
+sheet_bind <- inner_join(sheet1, sheet2, by = "Gene") %>%
   distinct(Gene, .keep_all = TRUE)  #去重 / Remove duplicate entries
 sheet_bind$GBM <- rep(1, nrow(sheet_bind))  # 添加GBM标识列 / Add GBM indicator column
 sheet_bind$GSC <- rep(1, nrow(sheet_bind))  # 添加GSC标识列 / Add GSC indicator column
@@ -132,7 +132,7 @@ head(surInfo)  # 查看数据结构 / View data structure
 surInfo <- arrange(surInfo, desc(Gene))
 #合并后按survival降序排列
 # Merge datasets and sort by survival in descending order
-data_bind <- left_join(surInfo, sheet_bind, by = "Gene") %>% arrange(desc(survival)) 
+data_bind <- left_join(surInfo, sheet_bind, by = "Gene") %>% arrange(desc(survival))
 head(data_bind)  # 查看合并结果 / View merged data
 
 # 导出分析结果为CSV文件
@@ -148,7 +148,7 @@ write.csv(data_bind, "easy_input.csv", quote = F, row.names = F)
 
 用柱形图展示log2FC，用热图展示P value。
 
-##Input file
+## Input file
 
 At least including genes log2FC、P_value， Give one or more columns of 01 to draw the outermost circle.
 
@@ -159,7 +159,7 @@ Display log2FC using a bar chart and P value using a heatmap.
 ```{r}
 # 读取之前导出的CSV文件，指定各列数据类型
 # Read the previously exported CSV file, specifying data types for each column
-data_bind <- read.csv("easy_input.csv", 
+data_bind <- read.csv("easy_input.csv",
                       colClasses=c('character',  # Gene列作为字符型 / Gene column as character
                                   'numeric',   # survival列作为数值型 / survival column as numeric
                                   'numeric',   # GBM_log2FC列作为数值型 / GBM_log2FC column as numeric
@@ -174,13 +174,13 @@ head(data_bind)
 
 ## 开始画图
 
-### 首先画外面的3个环  
+### 首先画外面的3个环
 
 环形文字的写法：<https://www.r-graph-gallery.com/296-add-labels-to-circular-barplot/>
 
-##Start drawing
+## Start drawing
 
-###First, draw the three outer rings
+### First, draw the three outer rings
 
 The writing style of circular text:< https://www.r-graph-gallery.com/296-add-labels-to-circular-barplot/ >
 
@@ -192,7 +192,7 @@ h <- max(data_bind$log2FC) + 0.2
 # 创建环形图坐标数据框
 # Create coordinate dataframe for circular plot
 tile_coord <- data.frame(
-  Gene = data_bind$Gene, 
+  Gene = data_bind$Gene,
   x = 1:nrow(data_bind),          # x是中间x坐标 / Middle x-coordinate for each gene
   y1 = h, y2 = h + 2, y3 = h + 4, # 最外围三个圈的y坐标 / y-coordinates for the three outer rings
   stringsAsFactors = FALSE
@@ -220,51 +220,51 @@ head(data_result)
 
 # 使用ggplot2创建环形图
 # Create circular plot using ggplot2
-p1 <- ggplot(data_result) + 
+p1 <- ggplot(data_result) +
   # 第一圈：生存状态(Survival)
   # First ring: Survival status
   geom_tile(data = filter(data_result, survival == 1),
-            aes(x = x, y = y1, width = 1, height = 2), 
+            aes(x = x, y = y1, width = 1, height = 2),
             fill = "grey20", color = "lightgrey", size = .3) +  # 生存组 / Survival group
   geom_tile(data = filter(data_result, survival == 0),
             aes(x = x, y = y1, width = 1, height = 2),
             fill = "grey96", color = "lightgrey", size = .3) +  # 非生存组 / Non-survival group
-  
+
   # 第二圈：GSC状态
   # Second ring: GSC status
   geom_tile(data = filter(data_result, GSC == 1),
-            aes(x = x, y = y2, width = 1, height = 2), 
+            aes(x = x, y = y2, width = 1, height = 2),
             fill = "grey20", color = "lightgrey", size = .3) +  # GSC阳性 / GSC positive
   # 如果有0值，取消下面三行注释
   # Uncomment below if there are GSC negative values
   # geom_tile(data = filter(data_result, GSC == 0),
   #          aes(x = x, y = y2, width = 1, height = 2),
-  #          fill = "grey96", color = "lightgrey", size = .3) + 
-  
+  #          fill = "grey96", color = "lightgrey", size = .3) +
+
   # 第三圈：GBM状态
   # Third ring: GBM status
   geom_tile(data = filter(data_result, GBM == 1),
-            aes(x = x, y = y3, width = 1, height = 2), 
+            aes(x = x, y = y3, width = 1, height = 2),
             fill = "grey20", color = "lightgrey", size = .3) +  # GBM阳性 / GBM positive
   # 如果有0值，取消下面三行注释
   # Uncomment below if there are GBM negative values
   # geom_tile(data = filter(data_result, GBM == 0),
   #          aes(x = x, y = y3, width = 1, height = 2),
-  #          fill = "grey96", color = "lightgrey", size = .3) + 
+  #          fill = "grey96", color = "lightgrey", size = .3) +
   # 如果需要更多圈，可以继续添加
-  
+
   # 添加基因名称标签：survival为1的基因名为黑色，否则为浅灰色
   # Add gene names: Black for survival=1, grey for survival=0
   geom_text(data = filter(data_result, survival == 1),
             aes(x = x, y = y3 + 1.6, label = Gene,
-                angle = text_angle, hjust = hjust), color = "black", size = 2) + 
+                angle = text_angle, hjust = hjust), color = "black", size = 2) +
   geom_text(data = filter(data_result, survival == 0),
             aes(x = x, y = y3 + 1.6, label = Gene,
-                angle = text_angle, hjust = hjust), color = "grey43", size = 2) + 
-  
+                angle = text_angle, hjust = hjust), color = "grey43", size = 2) +
+
   # 转换为极坐标系统
   # Convert to polar coordinates
-  coord_polar(theta = "x", start = 0, direction = 1) + 
+  coord_polar(theta = "x", start = 0, direction = 1) +
   ylim(-5,13) +  # 设置y轴范围 / Set y-axis limits
   xlim(0, nrow(data_bind) + Angle_space) +  # 设置x轴范围 / Set x-axis limits
   theme_void()  # 使用空白主题 / Apply minimal theme
@@ -275,105 +275,105 @@ p1  # 显示图形 / Display plot
 
 log2FC的y坐标从1开始，因此画图时要“y = log2FC - 1”
 
-###Draw 'log2FC'`
+### Draw 'log2FC'`
 
 The y-coordinate of log2FC starts from 1, so when drawing, it should be "y=log2FC -1"
 ```{r}
 # 在原有图形(p1)基础上叠加柱状图层，展示log2FC数据
 # Add bar chart layer to the original plot (p1) to show log2FC values
-p2 <- p1 + 
+p2 <- p1 +
   geom_col(
-    aes(x = x, y = log2FC - 1),  
-    fill = "grey85",             
-    color = "grey80"             
+    aes(x = x, y = log2FC - 1),
+    fill = "grey85",
+    color = "grey80"
   )
 
-p2  
+p2
 ```
 
 
 ### 添加log2FC的坐标轴及刻度文字
 
-###Add coordinate axis and scale text for log2FC
+### Add coordinate axis and scale text for log2FC
 
 ```{r}
 # 在原有图形(p2)基础上添加坐标轴标记和参考线
 # Add axis markers and reference lines to the existing plot (p2)
-p3 <- p2 + 
+p3 <- p2 +
   # 添加垂直参考线（从原点到y=3）
   # Add vertical reference line from origin to y=3
   geom_segment(
-    x = 0, y = 0, xend = 0, yend = 3,  
-    color = "black", size = .3         
-  ) + 
-  
+    x = 0, y = 0, xend = 0, yend = 3,
+    color = "black", size = .3
+  ) +
+
   # 添加y轴刻度标签（1-4）
   # Add y-axis tick labels (1-4)
-  geom_text(x = -.5, y = 0, label = "1_", vjust = -.3, size = 1, color = "black") +  
-  geom_text(x = -.5, y = 1, label = "2_", vjust = -.3, size = 1, color = "black") +  
-  geom_text(x = -.5, y = 2, label = "3_", vjust = -.3, size = 1, color = "black") +  
-  geom_text(x = -.5, y = 3, label = "4_", vjust = -.3, size = 1, color = "black")    
+  geom_text(x = -.5, y = 0, label = "1_", vjust = -.3, size = 1, color = "black") +
+  geom_text(x = -.5, y = 1, label = "2_", vjust = -.3, size = 1, color = "black") +
+  geom_text(x = -.5, y = 2, label = "3_", vjust = -.3, size = 1, color = "black") +
+  geom_text(x = -.5, y = 3, label = "4_", vjust = -.3, size = 1, color = "black")
 
-p3  
+p3
 ```
 
 ### 画`P_value`热图
 
-###Draw a 'P_value' heatmap
+### Draw a 'P_value' heatmap
 
 ```{r}
 # 在原有图形(p3)基础上添加P值热图层
 # Add P-value heatmap layer to the existing plot (p3)
-p4 <- p3 + 
+p4 <- p3 +
   # 添加P值热图：位于y=-1.2位置，每个基因对应一个矩形
   # Add P-value heatmap: Positioned at y=-1.2, each gene is represented by a rectangle
   geom_tile(
-    aes(x = x, y = -1.2, width = 1, height = 2, fill = P_value),  
-    color = "white" 
-  ) + 
-  
+    aes(x = x, y = -1.2, width = 1, height = 2, fill = P_value),
+    color = "white"
+  ) +
+
   # 设置填充颜色渐变：P值越小颜色越深（firebrick3），越大颜色越浅（yellow）
   # Set color gradient: Smaller P-values are darker (firebrick3), larger values are lighter (yellow)
   scale_fill_gradient(
-    low = "firebrick3",  
-    high = "yellow"      
-  ) 
+    low = "firebrick3",
+    high = "yellow"
+  )
 
-p4  
+p4
 ```
 
 
 ### 插入文本
 
-###Insert Text
+### Insert Text
 
 ```{r}
 # 在原有图形(p4)基础上添加各数据层的文本标签
 # Add text labels for each data layer to the existing plot (p4)
-p5 <- p4 + 
+p5 <- p4 +
   # 添加GBM TCGA层标签
   # Label for GBM TCGA layer
-  geom_text(x = -2.1, y = h + 4.5, label = "GBM TCGA", size = 3, color = "black") + 
-  
+  geom_text(x = -2.1, y = h + 4.5, label = "GBM TCGA", size = 3, color = "black") +
+
   # 添加GSCs层标签
   # Label for GSCs layer
-  geom_text(x = -1.1, y = h + 2.5, label = "GSCs", size = 3, color = "black") + 
-  
+  geom_text(x = -1.1, y = h + 2.5, label = "GSCs", size = 3, color = "black") +
+
   # 添加Survival Reduction层标签（支持换行）
   # Label for Survival Reduction layer (with line break)
-  geom_text(x = -1.8, y = h + .5, label = "Survival\nReduction", size = 2.5, color = "black") + 
-  
+  geom_text(x = -1.8, y = h + .5, label = "Survival\nReduction", size = 2.5, color = "black") +
+
   # 添加Log2FC坐标轴标签（旋转90度）
   # Label for Log2FC axis (rotated 90 degrees)
-  geom_text(x = -2.1, y = h - 2.4, 
-            label = expression('Log'[2]*'FC'),  
-            angle = 90, size = 2.2, color = "black") + 
-  
+  geom_text(x = -2.1, y = h - 2.4,
+            label = expression('Log'[2]*'FC'),
+            angle = 90, size = 2.2, color = "black") +
+
   # 添加p-value热图层标签（旋转90度）
   # Label for p-value heatmap (rotated 90 degrees)
-  geom_text(x = -3.3, y = h - 5, label = "p-value", 
-            angle = 90, size = 1.5, color = "black") + 
-  
+  geom_text(x = -3.3, y = h - 5, label = "p-value",
+            angle = 90, size = 1.5, color = "black") +
+
   # 添加中心标题（支持换行）
   # Add center title (with line break)
   geom_text(x = 0, y = -5, label = "Upregulated\nRBPs", size = 2.5, color = "black")
@@ -381,12 +381,12 @@ p5 <- p4 +
 p5  \
 ```
 
-### 画P value的图例 
+### 画P value的图例
 
-将图例调整到panel内部，并且调节文本的相对大小和相对位置。   
+将图例调整到panel内部，并且调节文本的相对大小和相对位置。
 
 
-###Draw a legend for P value
+### Draw a legend for P value
 
 Adjust the legend inside the panel and adjust the relative size and position of the text.
 
@@ -396,27 +396,27 @@ Adjust the legend inside the panel and adjust the relative size and position of 
 p6 <- p5 +
   # 添加p值=0的参考标记
   # Add reference mark for p-value=0
-  geom_text(x = -.5, y = -0.2, label = 0, size = 1, color = "black") + 
-  
+  geom_text(x = -.5, y = -0.2, label = 0, size = 1, color = "black") +
+
   # 添加p值=0.05的参考标记（对应热图中黄色区域）
   # Add reference mark for p-value=0.05 (corresponding to yellow area in heatmap)
-  geom_text(x = -1.8, y = -2, label = 0.05, size = 1, color = "black") + 
-  
+  geom_text(x = -1.8, y = -2, label = 0.05, size = 1, color = "black") +
+
   # 自定义颜色渐变图例
   # Customize color gradient legend
   guides(fill = guide_colorbar(
-    title = "",                
-    reverse = TRUE,            
-    label = FALSE,             
-    barwidth = 0.1,            
-    barheight = 1.1            
-  )) + 
-  
+    title = "",
+    reverse = TRUE,
+    label = FALSE,
+    barwidth = 0.1,
+    barheight = 1.1
+  )) +
+
   # 设置图例位置和样式
   # Set legend position and style
   theme(
-    legend.position = c(0.5, 0.585),  
-    legend.title = element_blank()    
+    legend.position = c(0.5, 0.585),
+    legend.title = element_blank()
   )
 
 p6  # 显示最终图形
@@ -432,7 +432,7 @@ ggsave("ggplotCircos.pdf")
 
 更容易的做法是：用矢量图编辑软件打开pdf文件，用鼠标调整。
 
-##Post processing
+## Post processing
 
 The previous code adjusted the position of the text and legend bit by bit based on the values of x and y.
 

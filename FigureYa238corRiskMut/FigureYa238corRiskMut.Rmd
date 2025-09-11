@@ -28,14 +28,14 @@ Teacher Xiaoya, I want to crowdfund FigA-C, find the most significant mutations 
 出自<https://www.nature.com/articles/s41388-021-01853-y>
 from<https://www.nature.com/articles/s41388-021-01853-y>
 
-Fig. 5 TMErisk was related to tumor mutation status. 
-A Association between synonymous mutation counts, non-synonymous mutation counts, all mutation counts, and TMErisk score and their distribution in the low- and the high-TMErisk groups. 
-B Forest plot of genes mutating differentially in patients of the low- and the high-TMErisk groups. 
-C Interaction effect of genes mutating differentially in patients in the low- and the high-TMErisk groups. 
+Fig. 5 TMErisk was related to tumor mutation status.
+A Association between synonymous mutation counts, non-synonymous mutation counts, all mutation counts, and TMErisk score and their distribution in the low- and the high-TMErisk groups.
+B Forest plot of genes mutating differentially in patients of the low- and the high-TMErisk groups.
+C Interaction effect of genes mutating differentially in patients in the low- and the high-TMErisk groups.
 
 **Mutation status in LUAD patients in the high- and the low-TMErisk groups**
 
-To investigate **TMErisk-related mechanisms** in LUAD, somatic mutations from the TCGA database were also analyzed. When comparing the mutant frequency between samples of the low- and the high-TMErisk groups, **more somatic mutations were observed in the high-TMErisk group**, including non-synonymous and synonymous mutations (Fig. 5A). Meanwhile, maftools analysis results showed that 19 genes mutated more frequently in LUAD patients in the high- TMErisk group, including TP53, ASTN1, RYR2, XIRP2, LRP1B, CSMD1, RYR3, PCDH15, TTN, KEAP1, ADAMTS12, ERICH3, DMD, CDH10, SI, SYNE1, NRXN1, CACNA1E, and COL11A1 (Fig. 5B). Among these genes, eight were expressed differentially between the wild type and the mutant type (Fig. S8). The frequency of mutations in these genes was also shown in Fig. 4. Moreover, significant co-occurrences were observed among mutations of these genes (Fig. 5C). 
+To investigate **TMErisk-related mechanisms** in LUAD, somatic mutations from the TCGA database were also analyzed. When comparing the mutant frequency between samples of the low- and the high-TMErisk groups, **more somatic mutations were observed in the high-TMErisk group**, including non-synonymous and synonymous mutations (Fig. 5A). Meanwhile, maftools analysis results showed that 19 genes mutated more frequently in LUAD patients in the high- TMErisk group, including TP53, ASTN1, RYR2, XIRP2, LRP1B, CSMD1, RYR3, PCDH15, TTN, KEAP1, ADAMTS12, ERICH3, DMD, CDH10, SI, SYNE1, NRXN1, CACNA1E, and COL11A1 (Fig. 5B). Among these genes, eight were expressed differentially between the wild type and the mutant type (Fig. S8). The frequency of mutations in these genes was also shown in Fig. 4. Moreover, significant co-occurrences were observed among mutations of these genes (Fig. 5C).
 
 # 应用场景
 
@@ -151,7 +151,7 @@ label <- c("Tumor_Sample_Barcode",
            "Reference_Allele",
            "Tumor_Seq_Allele1",
            "Tumor_Seq_Allele2")
-maf <- read_tsv("data_mutations_extended.txt", comment = "#") 
+maf <- read_tsv("data_mutations_extended.txt", comment = "#")
 maf$Tumor_Sample_Barcode <- paste0(maf$Tumor_Sample_Barcode,"A") # 添加"A"后缀以匹配突变 # Add the "A" suffix to match the mutation
 comsam <- intersect(tumsam,unique(maf$Tumor_Sample_Barcode)) # 取出和表达相同的样本 # Extract samples with the same expression
 maf <- maf[which(maf$Tumor_Sample_Barcode %in% comsam),label] # 取出样本和列子集 # Take out a subset of samples and columns
@@ -242,17 +242,17 @@ Association between **synonymous mutation counts, non-synonymous mutation counts
 # 相关性散点图
 # Left panel - all mutation counts
 # Correlation scatter plot
-p1 <- ggscatter(allMut.TMB, 
+p1 <- ggscatter(allMut.TMB,
           x = "TME", y = "Variants",
           color = "risk",
           palette = c(Low = "#3C6FAC",High = "grey60"),
-          add = "reg.line",  
-          add.params = list(color = "red", fill = "grey50"), 
-          conf.int = TRUE) + 
+          add = "reg.line",
+          add.params = list(color = "red", fill = "grey50"),
+          conf.int = TRUE) +
   stat_cor(method = "pearson", label.x = min(na.omit(allMut.TMB$TME)), label.y = max(na.omit(allMut.TMB$Variants))) +
-  theme_bw() + 
+  theme_bw() +
   ylab("All mutation counts") +
-  xlab("TMErisk") + 
+  xlab("TMErisk") +
   theme(axis.text.x = element_text(hjust = 0.5, size = 10, color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.ticks = element_line(size=0.2, color="black"),
@@ -264,11 +264,11 @@ p1 <- ggscatter(allMut.TMB,
 
 # 箱型图
 # boxplot
-p2 <- ggplot(na.omit(allMut.TMB), aes(x = risk, y = Variants, fill = risk)) + 
-  geom_boxplot(aes(col = risk)) + 
-  scale_fill_manual(values = alpha(c("#3C6FAC","grey50"),0.8)) + 
-  scale_color_manual(values = c("#3C6FAC","grey50")) + 
-  xlab("") + ylab("") + 
+p2 <- ggplot(na.omit(allMut.TMB), aes(x = risk, y = Variants, fill = risk)) +
+  geom_boxplot(aes(col = risk)) +
+  scale_fill_manual(values = alpha(c("#3C6FAC","grey50"),0.8)) +
+  scale_color_manual(values = c("#3C6FAC","grey50")) +
+  xlab("") + ylab("") +
   theme_bw() +
   theme(legend.position = "none",
         legend.title = element_blank(),
@@ -279,7 +279,7 @@ p2 <- ggplot(na.omit(allMut.TMB), aes(x = risk, y = Variants, fill = risk)) +
         panel.grid = element_blank(),
         panel.background = element_blank(),
         axis.title = element_text(size = 10),
-        axis.text = element_text(size = 10)) + 
+        axis.text = element_text(size = 10)) +
   stat_compare_means(method = "wilcox.test", label = "p.signif", label.y = max(na.omit(allMut.TMB$Variants)) * 0.95, label.x = 1.5, size = 8)
 
 # 合并图像
@@ -297,17 +297,17 @@ ggsave(filename = "scatter and boxplot for all mutation counts.pdf", width = 5,h
 # 相关性散点图
 # Graph in the middle - Silent mutation synonymous mutation counts
 # Correlation scatter plot
-p1 <- ggscatter(synMut.TMB, 
+p1 <- ggscatter(synMut.TMB,
                 x = "TME", y = "Variants",
                 color = "risk",
                 palette = c(Low = "#3C6FAC",High = "grey60"),
-                add = "reg.line",  
-                add.params = list(color = "red", fill = "grey50"), 
-                conf.int = TRUE) + 
+                add = "reg.line",
+                add.params = list(color = "red", fill = "grey50"),
+                conf.int = TRUE) +
   stat_cor(method = "pearson", label.x = min(na.omit(synMut.TMB$TME)), label.y = max(na.omit(synMut.TMB$Variants))) +
-  theme_bw() + 
+  theme_bw() +
   ylab("Synonymous mutation counts") +
-  xlab("TMErisk") + 
+  xlab("TMErisk") +
   theme(axis.text.x = element_text(hjust = 0.5, size = 10, color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.ticks = element_line(size=0.2, color="black"),
@@ -319,11 +319,11 @@ p1 <- ggscatter(synMut.TMB,
 
 # 箱型图
 # boxplot
-p2 <- ggplot(na.omit(synMut.TMB), aes(x = risk, y = Variants, fill = risk)) + 
-  geom_boxplot(aes(col = risk)) + 
-  scale_fill_manual(values = alpha(c("#3C6FAC","grey50"),0.8)) + 
-  scale_color_manual(values = c("#3C6FAC","grey50")) + 
-  xlab("") + ylab("") + 
+p2 <- ggplot(na.omit(synMut.TMB), aes(x = risk, y = Variants, fill = risk)) +
+  geom_boxplot(aes(col = risk)) +
+  scale_fill_manual(values = alpha(c("#3C6FAC","grey50"),0.8)) +
+  scale_color_manual(values = c("#3C6FAC","grey50")) +
+  xlab("") + ylab("") +
   theme_bw() +
   theme(legend.position = "none",
         legend.title = element_blank(),
@@ -334,7 +334,7 @@ p2 <- ggplot(na.omit(synMut.TMB), aes(x = risk, y = Variants, fill = risk)) +
         panel.grid = element_blank(),
         panel.background = element_blank(),
         axis.title = element_text(size = 10),
-        axis.text = element_text(size = 10)) + 
+        axis.text = element_text(size = 10)) +
   stat_compare_means(method = "wilcox.test", label = "p.signif", label.y = max(na.omit(synMut.TMB$Variants)) * 0.95, label.x = 1.5, size = 8)
 
 # 合并图像
@@ -350,17 +350,17 @@ ggsave(filename = "scatter and boxplot for synonymous mutation counts.pdf", widt
 # 相关性散点图
 # Right panel - non-synonymous mutation counts
 # Correlation scatter plot
-p1 <- ggscatter(nsynMut.TMB, 
+p1 <- ggscatter(nsynMut.TMB,
                 x = "TME", y = "Variants",
                 color = "risk",
                 palette = c(Low = "#3C6FAC",High = "grey60"),
-                add = "reg.line",  
-                add.params = list(color = "red", fill = "grey50"), 
-                conf.int = TRUE) + 
+                add = "reg.line",
+                add.params = list(color = "red", fill = "grey50"),
+                conf.int = TRUE) +
   stat_cor(method = "pearson", label.x = min(na.omit(nsynMut.TMB$TME)), label.y = max(na.omit(nsynMut.TMB$Variants))) +
-  theme_bw() + 
+  theme_bw() +
   ylab("Non-synonymous mutation counts") +
-  xlab("TMErisk") + 
+  xlab("TMErisk") +
   theme(axis.text.x = element_text(hjust = 0.5, size = 10, color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.ticks = element_line(size=0.2, color="black"),
@@ -372,11 +372,11 @@ p1 <- ggscatter(nsynMut.TMB,
 
 # 箱型图
 # boxplot
-p2 <- ggplot(na.omit(nsynMut.TMB), aes(x = risk, y = Variants, fill = risk)) + 
-  geom_boxplot(aes(col = risk)) + 
-  scale_fill_manual(values = alpha(c("#3C6FAC","grey50"),0.8)) + 
-  scale_color_manual(values = c("#3C6FAC","grey50")) + 
-  xlab("") + ylab("") + 
+p2 <- ggplot(na.omit(nsynMut.TMB), aes(x = risk, y = Variants, fill = risk)) +
+  geom_boxplot(aes(col = risk)) +
+  scale_fill_manual(values = alpha(c("#3C6FAC","grey50"),0.8)) +
+  scale_color_manual(values = c("#3C6FAC","grey50")) +
+  xlab("") + ylab("") +
   theme_bw() +
   theme(legend.position = "none",
         legend.title = element_blank(),
@@ -387,7 +387,7 @@ p2 <- ggplot(na.omit(nsynMut.TMB), aes(x = risk, y = Variants, fill = risk)) +
         panel.grid = element_blank(),
         panel.background = element_blank(),
         axis.title = element_text(size = 10),
-        axis.text = element_text(size = 10)) + 
+        axis.text = element_text(size = 10)) +
   stat_compare_means(method = "wilcox.test", label = "p.signif", label.y = max(na.omit(nsynMut.TMB$Variants)) * 0.95, label.x = 1.5, size = 8)
 
 # 合并图像
@@ -403,7 +403,7 @@ ggsave(filename = "scatter and boxplot for non-synonymous mutation counts.pdf", 
 # 图B
 # image B
 
-Forest plot of genes mutating differentially in patients of the low- and the high-TMErisk groups. 
+Forest plot of genes mutating differentially in patients of the low- and the high-TMErisk groups.
 
 ```{r}
 allMut.hrisk.ob <- read.maf("data_mutations_extended_HRisk_modified.txt", # 重新读取High TME的MAF文件 # Re-read the MAF file of High TME
@@ -412,10 +412,10 @@ allMut.hrisk.ob <- read.maf("data_mutations_extended_HRisk_modified.txt", # 重�
 allMut.lrisk.ob <- read.maf("data_mutations_extended_LRisk_modified.txt",
                             vc_nonSyn = nsynMut,
                             removeDuplicatedVariants = F)
-h.vs.l <- mafCompare(m1 = allMut.lrisk.ob, 
-                     m2 = allMut.hrisk.ob, 
-                     m1Name = 'Low TMErisk', 
-                     m2Name = 'High TMErisk', 
+h.vs.l <- mafCompare(m1 = allMut.lrisk.ob,
+                     m2 = allMut.hrisk.ob,
+                     m1Name = 'Low TMErisk',
+                     m2Name = 'High TMErisk',
                      minMut = 30) # 按照原文的图，最少突变应该不少于30个 # According to the original diagram, there should be at least 30 mutations
 write.table(as.data.frame(h.vs.l$results),file = "fisher test regarding non-synonymous mutations of TME risk group.txt",sep = "\t",row.names = F,col.names = T,quote = F)
 pdf("forestplot.pdf", width = 8,height = 6)
@@ -426,14 +426,14 @@ invisible(dev.off())
 ![](forestplot.pdf)
 
 # 图C
-#image C
+# Image C
 
-Interaction effect of genes mutating differentially in patients in the low- and the high-TMErisk groups. 
+Interaction effect of genes mutating differentially in patients in the low- and the high-TMErisk groups.
 
 ```{r}
 tmp <- as.data.frame(h.vs.l$results)
 pdf("mutual exclusivity plot.pdf", width = 6,height = 6)
-res <- somaticInteractions(maf = nsynMut.ob, 
+res <- somaticInteractions(maf = nsynMut.ob,
                            genes = as.character(tmp[tmp$pval < 0.05,"Hugo_Symbol"]),# 取出上面分析得到的显著基因 # substract the salient genes from the above analysis
                            showCounts = FALSE, # 不展示OR值 # The OR value is not displayed
                            showSum = FALSE, # 不展示突变综述 # Mutation reviews are not shown

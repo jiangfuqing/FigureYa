@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R画文章里的这种肿瘤克隆进化的图。
 
-##Requirement description
+## Requirement description
 
 Draw a graph of the evolution of tumor clones in the article using R.
 
@@ -33,7 +33,7 @@ from<https://www.nature.com/articles/leu2014289>
 
 ## 应用场景
 
-##Application scenarios
+## Application scenarios
 
 Create timecourse "fish plots" that show changes in the clonal architecture of tumors, <https://github.com/chrisamiller/fishplot>
 
@@ -57,7 +57,7 @@ The clone evolution diagram is a bit like a sankey. I compared it with FigureYa2
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -80,11 +80,11 @@ library(fishplot)
 
 # 设置环境变量使R显示英文错误信息，便于查找解决方案
 # Set environment variable to display error messages in English for easier troubleshooting
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 全局设置禁止将字符型数据自动转换为因子类型，避免意外的数据转换
 # Globally disable automatic conversion of character strings to factors to prevent unexpected data transformation
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入数据
@@ -97,7 +97,7 @@ options(stringsAsFactors = FALSE)
 
 - parents，与时间节点相对应的各个克隆群进化关系。例图中，“0”表示主克隆，“1, 1”表示在主克隆之后有两个平行发展的亚克隆簇，“3”表示在这个克隆簇发生时，已经有两次克隆事件。进一步根据各个时间节点，各个克隆簇占比情况，脚本便可实现。为便于理解parents的写法，结尾附上了几个例子。
 
-##Input data
+## Input data
 
 Three types of inputs are required:
 
@@ -122,7 +122,7 @@ frac.table <- as.matrix(frac)
 
 # 定义时间点向量，控制鱼群图中各克隆的时间进程长度比例
 # Define time points vector to control the proportional lengths of fish head, body, and tail
-timepoints <- c(0, 75, 110, 120) 
+timepoints <- c(0, 75, 110, 120)
 
 # 定义克隆谱系关系，每个元素表示对应克隆的父克隆ID（0表示无父克隆）
 # Define clonal lineage relationships (each value is the parent clone ID, 0 for root)
@@ -135,7 +135,7 @@ parents <- c(0, 1, 1, 3)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r,fig.width=10, fig.height=6}
 # 创建fishplot对象，输入数据为克隆频率矩阵、谱系关系和时间点
@@ -164,11 +164,11 @@ fishPlot(fish, shape = "spline",         # 曲线类型：spline(平滑曲线)�
          #title.btm = "Clonal architecture of tumors",  # 左下角标题(已注释) / Bottom-left title (commented)
          cex.title = 1.2,               # 标题字号大小 / Title font size
          pad.left = 0.25,               # 鱼头部分的倾斜角度参数 / Left padding for fish head angle
-         
+
          vlines = timepoints[c(1:2,4)],  # 在指定时间点绘制垂直参考线 / Vertical lines at specified timepoints
          col.vline = "white",           # 参考线颜色 / Color of vertical lines
          vlab = c("PMF", "sAML", "sAML\nREM"),  # 垂直参考线对应的标签 / Labels for vertical lines
-         
+
          bg.col = c("#F1F2F2","#F1F2F2","#F1F2F2"),  # 背景颜色设置 / Background colors
          border = 0.1                   # 克隆轮廓线宽度 / Clone border width
          )
@@ -180,7 +180,7 @@ fishPlot(fish, shape = "spline",         # 曲线类型：spline(平滑曲线)�
 # 添加图例：显示每个克隆在PMF阶段的比例
 # Add legend for PMF stage percentages
 par(xpd = T)  # 允许图形元素绘制在绘图区域外 / Allow elements outside plot area
-legend("bottomright", 
+legend("bottomright",
        inset=c(.7,-.3),  # 控制图例位置(调整以适应图形) / Legend position (adjust to fit)
        pch=16, bty="n",  # 点形状和无边框 / Point shape and no border
        col=fish@col, text.col = fish@col,  # 使用克隆对应颜色 / Use clone colors
@@ -188,17 +188,17 @@ legend("bottomright",
 
 # 添加图例：显示每个克隆在sAML阶段的比例
 # Add legend for sAML stage percentages
-legend("bottomright", 
+legend("bottomright",
        inset=c(.3,-.3),  # 调整位置 / Adjust position
-       pch=16, bty="n", 
+       pch=16, bty="n",
        col=fish@col, text.col = fish@col,
        legend = paste0(frac$sAML,"%"))
 
 # 添加图例：显示每个克隆在sAML_REM阶段的比例
 # Add legend for sAML_REM stage percentages
-legend("bottomright", 
+legend("bottomright",
        inset=c(.0,-.3),  # 调整位置 / Adjust position
-       pch=16, bty="n", 
+       pch=16, bty="n",
        col=fish@col, text.col = fish@col,
        legend = paste0(frac$Saml_REM,"%"))
 
@@ -213,7 +213,7 @@ legend("bottomright",
 
 或者用[export包](https://mp.weixin.qq.com/s/QziYUmpag1MQRkN_xfvZJQ)导出矢量图，用ppt就能编辑。
 
-##Post processing processing
+## Post processing processing
 
 The fish. pdf file output earlier is a vector image that can be edited using tools such as Illustrator, such as adding points and gene names from example texts, moving text positions, and so on.
 
@@ -223,7 +223,7 @@ Or use the [export package]（ https://mp.weixin.qq.com/s/QziYUmpag1MQRkN_xfvZJQ
 
 如果有更多克隆，要怎样设置parents，能再举个例子吗？
 
-##Attached
+## Attached
 
 If there are more clones, how can parents be set? Can you give another example?
 
@@ -242,7 +242,7 @@ frac.table <- as.matrix(frac.table)
 
 # 定义时间点向量，控制鱼群图中各阶段的时间轴比例
 # Define time points to control temporal scale of the fishplot
-timepoints <- c(0, 30, 75, 150) 
+timepoints <- c(0, 30, 75, 150)
 
 # 定义克隆演化关系（父克隆ID）：
 # 0表示无父克隆（初始克隆），其他数字表示对应行的父克隆

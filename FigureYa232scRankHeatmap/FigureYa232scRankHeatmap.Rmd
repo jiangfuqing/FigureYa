@@ -107,7 +107,7 @@ How do I get this document? Drag to the end of the article to see "Attached: Sin
 # Obtain the cell ID of oocytes subtype from the attachment (191 young oocytes, 227 old oocytes)
 # Use the first column of cell IDs (for extracting oocytes subtype cells)
 meta_oo <- readxl::read_excel(path = "1-s2.0-S0092867420300568-mmc2.xlsx", sheet = 2)
-sc_oo <- sc[,meta_oo$cell] # only 414 (not 418?! ) cells in the metadata 
+sc_oo <- sc[,meta_oo$cell] # only 414 (not 418?! ) cells in the metadata
 
 ## 自己的数据，就不涉及取子集，直接用sc就好，用下面这行代替上面两行：
 ## Your own data, it doesn't involve taking subsets, just use sc, and use the following line instead of the above two lines:
@@ -126,7 +126,7 @@ sc_oo$seurat_clusters <- meta_oo$cluster[match(colnames(sc_oo), meta_oo$cell)]
 # 差异基因筛选
 # Differential gene screening
 
-To identify aging-associated DEGs between old and young individuals in each specific cell type, the function FindMarkers in the R package Seurat was used based on t test. Only genes with an average **log2-transformed difference greater than 0.5**, a **P value less than 0.05** and a **percentage of expressed cells greater than 70%** were considered as aging-associated DEGs. 
+To identify aging-associated DEGs between old and young individuals in each specific cell type, the function FindMarkers in the R package Seurat was used based on t test. Only genes with an average **log2-transformed difference greater than 0.5**, a **P value less than 0.05** and a **percentage of expressed cells greater than 70%** were considered as aging-associated DEGs.
 
 ```{r}
 # Identify DEGs between old and young
@@ -159,13 +159,13 @@ write.csv(degData, file = "output_degData.csv")
 Let's sort it out first
 
 ```{r}
-heatData <- reshape2::dcast(degData[,c("subtype", "gene", "cluster")], 
+heatData <- reshape2::dcast(degData[,c("subtype", "gene", "cluster")],
                            gene ~ subtype)
 heatData %<>%
   mutate(count = rowSums(is.na(heatData))) %>%
   arrange(count,C1, C2, C3, C4)
 
-heatAnnot <- data.frame(number = 
+heatAnnot <- data.frame(number =
                           case_when(
                             heatData$count < 3 ~ "other",
                             !is.na(heatData$C1) ~ "C1",
@@ -178,21 +178,21 @@ heatAnnot <- data.frame(number =
 ## Up-regulated
 
 ```{r}
-phData <- 0 + (heatData[rowSums(heatData[2:5] == "O", na.rm = T) > 0 & 
-                     rowSums(heatData[2:5] == "Y", na.rm = T) == 0, 
+phData <- 0 + (heatData[rowSums(heatData[2:5] == "O", na.rm = T) > 0 &
+                     rowSums(heatData[2:5] == "Y", na.rm = T) == 0,
                    2:5] == "O")
 phData[is.na(phData)] <- 0
 dim(phData)
 
 pheatmap(phData,
-         cellwidth = 40, 
+         cellwidth = 40,
          cellheight = .1,
          border_color = NA,
-         cluster_rows = F, 
-         cluster_cols = F, 
-         show_rownames = F, 
+         cluster_rows = F,
+         cluster_cols = F,
+         show_rownames = F,
          color = c("grey97", "lightcoral"),
-         annotation_row = heatAnnot, 
+         annotation_row = heatAnnot,
          annotation_colors = list(number = setNames(c("darkblue", "steelblue", "lightgreen", "red3", "grey"),
                                                     c(paste0("C", 1:4), "other"))),
          filename = "scRankHeatmp_up.pdf")
@@ -203,21 +203,21 @@ pheatmap(phData,
 ## Down-regulated
 
 ```{r}
-phData <- 0 + (heatData[rowSums(heatData[2:5] == "Y", na.rm = T) > 0 & 
-                     rowSums(heatData[2:5] == "O", na.rm = T) == 0, 
+phData <- 0 + (heatData[rowSums(heatData[2:5] == "Y", na.rm = T) > 0 &
+                     rowSums(heatData[2:5] == "O", na.rm = T) == 0,
                    2:5] == "Y")
 phData[is.na(phData)] <- 0
 dim(phData)
 
 pheatmap(phData,
-         cellwidth = 40, 
+         cellwidth = 40,
          cellheight = .416, #为了让两个热图一样高，根据自己的基因数量调整
          border_color = NA,
-         cluster_rows = F, cluster_cols = F, 
-         show_rownames = F, 
+         cluster_rows = F, cluster_cols = F,
+         show_rownames = F,
          color = c("grey97", "cornflowerblue"),
-         annotation_row = heatAnnot, 
-         annotation_colors = list(number = setNames(c("darkblue", "steelblue", "lightgreen", "red3", "grey"), 
+         annotation_row = heatAnnot,
+         annotation_colors = list(number = setNames(c("darkblue", "steelblue", "lightgreen", "red3", "grey"),
                                                     c(paste0("C", 1:4), "other"))),
          filename = "scRankHeatmp_down.pdf")
 ```
@@ -243,7 +243,7 @@ The following code is from 'FigureYa206scHeatmap' and outputs 'sc.seurat.Rdata',
 ![](download.png)
 
 #```{r download, eval=FALSE}
-download.file("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE130664&format=file&file=GSE130664%5Fmerge%5FUMI%5Fcount%2Etxt%2Egz", 
+download.file("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE130664&format=file&file=GSE130664%5Fmerge%5FUMI%5Fcount%2Etxt%2Egz",
               destfile = "GSE130664_merge_UMI_count.txt.gz")
 ```
 
@@ -256,19 +256,19 @@ download.file("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE130664&format=f
 #```{r preprocessing, eval=FALSE}
 umi <- read.table(file = gzfile("GSE130664_merge_UMI_count.txt.gz"), header = T, row.names = 1, sep = "\t")
 qc <- readxl::read_excel("1-s2.0-S0092867420300568-mmc1.xlsx", sheet = 2)
-meta <- readxl::read_excel("1-s2.0-S0092867420300568-mmc1.xlsx", 3) %>% 
+meta <- readxl::read_excel("1-s2.0-S0092867420300568-mmc1.xlsx", 3) %>%
   column_to_rownames("cell")
 ```
 
 ## 数据预处理
 ## Data preprocessing
 
-See Methods:  
+See Methods:
 QUANTIFICATION AND STATISTICAL ANALYSIS -> Single-Cell RNA-Seq Data Processing
 
 #```{r, eval=FALSE}
 # QC of Cells
-cells <- qc %>% 
+cells <- qc %>%
   filter(`Mapping rate` >= 0.2 &
            `Gene number` >= 700 &
            UMI >= 3000) %>%
@@ -278,7 +278,7 @@ cells <- qc %>%
 sc <- CreateSeuratObject(counts = umi[,cells], meta.data = meta)
 
 # expression transformation
-sc@assays$RNA@data <- sc@assays$RNA@counts %>% 
+sc@assays$RNA@data <- sc@assays$RNA@counts %>%
   apply(2, function(x){
     log2(10^5*x/sum(x)+1)
     })
@@ -289,9 +289,9 @@ sc <- sc[,sc$cluster != "other"]
 # 给cluster改名
 # Rename the cluster
 sc$cluster_short <- factor(
-  plyr::mapvalues(sc$cluster, 
+  plyr::mapvalues(sc$cluster,
                   c("Oocyte", "Natural killer T cell", "Macrophage",
-                    "Granulosa cell", "Endothelial cell", 
+                    "Granulosa cell", "Endothelial cell",
                     "Smooth muscle cell", "Stromal cell"),
                   c("OO", "NKT", "M", "GC", "EC", "SMC", "SC")),
   levels = c("OO", "NKT", "M", "GC", "EC", "SMC", "SC"))
@@ -306,7 +306,7 @@ save(sc, cluster_colors, file = "sc.seurat.Rdata")
 
 # 还可以把表达矩阵输出到文件
 # It is also possible to output the expression matrix to a file
-#write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
+# Write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
 ```
 
 ## Seurat自带的无监督聚类
@@ -320,11 +320,11 @@ The following code is from 'FigureYa222PCAgene', which gets the cluster.
 #```{r eval=FALSE}
 library(magrittr)
 
-sc_oo_mnn <- batchelor::mnnCorrect(# mmnCorrect is no longer in scran 
+sc_oo_mnn <- batchelor::mnnCorrect(# mmnCorrect is no longer in scran
   as.SingleCellExperiment(sc_oo),
   batch = sc_oo$individual,
-  k = 4, 
-  sigma = 0.1, cos.norm.in = T, cos.norm.out = T, 
+  k = 4,
+  sigma = 0.1, cos.norm.in = T, cos.norm.out = T,
   var.adj = T
 )
 prData <- SummarizedExperiment::assay(sc_oo_mnn)
@@ -334,7 +334,7 @@ sc_oo %<>% FindVariableFeatures(selection.method = "mvp", mean.cutoff = c(1,8))
 VariableFeatures(sc_oo) %>% length()
 
 # unsupervised clustering based on mnn matrix
-sc_oo %<>% ScaleData 
+sc_oo %<>% ScaleData
 sc_oo@assays$RNA@scale.data <- prData[rownames(sc_oo@assays$RNA@scale.data), colnames(sc_oo@assays$RNA@scale.data)]
 sc_oo %<>% RunPCA
 ElbowPlot(sc_oo)
@@ -343,8 +343,8 @@ sc_oo %<>% FindNeighbors(dims = 1:15) %>% FindClusters(resolution = 0.6)
 
 # 把seurat_clusters的名字0-3改为C1-C4
 # Change the name of the seurat_clusters 0-3 to C1-C4
-sc_oo@meta.data$seurat_clusters <- factor(sc_oo@meta.data$seurat_clusters, 
-                                          levels = c("0", "1", "2", "3"), 
+sc_oo@meta.data$seurat_clusters <- factor(sc_oo@meta.data$seurat_clusters,
+                                          levels = c("0", "1", "2", "3"),
                                           labels = c("C1", "C2", "C3", "C4"))
 sc_oo@meta.data$seurat_clusters
 ```

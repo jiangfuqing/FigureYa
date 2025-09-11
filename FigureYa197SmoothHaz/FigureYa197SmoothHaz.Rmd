@@ -42,7 +42,7 @@ Figure B appears several times in the example.
 这种图在更多文章中的应用：
 
 - [Science. 2020;eabd2161.](https://pubmed.ncbi.nlm.nih.gov/32703910/)
-- [Nature. 2012;486(7403):395-399. Fig.4C](https://pubmed.ncbi.nlm.nih.gov/22495314/); 
+- [Nature. 2012;486(7403):395-399. Fig.4C](https://pubmed.ncbi.nlm.nih.gov/22495314/);
 - [Oncotarget. 2018;9(87):35742-35751.](https://pubmed.ncbi.nlm.nih.gov/30515266/)
 - [JAMA Oncol. 2018;4(3):309-315.](https://pubmed.ncbi.nlm.nih.gov/29270608/)
 - 本次复现的图参考[Neuro Oncol. 2015 Jul;17(7):999-1006.](https://pubmed.ncbi.nlm.nih.gov/25688120/)
@@ -60,7 +60,7 @@ Additional Literature Applications:
 For extended implementations of this visualization approach in peer-reviewed studies, see:
 
 - [Science. 2020;eabd2161.](https://pubmed.ncbi.nlm.nih.gov/32703910/)
-- [Nature. 2012;486(7403):395-399. Fig.4C](https://pubmed.ncbi.nlm.nih.gov/22495314/); 
+- [Nature. 2012;486(7403):395-399. Fig.4C](https://pubmed.ncbi.nlm.nih.gov/22495314/);
 - [Oncotarget. 2018;9(87):35742-35751.](https://pubmed.ncbi.nlm.nih.gov/30515266/)
 - [JAMA Oncol. 2018;4(3):309-315.](https://pubmed.ncbi.nlm.nih.gov/29270608/)
 - Diagram reference for this reproduction: [Neuro Oncol. 2015 Jul;17(7):999-1006.](https://pubmed.ncbi.nlm.nih.gov/25688120/)
@@ -136,15 +136,15 @@ panclin[1,] # 查看有哪些列 # See what columns there are
 clin <- panclin %>%
   # 选取想要的列
   # Select the columns you want
-  select(.,DFI, DFI.time, 
+  select(.,DFI, DFI.time,
          gender) %>% # 后面将以性别作为分组，选取gender列，可以替换为其他感兴趣的列名 # The gender column will be grouped later, and the gender column can be replaced with other column names of interest
-  
+
   # 删除没有生存结局和时间的case # Delete cases that don't have a survival ending and time
   filter(!(is.na(.$DFI) | is.na(.$DFI.time))) %>%
-  
+
   mutate(time_month = round(DFI.time/30,digits = 1)) %>%
-  mutate(survevent = ifelse(DFI == 1 & time_month <= 72, 1, 0), 
-         survmonth = ifelse(time_month <=  72, time_month, 72)) 
+  mutate(survevent = ifelse(DFI == 1 & time_month <= 72, 1, 0),
+         survmonth = ifelse(time_month <=  72, time_month, 72))
 dim(clin)
 
 # 保存到文件，便于套用
@@ -164,10 +164,10 @@ head(clin)
 ```
 
 # 构建muhaz对象
-#Build the muhaz object
+# Build the muhaz object
 
 ## muhaz函数的参数设置
-#Parameter settings for the muhaz function
+# Parameter settings for the muhaz function
 
 - times，生存时间向量
 - delta，生存结局向量
@@ -176,7 +176,7 @@ head(clin)
 - bw.pilot
   - 带宽bw值对应MISE（平均积分平方误差，mean intergrated squared error）最小化的bw值
   - 指定核密度估计的bw值，[默认根据Mueller and Wang (1994)的方法](https://pubmed.ncbi.nlm.nih.gov/8086616/)
-  - 计算公式bw.pilot = (max.time - min.time)/(8 * nz^0.2)，其中nz删失的观察数 
+  - 计算公式bw.pilot = (max.time - min.time)/(8 * nz^0.2)，其中nz删失的观察数
 - bw.grid，对应MISE最小是的值，默认为以[0.2 * bw.pilot,20 * bw.pilot]为区间的21切分的bandwidth grid
 - bw.smooth，用于设置平滑局部的带宽参数，如果bw.method="global"，该参数无效，默认为5 * bw.pilot
 - bw.method，算法设置，算法包括"global","local"(默认值)，"knn"，使用首字母即可
@@ -184,7 +184,7 @@ head(clin)
 - n.min.grid,n.est.grid=101，前者默认51，后者默认101
 - kern="epanechnikov"        设置核函数，使用首字母即可，默认epanechnikov
 
-#Parameter Descriptions for Kernel Density Estimation in Survival Analysis
+# Parameter Descriptions for Kernel Density Estimation in Survival Analysis
 
 -times: Vector of survival times.
 -delta: Vector of event status indicators (0 = censored, 1 = event occurred).
@@ -229,14 +229,14 @@ Other kernels may be specified by abbreviation (e.g., "e" for Epanechnikov).
 #  Build the muhaz object
 
 ```{r}
-smoothhazp <- clin %>% 
+smoothhazp <- clin %>%
   group_by(gender) %>% #根据自己的需要修改分组列名 # Modify the group column names as needed
   do(haz = muhaz(times = .$survmonth,delta = .$survevent,
                  min.time = min(.$survmonth[.$survevent==1]),
                  max.time = max(.$survmonth[.$survevent==1]),
                  bw.grid = 7,bw.method = "g",b.cor = "b")) %>%
-  do(data.frame(Hazard = .$haz$haz.est, 
-                Months = .$haz$est.grid, 
+  do(data.frame(Hazard = .$haz$haz.est,
+                Months = .$haz$est.grid,
                 Subgroup = .$gender))
 ```
 
@@ -252,7 +252,7 @@ print(maxHaz)
 
 # 估算HR
 # Estimate HR
-maxHaz$stratMax[2]/maxHaz$stratMax[1] 
+maxHaz$stratMax[2]/maxHaz$stratMax[1]
 ```
 
 ## 构建cox回归模型，对比一下
@@ -291,7 +291,7 @@ library(extrafont)
 library(extrafontdb)
 # font_import() # 导入字体，这个过程需要几分钟 # Import fonts, the process takes a few minutes
 # loadfonts(device = "win") #加载字体 # Load font
-# windowsFonts(Arial = windowsFont('Arial'))        
+# windowsFonts(Arial = windowsFont('Arial'))
 
 # 自定义颜色
 # Custom colors
@@ -336,7 +336,7 @@ Here we use the ggsurvplot of the survminer package to build the risk table
 ```{r, fig.height=2}
 fit <- survfit(Surv(survmonth, survevent) ~ gender, data = clin)
 
-ggsurv <- ggsurvplot(fit, data = clin, risk.table = TRUE, 
+ggsurv <- ggsurvplot(fit, data = clin, risk.table = TRUE,
                      legend.title = "",                 # 设置图例标题 # Set the legend title
                      legend.labs = c("Male", "Female"), # 指定图例分组标签 # Specify the legend grouping label
                      palette = c(blue, orange),         #自定义颜色 # Custom colors
@@ -351,7 +351,7 @@ ggsurv <- ggsurvplot(fit, data = clin, risk.table = TRUE,
                                                     font.y = c(8, "plain", "black"),
                                                     font.tickslab = c(8, "plain", "black")))
 
-p2 <- ggsurv$table + 
+p2 <- ggsurv$table +
   theme(legend.position = "none") + labs(title = "") # 删除风险表的title # Delete the title of the risk table
 p2
 ```

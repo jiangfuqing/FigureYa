@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 这次众筹Figure 1E，铁死亡转录组表达与启动子甲基化相关性的点图。
 
-#Requirement description
+# Requirement description
 
 Hello Xiaoya, I have many other friends who want to crowdfund for this iron death pan cancer image, mainly Figure 1. I feel that this routine can be tested by simply changing the pathway. I saw that Professor Dayu wrote Figure 2A (Box plot of differences in ferroptosis genes between pan cancer tumors and normal, Figure Ya208FPI) and Figure 3B (Correlation between ferroptosis and immune pathways) in this article, FigureYa253panGSEA）， Could you please ask Teacher Big Fish to write the relevant code for Figure 1 in detail?
 
@@ -58,7 +58,7 @@ Figure 1. The Dysregulation of Ferroptosis Regulator Genes (FRGs)
 
 分析基因（以铁死亡为例）转录组表达与启动子甲基化相关并绘制点图。
 
-#Application scenarios
+# Application scenarios
 
 Analyze the correlation between gene transcriptome expression and promoter methylation (using iron death as an example) and draw a dot plot.
 
@@ -66,7 +66,7 @@ Analyze the correlation between gene transcriptome expression and promoter methy
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -117,7 +117,7 @@ merged_sample_quality_annotations.tsv，下载自<https://gdc.cancer.gov/about-d
 
 tcga_methy450文件夹里面是甲基化数据，过滤掉了有空值的探针，均已保存为RData文件，微云链接：<https://share.weiyun.com/jRry4rlU>。下载后把tcga_methy450文件夹放到当前文件夹。跟FigureYa270panMeth使用的是同一文件。
 
-#Input file
+# Input file
 
 EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.tsv， The expression matrix consists of genes in the first column, followed by their expression levels in each sample. Download from< http://api.gdc.cancer.gov/data/3586c0da-64d0-4b74-a449-5ff4d9136611 >Similar to FigureYa263panDiff and FigureYa268panCNVexpr, users who have already downloaded them do not need to download them again.
 
@@ -189,12 +189,12 @@ for (i in tumors) {
   message("--", i, "...")  # 输出当前处理的肿瘤类型
   sam <- samAnno[which(samAnno$`cancer type` == i), "simple_barcode"]  # 获取当前肿瘤的样本条形码
   comsam <- intersect(colnames(expr_sub), sam)  # 匹配表达数据和样本注释的公共样本
-  
+
   tumsam <- comsam[substr(comsam, 14, 14) == "0"]  # 提取肿瘤样本（条形码第14位为0）
   # Extract tumor samples (14th character of barcode is 0)
   norsam <- comsam[substr(comsam, 14, 14) == "1"]  # 提取正常样本（条形码第14位为1）
   # Extract normal samples (14th character of barcode is 1)
-  
+
   expr_subset <- expr_sub[, c(tumsam, norsam)]  # 提取当前肿瘤的样本表达数据
   expr_subset[expr_subset < 0] <- 0  # 矫正负值（该数据集存在少量负值）
   # Correct negative values (minor negative values exist in this dataset)
@@ -208,7 +208,7 @@ rm(expr); gc()  # 移除原始表达数据并清理内存
 
 # 循环处理每种肿瘤类型的甲基化数据（过程较慢需耐心等待）
 # Loop through each tumor type for methylation data processing (slow process, please wait)
-for (i in tumors) { 
+for (i in tumors) {
   message("--", i, "...")  # 输出当前处理的肿瘤类型
   load(file.path("tcga_methy450", paste0("TCGA-", i, "_methy450.RData")))  # 加载甲基化数据
   # Load methylation data
@@ -225,17 +225,17 @@ for (i in tumors) {
   dimnames(methy450) <- dimname  # 恢复行名和列名
   # Restore row and column names
   methy450 <- as.data.frame(methy450)  # 重新转换为数据框
-  
+
   compb <- intersect(rownames(methy450), rownames(promoter))  # 获取甲基化探针与启动子探针的交集
   # Get intersection of methylation probes and promoter probes
   methy450 <- methy450[compb, ]  # 提取交集探针数据
   # Extract intersecting probe data
   methy450$gene <- promoter[compb, "gene"]  # 映射探针到基因名称
   # Map probes to gene names
-  
+
   # 若基因匹配多个探针，取甲基化beta值的中位数（处理多探针映射问题）
   # If a gene matches multiple probes, take median of methylation beta values (handle multi-probe mapping)
-  methy450 <- apply(methy450[, setdiff(colnames(methy450), "gene")], 2, 
+  methy450 <- apply(methy450[, setdiff(colnames(methy450), "gene")], 2,
                     function(x) tapply(x, INDEX = factor(methy450$gene), FUN = median, na.rm = TRUE))
   methy450 <- as.data.frame(methy450)
   write.table(methy450, paste0("TCGA_", i, "_methy450_subset.txt"),  # 保存处理后的甲基化数据
@@ -249,7 +249,7 @@ gc()  # 最终清理内存
 
 # 相关性分析
 
-#Correlation analysis
+# Correlation analysis
 
 ```{r}
 # 初始化存储基因表达与甲基化相关性结果的数据框
@@ -260,27 +260,27 @@ corExprMeth <- NULL
 # Iterate through each tumor type to calculate correlation between expression and methylation
 for (i in tumors) {
   message("--",i,"...")
-  
+
   # 读取只包含感兴趣基因的表达谱和甲基化数据
   # Read expression and methylation data subsets containing only genes of interest
   expr_subset <- read.table(paste0("TCGA_",i,"_expr_subset.txt"),sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
   meth_subset <- read.table(paste0("TCGA_",i,"_methy450_subset.txt"),sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
   colnames(meth_subset) <- substr(colnames(meth_subset),1,15)  # 简化样本名称
-  
+
   comsam <- intersect(colnames(expr_subset),colnames(meth_subset))  # 获取相同的样本
   # Get samples common to both expression and methylation data
   tumsam <- comsam[substr(comsam,14,14) == "0"]  # 仅获取肿瘤样本
   # Extract only tumor samples (14th character of barcode is '0')
-  
+
   expr_subset <- expr_subset[,tumsam]  # 取出表达谱子集
   # Subset expression data to include only tumor samples
   meth_subset <- meth_subset[,tumsam]  # 取出甲基化子集
   # Subset methylation data to include only tumor samples
-  
+
   # 初始化存储当前肿瘤类型相关性结果的数据框
   # Initialize data frame to store correlation results for current tumor type
   corTab <- NULL
-  
+
   # 对每个基因计算甲基化与表达的Spearman相关性
   # Calculate Spearman correlation between methylation and expression for each gene
   for (j in rownames(meth_subset)) {
@@ -288,11 +288,11 @@ for (i in tumors) {
     # Methylation beta values
     tmp2 <- as.numeric(expr_subset[j,])  # 表达谱
     # Expression values
-    
+
     # 计算启动子甲基化与基因表达的Spearman相关性
     # Calculate Spearman correlation between promoter methylation and gene expression
     cor.res <- cor.test(tmp1,tmp2, method = "spearman")
-    
+
     # 存储相关性结果，处理可能的NA值
     # Store correlation results, handle potential NA values
     corTab <- rbind.data.frame(corTab,
@@ -303,7 +303,7 @@ for (i in tumors) {
                                           stringsAsFactors = F),
                                stringsAsFactors = F)
   }
-  
+
   # 将当前肿瘤类型的相关性结果添加到总体结果中
   # Append correlation results for current tumor type to overall results
   corExprMeth <- rbind.data.frame(corExprMeth,
@@ -331,13 +331,13 @@ The example text shows the correlation by drawing a point chart, which can also 
 ```{r}
 # 设置绘图颜色（用于后续相关性泡泡图的颜色映射）
 # Set plot colors (for color mapping in subsequent correlation bubble plot)
-blue <- "#4577FF"       
-red <- "#C2151A"        
-orange <- "#E45737"     
-green <- "#6F8B35"      
-darkblue <- "#303B7F"   
-darkred <- "#D51113"    
-yellow <- "#EECA1F"     
+blue <- "#4577FF"
+red <- "#C2151A"
+orange <- "#E45737"
+green <- "#6F8B35"
+darkblue <- "#303B7F"
+darkred <- "#D51113"
+yellow <- "#EECA1F"
 
 # 生成基因表达与甲基化相关性泡泡图
 # Generate bubble plot of correlation between gene expression and methylation
@@ -359,7 +359,7 @@ ggplot(corExprMeth, aes(x = tumor, y = gene)) +
   geom_point(aes(size = -log10(Pvalue), color = Correlation)) +
   # 设置颜色渐变刻度，标题为"Correlation"，使用定义的颜色palette
   # Set color gradient scale, title "Correlation", use defined color palette
-  scale_color_gradientn('Correlation', 
+  scale_color_gradientn('Correlation',
                         colors = my_palette) +
   # 使用黑白主题
   # Use black and white theme

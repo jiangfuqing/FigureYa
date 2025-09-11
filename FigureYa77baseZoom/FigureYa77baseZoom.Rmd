@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用base plot画出C图这种zoom in效果的图。
 
-##Requirement description
+## Requirement description
 
 Use a base plot to draw a C chart with zoom in effect.
 
@@ -40,7 +40,7 @@ from<https://www.sciencedirect.com/science/article/pii/S0092867415011952>
 
 示例图用于展示多个基因在两组中各变异类型所占的百分比，用颜色表示变异类型，泡泡大小表示pvalue，泡泡所在的位置偏左上说明在IDC中占比高于ILC，反之亦然。该图不仅限于基因。
 
-##Application scenarios
+## Application scenarios
 
 Sometimes we encounter such problems: the distribution of points is very uneven, and it is difficult to label the points stacked together.
 
@@ -50,17 +50,17 @@ The example graph is used to display the percentage of multiple genes in each va
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 source("install_dependencies.R")
 # 设置系统环境变量，将语言设置为英文，确保R的报错信息以英文形式显示
 # Set system environment variable to display R error messages in English
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 全局选项设置，禁止字符型变量自动转换为因子类型，避免数据类型意外转换
 # Global option to disable automatic conversion of character variables to factors, preventing unexpected data type conversions
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
@@ -74,7 +74,7 @@ easy_input.csv，提供分组、个数及总数（用于计算百分比）、pva
 
 示例数据整理自例文的Table 1. Recurrently Mutated Genes in Breast Cancer，这里只用了mutation，没加CNV，因此泡泡的位置跟原图有出入。
 
-##Input file
+## Input file
 
 easy_input.csv， Provide grouping, number, and total (for calculating percentages) pvalue：
 
@@ -97,7 +97,7 @@ head(dat2)
 
 ## 把各列数据整理成画图所需的格式
 
-##Organize the data in each column into the format required for drawing
+## Organize the data in each column into the format required for drawing
 
 ```{r}
 ### 用3-6列计算百分比 ###
@@ -140,18 +140,18 @@ names(sizes) <- dat2$Gene
 
 Zoom in的效果，也就是画一个整体，再画一个局部。
 
-##Start drawing
+## Start drawing
 
 The effect of Zoom in is to draw a whole and then a part.
 
 ### 画局部 ###
 
-###Draw a partial picture###
+### Draw a partial picture###
 
 ```{r, fig.width=10, fig.height=5.5}
 # 设置图形布局，一行两列，并调整边距为底部留出图例空间
 # Set graphics layout to 1 row and 2 columns, adjust margins to leave space for legends at the bottom
-par(mfrow=c(1,2),mar = par()$mar + c(3,0,0,3)) 
+par(mfrow=c(1,2),mar = par()$mar + c(3,0,0,3))
 
 # 绘制局部散点图（放大视图）
 # Plot the local scatter plot (zoomed-in view)
@@ -184,7 +184,7 @@ par(xpd=TRUE)
 
 # 在指定点的左侧添加基因名称标签
 # Add gene name labels to the left of specified points
-text(ILC[up], IDC[up], names(ILC[up]), pos=2) 
+text(ILC[up], IDC[up], names(ILC[up]), pos=2)
 
 # 在指定点的右侧添加基因名称标签
 # Add gene name labels to the right of specified points
@@ -195,9 +195,9 @@ text(ILC[down], IDC[down], names(ILC[down]), pos=4)
 add.alpha <- function(col, alpha=1){
   if(missing(col))
     stop("Please provide a vector of colours.")
-  apply(sapply(col, col2rgb)/255, 2, 
-        function(x) 
-          rgb(x[1], x[2], x[3], alpha=alpha))  
+  apply(sapply(col, col2rgb)/255, 2,
+        function(x)
+          rgb(x[1], x[2], x[3], alpha=alpha))
 }
 
 # 创建带有透明度的橙色，用于背景填充
@@ -210,7 +210,7 @@ rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = gray.alph
 
 # 在底部外部添加分组颜色图例
 # Add legend for group colors outside the plot at the bottom
-legend("bottom", 
+legend("bottom",
        inset=c(0,-.5),  # 将图例放置在图的底部外部 / Position legend below the plot
        ncol = 3,        # 图例分3列显示 / Arrange legend items in 3 columns
        pch=16,          # 使用实心圆点作为图例符号 / Use filled circles as legend symbols
@@ -239,7 +239,7 @@ axis(side = 4)
 
 # 在右侧添加Y轴标签，通过mgp参数调整标签位置
 # Add Y-axis label on the right side, adjust position using mgp parameter
-title(ylab="IDC (% altered samples)", 
+title(ylab="IDC (% altered samples)",
       mgp=c(-20,1,0))  # Adjust according to the specific plot size
 
 # 标记ILC或IDC百分比大于15的点
@@ -258,7 +258,7 @@ s <- sqrt(f/3)  # 计算对应的点大小 / Calculate corresponding point sizes
 
 # 在底部外部添加大小图例
 # Add size legend outside the plot at the bottom
-legend("bottom", 
+legend("bottom",
        inset=c(0,-.5),  # 将图例放置在图的底部外部 / Position legend below the plot
        legend=rep("", length(f)),  # 空标签，仅显示符号 / Empty labels, show symbols only
        title = "Significance level [-log10(q)]",  # 图例标题 / Legend title

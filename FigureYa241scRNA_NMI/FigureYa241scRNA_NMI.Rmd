@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-#Description of requirements
+# Description of requirements
 
 求用R实现图1E或者文章中别的Transcriptional homogeneity (NMI)图
 Please use R to implement Figure 1E or other Transcriptional homogeneity (NMI) diagrams in the article.
@@ -75,7 +75,7 @@ library(rhdf5)
 library(tidyverse)
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
-``` 
+```
 
 # 0. 导入数据
 # 0. Import data
@@ -96,7 +96,7 @@ duplicated(genes$ensgID) %>% table
 
 ```{r}
 cells.annot <- read.csv("data/GSE154989_mmLungPlate_fQC_dZ_annot_smpTable.csv")
-cells.annot <- cells.annot %>% 
+cells.annot <- cells.annot %>%
   left_join(cells, by = "sampleID")
 row.names(cells.annot) <- cells.annot$sampleID
 head(cells.annot)
@@ -173,7 +173,7 @@ length(de.genes)
 ## 1.2 Feature Genes in NMF
 
 > 这里也直接采用作者的计算结果 We also use the author's calculation results directly here.
- 
+
 ```{r}
 dat <- readxl::read_excel("data/supp/tableS2.xlsx", sheet = "Top weighted NMF topic markers")
 head(dat)
@@ -251,7 +251,7 @@ Here, we use a pair of cells as an example to calculate NMI.
 ```{r}
 require(entropy)
 
-x <- disc.expr[, 1] # discretized transcriptional profile of cell 1 
+x <- disc.expr[, 1] # discretized transcriptional profile of cell 1
 y <- disc.expr[, 2] # discretized transcriptional profile of cell 2
 
 ## 计算p(x), p(y)以及p(x,y)
@@ -281,7 +281,7 @@ nmi
 ## 3.2 抽样计算NMI
 ## 3.2 Calculating NMI by Sampling
 
-> In order to account for differences in the number of cells across samples, we subsampled 100 cells from each time-point (or mouse) 100 times and calculated the median NMI across each within-timepoint sampled pair. 
+> In order to account for differences in the number of cells across samples, we subsampled 100 cells from each time-point (or mouse) 100 times and calculated the median NMI across each within-timepoint sampled pair.
 
 这里是一个例子，用来计算同一(时间点)肿瘤样本抽样的100个细胞所有cell pairs的NMI的中值
 Here is an example of calculating the median NMI for all cell pairs of 100 cells sampled from the same tumor sample (at the same time point).
@@ -291,8 +291,8 @@ cells <- rownames(subset(cell.meta, timesimple == "01_T_early_ND"))
 
 ## all cell pairs
 cell.pairs <- combn(
-  x = sample(x = cells, size = 100, replace = FALSE), 
-  m = 2, 
+  x = sample(x = cells, size = 100, replace = FALSE),
+  m = 2,
   simplify = F
 ) ## return list: length=C(100,2)=4960
 
@@ -329,8 +329,8 @@ Write the above calculation process as a function
 sample.nmi <- function(X, cells, N.cells=100, seed=1, sample.on.cell.pairs=FALSE, N.cell.pairs=100) {
   set.seed(seed)
   cell.pairs <- combn(
-    x = sample(x = cells, size = N.cells, replace = FALSE), 
-    m = 2, 
+    x = sample(x = cells, size = N.cells, replace = FALSE),
+    m = 2,
     simplify = F)
   if(sample.on.cell.pairs) {
     cell.pairs <- sample(cell.pairs, N.cell.pairs, replace = FALSE)
@@ -371,12 +371,12 @@ dat.nmi <- lapply(stages, function(xx) {
   data.frame(
     stages = xx,
     round = 1:n.sampling,
-    nmi = pbapply::pbsapply(1:n.sampling, function(yy) 
+    nmi = pbapply::pbsapply(1:n.sampling, function(yy)
       sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, timesimple == xx)), 
-        N.cells = n.cells, 
-        seed = yy, 
+        X = disc.expr,
+        cells = rownames(subset(cell.meta, timesimple == xx)),
+        N.cells = n.cells,
+        seed = yy,
         sample.on.cell.pairs = TRUE))
   )
 })
@@ -396,12 +396,12 @@ dat.nmi.2 <- lapply(mouseIDs, function(xx) {
   data.frame(
     stages = xx,
     round = 1:n.sampling,
-    nmi = pbapply::pbsapply(1:n.sampling, function(yy) 
+    nmi = pbapply::pbsapply(1:n.sampling, function(yy)
       sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, mouseID == xx)), 
-        N.cells = n.cells, 
-        seed = yy, 
+        X = disc.expr,
+        cells = rownames(subset(cell.meta, mouseID == xx)),
+        N.cells = n.cells,
+        seed = yy,
         sample.on.cell.pairs = TRUE))
   )
 })
@@ -412,7 +412,7 @@ saveRDS(dat.nmi.2, "dat.nmi.2.rds")
 #### plot
 ```{r}
 theme_set(
-  theme_classic(base_size = 15) + 
+  theme_classic(base_size = 15) +
     theme(axis.line = element_line(color="black"),
           axis.text = element_text(color = "black"),
           plot.title = element_text(hjust = .5, face = "bold"),
@@ -430,14 +430,14 @@ data.use <- rbind(dat.nmi, dat.nmi.2)
 segment.y <- 0.18 # 横线的位置 # The position of the horizontal line
 text.y <- 0.183 # 文字的位置 # The position of the text
 
-data.use %>% 
-  ggplot(aes(stages, nmi)) + 
-  labs(x="", y="Transcriptional homogeneity (NMI)") + 
-  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) + 
-  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) + 
-  annotate("segment", x = 6, xend = 16, y = segment.y, yend = segment.y) + 
-  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors") + 
-  annotate("text", x = 11, y = text.y, label="Single tumors") + 
+data.use %>%
+  ggplot(aes(stages, nmi)) +
+  labs(x="", y="Transcriptional homogeneity (NMI)") +
+  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) +
+  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) +
+  annotate("segment", x = 6, xend = 16, y = segment.y, yend = segment.y) +
+  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors") +
+  annotate("text", x = 11, y = text.y, label="Single tumors") +
   theme(axis.text.x = element_text(angle=45, hjust = 1))
 ```
 
@@ -472,15 +472,15 @@ dat.nmi <- lapply(stages, function(xx) {
   data.frame(
     stages = xx,
     round = 1:n.sampling,
-    nmi = foreach(yy=1:n.sampling, 
-                  .combine = "c", 
+    nmi = foreach(yy=1:n.sampling,
+                  .combine = "c",
                   .packages = c("entropy"),
                   .export = c("cell.meta", "n.cells", "disc.expr", "sample.nmi", "%>%", "nmi"))
     %dopar% {
       sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, timesimple == xx)), 
-        N.cells = n.cells, 
+        X = disc.expr,
+        cells = rownames(subset(cell.meta, timesimple == xx)),
+        N.cells = n.cells,
         seed = yy)
     }
   )
@@ -498,15 +498,15 @@ dat.nmi.2 <- lapply(mouseIDs, function(xx) {
   data.frame(
     stages = xx,
     round = 1:n.sampling,
-    nmi = foreach(yy=1:n.sampling, 
-                  .combine = "c", 
+    nmi = foreach(yy=1:n.sampling,
+                  .combine = "c",
                   .packages = c("entropy"),
                   .export = c("cell.meta", "n.cells", "disc.expr", "sample.nmi", "%>%", "nmi"))
     %dopar% {
       sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, mouseID == xx)), 
-        N.cells = n.cells, 
+        X = disc.expr,
+        cells = rownames(subset(cell.meta, mouseID == xx)),
+        N.cells = n.cells,
         seed = yy)
     }
   )
@@ -530,14 +530,14 @@ data.use <- rbind(dat.nmi, dat.nmi.2)
 segment.y <- 0.17 # 横线的位置 # Position of horizontal line
 text.y <- 0.172 # 文字的位置 # text position
 
-data.use %>% 
-  ggplot(aes(stages, nmi)) + 
-  labs(x="", y="Transcriptional homogeneity (NMI)") + 
-  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) + 
-  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) + 
-  annotate("segment", x = 6, xend = 16, y = segment.y, yend = segment.y) + 
-  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors") + 
-  annotate("text", x = 11, y = text.y, label="Single tumors") + 
+data.use %>%
+  ggplot(aes(stages, nmi)) +
+  labs(x="", y="Transcriptional homogeneity (NMI)") +
+  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) +
+  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) +
+  annotate("segment", x = 6, xend = 16, y = segment.y, yend = segment.y) +
+  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors") +
+  annotate("text", x = 11, y = text.y, label="Single tumors") +
   theme(axis.text.x = element_text(angle=45, hjust = 1))
 ```
 
@@ -545,7 +545,7 @@ data.use %>%
 # 4. 计算统计显著性
 # 4. Calculate statistical significance
 
-> To estimate a p-value for the difference in NMI value between two groups we compare the number of sub-samples from in A group vs all those in another B group and report 
+> To estimate a p-value for the difference in NMI value between two groups we compare the number of sub-samples from in A group vs all those in another B group and report
 
 $$ P=(\sum_i\sum_j|A_i<B_j|+1)/(|A|\cdot|B|+1) $$
 
@@ -581,19 +581,19 @@ segment.y <- 0.19 # 横线的位置  # Position of horizontal line
 text.y <- 0.2 # 文字的位置 # Position of text
 p.y <- sapply(compare, function(xx) quantile(subset(data.use, stages %in% xx)$nmi, 0.99)) + 0.005 # P值的位置 # Position of P value
 
-data.use %>% 
-  filter(stages %in% stages.use) %>% 
-  ggplot(aes(stages, nmi)) + 
-  labs(x="", y="Transcriptional homogeneity (NMI)") + 
-  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) + 
-  ylim(0, 0.2) + 
-  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) + 
+data.use %>%
+  filter(stages %in% stages.use) %>%
+  ggplot(aes(stages, nmi)) +
+  labs(x="", y="Transcriptional homogeneity (NMI)") +
+  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) +
+  ylim(0, 0.2) +
+  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) +
   annotate("segment", x = 5.5, xend = 7.5, y = segment.y, yend = segment.y) +
   annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors", size=5) +
-  annotate("text", x = 6.5, y = text.y, label="Single tumors", size=5) + 
-  geom_signif(comparisons = compare, 
+  annotate("text", x = 6.5, y = text.y, label="Single tumors", size=5) +
+  geom_signif(comparisons = compare,
               y_position = p.y, tip_length = 0,
-              test = estimate.P, map_signif_level = T, textsize = 5) + 
+              test = estimate.P, map_signif_level = T, textsize = 5) +
   scale_x_discrete(labels=c("T\n2 wk","KT & KPT\n2 wk","KT\n12 wk","KT\n30 wk","KPT\n12 wk","KPT\n20 wk","KPT\n30 wk"))
 ```
 

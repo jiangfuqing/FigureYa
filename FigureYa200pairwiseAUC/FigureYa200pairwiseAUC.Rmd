@@ -78,10 +78,10 @@ display.progress = function ( index, totalN, breakN=20) {
   if ( index %% ceiling(totalN/breakN)  ==0  ) {
     cat(paste(round(index*100/totalN), "% ", sep=""))
   }
-} 
+}
 
 # 自定义函数标准化表达谱 # Custom functions normalize the expression spectrum
-standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=T) {  
+standarize.fun <- function(indata=NULL, halfwidth=NULL, centerFlag=T, scaleFlag=T) {
   outdata=t(scale(t(indata), center=centerFlag, scale=scaleFlag))
   if (!is.null(halfwidth)) {
     outdata[outdata>halfwidth]=halfwidth
@@ -132,7 +132,7 @@ Test Set:
 gse364.expr <- read.table("GSE364.expr.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 gse364.sinfo <- read.table("GSE364.sinfo.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 #gse364.sinfo$prefix <- sapply(strsplit(gse364.sinfo$Title,"-",fixed = T),"[",1)
-meta.sam <- rownames(gse364.sinfo[grep("-M[12]$",gse364.sinfo$Title),]) # 
+meta.sam <- rownames(gse364.sinfo[grep("-M[12]$",gse364.sinfo$Title),]) #
 local.sam <- rownames(gse364.sinfo[grep("-P[12]$",gse364.sinfo$Title),]) # 例文只有29个样本 # There are only 29 samples in the example
 #comid <- intersect(meta.sam$prefix,local.sam$prefix) # 本以为是配对样本但是配对只有20个 # I thought it was a paired sample, but there were only 20 pairings
 
@@ -236,7 +236,7 @@ for (i in comgene) {
                     fustat = lihc.sinfo$fustat,
                     stringsAsFactors = F)
   auc1 <- c(auc1, roc(predictor = tmp$expr, response = tmp$fustat)$auc)
-  
+
   # GSE10186
   tmp <- data.frame(expr = as.numeric(gse10186.expr[i,]),
                     fustat = gse10186.sinfo$fustat,
@@ -261,7 +261,7 @@ pickgene <- "B4GALNT1" # 因为和原文结果不同所以随便选的 # As it i
 ```
 
 # 开始画图
-#start plot
+# Start plot
 
 用base plot画图，从plot开始整段运行。
 Draw with base plot and run the entire section from the plot

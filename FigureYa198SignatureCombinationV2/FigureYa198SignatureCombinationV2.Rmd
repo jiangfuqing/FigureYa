@@ -57,7 +57,7 @@ install.packages("randomForestSRC")
 
 加载包
 load package
- 
+
 ```{r}
 library(survival)
 library(randomForestSRC)
@@ -76,7 +76,7 @@ display.progress = function (index, totalN, breakN=20) {
   if ( index %% ceiling(totalN/breakN) == 0  ) {
     cat(paste(round(index*100/totalN), "% ", sep=""))
   }
-}  
+}
 ```
 
 # 输入文件
@@ -98,7 +98,7 @@ The original text had only 99 samples. We have 180 samples here.
 ![](method.PNG)
 
 ```{r}
-# 加载表达数据 
+# 加载表达数据
 # Load the expression data
 mexp <- read.table("brca.mRNA.expr.txt",sep = "\t",header = T,row.names = 1,check.names = F,stringsAsFactors = F)
 lexp <- read.table("brca.lncRNA.expr.txt",sep = "\t",header = T,row.names = 1,check.names = F,stringsAsFactors = F)
@@ -129,19 +129,19 @@ cox.pcutoff <- 0.05 # cox的p阈值 # p-threshold for cox
 Coxoutput.OS <- NULL
 for (i in 1:nrow(expr)) {
   display.progress(index = i,totalN = nrow(expr)) # 显示进度 # Shows progress
-  
+
   # 产生临时变量存储生存以及变量表达值
   # Generate temporary variables to store survival and variable expression values
   tmp <- data.frame(gene = as.numeric(expr[i,]),
                     OS.time = surv[,"OS.time"],
                     OS = surv[,"OS"],
                     stringsAsFactors = F)
-  
+
   # 单变量cox比例风险模型
   # Univariate COX proportional hazards model
   cox <- coxph(Surv(OS.time, OS) ~ gene, data = tmp)
   coxSummary = summary(cox)
-  
+
   # 生成cox结果数据框，包括基因名，风险比，z值，waldtest p值，以及HR置信区间
   # Generate a cox result data frame including gene name, hazard ratio, z-value, Waldtest p-value, and HR confidence intervals
   Coxoutput.OS=rbind.data.frame(Coxoutput.OS,data.frame(gene=rownames(expr)[i],
@@ -168,8 +168,8 @@ rownames(tmp) <- gsub("-","_",rownames(tmp)) # 防止出现“-”导致程序�
 dt.rf <- cbind.data.frame(surv[,c("OS","OS.time")],t(tmp))
 
 ntree <- 1000
-surv.rf <- rfsrc(Surv(OS.time, OS) ~ ., 
-                 data = dt.rf, 
+surv.rf <- rfsrc(Surv(OS.time, OS) ~ .,
+                 data = dt.rf,
                  ntree = ntree,
                  importance = TRUE,
                  seed = 12345678)
@@ -210,7 +210,7 @@ for (i in 1:num.imp) {
                      data = riskscore,
                      na.action = na.exclude)
     p.val <- 1-pchisq(fitd$chisq, length(fitd$n) - 1) # log-rank检验 #log-rank test
-    
+
     outTab <- rbind.data.frame(outTab,
                                data.frame(num.gene = ifelse(i == 1, paste0(i," gene"), paste0(i," genes")), # 当前基因数目 # Current number of genes
                                           km.pvalue = p.val, # KM曲线p值 # KM curve p value
@@ -226,12 +226,12 @@ if(n.sum == 2^num.imp-1) { # 如果总和不等则报错 # If the sum is not equ
 ```
 
 # 开始画图
-  
+
 ## 绘制火山图
 
 # Start drawing
 
-#Draw a volcano map
+# Draw a volcano map
 
 ```{r}
 sigpoints <- Coxoutput.OS[which(Coxoutput.OS$pvalue < cox.pcutoff),]

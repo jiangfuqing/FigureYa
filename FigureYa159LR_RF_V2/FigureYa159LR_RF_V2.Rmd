@@ -31,7 +31,7 @@ From <https://www.nature.com/articles/ncomms4963>
 Figure 3 | The predictive power of pseudogene expression in classification of UCEC subtypes. (a) The UCEC dataset (n 1⁄4 306) was split into training (n 1⁄4 223) and test (n 1⁄4 83) sets. (b) Schematic representation of feature selection and classifiers building through fivefold cross-validation within the training set. (c) The receiver operating characertistic curves of the three classifiers based on the cross-validation within the training set. (d) The receiver operating characertistic curve from applying the best-performing classifier (SVM) built from the whole training set to the test set.
 
 # 应用场景
-#Application scenarios
+# Application scenarios
 
 在LASSO降维的基础上，采用logistic regression或Random forest的方法，进行5-fold cross-validation评估LASSO selected feature的预测效能。
 On the basis of LASSO dimensionality reduction, logistic regression or Random forest methods are used to conduct 5-fold cross-validation to evaluate the prediction performance of LASSO selected features.
@@ -78,7 +78,7 @@ You can prepare this yourself, but it should contain at least the following info
 ```{r}
 # 加载输入数据
 # Load input data
-dat <- read.csv("easy_input.csv",row.names = 1,header = T,check.names = F,stringsAsFactors = F) 
+dat <- read.csv("easy_input.csv",row.names = 1,header = T,check.names = F,stringsAsFactors = F)
 sam <- rownames(dat) # 取出样本名 # Extract sample names
 ```
 
@@ -107,19 +107,19 @@ createFolds <- function(strat_id, k, seed = 123456) {
   set.seed(seed)
   if(k > length(strat_id)) {
     k <- length(strat_id)
-  }	
+  }
   perm <- sample(length(strat_id))
   strat_id <- factor(strat_id, levels=sample(unique(strat_id)))
-  
+
   strat_order <- order(strat_id[perm])
-  
+
   num_item_per_fold_ceil <- ceiling(length(strat_id) / k)
-  
+
   fold_ids <- rep(seq_len(k), times= num_item_per_fold_ceil)
   fold_ids <- fold_ids[seq_along(strat_id)]
-  
+
   folds <- split(perm[strat_order], fold_ids)
-  names(folds) <- paste0("Fold", seq_len(k))	
+  names(folds) <- paste0("Fold", seq_len(k))
   return(folds)
 }
 
@@ -133,23 +133,23 @@ test_pred_LR <- test_pred_RF <- NULL # 初始化结果数据框 # Initialize the
 for (i in 1:n.fold) {
   train_sam <- sam[-fold[[i]]] # 去除该折，即余下4折为训练集 # Remove this fold, so the remaining 4 folds are the training set
   test_sam <- setdiff(sam,train_sam) # 余下样本为测试集 # The remaining samples are the test set
-  
+
   # 训练集数据
   # Training set data
   train_dat <- dat[train_sam,]
   train_dat$group <- ifelse(train_dat$group == "NR",0,1)
-  
+
   # 验证集数据
   # Validation set data
   test_dat <- dat[test_sam,]
   test_dat$group <- ifelse(test_dat$group == "NR",0,1)
-  
+
   # 2. 例文第二步：LASSO回归在训练集里筛选变量
   # 2. Example, step 2: LASSO regression filters variables in the training set
   set.seed(seed)
   x <- as.matrix(train_dat[,setdiff(colnames(train_dat),"group")])
   y <- train_dat$group
-  cvfit = cv.glmnet(x, y, 
+  cvfit = cv.glmnet(x, y,
                     nfold=10, #10-fold cross-validation
                     family = "binomial", type.measure = "class")
   myCoefs <- coef(cvfit, s="lambda.min")
@@ -162,10 +162,10 @@ for (i in 1:n.fold) {
   # Build an LR prediction model using lasso features
 
   cat("LR",i,"...\n")
-  model_LR <- glm(group ~ ., 
-                  data = train_dat[,c("group",lasso_fea)], 
+  model_LR <- glm(group ~ .,
+                  data = train_dat[,c("group",lasso_fea)],
                   family = "binomial")
-  
+
   # 基于LR算法预测验证集概率，并合并真实结果
   # Predict the probability of the validation set based on the LR algorithm and merge the actual results
   test_pred_LR <- rbind.data.frame(test_pred_LR,
@@ -173,27 +173,27 @@ for (i in 1:n.fold) {
                                               group = test_dat$group,
                                               stringsAsFactors = F),
                                    stringsAsFactors = F)
-       
+
   # 4. 例文第四步：利用RF在4折数据中构建预测模型，验证余下1折
   # 4. Example Step 4: Use RF to build a prediction model on 4 folds of data and validate the remaining fold
   # 用lasso features构建RF预测模型
   # Build an RF prediction model using lasso features
   cat("RF",i,"...\n")
-  model_RF <- randomForest(group ~ ., 
+  model_RF <- randomForest(group ~ .,
                            data = train_dat[,c("group",lasso_fea)],
                            ntree = 1000, # 树的数目，例文为1000 # Number of trees, 1000 in the example
                            nPerm = 50, # 扰动次数，一般为50 # Number of perturbations, typically 50
-                           mtry = floor(sqrt(ncol(train_dat)-1)), 
+                           mtry = floor(sqrt(ncol(train_dat)-1)),
                            proximity = T,
                            importance = T)
-  
+
   # 基于RF算法预测验证集概率，并合并真实结果
   # Predict the probability of the validation set based on the RF algorithm and merge the actual results
   test_pred_RF <- rbind.data.frame(test_pred_RF,
                                    data.frame(prob = predict(model_RF, newdata = test_dat,type="response"),
                                               group = test_dat$group,
                                               stringsAsFactors = F),
-                                   stringsAsFactors = F)  
+                                   stringsAsFactors = F)
   cat("\n")
 }
 ```
@@ -210,7 +210,7 @@ jco <- c("#2874C5","#EABF00")
 pdf("LR_RF.pdf")
 LR.roc <- plot.roc(test_pred_LR$group,test_pred_LR$prob,ylim=c(0,1),xlim=c(1,0),
                    smooth=F, #绘制平滑曲线 #Draw a smooth curve
-                   ci=TRUE, 
+                   ci=TRUE,
                    main="",
                    col=jco[1],#线的颜色 #Line color
                    lwd=2, #线的粗细 #Line thickness
@@ -219,7 +219,7 @@ LR.roc <- plot.roc(test_pred_LR$group,test_pred_LR$prob,ylim=c(0,1),xlim=c(1,0),
 
 RF.roc <- plot.roc(test_pred_RF$group,test_pred_RF$prob,ylim=c(0,1),xlim=c(1,0),
                    smooth=F, #绘制平滑曲线 #绘制平滑曲线 #Draw a smooth curve
-                   ci=TRUE,  
+                   ci=TRUE,
                    main="",
                    col=jco[2],#线的颜色 #Line color
                    lwd=2, #线的粗细 #Line thickness
@@ -228,7 +228,7 @@ RF.roc <- plot.roc(test_pred_RF$group,test_pred_RF$prob,ylim=c(0,1),xlim=c(1,0),
                    add = T)
 
 legend.label <- c("AUC",paste0("LR: ",round(LR.roc$auc,3)),paste0("RF: ",round(RF.roc$auc,3)))
-legend("bottomright", 
+legend("bottomright",
        legend = legend.label,
        col = c(NA,jco[1:2]),
        lwd = 2,

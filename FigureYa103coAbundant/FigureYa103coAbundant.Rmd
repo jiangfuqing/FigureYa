@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 这个图，想知道怎么聚类的。WGCNA这个方法不会做，输入的是代谢化合物在各个sample里的浓度。
 
-##Requirement description
+## Requirement description
 
 I want to know how to cluster this graph. The WGCNA method does not perform it, it only inputs the concentration of metabolic compounds in each sample.
 
@@ -42,7 +42,7 @@ Clusters of co-abundant serum metabolites were identified using the R package WG
 
 计算并用热图展示WGCNA找出的共表达模块跟表型数据（数量性状）之间的相关性。
 
-##Application scenarios
+## Application scenarios
 
 Calculate and display the correlation between the co expression modules identified by WGCNA and phenotype data (quantitative traits) using a heatmap.
 
@@ -50,7 +50,7 @@ Calculate and display the correlation between the co expression modules identifi
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -91,11 +91,11 @@ library(pheatmap)
 
 # 设置环境变量使R显示英文报错信息，便于查找解决方案
 # Set environment variable to display error messages in English for easier troubleshooting
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止字符串自动转换为因子类型，避免数据处理中的意外转换
 # Disable automatic conversion of strings to factors to avoid unexpected data type conversions
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件
@@ -105,7 +105,7 @@ options(stringsAsFactors = FALSE)
 - easy_input_data.txt，表达矩阵，用于构建加权共表达网络。每行一个sample，每列一个基因。
 - easy_input_anno.txt，表型信息，用于计算module score跟它的相关性分析及聚类热图绘制。每行一个sample，每列一种表型，这里的列是代谢物浓度，还可以是其他数量性状、临床指标等等。如果只想构建共表达网络，就不需要这个文件。
 
-##Input file
+## Input file
 
 Two types of input files are required, and the lines of the two files should correspond one-to-one:
 
@@ -160,9 +160,9 @@ head(example.anno)
 
 另外，如果你想用WGCNA自带的函数构建共表达网络（automatically），可参考FigureYa15WGCNA。
 
-##Co expression network construction
+## Co expression network construction
 
-###Custom functions for co expression network construction (manually)
+### Custom functions for co expression network construction (manually)
 
 Here we have written a custom function based on the example text, which will be called later to construct a co expression network. The adjustable parameters are as follows:
 
@@ -201,32 +201,32 @@ netconstruct <- function(indata=NULL, power=NULL, TOMType="unsigned",clustMethod
   # 计算邻接矩阵：基于表达数据和软阈值构建基因共表达网络
   # Calculate adjacency matrix: Build gene co-expression network based on expression data and soft threshold
   adj = adjacency(indata, power = power)
-  
+
   # 计算拓扑重叠矩阵(TOM)：评估基因间的网络相似性
   # Calculate Topological Overlap Matrix (TOM): Evaluate network similarity between genes
-  TOM = TOMsimilarity(adj, TOMType = TOMType) 
-  
+  TOM = TOMsimilarity(adj, TOMType = TOMType)
+
   # 转换为不相似性矩阵并设置行列名
   # Convert to dissimilarity matrix and set row/column names
   dissTOM = 1 - TOM; dimnames(dissTOM) <- list(colnames(indata),colnames(indata))
-  
+
   # 基于TOM不相似性进行层次聚类
   # Perform hierarchical clustering based on TOM dissimilarity
   hierTOM=hclust(as.dist(dissTOM),clustMethod)
-  
+
   # 原文提到使用 hybrid dynamic branch-cutting
   # Original paper mentions using hybrid dynamic branch-cutting
-  
+
   # 动态树剪枝识别共表达模块
   # Dynamic tree cutting to identify co-expression modules
   dynamicMods=cutreeDynamic(hierTOM,
                             distM=dissTOM,
                             method = "hybrid",
                             cutHeight=cutHeight,
-                            deepSplit=deepSplit, 
+                            deepSplit=deepSplit,
                             pamRespectsDendro=FALSE,
                             minClusterSize=minClusterSize)
-  
+
   # 根据isprefix参数决定模块命名方式
   # Determine module naming convention based on isprefix parameter
   if(!isprefix) {
@@ -234,20 +234,20 @@ netconstruct <- function(indata=NULL, power=NULL, TOMType="unsigned",clustMethod
   } else {
     dynamicLabels=paste0(prefix,sprintf("%03d",dynamicMods)) # 按照例文修改module名字
   }
-  
+
   # 显示各模块中的基因数目
   # Display the number of genes in each module
   print(table(dynamicLabels))
-  
+
   # 计算模块特征基因(模块本征基因)
   # Calculate module eigengenes (representative expression profiles for each module)
   MEList = moduleEigengenes(indata, colors = dynamicLabels)
   MEs = MEList$eigengenes
-  
+
   # 移除特征基因列名中的"ME"前缀
   # Remove "ME" prefix from eigengene column names
   colnames(MEs) <- gsub("ME","",colnames(MEs))
-  
+
   # 返回网络构建结果：包括TOM不相似性矩阵、聚类树、模块标签和特征基因
   # Return network construction results: including TOM dissimilarity matrix, clustering tree, module labels, and eigengenes
   return(list(dissTOM=dissTOM, hierTOM=hierTOM, dynamicMods=dynamicMods, dynamicLabels=dynamicLabels, MEs=MEs))
@@ -258,7 +258,7 @@ netconstruct <- function(indata=NULL, power=NULL, TOMType="unsigned",clustMethod
 
 原文提到：A scale-free topology criterion was used to choose the soft threshold
 
-###Choose the appropriate threshold for building the network
+### Choose the appropriate threshold for building the network
 
 The original text mentions: A scale free topology criteria were used to choose the soft threshold
 
@@ -304,7 +304,7 @@ softPower = 6
 
 ### 构建共表达网络
 
-###Building a Co expression Network
+### Building a Co expression Network
 
 ```{r}
 # 执行WGCNA网络构建：基于选定的软阈值和参数识别共表达模块
@@ -327,7 +327,7 @@ wgcna.res$MEs[1:3,1:3]
 
 ### module score 与其他变量的相关性分析
 
-###Correlation analysis between module score and other variables
+### Correlation analysis between module score and other variables
 
 ```{r,warning=FALSE}
 # 检查样本是否顺序完全一致
@@ -388,7 +388,7 @@ write.table(cor.star,"output_correlation star.txt",sep = "\t",row.names = T,col.
 
 注意：这里纯粹模仿需求例文中的聚类热图，如需DIY展示多种聚类结果或自行排序，可参考FigureYa91cluster_heatmap。
 
-##Start drawing
+## Start drawing
 
 Cluster the module dimensions obtained from WGCNA and display them on a heatmap with significant markers *.
 
@@ -396,7 +396,7 @@ Note: This is purely an imitation of the clustering heatmap in the requirement e
 
 ```{r}
 # 如果你不需要前面的计算过程，只是想要画带显著性的热图，就按output_correlation matrix.txt和output_correlation star.txt文件整理你的数据。从这里读入，然后画图。
-# If you don't need the previous calculations and just want to plot the significance heatmap, 
+# If you don't need the previous calculations and just want to plot the significance heatmap,
 # organize your data from the output_correlation matrix.txt and output_correlation star.txt files.
 # Read them in here and then create the plot.
 

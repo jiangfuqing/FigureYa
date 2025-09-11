@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 RNA-seq的PCA图，同一组用相同颜色，多次重复（批次）用不同形状。我的分组很多，3次重复，不需要像FigureYa38PCA那样画圈画箭头。
 
-##Requirement description
+## Requirement description
 
 PCA plot of RNA seq, with the same color for the same group and different shapes for multiple repetitions (batches). I have many groups and repeat them three times, so I don't need to draw circles or arrows like in FigureYa38PCA.
 
@@ -41,7 +41,7 @@ from<http://genesdev.cshlp.org/content/32/2/96>
 
 不仅限于RNA-seq，同样适用于其他类型的数据。
 
-##Application scenarios
+## Application scenarios
 
 Scenario 1: Each group has a large number of samples obtained from different batches. If various shapes can be used to distinguish batches, it can be seen at a glance which batch is far away from other batches, which helps to determine the impact of batch effects.
 
@@ -53,7 +53,7 @@ Not limited to RNA seq, it also applies to other types of data.
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -63,11 +63,11 @@ library(stringr)
 
 # 设置系统环境，使R显示英文错误信息
 # Set the system environment to display English error messages
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 全局选项设置：禁止将字符型变量自动转换为因子类型
 # Global option setting: Prevent automatic conversion of character variables to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 自定义函数
@@ -77,13 +77,13 @@ options(stringsAsFactors = FALSE)
 - indata 是一个矩阵，列为样本，行为观测
 - batch 是一个数据框，必须提供批次的信息，否则请使用FigureYa38PCA
 - batchvar 是批次的变量名，这里默认batch的列名
-- position 是最后出图时图例的位置，从以下位置中选择："bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center". 
+- position 是最后出图时图例的位置，从以下位置中选择："bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center".
 - pch.original 是用于映射replicate形状的，默认从pch=16实心原点开始，到pch=25，一共10种实心图案可供映射，也可以自己选择pch形状起始点，参考：http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r
 - withoutgrid 是一个逻辑变量，指示是否要绘制背景网格（例文的图有网格，个人不推荐）
 - 如果想输出样本ID，可以将showID设为TRUE，但样本量大的时候不推荐，图会看不清楚
 - 其他参数可保持默认
 - 函数细节可根据需要自己修改，比如batch的形状（pch参数）
- 
+
  ##Custom functions
 
 Including PCA analysis process and plotting, parameter settings:
@@ -140,67 +140,67 @@ Including PCA analysis process and plotting, parameter settings:
 # height: Figure height, default is 5
 # withoutgrid: Whether to plot without grid, default is TRUE
 pca2batch <- function(indata, batch, batchvar = colnames(batch), fig.dir, PCA.fig.title, pos1 = "bottomright", pos2 = "topright", xy=c(1,2), pch.orginal=16, cols=NULL, showID=FALSE, cex=1, showLegend=T, batch1move=0.3, batch2move=0.4, width=5, height=5, withoutgrid=TRUE) {
- 
+
   # 加载ClassDiscovery包，用于PCA分析
   # Load the ClassDiscovery package for PCA analysis
-  library(ClassDiscovery) 
-  
+  library(ClassDiscovery)
+
   # 计算第一个批次变量的水平数
   # Calculate the number of levels for the first batch variable
-  N.batch1 = length(unique(batch[,batchvar[1]]))    
+  N.batch1 = length(unique(batch[,batchvar[1]]))
   # 计算第二个批次变量的水平数
   # Calculate the number of levels for the second batch variable
-  N.batch2 = length(unique(batch[,batchvar[2]]))    
-  
+  N.batch2 = length(unique(batch[,batchvar[2]]))
+
   # 检查是否提供了自定义颜色
   # Check if custom colors are provided
-  if (is.null(cols)) { 
+  if (is.null(cols)) {
     # 如果没有，使用彩虹色
     # If not, use rainbow colors
-    cols <- rainbow(N.batch1) 
+    cols <- rainbow(N.batch1)
   }else{
     # 检查颜色数量是否与批次数量匹配
     # Check if the number of colors matches the number of batches
-    if (length(cols) != N.batch1) {stop("cols length not equal to batch length")} 
-  }           
-  
+    if (length(cols) != N.batch1) {stop("cols length not equal to batch length")}
+  }
+
   # 移除数据中的缺失值
   # Remove missing values from the data
   indata=na.omit(indata)
   # 执行PCA分析，不进行标准化
   # Perform PCA analysis without standardization
-  pca <- SamplePCA(indata, usecor=F, center=F) 
+  pca <- SamplePCA(indata, usecor=F, center=F)
   # 计算第一个主成分的方差解释比例
   # Calculate the variance explained by the first principal component
-  pct1 <- round (pca@variances[xy[1]]/sum(pca@variances), digits=3)*100 
+  pct1 <- round (pca@variances[xy[1]]/sum(pca@variances), digits=3)*100
   # 计算第二个主成分的方差解释比例
   # Calculate the variance explained by the second principal component
-  pct2 <- round (pca@variances[xy[2]]/sum(pca@variances), digits=3)*100 
+  pct2 <- round (pca@variances[xy[2]]/sum(pca@variances), digits=3)*100
   # 设置X轴标签文本
   # Set X-axis label text
   xlab.text = paste("PC", xy[1], ": ", as.character(pct1), "% variance", sep="")
   # 设置Y轴标签文本
   # Set Y-axis label text
   ylab.text = paste("PC", xy[2], ": ", as.character(pct2), "% variance", sep="")
-  
+
   # 根据是否需要网格绘制不同的图形
   # Draw different plots based on whether grid is needed
   if(withoutgrid) {
     # 设置不带网格的输出文件名
     # Set output file name without grid
-    outfile = file.path(fig.dir, paste(PCA.fig.title, ".withoutgrid.pdf",sep="")) 
-    
+    outfile = file.path(fig.dir, paste(PCA.fig.title, ".withoutgrid.pdf",sep=""))
+
     # 创建PDF设备
     # Create PDF device
     pdf(file=outfile, width = width, height = height)
     # 调整图形边距，为图例留出空间
     # Adjust plot margins to make space for legends
-    par(mar = par()$mar + c(0,0,0,6)) 
+    par(mar = par()$mar + c(0,0,0,6))
     # 绘制PCA散点图
     # Plot PCA scatter plot
-    plot(pca@scores[,xy[1]], pca@scores[,xy[2]], 
+    plot(pca@scores[,xy[1]], pca@scores[,xy[2]],
          cex=cex, xlab=xlab.text, ylab=ylab.text,
-         col=cols[factor(batch[,batchvar[1]])], 
+         col=cols[factor(batch[,batchvar[1]])],
          pch=(pch.orginal:(pch.orginal-1+N.batch2))[factor(batch[,batchvar[2]])])
     # 添加水平和垂直参考线
     # Add horizontal and vertical reference lines
@@ -208,58 +208,58 @@ pca2batch <- function(indata, batch, batchvar = colnames(batch), fig.dir, PCA.fi
   } else {
     # 设置带网格的输出文件名
     # Set output file name with grid
-    outfile = file.path(fig.dir, paste(PCA.fig.title, ".withgrid.pdf",sep="")) 
-    
+    outfile = file.path(fig.dir, paste(PCA.fig.title, ".withgrid.pdf",sep=""))
+
     # 保存到PDF文件
     # Save to PDF file
     pdf(file=outfile, width = width, height = height)
     # 调整图形边距，为图例留出空间
     # Adjust plot margins to make space for legends
-    par(mar = par()$mar + c(0,0,0,6)) 
+    par(mar = par()$mar + c(0,0,0,6))
     # 先绘制一次固定视窗
     # Plot once to fix the viewport
-    plot(pca@scores[,xy[1]], pca@scores[,xy[2]], 
+    plot(pca@scores[,xy[1]], pca@scores[,xy[2]],
          cex=cex, xlab=xlab.text, ylab=ylab.text,
-         col=cols[factor(batch[,batchvar[1]])], 
+         col=cols[factor(batch[,batchvar[1]])],
          pch=(pch.orginal:(pch.orginal-1+N.batch2))[factor(batch[,batchvar[2]])])
     # 添加灰色背景
     # Add gray background
-    rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "gray80") 
-    
+    rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "gray80")
+
     # 再画一次覆盖灰色背景
     # Plot again to cover the gray background
     par(new=TRUE)
-    plot(pca@scores[,xy[1]], pca@scores[,xy[2]], 
+    plot(pca@scores[,xy[1]], pca@scores[,xy[2]],
          cex=cex, xlab=xlab.text, ylab=ylab.text,
-         col=cols[factor(batch[,batchvar[1]])], 
+         col=cols[factor(batch[,batchvar[1]])],
          pch=(pch.orginal:(pch.orginal-1+N.batch2))[factor(batch[,batchvar[2]])])
     # 添加白色网格线
     # Add white grid lines
     grid (lty = 1, col = "white",lwd=2)
   }
-  
+
   # 如果showID为TRUE，则在图上显示样本ID
   # If showID is TRUE, display sample IDs on the plot
-  if (showID) { 
+  if (showID) {
     text(pca@scores[,xy[1]], pca@scores[,xy[2]], colnames(indata), lwd=1, cex=cex)
   }
   # 如果showLegend为TRUE，则添加图例
   # If showLegend is TRUE, add legends
-  if(showLegend){ 
+  if(showLegend){
     # 允许图形绘制超出边界
     # Allow plotting outside the plot area
-    par(xpd = TRUE) 
+    par(xpd = TRUE)
     # 添加第一个图例（批次1）
     # Add the first legend (batch 1)
     legend(pos1,fill = cols,
            legend=names(table(factor(batch[,batchvar[1]]))),
-           inset=c(-batch1move,0), 
+           inset=c(-batch1move,0),
            border = NA,bty = "n")
     # 添加第二个图例（批次2）
     # Add the second legend (batch 2)
     legend(pos2,legend=names(table(factor(batch[,batchvar[2]]))),
            border = NA,bty = "n",
-           inset=c(-batch2move,0), 
+           inset=c(-batch2move,0),
            pch = (pch.orginal:(pch.orginal-1+N.batch2)))
   }
   # 关闭图形设备
@@ -282,9 +282,9 @@ Below are two columns based on the scene for easy imitation by friends.
 
 - easy_input_batch.csv，样品信息，第一列样品名，跟表达矩阵一致；后面两列是分组（batch1）和批次（batch2）。
 
-##Scenario 1, Multiple Batches
+## Scenario 1, Multiple Batches
 
-###Input file
+### Input file
 
 Two input files are required:
 
@@ -319,7 +319,7 @@ indata[1:3,1:3]
 
 ### 调用函数画图
 
-###Call function drawing
+### Call function drawing
 
 ```{r}
 # 自定义颜色
@@ -374,9 +374,9 @@ pca2batch(
 
 - easy_input_meta.csv，样品信息，包括分组condition和重复的批次（batch）。
 
-##Scenario 2: Multiple biological repetitions
+## Scenario 2: Multiple biological repetitions
 
-###Input file
+### Input file
 
 - GSE125184_CCAB_RPKM_ExpMatrix.csv， Gene expression matrix, behavioral genes, listed as samples. Download from< https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE125184 >Decompress, it is the same set of input data as FigureYa98STEMheatmap.
 
@@ -410,14 +410,14 @@ head(metadata)
 # Sort the groups in a custom order as follows
 
 # 将metadata数据框中的condition列转换为因子类型，并指定因子水平的顺序
-# Convert the 'condition' column in the metadata data frame to a factor, 
+# Convert the 'condition' column in the metadata data frame to a factor,
 # and specify the order of the factor levels
 metadata$condition <- factor(metadata$condition, levels = c("VM", "H", "P1", "P2", "YFB-S", "YFB-C", "YFB-L", "FB-S", "FB-CL"))
 ```
 
 ### 调用函数画图
 
-###Call function drawing
+### Call function drawing
 
 ```{r}
 # 定义足够多的颜色，用于展示分组
