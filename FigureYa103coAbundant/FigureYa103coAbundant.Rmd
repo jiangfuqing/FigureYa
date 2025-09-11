@@ -22,8 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 这个图，想知道怎么聚类的。WGCNA这个方法不会做，输入的是代谢化合物在各个sample里的浓度。
 
-##Requirement description
-
+## Requirement description
 I want to know how to cluster this graph. The WGCNA method does not perform it, it only inputs the concentration of metabolic compounds in each sample.
 
 ![](example.png)
@@ -42,16 +41,14 @@ Clusters of co-abundant serum metabolites were identified using the R package WG
 
 计算并用热图展示WGCNA找出的共表达模块跟表型数据（数量性状）之间的相关性。
 
-##Application scenarios
-
+## Application scenarios
 Calculate and display the correlation between the co expression modules identified by WGCNA and phenotype data (quantitative traits) using a heatmap.
 
 ## 环境设置
 
 使用国内镜像安装包
 
-##Environment settings
-
+## Environment settings
 Use domestic image installation package
 
 ```r
@@ -105,8 +102,7 @@ options(stringsAsFactors = FALSE)
 - easy_input_data.txt，表达矩阵，用于构建加权共表达网络。每行一个sample，每列一个基因。
 - easy_input_anno.txt，表型信息，用于计算module score跟它的相关性分析及聚类热图绘制。每行一个sample，每列一种表型，这里的列是代谢物浓度，还可以是其他数量性状、临床指标等等。如果只想构建共表达网络，就不需要这个文件。
 
-##Input file
-
+## Input file
 Two types of input files are required, and the lines of the two files should correspond one-to-one:
 
 - easy_input_data.txt， Expression matrix, used to construct weighted co expression networks. One sample per row, one gene per column.
@@ -146,7 +142,7 @@ head(example.anno)
 
 ## 共表达网络构建
 
-### 自定义函数用于共表达网络构建（manually）
+### 自定义函数用于共表达网络构建（Manually）
 
 这里根据例文的方法写了一个自定义函数，后面将调用这个函数来构建共表达网络。可调整的参数如下：
 
@@ -160,10 +156,8 @@ head(example.anno)
 
 另外，如果你想用WGCNA自带的函数构建共表达网络（automatically），可参考FigureYa15WGCNA。
 
-##Co expression network construction
-
-###Custom functions for co expression network construction (manually)
-
+## Co expression network construction
+### Custom functions for co expression network construction (manually)
 Here we have written a custom function based on the example text, which will be called later to construct a co expression network. The adjustable parameters are as follows:
 
 -Indata is the input matrix, behavior samples, and columns are the features
@@ -258,8 +252,7 @@ netconstruct <- function(indata=NULL, power=NULL, TOMType="unsigned",clustMethod
 
 原文提到：A scale-free topology criterion was used to choose the soft threshold
 
-###Choose the appropriate threshold for building the network
-
+### Choose the appropriate threshold for building the network
 The original text mentions: A scale free topology criteria were used to choose the soft threshold
 
 ```{r}
@@ -304,8 +297,7 @@ softPower = 6
 
 ### 构建共表达网络
 
-###Building a Co expression Network
-
+### Building a Co expression Network
 ```{r}
 # 执行WGCNA网络构建：基于选定的软阈值和参数识别共表达模块
 # Perform WGCNA network construction: Identify co-expression modules based on the selected soft threshold and parameters
@@ -325,10 +317,9 @@ wgcna.res <- netconstruct(indata = example.data,
 wgcna.res$MEs[1:3,1:3]
 ```
 
-### module score 与其他变量的相关性分析
+### Module score 与其他变量的相关性分析
 
-###Correlation analysis between module score and other variables
-
+### Correlation analysis between module score and other variables
 ```{r,warning=FALSE}
 # 检查样本是否顺序完全一致
 # Check if samples are in the exact same order between module eigengenes and annotation data
@@ -388,8 +379,7 @@ write.table(cor.star,"output_correlation star.txt",sep = "\t",row.names = T,col.
 
 注意：这里纯粹模仿需求例文中的聚类热图，如需DIY展示多种聚类结果或自行排序，可参考FigureYa91cluster_heatmap。
 
-##Start drawing
-
+## Start drawing
 Cluster the module dimensions obtained from WGCNA and display them on a heatmap with significant markers *.
 
 Note: This is purely an imitation of the clustering heatmap in the requirement example article. If you need to DIY display multiple clustering results or sort them yourself, you can refer to FigureYa91cluster_ heatmap.

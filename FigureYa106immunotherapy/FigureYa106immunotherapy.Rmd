@@ -23,8 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 复现原文中的方法，画出对比的热图。利用TIDE和GenePattern网站的submap算法预测单个样本或者某亚型对免疫治疗的响应可能性。
 
-##Requirement description
-
+## Requirement description
 Reproduce the method in the original text and draw a comparison heatmap. Using TIDE and GenePattern's submap algorithm to predict the likelihood of a single sample or subtype responding to immunotherapy.
 
 ![](example.png)
@@ -47,8 +46,7 @@ TIDE算法网址 http://tide.dfci.harvard.edu/
 
 submap算法网址 https://cloud.genepattern.org/gp
 
-##Application scenarios
-
+## Application scenarios
 Predict the likelihood of a single sample or subtype responding to immunotherapy.
 
 TIDE algorithm website http://tide.dfci.harvard.edu/
@@ -57,8 +55,7 @@ Submap algorithm website https://cloud.genepattern.org/gp
 
 ## 环境设置
 
-##Environment settings
-
+## Environment settings
 ```{r}
 source("install_dependencies.R")
 # 加载pheatmap包，用于绘制热图 | Load the pheatmap package for drawing heatmaps
@@ -81,8 +78,7 @@ easy_input_anno.txt，分组信息。示例数据里的C1和C2分别对应"HPV16
 
 两个文件的sample ID必须一致。这两个输入文件跟FigureYa105GDSC一样。
 
-##TIDE predicts single sample immune checkpoint inhibitor responsiveness
-
+## TIDE predicts single sample immune checkpoint inhibitor responsiveness
 Two input files are processed into the format required by TIDE, and after online execution, TIDEoutputting. csv is output. Then, immune therapy responsiveness and subtype are checked for correlation, with p<0.05 indicating correlation.
 
 easy_input_expr.txt， Gene expression matrix.
@@ -149,12 +145,11 @@ print(table(ann$TIDE, ann$ImmClust))
 print(fisher.test(table(ann$TIDE, ann$ImmClust)))
 ```
 
-## submap预测亚型的免疫治疗响应性 ###
+## Submap预测亚型的免疫治疗响应性 ###
 
 输入表达矩阵和样品信息，整理成submap所需的格式，在线运行后输出SubMap_SubMapResult.txt用于画图。
 
-##Submap predicts immune therapy responsiveness of subtypes###
-
+## Submap predicts immune therapy responsiveness of subtypes###
 Input the expression matrix and sample information, organize them into the format required for submap, run them online, and output SubMap_SubMapResult.exe for drawing.
 
 ```{r}
@@ -246,7 +241,7 @@ generateInputFileForSubMap(in_gct = in_gct, gct_file = gct_file, cls_file = cls_
 
 ## 开始画图
 
-## start plot
+## Start plot
 
 ```{r}
 # 定义热图颜色渐变 | Define color gradient for heatmap

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的图
 
@@ -29,7 +29,7 @@ Draw the figure in paper with R code
 from<https://www.nature.com/articles/nplants2015221>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：评估一个总体的不同组分的比例变化
 
@@ -40,7 +40,7 @@ Scenario 1: Evaluate the proportional changes of different components of a whole
 Scenario 2: Evaluate different indicators under the same measurement system
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -85,7 +85,7 @@ The canvas will be set to 21cm * 29.7cm (width and height) A4 paper
 
 1cm = 35.43307px
 
-### 准备svg语句
+### 准备Svg语句
 ### Prepare the svg statement
 
 #### 1.画4个圆
@@ -110,7 +110,7 @@ circos <- data.frame(paste("<circle cx=\"", rx, "\" cy=\"", ry, "\" r=\"", .25 *
 )
 ```
 
-#### 2.通过路径（path）画花瓣
+#### 2.通过路径（Path）画花瓣
 #### 2.Draw flower petals through a path
 
 原理图
@@ -166,7 +166,7 @@ ty<-ry - rr - 6
 mydata$text <- paste("<text x=\"", tx, "\" y=\"", ty, "\" font-size=\"", mydata$text_size, "\" transform=\"rotate(", mydata$angle, " ",rx," ",ry,")\"", " fill=\"#", mydata$text_color, "\" >", mydata$Name, "</text>", sep = "")
 ```
 
-### 将准备好的svg语句写入.svg文件
+### 将准备好的Svg语句写入.svg文件
 ### Write prepared svg statements to .svg file
 
 首先写入XML声明、svg dtd、svg代码开始标签\</svg>

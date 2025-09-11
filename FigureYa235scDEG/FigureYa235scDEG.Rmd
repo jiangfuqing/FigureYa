@@ -180,8 +180,8 @@ pA1 <- DimPlot(pbmc, reduction = "umap", label = T)+ NoLegend()
 ggsave("plotA_1_UMAP_cluster.pdf", plot = pA1, width = 6, height = 6)
 ```
 
-## 找cluster biomarkers
-## find cluster biomarkers
+## 找Cluster biomarkers
+## Find cluster biomarkers
 ```{r}
 # Finding differentially expressed features (cluster biomarkers)
 
@@ -253,7 +253,7 @@ pbmc@meta.data$celltype <- factor(pbmc@meta.data$celltype, celltype)
 saveRDS(pbmc, "pbmc_test_final.rds")
 ```
 
-## 设置cutoff，定义显著/非显著的上/下调marker gene
+## 设置Cutoff，定义显著/非显著的上/下调marker gene
 ## Set cutoff to define significant/non-significant up/down marker gene
 
 ```{r}

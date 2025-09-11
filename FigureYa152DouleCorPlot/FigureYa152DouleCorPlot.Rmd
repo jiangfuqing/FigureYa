@@ -91,19 +91,16 @@ Here, we use the ssGSEA_output.csv file (Figure Ya71) to demonstrate how to calc
 ```{r}
 tcga_gsva <- read.csv("ssGSEA_output.csv", row.names = 1, check.names = F)
 tcga_gsva[1:3,1:3]
-#这里将计算每列之间的相关性
-# This will calculate the correlation between each column.
-#如果要计算行之间的相关性就运行下面这行转置（把行变成列，列变成行）
-# To calculate the correlation between rows, run the following transposition line (convert rows to columns and columns to rows).
-#tcga_gsva <- t(tcga_gsva)
-
+# 这里将计算每列之间的相关性# This will calculate the correlation between each column.
+# 如果要计算行之间的相关性就运行下面这行转置（把行变成列，列变成行）# To calculate the correlation between rows, run the following transposition line (convert rows to columns and columns to rows).
+# tcga_gsva <- t(tcga_gsva)
 # 计算相关系数
 # Calculate the correlation coefficient
 cor_r <- cor(tcga_gsva)
 cor_r[1:3,1:3]
 write.csv(cor_r, "easy_input_R.csv", quote = F)
 
-# 计算p value
+# 计算P value
 # Calculate the p value
 cor_p <- matrix(0, nrow = ncol(tcga_gsva), ncol = ncol(tcga_gsva))
 rownames(cor_p) <- colnames(tcga_gsva)

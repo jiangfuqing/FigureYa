@@ -219,7 +219,7 @@ ccle.expr <- log2(ccle.expr[comgene,comccle] + 1) # 表达谱取对数 | log2-tr
 ccle.anno <- ccle.anno[comccle,]
 ```
 
-# 构建nearest centroid classifier，给细胞系分型
+# 构建Nearest centroid classifier，给细胞系分型
 Build nearest centroid classifier and assign cell line subtypes
 
 构建nearest centroid classifier，然后用classifier预测GDSC细胞系数据，让细胞系按照TCGA分型结果分成对应的三组。

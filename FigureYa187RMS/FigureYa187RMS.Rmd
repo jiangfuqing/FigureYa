@@ -165,7 +165,7 @@ head(dat)
 jco <- c("#2874C5","#EABF00")
 ```
 
-# 多变量cox模型得到新的score
+# 多变量Cox模型得到新的score
 
 # The multivariate cox model has obtained a new score
 

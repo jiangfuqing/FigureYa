@@ -122,7 +122,7 @@ dat <- read.csv("easy_input.csv")
 head(dat)
 ```
 
-# 循环cox模型
+# 循环Cox模型
 
 # Cyclic cox model
 
@@ -156,9 +156,9 @@ for (count in ELN.count) {
 head(Coxoutput)
 ```
 
-# lowess平滑并绘图
+# Lowess平滑并绘图
 
-# lowess smoothing and plotting
+# Lowess smoothing and plotting
 
 用base plot画图。如果想理解某一行代码的含义，就从plot开始到该语句一起运行。
 Draw a plot using base plot. If you want to understand the meaning of a certain line of code, run from plot to that statement together.

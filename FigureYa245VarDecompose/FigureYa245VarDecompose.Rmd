@@ -132,7 +132,7 @@ table(kept.rows)
 mouse <- mouse[kept.rows, ]
 ```
 
-# 1) 按照直系同源关系(one2one orthologs)合并人鼠转录组
+# 1) 按照直系同源关系(One2one orthologs)合并人鼠转录组
 
 # 1) Merge human-mouse transcriptomes according to orthologous relationships (one2one orthologs).
 
@@ -159,8 +159,7 @@ data <- cbind(human, mouse)
 ```
 
 # 2) 数据重构，使之方便应用线性混合模型
-#2) Data reconstruction to facilitate the application of linear hybrid models
-
+# 2) Data reconstruction to facilitate the application of linear hybrid models
 ```{r}
 data <- data %>% 
   mutate(GenePairs = paste(Human_Gene.Name, Mouse_Gene.Name, sep = "_"), .before = 1) %>% 
@@ -200,7 +199,7 @@ logFPKM ~ 1 + (1|Tissue)     +     (1|Species)
 这里提供两种计算方式，“串行计算”慢，推荐找个服务器运行“并行运算”。
 There are two computing methods here, "serial computing" is slow, it is recommended to find a server to run "parallel computing".
 
-## 串行计算：大约15min
+## 串行计算：大约15Min
 ## Serial calculation: about 15min
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}

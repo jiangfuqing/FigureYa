@@ -93,7 +93,7 @@ pca <- prcomp(t(data2))
 
 # 开始画图
 
-## 方法一: 调用factoextra包
+## 方法一: 调用Factoextra包
 
 # Start drawing
 
@@ -126,7 +126,7 @@ p + theme(
 ggsave("PCA_factoextra.pdf")
 ```
 
-## 方法二: ggplot
+## 方法二: Ggplot
 
 准备数据
 

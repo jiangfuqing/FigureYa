@@ -187,7 +187,7 @@ captureMethod <- "security"
 
 ## 提取信号
 
-### 先写个函数，函数里面会调用getBigWigValue.py，位于当前文件夹
+### 先写个函数，函数里面会调用GetBigWigValue.py，位于当前文件夹
 
 ## Extracting signals
 

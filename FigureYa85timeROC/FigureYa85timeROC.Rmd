@@ -21,8 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 绘制不同拟合模型的time-dependent AUC。
 
-##Requirement description
-
+## Requirement description
 Draw time-dependent AUC for different fitting models.
 
 ![](example.png)
@@ -35,16 +34,14 @@ from<https://academic.oup.com/annonc/article/29/7/1554/4993948>
 
 绘制不同拟合模型的timeROC曲线。
 
-##Application scenarios
-
+## Application scenarios
 Draw timeROC curves for different fitting models.
 
 ## 环境设置
 
 使用国内镜像安装包
 
-##Environment settings
-
+## Environment settings
 Use domestic image installation package
 
 ```r
@@ -75,8 +72,7 @@ options(stringsAsFactors = FALSE)
 
 比普通的ROC的输入多了一列时间变量time
 
-##Input file
-
+## Input file
 An additional time variable, time, is added to the input of a regular ROC
 
 ```{r}
@@ -103,8 +99,7 @@ tr <- read.csv("easy_input.csv", row.names = 1)
 - times为计算AUC的时间点，根据实际需求设置
 - iid的默认设置为FALSE，如果后续需要使用AUC的置信区间，则设置为TRUE，如果不需要的话，则可不进行设置。本例中可以不进行设置。
 
-##Start calculating
-
+## Start calculating
 Fit different models as needed, and the three fitting models here are:
 
 -Model 1 constructed based on indicators a, age, and sex
@@ -169,8 +164,7 @@ ROC.c <- timeROC(T=tr$time, delta=tr$status,marker=tr$c,
 - 第二部分conf.int指图中是否绘制置信区间，若为FALSE，则不添加置信区间，若为TRUE，则绘制相应置信区间线；
 - 第三部分为线条的颜色设置，除第一条曲线外，后面的都需添加add=TRUE，以保证全部的曲线绘制在一张图上。
 
-##Start drawing
-
+## Start drawing
 Draw timeROC curves for each of the three models using the function plotAUCcurve.
 
 -The first part of this function is the output of the previous model;
@@ -208,8 +202,7 @@ dev.off()  # 关闭图形设备，保存PDF文件 - Close the graphics device an
 
 发现一个写的不错的帖子，可以用来画示例文章里的Figure 3A，作者：第二军医大学统计学教研室陈琪
 
-##Off topic remarks
-
+## Off topic remarks
 I found a well written post that can be used to draw Figure 3A in the example article. The author is Chen Qi from the Statistics Teaching and Research Office of the Second Military Medical University
 
 <https://www.wowodx.com/weishengjiandu/7180143d4c3b48228e7d04e97e2ac3c1.html>

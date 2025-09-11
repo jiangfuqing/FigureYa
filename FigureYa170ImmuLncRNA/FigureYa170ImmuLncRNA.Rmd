@@ -141,7 +141,7 @@ acc <- GDCprepare(query)
 save(acc, file = "acc.rda")
 ```
 
-## 提取protein coding RNA和lncRNA的gene_id和gene_name对应关系
+## 提取Protein coding RNA和lncRNA的gene_id和gene_name对应关系
 ## Extract protein coding Correspondence between gene_id and gene_name for RNA and lncRNA
 
 根据[lncRNA的分类](https://asia.ensembl.org/info/genome/genebuild/biotypes.html)
@@ -212,7 +212,7 @@ acc_lnc[1:3, 1:3]
 注：这里代码都可以从R包[ImmuLncRNA](http://bio-bigdata.hrbmu.edu.cn/ImmLnc/download_loading.jsp?path=jt_download/ImmuLncRNA_0.1.0.tar.gz&name=ImmuLncRNA_0.1.0.tar.gz)中得到。
 Note: The code here can be obtained from the R package [ImmuLncRNA](http://bio-bigdata.hrbmu.edu.cn/ImmLnc/download_loading.jsp?path=jt_download/ImmuLncRNA_0.1.0.tar.gz&name=ImmuLncRNA_0.1.0.tar.gz).
 
-## step1: estimate tumor purity
+## Step1: estimate tumor purity
 
 “小丫画图群-纯画图”讨论记录：
 "Xiaoya Drawing Group - Pure Drawing" Discussion Record:
@@ -252,7 +252,7 @@ names(Tumour_purity) <- samples_name %>% str_replace_all(., "\\.", "-")
 rm(acc_mrna2, samples_name, est_score_all, est_scores)
 ```
 
-## step2: pcc
+## Step2: pcc
 
 在矫正免疫浸润水平的基础上算lncRNA和mRNA的偏相关系数(pcc)，算出RS。
 Calculate the partial correlation coefficient (PCC) between lncRNA and mRNA based on the correction for immune infiltration level and calculate RS.
@@ -299,7 +299,7 @@ RS <- -log10(p.value)*sign(pcor)
 RS[1:5, 1:5]
 ```
 
-## step3: fgsea
+## Step3: fgsea
 
 接着采用fgsea对lncRNA做通路富集
 Then fgsea was used to enrich lncRNA pathways.
@@ -372,7 +372,7 @@ length(intersect(acc_lncrna, acc_article))
 分解每一步骤算出的结果和原文大部分是一样的，不一致应该是由于数据预处理上的问题，原文acc输入的lncRNA数目有6501个，我们处理后只有5616
 The results calculated in each step are largely consistent with the original paper. The discrepancy is likely due to data preprocessing issues. The original acc input contains 6501 lncRNAs, while ours only contains 5616 after processing.
 
-# 计算lncRNA proportion
+# 计算LncRNA proportion
 # Calculate lncRNA proportions
 
 ```{r, eval=FALSE}

@@ -156,7 +156,7 @@ pheno <- read.table("easyinput_tcga_phenotype.txt",sep = "\t",row.names = 1,chec
 tfs <- read.table("easyinput_regulon.txt",header = T)
 ```
 
-# 计算regulon活性 - Regulon analysis
+# 计算Regulon活性 - Regulon analysis
 
 bootstrap计算reference regulatory network运行时间较长。
 

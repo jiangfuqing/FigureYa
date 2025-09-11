@@ -21,8 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 计算HR和P value，画出森林图。
 
-##Requirement description
-
+## Requirement description
 Calculate HR and P values and draw a forest map.
 
 ![](example.png)
@@ -35,16 +34,14 @@ from<http://cancerimmunolres.aacrjournals.org/content/early/2019/03/06/2326-6066
 
 临床亚组分析。
 
-##Application scenarios
-
+## Application scenarios
 Clinical subgroup analysis.
 
 ## 环境设置
 
 使用国内镜像安装包
 
-##Environment settings
-
+## Environment settings
 Use domestic image installation package
 
 ```r
@@ -86,8 +83,7 @@ easy_input.csv，score（连续变量）和score_binary（二分类变量）至�
 
 如果你的数据已经整理成subgroup.csv的格式，就可以跳过这步，直接进入“开始画图”。
 
-##Input file
-
+## Input file
 EasyInput. csv, Score (continuous variable) and Score_binary (binary variable) should contain at least one column, with two calculation methods provided later.
 
 If your data has already been organized into subgroup.csv format, you can skip this step and directly enter "Start Drawing".
@@ -123,8 +119,7 @@ dim(input)
 
 ## 计算HR和P value
 
-##Calculate HR and P values
-
+## Calculate HR and P values
 ```{r}
 #' @明确亚组的信息
 #' @Clarify subgroup information
@@ -272,8 +267,7 @@ write.csv(forestplot_input, "subgroup.csv", quote = F)
 
 重点修改`hrzl_lines`参数里的第三行，画最下面一条黑线，""中数字为nrow(data)+5，此处是12行 + 5 = 17
 
-##Start drawing
-
+## Start drawing
 Rewrite from "FigureYa6 Forest Map".
 
 Focus on modifying the third line of the 'hrzlylines' parameter, draw the bottom black line, where the number in' 'is nrow (data)+5, and here it is line 12+5=17

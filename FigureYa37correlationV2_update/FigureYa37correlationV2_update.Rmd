@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用⭕️的方式展示correlation，画出像paper里这样的图
 
@@ -29,7 +29,7 @@ Show the correlation using ⭕️ to draw a graph like the one in the paper
 from<https://doi.org/10.1080/2162402X.2017.1382792>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 展示每两个基因之间的相关关系，连线的颜色和宽度代表相关系数。
 
@@ -48,7 +48,7 @@ More usage:
 - To find the target genes of transcription factors, to find which transcription factors regulate your genes, and to do further filtering, please refer to the “condensed strategy” at the end of this article: <https://mp.weixin.qq.com/s/UFbF5Ru8Pd67AcxCLODsfw>
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

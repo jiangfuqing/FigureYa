@@ -892,7 +892,7 @@ cc$Model <- paste0('CoxBoost + ', 'survival-SVM')
 result <- rbind(result, cc)
 ```
 
-# 5.plsRcox
+# 5.PlsRcox
 
 ```{r}
 set.seed(seed)
@@ -905,7 +905,7 @@ cc$Model <- paste0('plsRcox')
 result <- rbind(result, cc)
 ```
 
-# 6.superpc
+# 6.Superpc
 
 ```{r}
 data <- list(x = t(est_dd[, -c(1,2)]), y = est_dd$OS.time, censoring.status = est_dd$OS, featurenames = colnames(est_dd)[-c(1, 2)])
@@ -960,7 +960,7 @@ cc$Model <- paste0('GBM')
 result <- rbind(result, cc)
 ```
 
-# 8.survivalsvm
+# 8.Survivalsvm
 
 ```{r}
 fit = survivalsvm(Surv(OS.time,OS)~., data = est_dd, gamma.mu = 1)

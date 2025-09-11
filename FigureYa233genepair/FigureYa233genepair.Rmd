@@ -142,7 +142,7 @@ Expr <- Expr[Lids,]
 
 # 使用gene-pair构建预后模型
 
-## 第一步：表达谱编秩，然后选取在正常样本中秩序一致率达到95%的基因对，即lncRNA1 - lncRNA2方向一致（<0）的基因对出现在超过95%以上的正常样本中
+## 第一步：表达谱编秩，然后选取在正常样本中秩序一致率达到95%的基因对，即LncRNA1 - lncRNA2方向一致（<0）的基因对出现在超过95%以上的正常样本中
 
 # Use gene-pair to build a prognostic model
 
@@ -272,7 +272,7 @@ write.table(outTab,"output_independency test of lncRNA pair between normal and t
 write.table(outSel,"output_significant lncRNA pair between normal and tumor samples.txt",sep = "\t",row.names = T,col.names = NA,quote = F)
 ```
 
-## 第三步：计算lncRNA.A的所有partner在所有样本里的CV，升序排列取前3个表达最稳定的partner用来表征lncRNA.A
+## 第三步：计算LncRNA.A的所有partner在所有样本里的CV，升序排列取前3个表达最稳定的partner用来表征lncRNA.A
 ## Step 3: Calculate the CVs of all partners of lncRNA.A in all samples, and select the first 3 partners with the most stable expression in ascending order to characterize lncRNA.A
 
 Step 3:Then, we calculate the **coefficient of variation (CV)** of rank across cancer and normal samples for each partner lncRNA of lncRNA-A in the lncRNA-A reversal pairs (Fig. 1b). **We hypothesize** that if the rank of partner lncRNA is approximately constant across the cancer and normal samples, the reversal relationship of lncRNA-A and partner lncRNA may occur because of the rank change of lncRNA-A, which could be used as evidence to determine whether lncRNA-A is differentially expressed in individual cancer samples. Then, the partner lncRNAs of lncRNA-A are ranked by the CV in increasing order. If there are more than 3 reversal pairs for lncRNA-A, the **top 3 reversal pairs** are retained; otherwise, all are included for the following analysis. In Fig. 1b, the lncRNA-D, lncRNA-E and lncRNA-F are the top three lncRNAs with the smallest CV and are included in following analysis.
@@ -308,7 +308,7 @@ for (i in lncA) { # 循环每个lncRNA.A # Cycle each lncRNA.A
 write.table(outTab2,"output_lncRNA partner with cv in all samples.txt",sep = "\t",row.names = F,col.names = T,quote = F)
 ```
 
-## 第四步：检测差异lncRNA（若超过半数lncRNA.A > partner，则该lncRNA.A在该样本中上调，记为1）
+## 第四步：检测差异LncRNA（若超过半数lncRNA.A > partner，则该lncRNA.A在该样本中上调，记为1）
 
 ## Step 4: Detect differential lncRNAs (if more than half of the lncRNAs.A > partner, the lncRNA.A will be upregulated in the sample and denoted as 1)
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 我想众筹弹性网络筛选和分类的数据分析。根据表达矩阵，绘制figure2的A,B,C筛选和系数图，再根据结果绘制分类效果E图，得到准确率。
 
@@ -41,7 +41,7 @@ FIGURE 2 | The screening and validation of 15 genes conducted by the diagnostic 
 (E) Estimated probabilities for samples in testing datasets (GSE101685 and ICGC). For each sample, there are two points, corresponding to the probability that the sample belongs to the respective class. Within each dataset and class, samples are sorted by the probability of the true class. For most samples, the probability of the true subtype is near 1, indicating an unambiguous classification.
 
 # 应用场景
-# application scenario
+# Application scenario
 
 根据弹性网络筛选变量构建分类模型，生成筛选和系数图，以及分类效果图。
 
@@ -52,7 +52,7 @@ Construct a classification model by selecting variables based on the elastic net
 For more machine learning-related FigureYa, please refer to this link <https://k.koudai.com/ZkmRxldV>
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

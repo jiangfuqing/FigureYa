@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 画出像paper里这样美的火山图。
 
@@ -33,14 +33,14 @@ Follow “Xiaoya drawing” official account (WeChat ID: FigureYa), reply “vol
 from<https://www.nature.com/articles/s41467-018-06944-1>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 展示两组之间总体的基因表达变化趋势。
 
 Demonstrate overall gene expression trends between the two groups.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -97,7 +97,7 @@ head(selectgenes)
 ```
 
 ## 参数设置
-## parameter setting
+## Parameter setting
 
 点的颜色和虚线的位置都由下面的阈值决定，**根据具体需求调整**。
 

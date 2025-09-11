@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的Lollipop，棒棒糖🍭。
 
@@ -29,7 +29,7 @@ Draw the Lollipop in the paper using R code, lollipop 🍭.
 from<https://www.nature.com/articles/nature22973>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 某个基因的突变发生在哪个重要的结构域？推测该位点的突变影响了蛋白质功能。
 
@@ -44,7 +44,7 @@ Scenario 1: Show the mutation site of a gene in a cancer type in TCGA.
 Scenario 2: Compare the mutation sites of different cancers/subtypes.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```r
 #使用国内镜像安装包

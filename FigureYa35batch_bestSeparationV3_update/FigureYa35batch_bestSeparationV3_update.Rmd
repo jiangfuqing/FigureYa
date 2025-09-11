@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 需求一：批量画生存分析Best separation的图，所有基因保存到一个文件，或每个基因1个文件。
 
@@ -41,7 +41,7 @@ Requirement 2: Figure A is the survival curve drawn with cutoff grouping, I also
 from<https://www.frontiersin.org/articles/10.3389/fonc.2019.00488/full>
 
 # 使用场景
-# usage scenario
+# Usage scenario
 
 在展示基因表达水平（连续变量）对生存期的影响时找到最佳分组，多个基因，一次出图
 
@@ -56,7 +56,7 @@ Later, you can take the `FigureYa36 two-factor survival analysis` to compare the
 Follow “Xiaoya drawing” WeChat official account, reply “35”, to see how these two graphs are used in the article, as well as partners on the statistical method of the graph of the discussion.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

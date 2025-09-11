@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 画出新型nomogram图（d）和对比曲线（f、g）
 
@@ -37,7 +37,7 @@ Fig. 3. (d–e) Nomograms for predicting the probability of patient mortality ba
 The c forest plot can be drawn by referring to `FigureYa90subgroup`, and the h and i plots can be drawn by referring to `FigureYa33DCA_update`.
 
 # 应用场景
-# application scenario
+# Application scenario
 
 列线图（nomogram，诺莫图）是在平面直角坐标系中用一簇互不相交的线段表示多个独立变量之间函数关系的图。
 
@@ -52,7 +52,7 @@ It visualizes the results of a Logistic regression or Cox regression, giving the
 Follow “Xiaoya Drawing” WeChat Official Account, reply “30” to see the application of these two graphs in more articles.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 
@@ -95,7 +95,7 @@ pbc$died <- pbc$status == 2
 head(pbc)
 ```
 
-# 画nomogram
+# 画Nomogram
 # Draw nomogram
 
 这里提供两种风格的nomogram画法，用到不同的包
@@ -143,7 +143,7 @@ output formula
 nomogramEx(nomo=x,np=2,digit = 9)
 ```
 
-# 画新型nomogram
+# 画新型Nomogram
 # Draw new nomogram
 
 `regplot`可以交互式调整nomogram，代码更简单，输出的图形更漂亮。
@@ -211,7 +211,7 @@ regplot(pbcglm,
         interval="confidence")
 ```
 
-# 绘制calibration curve进行验证
+# 绘制Calibration curve进行验证
 # Plot calibration curve for validation
 
 采用和nomogram一样的变量进行多因素cox回归
@@ -219,7 +219,7 @@ regplot(pbcglm,
 Perform multivariable Cox regression using the same variables as the nomogram
 
 ## 5年
-## 5 years
+## 5 Years
 
 ```{r}
 f5 <- cph(formula = Surv(time,died) ~  age + catbili + sex + copper +stage + trt,data=pbc,x=T,y=T,surv = T,na.action=na.delete,time.inc = 1825) 
@@ -253,7 +253,7 @@ dev.off()
 ![](calibration_5y.pdf)
 
 ## 8年
-## 8 years
+## 8 Years
 
 ```{r, fig.width=8,highlight=8}
 f8 <- cph(formula = Surv(time,died) ~  age + catbili + sex + copper +stage + trt,data=pbc,x=T,y=T,surv = T,na.action=na.delete,time.inc = 2920) 
@@ -279,7 +279,7 @@ abline(0,1,lty= 3,
        col =c("#224444"))
 ```
 
-## 同时展示两条curve
+## 同时展示两条Curve
 ## Show two curves at the same time
 
 ```{r}

@@ -60,7 +60,7 @@ co-expression significance of target genes in each dataset. Erythroblast related
 ## SCENIC R
 见`scripts/s0_createEnv.Rmd`
 
-## pySCENIC
+## PySCENIC
 见[createEnv](doc/createEnv.md)
 
 # 输入文件

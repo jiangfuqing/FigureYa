@@ -118,7 +118,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# 第一种方案: 不预分组预测bulk数据中细胞类型占比
+# 第一种方案: 不预分组预测Bulk数据中细胞类型占比
 # Option 1: Predicting Cell Type Proportions in Bulk Data Without Pre-Grouping
 
 ## 输入文件
@@ -245,7 +245,7 @@ scRNA.eset <- ExpressionSet(assayData = data.matrix(gene_exprs.matrix),
 table(scRNA.eset$seurat_annotations)
 ```
 
-### 构建bulk的ExpressionSet对象
+### 构建Bulk的ExpressionSet对象
 ### Constructing Bulk ExpressionSet Object
 
 这里随机生成一个bulk数据。
@@ -321,7 +321,7 @@ Est.prop <- music_prop(
 names(Est.prop)
 ```
 
-## 图3e - MuSiC估计的细胞类型比例
+## 图3E - MuSiC估计的细胞类型比例
 ## Figure 3e - MuSiC estimated cell type proportions
 
 ```{r}
@@ -350,7 +350,7 @@ pheatmap(Est.prop$Est.prop.weighted,
 
 The heatmap clearly shows that in the randomly generated bulk data, most samples contain pDC (plasmacytoid dendritic cells) - one of the cell types identified in the single-cell analysis.
 
-## 图2c - 抖动图
+## 图2C - 抖动图
 ## Figure 2c - Jitter plot
 
 ```{r}
@@ -365,7 +365,7 @@ jitter.fig <- Jitter_Est(list(data.matrix(Est.prop$Est.prop.weighted),
 ggsave("Est.celltype.proportions.jitterplot.pdf",plot=jitter.fig,width =10,height = 8)
 ```
 
-# 第二种方案：基于细胞类型预分组预测bulk数据中细胞类型占比
+# 第二种方案：基于细胞类型预分组预测Bulk数据中细胞类型占比
 # Option 2: Predicting cell type proportions in bulk data based on pre-grouped cell types
 
 ## 输入文件
@@ -434,7 +434,7 @@ Mousesub.basis <- music_basis(
 )
 ```
 
-## 图3a - 聚类树状图
+## 图3A - 聚类树状图
 ## Figure 3a - Cluster dendrogram
 
 绘制设计矩阵的树状图及各样本间相对丰度的均值
@@ -558,7 +558,7 @@ Est.mouse.bulk <- music_prop.cluster(
 )
 ```
 
-## 图3e - MuSiC估算的细胞类型比例
+## 图3E - MuSiC估算的细胞类型比例
 ## Figure 3e - MuSiC estimated cell type proportions
 
 ```{r}

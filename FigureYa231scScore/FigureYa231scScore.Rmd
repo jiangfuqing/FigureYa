@@ -88,7 +88,7 @@ Sys.setenv(LANGUAGE = "en") #显示英文报错信息  # error messages are disp
 options(stringsAsFactors = FALSE) #禁止chr转成factor # chr is not allowed to be converted to factor
 ```
 
-# 标准的seurat流程
+# 标准的Seurat流程
 
 GSE135437，从<https://github.com/rsankowski/sankowski-et-al-microglia>下载数据并解压到当前文件夹
 
@@ -198,7 +198,7 @@ DimPlot(SeuratObj,
 #saveRDS(SeuratObj,"./SeuratObj.rds")
 ```
 
-# 用渐变色展示pathway的表达量 - Single-Cell Signature Explorer score
+# 用渐变色展示Pathway的表达量 - Single-Cell Signature Explorer score
 # Single-Cell Signature Explorer score is displayed with gradient color
 
 ```{r eval=FALSE}

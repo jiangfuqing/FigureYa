@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 已经用[Java版GSEA](http://software.broadinstitute.org/gsea/index.jsp)做出了GSEA分析结果，想自己画图。
 
@@ -57,7 +57,7 @@ Figure 3: Barcode + Heat Map
 from<https://thorax.bmj.com/content/69/1/14>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 以Java版GSEA的输出结果作为输入，DIY结果图，把多个通路画到一张图里。
 
@@ -68,7 +68,7 @@ Using the output of the Java version of GSEA as input, do-it-yourself result map
 If you do GSEA analysis with clusterProfiler and want to DIY the result plots, plot multiple pathways to a single plot, or plot multiple comparisons of the same pathway to a single plot, use FigureYa60GSEA_clusterprofiler.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 使用国内镜像安装包
 
@@ -94,7 +94,7 @@ library(cowplot)
 ```
 
 ## 输入数据的准备
-## preparation of input data
+## Preparation of input data
 
 Java版GSEA的输出文件夹中有每个通路的Excel文件，把你感兴趣的通路的Excel文件复制到当前文件夹。
 
@@ -124,7 +124,7 @@ mycol <- c("red","navy","darkgreen","blueviolet","chocolate4")
 
 Redrawing the image with the official GSEA output Excel file is best for drawing this kind of scatterplot. If you draw a line graph, you will find that it is not consistent with the image output from the Java version of GSEA. That's because the official GSEA output Excel file is not the enrichment score for all genes, it only gives the enrichment score for genes within this pathway. 
 
-### 图一：点图（enrichment score） + 条码（rank）
+### 图一：点图（Enrichment score） + 条码（rank）
 ### Figure 1: Dot Plot (enrichment score) + Barcode (rank)
 
 先画点图
@@ -212,7 +212,7 @@ grid.arrange(arrangeGrob(gA,gB,nrow=2,heights=c(.8,.3)))
 dev.off()
 ```
 
-### 图二：线图（enrichment score） + 条码（rank）
+### 图二：线图（Enrichment score） + 条码（rank）
 ### Figure 2: Line graph (enrichment score) + Barcode (rank)
 
 先画线图
@@ -265,7 +265,7 @@ grid.arrange(arrangeGrob(gA,gB,nrow=2,heights=c(.8,.3)))
 dev.off()
 ```
 
-### 图三：条码（enrichment score + rank） + 热图
+### 图三：条码（Enrichment score + rank） + 热图
 ### Figure 3: Barcode (enrichment score + rank) + Heatmap
 
 类似于散点图，同样要先把该通路中基因的enrichment score提取出来。

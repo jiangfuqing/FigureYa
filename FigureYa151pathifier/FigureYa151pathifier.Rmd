@@ -94,7 +94,7 @@ gmt2list <- function(annofile){
 }
 ```
 
-# 感兴趣的通路genelist
+# 感兴趣的通路Genelist
 # Genelist of pathways of interest
 
 运行pathifier时，gmt文件里的通路/基因越多，时间越长。
@@ -110,7 +110,7 @@ How can I obtain the gmt file for the pathway of interest?
 - Method 2: Extract the pathway of interest from the gmt file obtained in Method 1.
 - Method 3: Use differentially expressed genes from published articles. For ideas, refer to this article: <https://mp.weixin.qq.com/s/O1xd5l5h33fXUWOvX3UBGw>: "If I'm truly interested in and obsessed with a concept or term, I'll find articles that publish related functions or pathways and rebuild the term's genelist." For similar ideas, refer to Figure Ya136fgsea.
 
-## 方法一：直接用下载的gmt文件
+## 方法一：直接用下载的Gmt文件
 ## Method 1: Use the downloaded gmt file directly
 
 ```{r}
@@ -121,7 +121,7 @@ gset[1]
 后面将以customized.gmt为例来展示分析和画图方法，也就是gset。
 The following will use customized.gmt as an example to demonstrate the analysis and drawing methods, that is, gset.
 
-## 方法二：从gmt文件提取感兴趣的通路
+## 方法二：从Gmt文件提取感兴趣的通路
 ## Method 2: Extract pathways of interest from a gmt file
 
 ```{r}
@@ -192,7 +192,7 @@ lum.sam <- intersect(rownames(sinfo[which(sinfo$PAM50 == "Luminal-like"),]),tum.
 nonlum.sam <- intersect(rownames(sinfo[which(sinfo$PAM50 == "Non-luminal-like"),]),tum.sam)
 ```
 
-# 运行pathifier
+# 运行Pathifier
 # Run pathifier
 
 用肿瘤和癌旁计算pathway score。

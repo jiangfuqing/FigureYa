@@ -102,7 +102,7 @@ Using base plot to draw graphs has the advantage of freedom. You can draw whatev
 > 如果你想分段运行，就从plot开始到你要看的代码为止来运行。一定要从plot开始。
 > If you want to run it in segments, run it from plot to the code you want to view. Be sure to start with plot.
 
-## 按需求者提供的草图draft来画
+## 按需求者提供的草图Draft来画
 
 ## Draw according to the draft provided by the demander
 
@@ -193,7 +193,7 @@ text(26,1.5,"Missing",pos = 4)
 dev.copy2pdf(file = "swimmer_draft.pdf",width = 6,height = 3)
 ```
 
-## 按例文example来画
+## 按例文Example来画
 
 ## Draw according to the example text
 

@@ -240,7 +240,7 @@ save(All,file='all_data.Rdata')
 write.csv(All,file = 'KIRC_FGA.csv',row.names = F)
 ```
 
-# 对比cBioPortal上的FGA数据
+# 对比CBioPortal上的FGA数据
 
 # Compare the FGA data on cBioPortal
 

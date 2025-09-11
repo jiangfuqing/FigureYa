@@ -109,7 +109,7 @@ expr.surv <- cbind.data.frame(surv[comsam,c("OS","OS.time")],
                               as.data.frame(expr[comsam,comgene]))
 ```
 
-# 单变量cox模型筛选基因
+# 单变量Cox模型筛选基因
 
 ```{r}
 Coxoutput <- NULL

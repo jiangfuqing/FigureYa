@@ -22,8 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R画出paper里的这种圆圈图。
 
-##Requirement description
-
+## Requirement description
 Draw the circle diagram in the paper using R.
 
 ![](example.png)
@@ -38,16 +37,14 @@ Fig. 2 Candidates’ selection and characterization. a. Circos plot shows **58 u
 
 圆圈图上用热图、柱形图、热图展示多组数据、pvalue和log2FC，可灵活换成其他特征值。
 
-##Application scenarios
-
+## Application scenarios
 Use heatmaps, bar charts, and heatmaps on the circle chart to display multiple sets of data, p-values, and log2FC, which can be flexibly replaced with other feature values.
 
 ## 环境设置
 
 使用国内镜像安装包
 
-##Environment settings
-
+## Environment settings
 Use domestic image installation package
 
 ```r
@@ -85,8 +82,7 @@ options(stringsAsFactors = FALSE)  # 禁止自动将字符串转换为因子类�
 
 另外，图中基因是按照Survival Reduction排列的，根据图反推survival Reduction，保存在survival.csv文件里。
 
-##Organizing input data
-
+## Organizing input data
 If your data has already been organized into easy_input.csv format, you can skip this step and directly enter "Start Drawing".
 
 According to the literature, it is necessary to read two sheets, 'TableS2. TCGA-GBM-DiffExpRBPs' and' TableS3. GSCs_DiffExpRBPs'.
@@ -148,8 +144,7 @@ write.csv(data_bind, "easy_input.csv", quote = F, row.names = F)
 
 用柱形图展示log2FC，用热图展示P value。
 
-##Input file
-
+## Input file
 At least including genes log2FC、P_value， Give one or more columns of 01 to draw the outermost circle.
 
 Draw GBM, GSC, and Survival on the outermost three circles here, where '1' represents' 1 '(displayed in black) and' 0 'represents' 0' (displayed in light gray).
@@ -178,10 +173,8 @@ head(data_bind)
 
 环形文字的写法：<https://www.r-graph-gallery.com/296-add-labels-to-circular-barplot/>
 
-##Start drawing
-
-###First, draw the three outer rings
-
+## Start drawing
+### First, draw the three outer rings
 The writing style of circular text:< https://www.r-graph-gallery.com/296-add-labels-to-circular-barplot/ >
 
 ```{r}
@@ -271,12 +264,11 @@ p1 <- ggplot(data_result) +
 p1  # 显示图形 / Display plot
 ```
 
-### 画`log2FC`
+### 画`Log2FC`
 
 log2FC的y坐标从1开始，因此画图时要“y = log2FC - 1”
 
-###Draw 'log2FC'`
-
+### Draw 'log2FC'`
 The y-coordinate of log2FC starts from 1, so when drawing, it should be "y=log2FC -1"
 ```{r}
 # 在原有图形(p1)基础上叠加柱状图层，展示log2FC数据
@@ -292,10 +284,9 @@ p2
 ```
 
 
-### 添加log2FC的坐标轴及刻度文字
+### 添加Log2FC的坐标轴及刻度文字
 
-###Add coordinate axis and scale text for log2FC
-
+### Add coordinate axis and scale text for log2FC
 ```{r}
 # 在原有图形(p2)基础上添加坐标轴标记和参考线
 # Add axis markers and reference lines to the existing plot (p2)
@@ -319,8 +310,7 @@ p3
 
 ### 画`P_value`热图
 
-###Draw a 'P_value' heatmap
-
+### Draw a 'P_value' heatmap
 ```{r}
 # 在原有图形(p3)基础上添加P值热图层
 # Add P-value heatmap layer to the existing plot (p3)
@@ -345,8 +335,7 @@ p4
 
 ### 插入文本
 
-###Insert Text
-
+### Insert Text
 ```{r}
 # 在原有图形(p4)基础上添加各数据层的文本标签
 # Add text labels for each data layer to the existing plot (p4)
@@ -386,8 +375,7 @@ p5  \
 将图例调整到panel内部，并且调节文本的相对大小和相对位置。   
 
 
-###Draw a legend for P value
-
+### Draw a legend for P value
 Adjust the legend inside the panel and adjust the relative size and position of the text.
 
 ```{r}
@@ -432,8 +420,7 @@ ggsave("ggplotCircos.pdf")
 
 更容易的做法是：用矢量图编辑软件打开pdf文件，用鼠标调整。
 
-##Post processing
-
+## Post processing
 The previous code adjusted the position of the text and legend bit by bit based on the values of x and y.
 
 An easier approach is to open the PDF file with vector graphics editing software and adjust it with the mouse.

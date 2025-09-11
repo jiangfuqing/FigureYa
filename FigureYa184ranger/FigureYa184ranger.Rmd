@@ -109,7 +109,7 @@ exp <- exp[rowSums(exp == 0) < 0.1 * ncol(exp),]
 exp <- log(exp + 1)
 ```
 
-# 单变量cox模型筛选预后基因
+# 单变量Cox模型筛选预后基因
 
 # Univariate cox model for screening prognostic genes
 

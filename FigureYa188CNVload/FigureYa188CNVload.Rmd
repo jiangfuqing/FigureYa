@@ -92,7 +92,7 @@ crcpdata  <- read.table("pdat.txt", header = T, sep = "\t")
 head(crcpdata)
 ```
 
-# 分别统计focal和broad的gain load和loss load
+# 分别统计Focal和broad的gain load和loss load
 
 # Count the gain load and loss load of focal and broad respectively
 

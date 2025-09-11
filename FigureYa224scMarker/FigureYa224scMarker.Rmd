@@ -185,7 +185,7 @@ top10 <- pbmc.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC)
 DoHeatmap(pbmc, features = top10$gene) + NoLegend()
 ```
 
-# 结合每个cluster的marker基因和生物学知识确定细胞类型，顺便画图A
+# 结合每个Cluster的marker基因和生物学知识确定细胞类型，顺便画图A
 
 为了接近真实情况并结合众筹示例数据，这里不将细胞类型划分得这么详细，进行以下更改：
 

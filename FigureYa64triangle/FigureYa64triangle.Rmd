@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R画出paper里的Triangle plot
 
@@ -41,7 +41,7 @@ Original analysis:
 - The color represents the relative mutation frequency
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 展示3种不同疾病或者3组之间某个指标的相关性，一目了然。
 
@@ -64,7 +64,7 @@ Follow “Xiaoya Drawing” official account, reply “triangle” to see the us
 Use your imagination to develop more application scenarios.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r,message=FALSE}
 source("install_dependencies.R")
@@ -114,7 +114,7 @@ ggtern(data=df, aes(x=df$Frequency.in.pGBM,
 
 As you can see, the dot sizes are quite different from the original article, indicating that the original article has optimized the data in some way.
 
-### 把size扩大50倍
+### 把Size扩大50倍
 ### Increase the size by 50 times
 
 ```{r}
@@ -309,7 +309,7 @@ Advantage: label all gene names
 
 Disadvantage: need to open the pdf file with Illustrator and then drag the gene names with the mouse to fine-tune.
 
-#### 方案二：用directlabels包
+#### 方案二：用Directlabels包
 #### Plan 2: use directlabels package
 
 参考这篇：<https://mp.weixin.qq.com/s/6MMVsO22n9oKZNC7qC7g5A>

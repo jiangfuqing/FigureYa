@@ -136,7 +136,7 @@ seu <- seu.objs[[1]]
 seu <- subset(seu, MajorCluster %in% c("M03_cDC1_CLEC9A", "M04_cDC2_CD1C", "M05_cDC3_LAMP3")) 
 ```
 
-# 鉴定signature genes（下一步会用它计算得分）
+# 鉴定Signature genes（下一步会用它计算得分）
 # Identify signature genes (will be used for scoring in next step)
 
 三个细胞群：在cDC中发现了三个不同的亚群，包括两个经典的cDC亚群（**CLEC9A+ cDC1s**和**CD1C+ cDC2s**）和一个成熟的cDC亚群（**LAMP3+ cDC**）。

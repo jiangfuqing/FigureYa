@@ -156,7 +156,7 @@ expr <- round(log2(expr[com_sam,] + 1),2) # 表达谱对数转化
 surv <- surv[com_sam,]
 ```
 
-## 计算logrank score和相关性
+## 计算Logrank score和相关性
 ## Calculate logrank score and correlation
 
 ```{r}

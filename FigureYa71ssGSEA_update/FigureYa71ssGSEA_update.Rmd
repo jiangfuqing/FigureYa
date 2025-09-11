@@ -120,7 +120,7 @@ Quantifying immune infiltration with ssGSEA requires two input data:
 
 The following takes you to the two input files:
 
-### 免疫细胞marker genes
+### 免疫细胞Marker genes
 
 这步获得的easy_input_immunity.rdata里面是各种免疫细胞marker genes list，可重复使用。
 
@@ -241,7 +241,7 @@ write.csv(round(tcga_expr,1), "easy_input_expr.csv", quote = F)
 
 ```
 
-## 用ssGSEA来量化浸润水平
+## 用SsGSEA来量化浸润水平
 
 ## Quantifying infiltration levels with ssGSEA
 
@@ -389,7 +389,7 @@ EGFRmutSample <- unique(crc_mut_gene[crc_mut_gene$Hugo_Symbol == "EGFR", "sample
 EGFRwildSample <- setdiff(all_mutSample, EGFRmutSample)
 ```
 
-### 下载msi临床信息
+### 下载Msi临床信息
 
 ### Download msi clinical information
 
@@ -547,7 +547,7 @@ targetAnno[targetAnno$bcr_patient_barcode %in% EGFRwildSample, "EGFRmut"] <- "wi
 summary(targetAnno)
 ```
 
-### 融合ssGSEA和临床表达数据
+### 融合SsGSEA和临床表达数据
 
 ### Fusing ssGSEA and clinical expression data
 

@@ -25,8 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 3. 让热图中的样本按照文件中的顺序排序。
 
-##Requirement description
-
+## Requirement description
 1. Draw the cluster to the top of the heatmap, which is equivalent to using colors instead of a hierarchical structure for classification.
 
 2. Export the clustered sample order.
@@ -47,8 +46,7 @@ from<https://www.aging-us.com/article/101829/text>
 
 3. 让热图中的样本按照文件中的顺序排序，例如让样本按照亚型、表型排序。
 
-##Application scenarios
-
+## Application scenarios
 1. Cluster indicators such as gene expression levels and quantified immune infiltration, highlighting the effects of dividing into 2 or 3 categories (or more categories).
 
 2. Export the clustered sample order for subsequent analysis, such as conducting survival analysis between clusters.
@@ -59,8 +57,7 @@ from<https://www.aging-us.com/article/101829/text>
 
 使用国内镜像安装包
 
-##Environment settings
-
+## Environment settings
 Use domestic image installation package
 
 ```r
@@ -98,8 +95,7 @@ options(stringsAsFactors = FALSE)
 
 ## 输入文件
 
-##Input file
-
+## Input file
 ```{r}
 # 从CSV文件读取表达矩阵数据，设置第一列为行名，禁用列名检查和字符串转因子
 # Read expression matrix data from a CSV file, set the first column as row names, disable column name checking and string-to-factor conversion
@@ -126,8 +122,7 @@ annCol[is.na(annCol) | annCol == ""] <- "N/A"
 
 配置注释的颜色列表
 
-##Start drawing
-
+## Start drawing
 Configure the color list for annotations
 
 ```{r}
@@ -156,7 +151,7 @@ annColors
 
 Here are several situations to choose from based on the desired effect, or you can draw them all and compare the effects.
 
-### 1. pheatmap自带聚类生成热图
+### 1. Pheatmap自带聚类生成热图
 
 直接用pheatmap聚类并画图，从顶端的树形结构观察样本的分类。
 

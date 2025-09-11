@@ -120,7 +120,7 @@ tcga.expr <- as.data.frame(t(scale(t(log2(tcga.expr[comgene,] + 1)))))
 geo.expr <- as.data.frame(t(scale(t(geo.expr[comgene,]))))
 ```
 
-# 训练集用传统做法构建riskscore（单变量cox + 多变量cox + LASSO惩罚）
+# 训练集用传统做法构建Riskscore（单变量cox + 多变量cox + LASSO惩罚）
 
 # The training set was constructed with riskscore using the traditional approach (univariate cox + multivariate cox + LASSO penalty).
 

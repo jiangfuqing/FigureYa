@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 没有具体突变位点信息，只有临床信息和突变名称，对应着每个个体，01矩阵，需要画这样的oncoprint图，按照pathway分开。
 
@@ -34,7 +34,7 @@ Or this
 from<https://www.nejm.org/doi/full/10.1056/NEJMoa1301689>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 展示多个样本中多个基因的变异，以及临床信息。
 
@@ -57,7 +57,7 @@ If you use it in published research, please cite:
 Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional genomic data. Bioinformatics 2016.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 
@@ -181,7 +181,7 @@ col = c("mut" = "#008000")
 mycol <- c("#223D6C","#D20A13","#FFD121","#088247","#11AA4D","#58CDD9","#7A142C","#5D90BA","#431A3D","#91612D","#6E568C","#E0367A","#D8D155","#64495D","#7CC767")
 ```
 
-## 从临床数据中删除没有变异的sample
+## 从临床数据中删除没有变异的Sample
 ## Remove samples without variants from clinical data
 
 参数`remove_empty_columns = TRUE`会删掉没有变异的sample，我们需要把临床数据中相应的sample也删掉。
@@ -399,7 +399,7 @@ col = c("Nonsense_Mutation" = mycol[4],
         "Multi_Hit" = "black")
 ```
 
-## 从临床数据中删除没有变异的sample
+## 从临床数据中删除没有变异的Sample
 ## Remove samples with no variants from clinical data
 
 ```{r}

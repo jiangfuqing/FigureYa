@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R画出ROC曲线（receiver operating characteristic curve）。
 
 Draw the ROC curve in R（receiver operating characteristic curve）
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 在分类任务中，直观展示敏感性和特异性连续变量的综合指标。
 

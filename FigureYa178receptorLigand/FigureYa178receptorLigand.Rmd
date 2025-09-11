@@ -251,7 +251,7 @@ dev.off()
 
 ![](receptorLigand.pdf)
 
-# 用plot.data对接更多类型的图
+# 用Plot.data对接更多类型的图
 
 # Connect more types of graphs with plot.data
 

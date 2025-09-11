@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用R代码画出paper里的图。
 
@@ -29,7 +29,7 @@ Use R code to draw the plot in paper.
 from<https://www.nature.com/articles/nature22973>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 一套数据集可能有多重属性，每层属性之间有交叉，就可以用这种图来展示。另外，以第一变量为参照，往后的多层变量均参考与第一变量的关系，从而展示第一变量的流向。
 
@@ -56,7 +56,7 @@ Original text: Graphical summary of the most frequently mutated genes (≥10 aff
 - Scenario 3: The population is grouped by gender, age, family history and other characteristics, to show the pattern of cancer in different groups.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 ```{r}
 source("install_dependencies.R")

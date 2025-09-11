@@ -60,13 +60,13 @@ The environment configuration of the article is as follows
 |  velocyto.R  |    0.17     |                   0.60                   |
 |  cellranger  |    2.1.0    |                  3.1.0                   |
 
-## 安装和配置cellranger
+## 安装和配置Cellranger
 
 ## Install and configure cellranger
 
-### cellranger安装 
+### Cellranger安装 
 
-### cellranger Installation
+### Cellranger Installation
 
 参考[10X官方文档](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/installation)，直接下载最新版安装。
 Reference [10] official document x (https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/installation), Download the latest version directly and install it.
@@ -165,7 +165,7 @@ The result of this step is as follows
 │       └── transcriptInfo.tab
 ```
 
-## 安装velocyto.py
+## 安装Velocyto.py
 
 ## Install velocyto.py
 
@@ -201,7 +201,7 @@ Download the reference file
 详见`s0_createEnv.Rmd`
 For details, see 's0_createEnv.Rmd'
 
-### velocyto.R
+### Velocyto.R
 
 在Rstudio中进行安装
 Install it in Rstudio
@@ -233,7 +233,7 @@ BiocManager::install("monocle")
 
 # Upstream Analysis
 
-## cellranger count
+## Cellranger count
 
 > `input`: fastq
 >
@@ -453,7 +453,7 @@ In this step, we will obtain the gene expression matrices of six samples
     └── run_parallel.py
 ```
 
-## velocyto.py run10x
+## Velocyto.py run10x
 
 > `input`: bam, gene.gtf, rmsk.gtf
 >
