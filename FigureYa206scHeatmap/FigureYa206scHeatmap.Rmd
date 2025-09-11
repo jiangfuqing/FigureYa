@@ -92,7 +92,7 @@ options(stringsAsFactors = FALSE)
 # Input Files
 
 ## 下载单细胞RNA-seq数据
-## Download Single-Cell RNA-seq-RNA-seq Data
+## Download Single-Cell RNA-seq Data
 
 1) UMI count，从NCBI[GSE130664](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130664)下载：`GSE130664_merge_UMI_count.txt.gz`文件。
 

@@ -342,7 +342,7 @@ eff_length <- get_eff_len(file = file,
 ```
 
 ## 下载TCGA RNA-seq的read count数据
-## Download TCGA RNA-seq-RNA-seq read count data
+## Download TCGA RNA-seq read count data
 
 如果你自己的RNA-seq数据已经保存成`easy_input.txt`的格式，就跳过这步，直接进入“输入数据”
 

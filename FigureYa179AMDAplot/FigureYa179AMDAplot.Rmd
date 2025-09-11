@@ -345,7 +345,7 @@ head(DEG)
 
 # 计算AMDA score和p值
 
-# Calculate the AMDA score and p-value-p-value
+# Calculate the AMDA score and p-value
 
 使用标准化后的log2FC值计算AMDA.score并计算p值。计算结果与原文的AMDA score基本吻合，偏差来源分析见Q & A。
 Calculate the AMDA.score using the standardized log2FC value and calculate the p-value. The calculation results are basically consistent with the AMDA score of the original text. The analysis of the source of deviation can be found in Q&A.

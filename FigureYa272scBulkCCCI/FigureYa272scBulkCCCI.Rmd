@@ -165,7 +165,7 @@ CRC_Leukocyte_SM_RNA <- read.table("CRC.Leukocyte.Smart-seq2.TPM.txt",header = T
 ```
 
 ## Bulk RNAseq数据
-## Bulk RNA-seq-RNA-seq Data
+## Bulk RNA-seq Data
 
 从[UCSC Xena](xenabrowser.net)下载后进行预处理（COAD and READ），预处理代码见ScBulkCCCI安装包中的example/ScBulkCCCI_DataPreprocess.R。已打包到R包里，直接加载即可。
 

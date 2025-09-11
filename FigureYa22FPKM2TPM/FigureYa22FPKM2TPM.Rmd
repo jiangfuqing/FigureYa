@@ -39,7 +39,7 @@ Both FPKM and TPM calculations consider gene length, making the conversion from 
 If you need to convert from read count to TPM, please purchase FigureYa23count2TPM; to convert from read count to FPKM, please purchase FigureYa34count2FPKM.
 
 ## 下载TCGA RNA-seq的FPKM数据
-## Download FPKM data for TCGA RNA-seq-RNA-seq
+## Download FPKM data for TCGA RNA-seq
 
 此处以TCGA的数据为例。
 

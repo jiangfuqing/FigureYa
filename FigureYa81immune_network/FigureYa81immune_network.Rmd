@@ -170,7 +170,7 @@ corrplot(corr, title = "",
 
 也可以用Hmsic包来求，但是发现它输出的P值有限制。
 
-### Calculate the p-value-p-value for correlation analysis
+### Calculate the p-value for correlation analysis
 
 It can also be calculated using the Hmsic package, but it was found that its output P value is limited.
 

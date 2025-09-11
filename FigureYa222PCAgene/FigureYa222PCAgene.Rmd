@@ -265,14 +265,14 @@ ggsave("PCA_B_ori.pdf", width = 7, height = 4)
 ```
 
 # 附：单细胞RNA-seq数据预处理
-# Appendix: Single-cell RNA-seq-RNA-seq Data Preprocessing
+# Appendix: Single-cell RNA-seq Data Preprocessing
 
 以下代码出自`FigureYa206scHeatmap`，会输出`sc.seurat.Rdata`，可作为以上代码的输入文件。
 
 The following code is from `FigureYa206scHeatmap` and will output `sc.seurat.Rdata`, which can serve as the input file for the above code.
 
 ## 下载单细胞RNA-seq数据
-## Download single-cell RNA-seq-RNA-seq data
+## Download single-cell RNA-seq data
 
 1) UMI count，从NCBI[GSE130664](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130664)下载：`GSE130664_merge_UMI_count.txt.gz`文件。
 
