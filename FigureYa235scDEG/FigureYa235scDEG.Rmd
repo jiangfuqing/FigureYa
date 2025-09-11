@@ -181,7 +181,7 @@ ggsave("plotA_1_UMAP_cluster.pdf", plot = pA1, width = 6, height = 6)
 ```
 
 ## 找cluster biomarkers
-## find cluster biomarkers
+## Find cluster biomarkers
 ```{r}
 # Finding differentially expressed features (cluster biomarkers)
 

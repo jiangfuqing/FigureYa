@@ -106,7 +106,7 @@ colnames(tpm) <- samples
 #write.csv(tpm, "easy_input.csv", quote = F)
 ```
 
-# mclust
+# Mclust
 
 original text：To examine temporal changes in gene expression, proteincoding genes detected at **≥ 1 TPM in at least one embryonic stage** of the Smart-seq2 time series were subjected to model-based clustering by Mclust [(Scrucca et al. 2016), see “Materials and methods”]. Mclust classifies points according to a set of **Gaussian mixture models** and chooses the optimal model parameters to maximize the Bayesian information criterion (BIC). The mean TPM of 18,600 genes were **converted to z-scores**, and based on analysis with Mclust, the **optimal cluster number was 24** (Online Fig. S5).
 

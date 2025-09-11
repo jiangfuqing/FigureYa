@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### 需求描述
-### requirement description
+### Requirement description
 
 RNA-seq read count转换成FPKM。
 
 RNA-seq read count converted to FPKM.
 
 ### 应用场景
-### application scenario
+### Application scenario
 
 只能拿到RNA-seq数据的read count，想转换成FPKM。
 
@@ -114,7 +114,7 @@ Download TCGA RNA-seq read count and FPKM here, the former is used to demonstrat
 The sample is the same as `FigureYa22 FPKM2TPM` and `FigureYa23 count2TPM`.
 
 #### 先下载read count，用于转换成FPKM
-#### download read count first, and use it to convert to FPKM
+#### Download read count first, and use it to convert to FPKM
 
 ```r
 library(TCGAbiolinks)
@@ -132,7 +132,7 @@ write.csv(expMatrix, "easy_input.csv", quote=F, row.names=T)
 ```
 
 #### 再下载同样4个Sample的FPKM，用于对比从TCGA下载的FPKM跟用read count转成的FPKM
-#### Download the FPKM of the same 4 samples, to compare the FPKM downloaded from TCGA with the FPKM converted by read count
+#### Download the FPKM of the same 4 samples, to compare the FPKM downloaded from TCGA with the FPKM converted BY read count
 
 TCGA GDC提供多种表达值类型：read count、HTSeq - FPKM、HTSeq - FPKM-UQ。后两者有什么区别？
 
@@ -179,8 +179,8 @@ expMatrix <- read.csv("easy_input.csv",
 expMatrix[1:3,]
 ```
 
-### read count转FPKM
-### read count to FPKM
+### Read count转FPKM
+### Read count to FPKM
 
 首先要保证表达矩阵的行名和存放基因长度向量的名字一致, 这一步非常重要。
 

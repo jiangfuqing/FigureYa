@@ -26,7 +26,7 @@ deeptools能实现类似的功能，但是它只选其中一个作为标准定�
 用这篇Cell
  paper<https://www.cell.com/cell/fulltext/S0092-8674(19)30629-4>的数据画类似这样的相关性热图：
 
-##Requirement description
+## Requirement description
 
 ChIP seq correlation, used to find cofactors.
 
@@ -63,7 +63,7 @@ from: <https://www.cell.com/cell-stem-cell/fulltext/S1934-5909(18)30591-5?_retur
 
 哪些调控蛋白的结合位点更相近？转录因子过表达/敲降后变得跟谁更像了？通过计算ChIP-seq数据间的correlation，找到线索，进而推测转录因子的作用机制。
 
-##Application scenarios
+## Application scenarios
 
 Which regulatory proteins have binding sites that are more similar? Who is more similar to transcription factors after overexpression/knockdown? By calculating the correlation between ChIP seq data, clues can be found to infer the mechanism of action of transcription factors.
 
@@ -79,7 +79,7 @@ Which regulatory proteins have binding sites that are more similar? Who is more 
 
 **注：**下文以“```bash”开头的代码都要复制粘贴到Terminal里运行（Linux和MAC自带），Windows10用WSL。WSL的用法参考FigureYa111markerGene里的视频<https://share.weiyun.com/56viiqa>，一步一步跟着洲更的演示来操作，就能在Windows系统里用起linux了。
 
-##Environment settings
+## Environment settings
 
 Download and install the Anaconda distribution, https://www.anaconda.com/distribution/#download -section
 
@@ -131,7 +131,7 @@ options(stringsAsFactors = FALSE)
 
 输入文件需要多个ChIP-seq的peak.bed文件。
 
-##Retrieve input files
+## Retrieve input files
 
 The input file requires multiple ChIP seq peak.bed files.
 
@@ -139,7 +139,7 @@ The input file requires multiple ChIP seq peak.bed files.
 
 例文的数据链接：<https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120104>，点击Download中的(custom)，选择以’_ChIP_K562_OPTIMAL_ppr.IDR0.02.filt.narrowPeak.gz‘结尾的文件，下载的文件是GSE120104_RAW.tar，位于当前文件夹。
 
-###Download
+### Download
 
 Data link for example text:< https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120104 >Click on (custom) in Download and select the file that ends with '_ChIP_K562∝TIMAL_ppr.IDR0.02. tilt. arrowheadPeak. gz'. The downloaded file is GSE120104_SAW. tar, located in the current folder.
 
@@ -159,7 +159,7 @@ tar –xvf GSE120104_RAW.tar
 gunzip *narrowPeak.gz
 ```
 
-### sort peak，并把文件名改为factor的名字
+### Sort peak，并把文件名改为factor的名字
 
 观察文件名发现，本套数据的peak.bed文件都以.narrowPeak结尾，factor的名字在`GSM*`和`_ChIP`之间。
 
@@ -193,7 +193,7 @@ rm -rf *.narrowPeak
 
 **哪些数据更靠谱？**推荐首选高影响因子的文章里的数据，快速查询高分数据的方式，可参考FigureYa104GEOmining。
 
-### sort peak， And change the file name to the name of factor
+### Sort peak， And change the file name to the name of factor
 
 Observing the file names, it was found that the peak.bed files of this set of data all end with. narrowPeak, and the name of the factor is between 'GSM *' and '_ChIP'.
 
@@ -229,7 +229,7 @@ rm -rf *.narrowPeak
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ### 用intervene计算相关性
 
@@ -249,7 +249,7 @@ intervene还有许多参数，比如不计算fraction而用jaccard index，需�
 - Intervene_pairwise_frac.R，画上面那个图的代码。
 - Intervene_pairwise_frac_matrix.txt，相关性矩阵，用它重新画自己喜欢的图。
 
-###Calculate correlation using intervene
+### Calculate correlation using intervene
 
 Calculate the correlation coefficient between different peaks using Pearson or Spearman, etc. The example used is Pearson
 
@@ -271,7 +271,7 @@ There are still many parameters in the interlayer, such as using the Jaccard ind
 
 如果觉得上面的图不够cool，想多些自由发挥空间，就用‘Intervene_pairwise_frac_matrix.txt’文件DIY画图。hclust聚类图：
 
-###Draw with corrplot
+### Draw with corrplot
 
 If you feel that the above image is not cool enough and want more free space to express yourself, you can DIY draw with the file 'Intervene_pairwas_frac_matrix. txt'. HCLUST Cluster Diagram:
 
@@ -328,7 +328,7 @@ invisible(dev.off())  # 关闭PDF设备 | Close PDF device
 
 corrplot的热图参数很丰富，然而不能画树。我们还是用pheatmap画吧～
 
-###Draw with pheatmap
+### Draw with pheatmap
 
 The heatmap parameters of corrplot are rich, but it cannot draw trees. Let's use pheatmap to draw it
 

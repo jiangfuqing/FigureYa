@@ -86,7 +86,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor # It is forbidden to co
 ```
 
 # 输入文件
-# input files
+# Input files
 
 > 图中每个点、每条线的外观设置有两种方式供你选择。理解之后就可以灵活运用了，例如有些外观用代码写，有些外观填写在输入文件里。
 
@@ -138,7 +138,7 @@ head(edges)
 
 # Start drawing
 
-## Method 1: All appearances are determined by the input file
+## Method 1: All appearances are determined BY the input file
 
 ```{r}
 # 写入想画的type
@@ -220,7 +220,7 @@ head(edges)
 ```
 
 ## 开始画图
-#start plot
+# Start plot
 
 ```{r,fig.width=5, fig.height=6}
 # 这里把P和N都拆成两列，当然你也可以拆成更多列
@@ -263,7 +263,7 @@ ggsave(filename = "crosslink_multiCol.pdf", width = 6, height = 8)
 
 # 附
 
-## pt_shape的可选参数及其对应的形状
+## Pt_shape的可选参数及其对应的形状
 
 # Post-processing
 

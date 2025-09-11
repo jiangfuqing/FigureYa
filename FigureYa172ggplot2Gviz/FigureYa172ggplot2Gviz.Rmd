@@ -108,7 +108,7 @@ Download previously published ChIP/ATAC/RNA-seq data from the GEO database. Clic
 - The above data has been uploaded to Weiyun for easy download <https://share.weiyun.com/55dfZPV>
 - If the author of the data you are interested in did not upload a bedgraph, BW, or WIG file, you can start from the SRA format. The method can be found in FigureYa155ATAC.
 
-## bigwig转bedgraph
+## Bigwig转bedgraph
 ## Convert BigWig to BedGraph
 
 作者提供的ATAC-seq数据是bigwig文件，需要转换成纯文本文件bedgraph去画图。
@@ -166,7 +166,7 @@ grep Igll1 gencode.vM9.annotation.gtf | grep ENSMUST00000124649.1 |grep exon | a
 The strategy is to use ggplot2 to plot the track and gene structure, then combine them using cowplot.
 
 ## 画EBF1的ChIP-seq track
-## Draw the ChIP-seq track for EBF1
+## Draw the ChIP-seq-ChIP-seq track for EBF1
 
 ```{r, fig.width=3, fig.height=7}
 # 读入bedgraph
@@ -258,7 +258,7 @@ ggsave("ggplot2Gviz_1col.pdf", width = 4, height = 10)
 ```
 
 ## 加上ATAC-seq的track
-## Add ATAC-seq track
+## Add ATAC-seq-ATAC-seq track
 
 ```{r, fig.width=7, fig.height=7}
 at0 <- read.table("0_ATAC_Igll1.bedgraph",head=F)

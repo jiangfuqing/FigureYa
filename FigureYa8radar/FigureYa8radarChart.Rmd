@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的图
 
@@ -29,7 +29,7 @@ Draw the figure in paper with R code
 from<https://www.nature.com/articles/nplants2015221>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：评估一个总体的不同组分的比例变化
 
@@ -40,7 +40,7 @@ Scenario 1: Evaluate the proportional changes of different components of a whole
 Scenario 2: Evaluate different indicators under the same measurement system
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r}
 source("install_dependencies.R")

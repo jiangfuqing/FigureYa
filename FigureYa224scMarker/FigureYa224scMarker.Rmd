@@ -189,7 +189,7 @@ DoHeatmap(pbmc, features = top10$gene) + NoLegend()
 
 为了接近真实情况并结合众筹示例数据，这里不将细胞类型划分得这么详细，进行以下更改：
 
-# Determine the cell type by combining the marker gene and biological knowledge of each cluster, and draw Figure A by the way
+# Determine the cell type BY combining the marker gene and biological knowledge of each cluster, and draw Figure A BY the way
 
 In order to get close to the real situation and combine the crowdfunding example data, the cell types are not divided into such details here, and the following changes are made:
 

@@ -116,54 +116,54 @@ gsym.fc <- read.table("easy_input_rnk.txt", header = T)
 dim(gsym.fc)
 head(gsym.fc)
 
-#把gene symbol转换为ENTREZ ID
-#Convert gene symbols to ENTREZ IDs
-#此处物种是人，其他物种的ID转换方法，请参考FigureYa52GOplot
-#The species here is human. For ID conversion methods for other species, please refer to FigureYa52GOplot
+# 把gene symbol转换为ENTREZ ID
+# Convert gene symbols to ENTREZ IDs
+# 此处物种是人，其他物种的ID转换方法，请参考FigureYa52GOplot
+# The species here is human. For ID conversion methods for other species, please refer to FigureYa52GOplot
 gsym.id <- bitr(gsym.fc$SYMBOL, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = "org.Hs.eg.db")
 
-#让基因名、ENTREZID、foldchange对应起来
-#Align gene name, ENTREZ ID, and foldchange
+# 让基因名、ENTREZID、foldchange对应起来
+# Align gene name, ENTREZ ID, and foldchange
 gsym.fc.id <- merge(gsym.fc, gsym.id, by="SYMBOL", all=F)
 
-#按照foldchange排序
-#Sort by foldchange
+# 按照foldchange排序
+# Sort BY foldchange
 gsym.fc.id.sorted <- gsym.fc.id[order(gsym.fc.id$logFC, decreasing = T),]
 
-#获得ENTREZID、foldchange列表，做为GSEA的输入
+# 获得ENTREZID、foldchange列表，做为GSEA的输入
 # Obtain the ENTREZ ID and foldchange list as input for GSEA
 id.fc <- gsym.fc.id.sorted$logFC
 names(id.fc) <- gsym.fc.id.sorted$ENTREZID
 
-#这一条语句就做完了KEGG的GSEA分析
+# 这一条语句就做完了KEGG的GSEA分析
 # This single statement completes the KEGG GSEA analysis
 kk <- gseKEGG(id.fc, organism = "hsa")
 dim(kk)
 
-#把ENTREZ ID转为gene symbol，便于查看通路里的基因
+# 把ENTREZ ID转为gene symbol，便于查看通路里的基因
 # Convert the ENTREZ ID to a gene symbol to facilitate viewing genes within the pathway
 kk.gsym <- setReadable(kk, 'org.Hs.eg.db', #物种
                     'ENTREZID')
 
-#可以用kk.gsym作为输入，用clusterProfiler画图
+# 可以用kk.gsym作为输入，用clusterProfiler画图
 # Use kk.gsym as input to plot with clusterProfiler
-#用法看这里https://yulab-smu.github.io/clusterProfiler-book/chapter12.html
+# 用法看这里https://yulab-smu.github.io/clusterProfiler-book/chapter12.html
 # See here for usage: https://yulab-smu.github.io/clusterProfiler-book/chapter12.html
-#gsym.fc.l <- gsym.fc$logFC
-#names(gsym.fc.l) <- gsym.fc$SYMBOL
-#cnetplot(sortkk, foldChange = gsym.fc.l, circular = TRUE)
+# Gsym.fc.l <- gsym.fc$logFC
+# Names(gsym.fc.l) <- gsym.fc$SYMBOL
+# Cnetplot(sortkk, foldChange = gsym.fc.l, circular = TRUE)
 
-#按照enrichment score从高到低排序，取前5（up）和后5（down）
-# Sort by enrichment score, taking the top 5 (up) and bottom 5 (down)
-#sortkk <- kk.gsym[order(kk.gsym@result$enrichmentScore, decreasing = T),][c(1:5, (nrow(kk.gsym)-5):nrow(kk.gsym)),]
+# 按照enrichment score从高到低排序，取前5（up）和后5（down）
+# Sort BY enrichment score, taking the top 5 (up) and bottom 5 (down)
+# Sortkk <- kk.gsym[order(kk.gsym@result$enrichmentScore, decreasing = T),][c(1:5, (nrow(kk.gsym)-5):nrow(kk.gsym)),]
 #这里提取感兴趣的3个通路，数量太多拥挤的话不好看基因名
 # Extract the three pathways of interest here. Too many gene names will make the gene names look cluttered.
 sortkk <- kk.gsym[kk.gsym@result$Description %like% "DNA" | 
                     kk.gsym@result$Description %like% "cycle" | 
                     kk.gsym@result$Description %like% "p53",]
 
-#把富集分析结果整理为GOplot所需的格式
-#Format the enrichment analysis results into the format required by GOplot
+# 把富集分析结果整理为GOplot所需的格式
+# Format the enrichment analysis results into the format required BY GOplot
 go <- data.frame(Category = "KEGG",
                  ID = sortkk$ID,
                  Term = sortkk$Description, 
@@ -171,21 +171,21 @@ go <- data.frame(Category = "KEGG",
                  adj_pval = sortkk$p.adjust)
 
 #基因变化倍数
-#Fold change of genes
+# Fold change of genes
 genelist <- data.frame(ID = gsym.fc.id$SYMBOL, logFC = gsym.fc.id$logFC)
 
 #把富集分析和倍数整合在一起
-#Integrate the enrichment analysis and fold change
+# Integrate the enrichment analysis and fold change
 circ <- circle_dat(go, genelist)
 head(circ)
-#可以用circ作为输入，用GOplot画图
-#Use circ as input to plot with GOplot
-#用法看这里https://wencke.github.io/
-#See here for usage: https://wencke.github.io/
-#GOCircle(circ)
+# 可以用circ作为输入，用GOplot画图
+# Use circ as input to plot with GOplot
+# 用法看这里https://wencke.github.io/
+# See here for usage: https://wencke.github.io/
+# GOCircle(circ)
 
 #保存到文件
-#Save to file
+# Save to file
 write.csv(circ[,c(3,5,6)],"very_easy_input.csv", quote = F, row.names = F)
 ```
 
@@ -279,7 +279,7 @@ gc <- ggraph(graph, layout = 'dendrogram', circular = TRUE) +
   # 点和边的配色
   # Coloring of points and edges.
   # 如果要改变边的配色，需要同时给边和点变色，否则会对应不上
-  # If you want to change the edge color, you need to change both the edge and the points at the same time; otherwise, the   colors will not match.
+  # If you want to change the edge color, you need to change both the edge and the points at the same time; otherwise, the colors will not match.
   scale_edge_color_brewer(palette = "Set1") + #用?scale_color_brewer查看更多配色方案 # Use ?scale_color_brewer to view more color schemes
   scale_color_brewer(palette = "Set1") +
   
@@ -297,7 +297,7 @@ gc <- ggraph(graph, layout = 'dendrogram', circular = TRUE) +
     size = 6, hjust = 'outward') +
   
   # 添加内环文字，此处是通路名term
-  # Add inner ring text, here is the pathway name 
+  # Add inner ring text, here is the pathway name
   geom_node_text(
     aes(label=node.short_name,
         filter = !leaf & (node.level != "all"),
@@ -323,17 +323,17 @@ In the graph above, the line color is specified by `geom_edge_diagonal(aes(color
 
 ```{r, fig.width=14, fig.height=14}
 gc1 <- ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
-  #画连线 # Draw the lines
+  # 画连线 # Draw the lines
   geom_edge_diagonal(aes(color = node2.color,
                          filter=node1.node.level!="all"), 
                      alpha = 0.5, #透明度 # Transparency
                      edge_width=2.5) + #连线的粗细 # Line thickness
   scale_edge_color_manual(values = c("#61C3ED","red","purple","darkgreen")) + #自定义颜色 # Custom color
 
-  #画点 # Draw the points
+  # 画点 # Draw the points
   geom_node_point(aes(size = node.size,
                       filter=node.level!="all"), 
-                  #alpha = 1/3,
+                  # Alpha = 1/3,
                   color = "#61C3ED") + #统一为淡蓝色 # Unify the color to light blue
   scale_size(range = c(0.5,80)) + #做均一化处理，让点的大小介于range之间 # Normalize the points so that the size is between the range
   theme(legend.position = "none") + #不画图例 # Do not draw the legend
@@ -385,7 +385,7 @@ This code can not only draw two layers of graphs, but theoretically supports mor
 Below is an example using a common microbiome dataset (a randomly generated OTU table).
 
 ```{r, eval=FALSE}
-#随机生成一套数据 # Generate a random data set
+# 随机生成一套数据 # Generate a random data set
 n <- 1000
 microbiome <- data.frame(
   otu = paste("OTU",1:n,sep="_"),
@@ -396,7 +396,7 @@ microbiome <- data.frame(
 )
 head(microbiome)
 
-#保存到文件，便于小白套用格式 # Save to a file for easy formatting
+# 保存到文件，便于小白套用格式 # Save to a file for easy formatting
 write.csv(microbiome, "microbiome.csv", quote = F, row.names = F)
 ```
 

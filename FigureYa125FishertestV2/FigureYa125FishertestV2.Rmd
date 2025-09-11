@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 两个指标（miRNA和FAP蛋白）按照高低分为四组，计算两个指标的相关性和p value，用热图展示。
 
-#Requirement description
+# Requirement description
 
 Divide the two indicators (miRNA and FAP protein) into four groups according to their levels, calculate the correlation and p-value between the two indicators, and display them using a heatmap.
 
@@ -35,7 +35,7 @@ Figure 4. E–F, Comparison of the miR-508 ISH scores and the CALD1 and FAP IHC 
 
 在“小丫画图”微信公众号回复“相关性”，查看更多相关性展示方式。
 
-#Application scenarios
+# Application scenarios
 
 Essentially, it is to classify continuous factors, study the correlation between two factors, display it using a contingency table heatmap, and conduct Fisher's exact test.
 
@@ -45,7 +45,7 @@ Reply to "Relevance" on "Xiaoya Pictorial" WeChat official account to see more w
 
 # 环境设置
 
-#Environment settings
+# Environment settings
 
 ```{r}
 # 设置系统环境变量，使R显示英文报错信息 (Set system environment variable to display error messages in English)
@@ -59,7 +59,7 @@ options(stringsAsFactors = FALSE)
 
 easy_input.txt，两个连续型变量在每个样本里的观测值。每行一个样本，两列分别是两个观测值，此处是miRNA ISH scores和FAP IHC scores。
 
-#Input file
+# Input file
 
 easy_input.txt， The observed values of two continuous variables in each sample. Each row contains one sample, and the two columns represent two observations, namely miRNA ISH scores and FAP IHC scores.
 
@@ -130,7 +130,7 @@ write.table(simdata,"easy_input.txt",sep = "\t",row.names = F,quote = F)
 
 因此，我们根据四分位数将数据分割为四种类型：
 
-#Continuous variable classification
+# Continuous variable classification
 
 The example text divides both factors into four groups: positive, moderate, weak, and negative.
 
@@ -179,7 +179,7 @@ p.fisher
 
 下面用base plot一笔一笔画图：
 
-#Start drawing
+# Start drawing
 
 Below is a stroke by stroke plot using the base plot:
 

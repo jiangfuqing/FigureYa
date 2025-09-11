@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 画出新型nomogram图（d）和对比曲线（f、g）
 
@@ -37,7 +37,7 @@ Fig. 3. (d–e) Nomograms for predicting the probability of patient mortality ba
 The c forest plot can be drawn by referring to `FigureYa90subgroup`, and the h and i plots can be drawn by referring to `FigureYa33DCA_update`.
 
 # 应用场景
-# application scenario
+# Application scenario
 
 列线图（nomogram，诺莫图）是在平面直角坐标系中用一簇互不相交的线段表示多个独立变量之间函数关系的图。
 
@@ -52,7 +52,7 @@ It visualizes the results of a Logistic regression or Cox regression, giving the
 Follow “Xiaoya Drawing” WeChat Official Account, reply “30” to see the application of these two graphs in more articles.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

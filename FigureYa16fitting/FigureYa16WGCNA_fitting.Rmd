@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 WGCNA得到模块以后，用模块包含的基因表达量做拟合曲线。
 
@@ -30,7 +30,7 @@ After WGCNA gets the module, a fitting curve is made with the expression of the 
 from<http://www.pnas.org/content/112/43/13360>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 本质是用一条趋势线代表多个点或线的变化趋势，多用于时间序列数据。
 
@@ -69,7 +69,7 @@ head(t)
 ```
 
 ### 画图
-### draw plots
+### Draw plots
 
 ```{r,warning=FALSE,message=FALSE,fig.width=8,fig.height=4}
 library(ggplot2)
@@ -111,7 +111,7 @@ df1<-df[2:22]
 ```
 
 ### 画图
-### draw plots
+### Draw plots
 
 ```{r,warning=FALSE,message=FALSE,fig.width=8,fig.height=6}
 library(ggplot2)

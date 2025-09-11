@@ -190,7 +190,7 @@ surv <- read.table("survinfo.txt", sep = "\t", check.names = F, stringsAsFactors
 surv[1:3, ]
 ```
 
-### Analysis the raw data by check the data distribution.
+### Analysis the raw data BY check the data distribution.
 
 ```{r, warning=FALSE}
 # 所有样本及样本顺序必须完全一致，因为cancersubtype在提取生存信息的时候不关心样本名，所以要提前检查！！！

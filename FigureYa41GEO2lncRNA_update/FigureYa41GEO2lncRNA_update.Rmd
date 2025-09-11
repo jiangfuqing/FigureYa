@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 从GEO下载芯片数据，从基因表达矩阵分别提取lncRNA、mRNA、miRNA的表达矩阵
 
@@ -55,7 +55,7 @@ Not only limited to GEO data, but also applicable to data downloaded from TCGA, 
 **Note:** If you want the expression matrix of miRNA mature body, the best way is to find the miRNA microarray data, for example, GSE113596, and download it with [Module 1]. If you use [Module 2] and [Module 3] to extract miRNA from normal microarray data, it is actually hybridization signals of miRNA precursors.
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 场景一：想计算lncRNA、miRNA、mRNA间的相关性，用来找miRNA、lncRNA的靶基因，或者用功能已知的mRNA推测lncRNA的功能，首先就要获得lncRNA、miRNA跟mRNA的表达矩阵。需要从GEO下载芯片数据，就从【模块一】开始；以TCGA表达矩阵作为输入（FigureYa22、23、34的输出文件），就从【模块二】开始。
 
@@ -74,7 +74,7 @@ Scenario 3: If the cancer type of interest in TCGA has too few samples or is not
 > This article includes more text to accommodate special cases. If your data belongs to the majority, you don’t need to read all the text, just replace the GSE and GPL or the “easy_input.csv” file with your own data and run the code.  
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 使用国内镜像安装包
 

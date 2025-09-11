@@ -104,7 +104,7 @@ Using base plot to draw graphs has the advantage of freedom. You can draw whatev
 
 ## 按需求者提供的草图draft来画
 
-## Draw according to the draft provided by the demander
+## Draw according to the draft provided BY the demander
 
 ```{r}
 # 设置颜色

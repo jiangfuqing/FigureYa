@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 限制性三次样条插值法（RCS）解决连续性变量对风险的非线性影响。
 
-##Requirement description
+## Requirement description
 
 Restricted cubic spline interpolation (RCS) is used to address the nonlinear impact of continuous variables on risk.
 
@@ -38,7 +38,7 @@ from<https://academic.oup.com/eurheartj/article/39/14/1181/4710060>
 
 具体理论推导和细节请见文档中“理论参考”文件夹
 
-##Application scenarios
+## Application scenarios
 
 The impact of continuous variables on risk may be non-linear, and ignoring this non-linear effect can interfere with the results;
 2. Quantify the risk ratio of continuous variables at each value point, using the baseline (reference point) as a reference.
@@ -49,7 +49,7 @@ Please refer to the "Theoretical References" folder in the document for specific
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -97,7 +97,7 @@ easy_input.csv，因为是生存分析的风险计算，所以生存状态（fst
 
 具体到实际问题，如果要控制其他因素对风险的影响，就要纳入更多的变量，这个没有固定的。这个众筹只是实现如何利用三次样条量化连续变量对HR的影响，具体要多少变量，具体问题具体分析，毕竟这是一个统计问题，没有通解。
 
-##Input file
+## Input file
 
 easy_input.csv， As it is a risk calculation for survival analysis, survival status (fstat), survival time (lenfol), and at least one covariate (continuous variable BMI) are necessary, and a covariate (binary variable gender) is also added here.
 
@@ -127,9 +127,9 @@ The number of knots was chosen as the number that gave the best fit as assessed 
 
 If results were similar (within 2 units of the best fit), the model with fewest knots were chosen to avoid overfitting. 
 
-##Start calculating
+## Start calculating
 
-###Find spline knot number
+### Find spline knot number
 
 For RCS, knots are generally between 3-5, and too many can cause overfitting.
 
@@ -176,7 +176,7 @@ for (i in 3:5) {
 
 连续变量对风险的影响有时可能是非线性的，因此使用RCS样条化做非线性处理。
 
-###Fit Cox proportional hazards regression model###
+### Fit Cox proportional hazards regression model###
 
 Here, the Cox regression model considers two variables: BMI and gender, where BMI is a continuous variable and gender is a categorical variable
 
@@ -225,7 +225,7 @@ smoothlogHR.point <- as.data.frame(predict(hr1,
 
 绘制RCS曲线
 
-##Start drawing
+## Start drawing
 
 Draw RCS curve
 

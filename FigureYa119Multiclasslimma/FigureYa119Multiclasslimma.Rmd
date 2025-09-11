@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用limma实现多组差异分析。能用来替换FigureYa109SubtypeGSEA中的配对差异表达过程（亚型数目>=3），并跟它无缝对接。
 
-##Requirement description
+## Requirement description
 
 Implement multi group difference analysis using limma. Can be used to replace the paired differential expression process (subtype number>=3) in FigureYa109SubtypeGSEA and seamlessly integrate with it.
 
@@ -35,7 +35,7 @@ Implement multi group difference analysis using limma. Can be used to replace th
 
 **这里针对FPKM/RPKM或芯片数据作为输入的情况，如果你的数据是read count，请参考FigureYa118MulticlassDESeq2**
 
-##Application scenarios
+## Application scenarios
 
 Based on Figure Ya109 subtype GSEA, analyze the differentially expressed genes between each group and other samples, and identify subtype specific enriched pathways;
 
@@ -49,7 +49,7 @@ Using FigureYa116supervisedCluster, analyze the differentially expressed genes b
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -194,7 +194,7 @@ twoclasslimma <- function(res.path=NULL, expr=NULL, prefix=NULL, complist=NULL, 
 
 ## 输入文件
 
-##Input file
+## Input file
 
 ```{r}
 # 读取表达矩阵 - 输入文件为制表符分隔的FPKM表达量矩阵
@@ -220,7 +220,7 @@ n.sub
 
 ## 开始分析
 
-##Start analyzing
+## Start analyzing
 
 ```{r}
 ### 创建配对比较的列表信息 ###

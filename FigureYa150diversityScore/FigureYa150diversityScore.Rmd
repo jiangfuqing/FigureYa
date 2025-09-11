@@ -160,7 +160,7 @@ tme <- CreateSeuratObject(counts = umi[, cellUsed],
 #save(tme, file = "tme.Rdata")
 ```
 
-## Analysis using Seurat 
+## Analysis using Seurat
 
 ```{r analysis, fig.width=4, fig.height=3}
 #(load("tme.Rdata"))

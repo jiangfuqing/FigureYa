@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 虽然原文附件给出了代码，但自己看着费劲，请高手带我们理解并复现原文的Figure 1b建模。
 
-##Requirement description
+## Requirement description
 
 Although the original attachment provides the code, it seems difficult for us to understand and reproduce the Figure 1b modeling in the original text. Please help us understand and reproduce it.
 
@@ -75,7 +75,7 @@ It's lonely to tinker with the code of an article by oneself, and no one will di
 
 如果想要系统的研究基因之间的相互关系，就需要更多的基因样本容量，所以该线性模型方法是相对小样本量的很好的方式。
 
-##Application scenarios
+## Application scenarios
 
 There is already genotype and transcription data available, and a linear model is used to analyze the contribution of mutations to gene expression, that is, how gene expression responds to different genotypes and how different mutations affect gene expression.
 
@@ -93,7 +93,7 @@ If you want to systematically study the interrelationships between genes, you ne
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -147,7 +147,7 @@ options(stringsAsFactors = FALSE)
 
 genotype和表型数据：Supplementary Data 1—ncomms6901-s2.xlsx，其中部分个体数据缺失。
 
-##Preprocessing of input data
+## Preprocessing of input data
 
 Two types of input data are required: expression data and genotype data
 
@@ -161,7 +161,7 @@ Genotype and phenotype data: Supplementary Data 1- ncomms6901-s2.xlsx, with some
 
 下面这一步需要较长的运行时间，我把运行结果gset保存在文件里，便于再次运行时读取
 
-###Chip data processing:
+### Chip data processing:
 
 The following is the chip data processing process, mainly using the affy and gcrma packages
 
@@ -260,9 +260,9 @@ geneExpr <- t(geneExpr1)
 
 There is a small tip here, which is' e [ids, drop=FALSE] '. Generally speaking, when using parentheses [] to extract more than one column, the result is a matrix. However, when extracting a certain column, the data obtained is usually a vector. If the drop=False parameter is added, even if one column is extracted, the matrix will still be obtained.
 
-### genotype突变信息
+### Genotype突变信息
 
-###Genotype mutation information
+### Genotype mutation information
 
 ```{r}
 # 从Excel文件中读取MDS数据，从第2行开始加载（跳过标题行）
@@ -351,7 +351,7 @@ head(design)
 
 这里主要用到limma包，其中F.stat，是F-statistic检验，该值越大，一般p值越小，即差异显著。
 
-##Constructing a linear model
+## Constructing a linear model
 
 The limma package is mainly used here, where F.stat is the F-statistical test. The larger the value, the smaller the p-value, indicating a significant difference.
 
@@ -377,7 +377,7 @@ b图里有三个小图，我们分别来画。
 
 定义颜色，主要定义19种颜色，每种颜色在之后会代表每一个design的列信息：
 
-##Start drawing - b
+## Start drawing - b
 
 There are three small pictures in Figure B, let's draw them separately.
 
@@ -427,13 +427,13 @@ z <- design[,-1]
 geneExpr <- geneExpr[, rownames(design)]
 ```
 
-### b中间图：
+### B中间图：
 
 这是另外一种画heatmap的方法，也是最让我惊艳的一部分。
 
 大体思路就是：首先通过hclust对数据进行聚类，之后通过rasterImage按照聚类的顺序画heatmap。
 
-###B Middle image:
+### B Middle image:
 
 This is another method of drawing heatmaps, and it is also the most stunning part for me.
 
@@ -476,11 +476,11 @@ matrix_order <- matrix[h$order,j$order]
 rasterImage(matrix_order, 0, 0, ncol(design), nrow(design), interpolate=FALSE)
 ```
 
-### b左侧图：
+### B左侧图：
 
 首先是把基因表达的大小分成12份，然后换成11个颜色，之后组成颜色的矩阵。通过rasterImage画出来。rasterImage还有其他有意思的用法，可以参考Y叔的<https://guangchuangyu.github.io/cn/2017/04/ggimage/>
 
-###Left side image:
+### Left side image:
 
 Firstly, divide the size of gene expression into 12 parts, then replace them with 11 colors, and then form a matrix of colors. Draw it through RasterImage. RasterImage has other interesting uses, you can refer to Uncle Y's< https://guangchuangyu.github.io/cn/2017/04/ggimage/ >
 
@@ -510,9 +510,9 @@ rasterImage(sapply(1:ncol(z), function(i) ifelse(z[,i] > 0, colMutations[i-1], "
             0, 0, ncol(design), nrow(design), interpolate=FALSE)
 ```
 
-### b右侧图：
+### B右侧图：
 
-###Right side image:
+### Right side image:
 
 ```{r}
 # 设置绘图参数，包括无边框、坐标轴标签位置、边距等
@@ -538,13 +538,13 @@ rasterImage(matrix(brewer.pal(11, "RdBu")[cut(glm$coefficients[w, -1][h$order, j
             0, 0, ncol(design)-1, 1000, interpolate=FALSE)
 ```
 
-## c和d
+## C和d
 
 仅用b图的heatmap回答基因表达如何响应不同的genotype以及各种不同的突变如何影响基因表达还不够完美，作者又画了c和d图。
 
 原文代码用baseplot画c和d图，我自己用ggplot2复现了c和d图。
 
-##C and D
+## C and D
 
 It is not perfect to answer how gene expression responds to different genotypes and how various mutations affect gene expression using only the heatmap in Figure B. The author has also drawn Figures C and D.
 

@@ -159,7 +159,7 @@ data <- cbind(human, mouse)
 ```
 
 # 2) 数据重构，使之方便应用线性混合模型
-#2) Data reconstruction to facilitate the application of linear hybrid models
+# 2) Data reconstruction to facilitate the application of linear hybrid models
 
 ```{r}
 data <- data %>% 
@@ -308,7 +308,7 @@ ggsave("VarDecompose.pdf")
 
 ## 在人鼠之间基因表达水平相对保守的基因
 
-# By the way, look at the two homologous genes
+# BY the way, look at the two homologous genes
 
 Draw separate graphs to see genes with relatively conserved/differential gene expression levels between humans and mice
 

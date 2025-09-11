@@ -52,7 +52,7 @@ The **red and green** human shapes represent the samples are determined as **wit
 ...due to experimental batch effects and platform differences, the **score-based signatures** tend to produce spurious risk classification in independent samples measured by different laboratories and are infeasible in clinical application...
 ...we found prognostic signatures derived using the **relative genes (miRNAs) expression rankings** within samples, rather than the absolute expression values, are robust in **independent datasets from different laboratories and platforms**.
 
-# Application Scenarios 
+# Application Scenarios
 【Ask a question】 DESeq and other methods detect differentially expressed genes (DEGs) in **sub-groups of cancer samples**, considering the **high heterogeneity** of lncRNA expression among patients, **none have been used in detecting DE lncRNAs in individual patients**. 
 
 【Hypothesis】The authors' previous work found that the relative expression rankings of genes (miRNAs) tend to be **highly stable in specific normal** human tissues but **widely disturbed in the corresponding cancer** tissues, and the reversal relationship of rank between genes (miRNAs) expression level can be used to identify DE genes (miRNAs) in individual patient. This time, we will look at DE lncRNAs in individual patients in the same way
@@ -368,7 +368,7 @@ pheatmap(dysTab,
 save.image(file = "GP.RData")
 ```
 
-## gene-pair关系的展示
+## Gene-pair关系的展示
 
 这些gene-pair的关系、CV值，以及上下调方向，可以画个网络图来展示，可参考`FigureYa199crosslink`。
 
@@ -384,7 +384,7 @@ Or use heat maps, scatter plots, etc. to show the correlation and p value of gen
 
 Alternatively, a scatter plot can be used to show the expression trend of gene pairs in two groups of samples, please refer to 'FigureYa96R2'
 
-## gene-pair 作为诊断marker的效果（Performance evaluation）
+## Gene-pair 作为诊断marker的效果（Performance evaluation）
 
 生存分析，Fig. 2 abc，可参考`FigureYa1survivalCurve`
 

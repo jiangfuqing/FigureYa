@@ -345,7 +345,7 @@ head(DEG)
 
 # 计算AMDA score和p值
 
-# Calculate the AMDA score and P-value
+# Calculate the AMDA score and p-value-p-value
 
 使用标准化后的log2FC值计算AMDA.score并计算p值。计算结果与原文的AMDA score基本吻合，偏差来源分析见Q & A。
 Calculate the AMDA.score using the standardized log2FC value and calculate the p-value. The calculation results are basically consistent with the AMDA score of the original text. The analysis of the source of deviation can be found in Q&A.
@@ -612,7 +612,7 @@ dev.off()
 
 ## 1. 为什么确定原文用的log2FC标准化是(r-1)/(R-1)变换而不是r/R变换? 为什么说原文里描述的是Foldchange，实际上是log2FC？
 
-## Why is it determined that the log2FC normalization used in the original text is the (r-1)/(r-1) transformation rather than the r/R transformation? Why is it said that what is described as Foldchange in the original text is actually log2FC?
+## Why is it determined that the log2FC normalization used in the original text is the (r-1)/(r-1) transformation rather than the RR/RR transformation? Why is it said that what is described as Foldchange in the original text is actually log2FC?
 
 答：我们可以打开原文提供的包含3032个基因的经标准化后的FC值。
 Answer: We can open the standardized FC values provided in the original text, which contain 3,032 genes.

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 复现文中的线性回归，画出双坐标轴的图
 
@@ -29,7 +29,7 @@ Reproduce the linear regression in the text and draw a dual-axis graph.
 from<https://onlinelibrary.wiley.com/doi/full/10.1111/cas.13744>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 同时计算和展示3组数据的相关性，A vs. B 和 A vs. C。
 
@@ -40,7 +40,7 @@ Simultaneously calculate and display the correlation of 3 groups of data, A vs. 
 For example, the sample text simultaneously shows the correlation of B7-H3 expression with mir-29a, as well as with methylation. From this, it can be seen: In IDH‐wild grade II gliomas, B7‐H3 expression seemed to be downregulated by both methylation on cg10586317 and microRNA‐29a, rationalizing the paradox in grade II gliomas with wild‐type IDH.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 使用国内镜像安装包
 
@@ -67,7 +67,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 ```
 
 ## 参数设置
-## parameter setting
+## Parameter setting
 
 ```{r}
 ## 两个坐标轴的颜色
@@ -268,7 +268,7 @@ head(g2$layout)
 ```
 
 #### 重新画图
-#### redraw the picture
+#### Redraw the picture
 
 **提示：**选择从grid.newpage()到任意一个grid.draw(g)之间的部分一起运行，就会看到这部分代码的画图效果。
 

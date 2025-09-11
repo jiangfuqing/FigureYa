@@ -261,7 +261,7 @@ pickgene <- "B4GALNT1" # 因为和原文结果不同所以随便选的 # As it i
 ```
 
 # 开始画图
-#start plot
+# Start plot
 
 用base plot画图，从plot开始整段运行。
 Draw with base plot and run the entire section from the plot

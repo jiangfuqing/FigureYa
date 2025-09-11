@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 网上搜到过代码，但是都是用TCGA自己带的肺癌数据画的，我需要用自己的数据绘制。
 
@@ -29,7 +29,7 @@ Two or more groups are compared.
 ![](example.png)
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 需要至少两列信息：结局和结局的发生时间。如果还要做组间对比就再来一列分组信息。
 
@@ -80,7 +80,7 @@ You can use best separation to group by high or low expression, see FigureYa4bes
 Or instead of using expression grouping, use known subtypes (obtained by clustering, or gold standard subtypes) grouping, see FigureYa116supervisedCluster, and further use its gold standard subtypes to find markers, and then use supervised hierarchical clustering to identify new subtypes on the validation set.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 安装需要的包
 
@@ -152,7 +152,7 @@ write.table(svData[,c(1,4,5)],file="easy_input_3.txt",sep = "\t",col.names = T,r
 ```
 
 ## 两组对比
-## Comparison of two groups 
+## Comparison of two groups
 
 ### 输入文件
 ### Input file
@@ -223,7 +223,7 @@ dev.off()
 ![](survivalcurve_2_table.pdf)
 
 ## 三组对比
-## Three groups of comparisons 
+## Three groups of comparisons
 
 如果有更多组要对比，就按照规律在参数里添加即可。
 

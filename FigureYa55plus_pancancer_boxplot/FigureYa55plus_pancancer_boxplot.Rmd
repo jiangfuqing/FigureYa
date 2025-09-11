@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 小伙伴问：感谢小丫带我们打开xena魔盒，有一个问题，FigureYa55pancancer_violin的图能不能画成box plot？
 
@@ -35,7 +35,7 @@ Q：Lazy, can I use the output file easy_input.csv of FigureYa55pancancer_violin
 A: Yes. Thanks to Chris Lou for helping to update and share two versions of the solution: ggpubr version and pure ggplot2 version
 
 # 环境设置
-# environment setting
+# Environment setting
 
 ```{r}
 source("install_dependencies.R")

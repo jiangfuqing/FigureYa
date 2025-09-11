@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 希望用cellchat来实现：
 
-#Requirement description
+# Requirement description
 
 I hope to use CellChat to achieve:
 
@@ -68,7 +68,7 @@ The friend who raised the request requested to use Cellchat to implement it, whi
 
 另外，CellPhoneDB的用法可参考FigureYa178receptorLigand<https://k.youshop10.com/YICoy-XB>
 
-#Application scenarios
+# Application scenarios
 
 Single cell RNA seq data was compared between two groups of samples (e.g. primary vs. metastasis, different subtypes, different developmental stages, etc.) using cellchat based on the differences in "receptor ligand".
 
@@ -78,7 +78,7 @@ In addition, the usage of CellPhoneDB can refer to FigureYa178receptorLigand< ht
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -134,7 +134,7 @@ options(stringsAsFactors = FALSE)
 - 先拆分成两个seurat object，对两个数据集单独进行normalize并识别各自的高变异基因，使用高变异基因在两个基因集中分别执行PCA。
 - 然后对两个数据集进行整合，进行常规数据预处理，存入immune.combined，以便进行后续分析。
 
-#Input data preprocessing
+# Input data preprocessing
 
 `ifnb` - A Seurat object with the PBMC control/IFNB-stimulated dataset。 From< https://pubmed.ncbi.nlm.nih.gov/29227470/ >, has been packaged into SeuratData, we can directly install and load it.
 
@@ -235,7 +235,7 @@ STIM和CTRL两组，分别提取数据，创建CellChat对象。
 
 运行时间约10min
 
-#Extract data and create CellChat objects separately
+# Extract data and create CellChat objects separately
 
 Extract data from STIM and CTRL groups respectively, and create CellChat objects.
 
@@ -330,7 +330,7 @@ saveRDS(ctrl.cellchat, "ctrl.cellchat.rds")
 
 # 开始画图
 
-#Start drawing
+# Start drawing
 
 ```{r}
 ## 加载上面保存的运行结果文件，可以从微云下载<https://share.weiyun.com/xcfPWC0L>
@@ -347,7 +347,7 @@ cellchat <- mergeCellChat(object.list, add.names = names(object.list))
 
 ## 细胞间互作次数bar图
 
-##Bar chart of intercellular interaction frequency
+## Bar chart of intercellular interaction frequency
 
 Comparing the number of inferred communication links between different datasets
 
@@ -380,7 +380,7 @@ Circle plot showing differential cell-cell communication network **between two d
 
 两个数据集之间的细胞-细胞通信网络中的交互或交互强度的差异数量可以使用圆形图来可视化，其中红色(或蓝色)边表示第二个数据集相比于第一个数据集增加(或减少)的信号。
 
-##Network diagram of intercellular interaction frequency
+## Network diagram of intercellular interaction frequency
 
 Circle plot showing differential cell-cell communication network **between two datasets**
 
@@ -412,7 +412,7 @@ dev.off()
 
 ## 结果解读：
 
-##Interpretation of Results:
+## Interpretation of Results:
 
 ![](result.png)
 

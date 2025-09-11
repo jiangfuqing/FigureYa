@@ -111,7 +111,7 @@ These files have been uploaded to Weiyun
 
 ## 单细胞ATAC-seq数据
 
-## Single-cell ATAC-seq data
+## Single-cell ATAC-seq-ATAC-seq data
 
 从GEO下载单细胞ATAC-seq数据：<https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM2970932>，以其中数据量小些的GSM2970932为例，包括两个细胞的mix，一个是HL60，另外一个是GM12878。
 Download single-cell ATAC-seq data from GEO: < https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM2970932 >, in which the data volume small GSM2970932, for example, including the mix two cells, one is the HL60, another is GM12878.

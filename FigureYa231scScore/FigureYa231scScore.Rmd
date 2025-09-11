@@ -162,7 +162,7 @@ DimPlot(SeuratObj,
 You can see that Ctrl is on the left and GBM is on the right. The following is marked with two colors, which is more intuitive.
 
 ## 根据Diagnosis列分组 - 画图2D
-## Grouping by Diagnosis Column - Paint 2D
+## Grouping BY Diagnosis Column - Paint 2D
 
 GBM和Ctrl两组
 GBM and Ctrl

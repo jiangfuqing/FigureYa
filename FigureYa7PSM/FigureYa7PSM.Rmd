@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 主要目的是在病例组数据集和对照组数据集里面进行快速的1:1匹配。要求性别相同，年龄不超过两岁。虽然不是作图的。但估计群里好多临床的人肯定也特别想用的。如果CASE1和CONTROL1匹配后，那么就算CASE3和CONTROL1也可以匹配，但是也不能匹配了。
 
@@ -32,7 +32,7 @@ Essentially, the requester wants to perform propensity score matching. Propensit
 R packages have already accounted for various scenarios, making it easy for us to perform propensity score matching.
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 与健康相关的生活质量（HRQOL）被认为是癌症治疗的重要结果之一。对癌症患者而言，最常用的HRQOL测度是通过欧洲癌症研究与治疗中心的调查问卷计算得出的。EORTC QLD-C30是一个由30个项目组成，包括5个功能量表，9个症状量表和一个全球生活质量量表的的问卷。所有量表都会给出一个0-100之间的得分。症状量表得分越高代表被调查人生活压力越大，其余两个量表得分越高代表生活质量越高。
 

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R画文章里的这种肿瘤克隆进化的图。
 
-##Requirement description
+## Requirement description
 
 Draw a graph of the evolution of tumor clones in the article using R.
 
@@ -33,7 +33,7 @@ from<https://www.nature.com/articles/leu2014289>
 
 ## 应用场景
 
-##Application scenarios
+## Application scenarios
 
 Create timecourse "fish plots" that show changes in the clonal architecture of tumors, <https://github.com/chrisamiller/fishplot>
 
@@ -57,7 +57,7 @@ The clone evolution diagram is a bit like a sankey. I compared it with FigureYa2
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -97,7 +97,7 @@ options(stringsAsFactors = FALSE)
 
 - parents，与时间节点相对应的各个克隆群进化关系。例图中，“0”表示主克隆，“1, 1”表示在主克隆之后有两个平行发展的亚克隆簇，“3”表示在这个克隆簇发生时，已经有两次克隆事件。进一步根据各个时间节点，各个克隆簇占比情况，脚本便可实现。为便于理解parents的写法，结尾附上了几个例子。
 
-##Input data
+## Input data
 
 Three types of inputs are required:
 
@@ -135,7 +135,7 @@ parents <- c(0, 1, 1, 3)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r,fig.width=10, fig.height=6}
 # 创建fishplot对象，输入数据为克隆频率矩阵、谱系关系和时间点
@@ -213,7 +213,7 @@ legend("bottomright",
 
 或者用[export包](https://mp.weixin.qq.com/s/QziYUmpag1MQRkN_xfvZJQ)导出矢量图，用ppt就能编辑。
 
-##Post processing processing
+## Post processing processing
 
 The fish. pdf file output earlier is a vector image that can be edited using tools such as Illustrator, such as adding points and gene names from example texts, moving text positions, and so on.
 
@@ -223,7 +223,7 @@ Or use the [export package]（ https://mp.weixin.qq.com/s/QziYUmpag1MQRkN_xfvZJQ
 
 如果有更多克隆，要怎样设置parents，能再举个例子吗？
 
-##Attached
+## Attached
 
 If there are more clones, how can parents be set? Can you give another example?
 

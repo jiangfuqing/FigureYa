@@ -106,7 +106,7 @@ Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE) 
 ```
 
-# CMap数据下载及预处理  
+# CMap数据下载及预处理
 # Downloading and Preprocessing CMap Data
 
 CMAP_gene_signatures.RData，处理好的CMap数据，下载地址<https://www.pmgenomics.ca/bhklab/sites/default/files/downloads/CMAP_gene_signatures.RData> 
@@ -138,7 +138,7 @@ camp_sig <- column_to_rownames(camp_sig, var = "SYMBOL"); camp_sig <- camp_sig[,
 saveRDS(camp_sig, "camp_sig.rds")
 ```
 
-# 疾病分子特征预处理  
+# 疾病分子特征预处理
 # Preprocessing Disease Molecular Signatures
 
 以下演示将以肝癌数据为例，通过癌与癌旁的差异分析得到疾病分子特征。 
@@ -186,7 +186,7 @@ write.table(dis_sig, "dis_sig.csv", sep=",", quote=F, row.names=F, col.names=T)
 head(dis_sig)
 ```
 
-# 计算CMap score  
+# 计算CMap score
 # Calculating CMap Score
 
 ```{r}
@@ -236,7 +236,7 @@ head(xsum)
 
 According to the CMap theory (which has been extensively validated by numerous studies), the lower the score obtained here, the more likely the drug is to reverse the disease's molecular signature, and theoretically more likely to have therapeutic potential for that disease. The results from this demonstration dataset suggest that X4.5-dianilinophthalimide is the most promising candidate drug for treating liver cancer.
 
-# 结果可视化  
+# 结果可视化
 # Visualization of Results
 
 ```{r, ig.align='center'}

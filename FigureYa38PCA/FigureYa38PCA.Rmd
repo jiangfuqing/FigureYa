@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用TCGA数据画主成分分析(pricinple components analysis，PCA)的图。
 
@@ -44,7 +44,7 @@ from<http://www.haematologica.org/content/102/7/e245>
 from<http://clincancerres.aacrjournals.org/content/23/8/2105.figures-only>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 通常我们拿到的数据集，例如转录组的表达量矩阵都有成千上万个基因，这类高维度数据很难直接进行可视化展示。
 

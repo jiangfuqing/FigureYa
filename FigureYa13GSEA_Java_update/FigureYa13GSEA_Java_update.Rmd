@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 已经用[Java版GSEA](http://software.broadinstitute.org/gsea/index.jsp)做出了GSEA分析结果，想自己画图。
 
@@ -57,7 +57,7 @@ Figure 3: Barcode + Heat Map
 from<https://thorax.bmj.com/content/69/1/14>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 以Java版GSEA的输出结果作为输入，DIY结果图，把多个通路画到一张图里。
 
@@ -68,7 +68,7 @@ Using the output of the Java version of GSEA as input, do-it-yourself result map
 If you do GSEA analysis with clusterProfiler and want to DIY the result plots, plot multiple pathways to a single plot, or plot multiple comparisons of the same pathway to a single plot, use FigureYa60GSEA_clusterprofiler.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 使用国内镜像安装包
 
@@ -94,7 +94,7 @@ library(cowplot)
 ```
 
 ## 输入数据的准备
-## preparation of input data
+## Preparation of input data
 
 Java版GSEA的输出文件夹中有每个通路的Excel文件，把你感兴趣的通路的Excel文件复制到当前文件夹。
 

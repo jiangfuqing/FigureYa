@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 仅对某感兴趣通路做聚类分析，同时纳入正常样本表达水平的考虑，来挖掘癌症样本异质性。大神丢的文章能解决我的问题，想众筹下面这个图
 
-##Requirement description
+## Requirement description
 
 Perform cluster analysis only on a specific pathway of interest, while considering the expression level of normal samples, to explore cancer sample heterogeneity. The article lost by the great god can solve my problem. I would like to crowdfund the following image
 
@@ -37,7 +37,7 @@ from<https://www.gastrojournal.org/article/S0016-5085(17)36144-9/abstract>
 
 同时还能根据这个geneset的基因表达谱对样本进行分组。分组结果可尝试用于解释样本的另一个性状或临床指标（如预后）的差异，最终证明该geneset与样本性状或临床指标的关联。
 
-##Application scenarios
+## Application scenarios
 
 When there is significant variation in the expression profile of a certain gene set in a set of samples, display all gene expression heterogeneity of this gene set.
 
@@ -45,7 +45,7 @@ At the same time, samples can be grouped based on the gene expression profile of
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r warning=FALSE}
 source("install_dependencies.R")
@@ -85,7 +85,7 @@ options(stringsAsFactors = FALSE)
 
 ## 参数设置
 
-##Parameter settings
+## Parameter settings
 
 ```{r}
 # 表达矩阵前多少列来自肿瘤样本
@@ -120,7 +120,7 @@ ClusterColor = c("#B31E22","#529B40","#020105","#383D8E")
 - easy_input_expr.csv，文章作者提供的32189*197基因表达矩阵(FPKM)，前147列来自肿瘤样本，后面是50个正常对照的表达谱。
 - easy_input_signatures.csv，某一通路基因列表，此处是TGFbeta。
 
-##Read input file
+## Read input file
 
 Two input files are required: gene expression matrix and gene pathway of interest
 
@@ -147,7 +147,7 @@ signature
 
 ## 估计GSVA富集分数，后面用于检验富集分数在k个类的差异
 
-##Estimate the GSVA enrichment score, which will be used later to test the differences in enrichment scores among k classes
+## Estimate the GSVA enrichment score, which will be used later to test the differences in enrichment scores among k classes
 
 ```{r, warning=FALSE}
 # 创建空列表用于存储基因集签名
@@ -170,7 +170,7 @@ signature.gsva <- gsva(params)
 
 ## 根据正常样本signature基因表达将肿瘤样本基因表达状态分成3类：高标达、低表达、不变
 
-##According to the normal sample signature gene expression, the gene expression status of tumor samples can be divided into three categories: high standard, low expression, and unchanged
+## According to the normal sample signature gene expression, the gene expression status of tumor samples can be divided into three categories: high standard, low expression, and unchanged
 
 ```{r, warning=FALSE}
 # 提取signature基因表达矩阵，筛选样本间有差异的基因
@@ -213,7 +213,7 @@ write.csv(outdata,"Ternary.csv",row.names = T,col.names = NA)  # 保存为CSV文
 
 ## 聚类并绘图
 
-##Cluster and plot
+## Cluster and plot
 
 ```{r, warning=FALSE}
 ### 行和列使用ward.D聚类

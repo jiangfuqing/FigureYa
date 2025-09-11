@@ -171,7 +171,7 @@ head(paper_cmap)
 ```
 
 # 虽然跟原文提供的结果不是完全一致。分析的原因可能是在处理输入差异基因这一步骤上，文章说在匹配gpl96探针数据FC排序之后去掉重复的ID。这一步骤我是多个探针匹配同一个基因只保留一个探针。还试过删除掉多个探针匹配一个基因的全部探针以及保留全部的unique探针。结果都不能达到完全一致。
-# Although the results are not exactly the same as those provided in the article, the likely reason lies in the preprocessing step of input differential genes. The article mentions removing duplicate IDs after FC ranking with gpl96 probe data. In my case, I retained only one probe per gene when multiple probes matched the same gene. I also tried removing all such probes or keeping all unique probes, but none achieved perfect consistency.
+# Although the results are not exactly the same as those provided in the article, the likely reason lies in the preprocessing step of input differential genes. The article mentions removing duplicate IDs after FC ranking with gpl96 probe data. In my case, I retained only one probe per gene when multiple probes matched the same gene. I also tried removing all such probes OR keeping all unique probes, but none achieved perfect consistency.
 
 # 可以看到在`r nrow(ACC_CMap_paper)`有`r camp_inter`个交集，并且rank在前面的compound基本一致。
 # As shown, there are `r camp_inter` overlapping compounds among the `r nrow(ACC_CMap_paper)` compounds, and the top-ranked compounds are mostly consistent.

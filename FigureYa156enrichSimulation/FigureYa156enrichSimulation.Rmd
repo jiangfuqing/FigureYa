@@ -142,7 +142,7 @@ rbp21 <- strsplit("AIMP2 ALYREF CALR EXO1 ISG20 MAGOH MAGOHB MRPS12 MRPS33 NIP7 
 ```
 
 # 评价
-# evaluate
+# Evaluate
 
 ## Do simulation
 

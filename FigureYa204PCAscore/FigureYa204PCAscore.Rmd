@@ -94,7 +94,7 @@ outTab <- read.table("ouput_ICIsignatureGene.txt",sep = "\t",row.names = NULL,he
 table(outTab$direct) # AB两种签名按相关性正负来分类，正相关标为A，否则标为B # The two types of signatures are classified according to the positive and negative correlations, and the positive correlation is marked as A, otherwise it is marked as B
 ```
 
-# 用Boruta对ICI signature降维 
+# 用Boruta对ICI signature降维
 
 这一步原则上是应该把AB两种签名一起来构建预后签名的。但这套数据情况特殊，因此遇到了问题（负相关结果被淹没），因此我们拆开A、B签名，分开降维。
 

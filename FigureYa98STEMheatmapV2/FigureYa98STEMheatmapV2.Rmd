@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 左侧画出STEM的profile，右侧对应表达量的热图，输出每个profile对应的基因顺序。
 
-#Requirement description
+# Requirement description
 
 Draw the STEM profile on the left and the heatmap corresponding to the expression level on the right, and output the gene sequence for each profile.
 
@@ -51,7 +51,7 @@ So, the adopted gene sorting strategy is to cluster by profile first, and then c
 
 其中左侧折线图更适合时间序列数据，例如发育时期、处理后的时间点等。
 
-#Application scenarios
+# Application scenarios
 
 Simultaneously display expression trends and expression heatmaps.
 
@@ -61,7 +61,7 @@ The left side line chart is more suitable for time series data, such as developm
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -127,7 +127,7 @@ GSE125184_CCAB_RPKM_ExpMatrix.csv.gz，所有基因的表达矩阵，下载自<h
 
 然后用命令行的方式运行STEM，生成“_profiletable.txt”和“_genetable.txt”两个文件，**用于画左侧的折线图**。与每个profile的相对应，**用右侧热图展示进入profile的基因在各个样品中的表达量**。
 
-#Preparation of input files
+# Preparation of input files
 
 First, extract the expression matrix of developmentally regulated genes, and then run STEM to obtain the profile.
 
@@ -143,7 +143,7 @@ Then run STEM using the command line to generate two files, "_defiletable. txt" 
 
 如果你的数据已经整理成easy_input*.txt的格式，就可以跳过这步，直接进入“运行STEM，获得profile”。
 
-##Generate input files required for STEM
+## Generate input files required for STEM
 
 If your data has already been organized into the easy_input *. txt format, you can skip this step and directly enter "Run STEM, Get Profile".
 
@@ -226,7 +226,7 @@ java -mx1024M -jar stem.jar -b example.txt output
 
 example_profiletable.txt和example_genetable.txt
 
-##Run STEM to obtain a profile
+## Run STEM to obtain a profile
 
 Download STEM, enter the STEM folder, manually edit the configuration file 'example. txt'
 
@@ -250,7 +250,7 @@ Exed_filetable.txt and exed_genetable.txt
 - example_profiletable.txt，profile信息，用于画左侧折线图。
 - example_genetable.txt，gene所在的profile，用于提取进入每个profile的基因的表达量。
 
-#Input file
+# Input file
 
 The following three types of files are required:
 
@@ -291,7 +291,7 @@ head(profiletable)
 
 有的小伙伴可能想给每个profile做基因功能富集分析等进一步探讨。要把每个profile里的基因输出到文件，每个profile一个文件，就运行下面这段：
 
-##Output gene names - in STEM original order
+## Output gene names - in STEM original order
 
 Provide two ways to output gene names, in the original STEM order, followed by the code "Output gene names - in heat map order" for selection.
 
@@ -318,7 +318,7 @@ for (gp in 0:max(genetable$Profile)) {
 
 我们注意到`data_mean`的`Gene.Symbol`变量中存在小写字母，而`genetable`全是大写字母。所以还要大小写转换。
 
-##Calculate the mean expression level for drawing the heatmap on the right side
+## Calculate the mean expression level for drawing the heatmap on the right side
 
 The heatmap on the right uses' data1 ',' data2 ', and' data3 'to take the average.
 
@@ -359,7 +359,7 @@ head(data_mean)
 
 每个profile纵坐标被写进`profiletable`中一列里`Profile.Model`，所以需要分开：每个时间点单独一列。
 
-##Profile for drawing the left line chart
+## Profile for drawing the left line chart
 
 Each profile's vertical axis is written into a column called 'Profile. Model' in the 'profiletable', so it needs to be separated: a separate column for each time point.
 
@@ -383,7 +383,7 @@ profiletable %<>% separate(col = `Profile Model`,
 
 `data_mean`中没有`Profile`变量，所以需要将其与`genetable`联结表。
 
-##Take the intersection and connect the table
+## Take the intersection and connect the table
 
 After searching, the length of 'unique (genetable $Profile)' is 49, while the length of 'profiler $Profile' is 50, so the intersection needs to be taken.
 
@@ -422,13 +422,13 @@ head(data_mean)
 #rm(genetable, Profile_intersect) # 可选：删除不再需要的中间变量以节省内存
 ```
 
-## scale
+## Scale
 
 用`scale`函数对`data_mean`进行处理，相当于pheatmap里的scale="row"。  
 
 然后根据变量`Profile`对`data_mean`分组并计算每个profile内基因的数量。
 
-## scale
+## Scale
 
 Using the 'scale' function to process' data_cean 'is equivalent to the scale=' row 'in pheatmap.   
 
@@ -460,7 +460,7 @@ head(data_nest)  # 查看分组统计结果
 
 通过聚类，获取顺序，然后将顺序通过因子水平的方式，指定给`Profile`变量和`GeneSymbol`变量。
 
-##Clustering, sorting
+## Clustering, sorting
 
 Cluster by profile first, and then cluster the genes within each profile.
 
@@ -531,7 +531,7 @@ data_nest <- data_nest_2
 
 如果想把基因按图中的顺序输出到文件，每个profile一个文件，就运行下面这行：
 
-##Output gene names - in heat map order
+## Output gene names - in heat map order
 
 If you want to output genes in the order shown in the image to a file, one file per profile, run the following line:
 
@@ -561,9 +561,9 @@ for (gh in 1:nrow(data_nest)) {
 
 `profiletable_extract`数据，宽转长，成为折线图坐标。
 
-#Calculate coordinates, calculate colors
+# Calculate coordinates, calculate colors
 
-##Line chart coordinates
+## Line chart coordinates
 
 `The data is converted from width to length and becomes the coordinates of a line chart.
 
@@ -581,7 +581,7 @@ profiletable_extract %<>% gather(key = "x", value = "y", !!as.character(1:9)) %>
 
 转换成`x`, `y`, `heat_value`三个变量的长数据框。
 
-##Calculate heatmap coordinates and colors
+## Calculate heatmap coordinates and colors
 
 Convert to a long data box containing three variables: x, y, and heat_falue.
 
@@ -644,7 +644,7 @@ data_nest$tile_data <- map2(data_nest$data, data_nest$range_y,
 
 阴影区域坐标分为左侧和右侧两种，左侧纵向均分就行了，右侧需要根据`range_y`变量计算。
 
-##Calculate the coordinates of the middle shadow area
+## Calculate the coordinates of the middle shadow area
 
 The coordinates of the shadow area are divided into two types: left and right. The left side needs to be evenly divided vertically, while the right side needs to be calculated based on the 'range_y' variable.
 
@@ -746,7 +746,7 @@ link_data <- link_coord %>% unnest()
 
 使用`ggplot2::geom_line()`加**分面**画左侧的折线图。
 
-#Start drawing
+# Start drawing
 
 Here, fabricated coordinates are used to draw a heatmap using 'ggplot2:: geometile()'.
 
@@ -759,7 +759,7 @@ Use 'ggplot2:: geom_line()' to add * * facets * * and draw a line chart on the l
 首先画热图和中间的阴影连接区域。
 提取单独的热图图例。
 
-##Heat map, shaded area
+## Heat map, shaded area
 
 First, draw a heat map and connect the shaded area in the middle.
 Extract a separate heatmap legend.
@@ -833,7 +833,7 @@ plot_right
 
 ## 折线图
 
-##Line chart
+## Line chart
 
 ```{r}
 # 自定义函数：生成表达模式折线图
@@ -904,7 +904,7 @@ line_data %<>% select(Profile, plot_ls, rectangle_range)  # 选择需要的列
 
 P*是STEM给的profile的序号，括号里是该profile里基因的数量。
 
-##Add Text
+## Add Text
 
 P * is the sequence number of the profile given by STEM, and the number of genes in the profile is in parentheses.
 
@@ -952,7 +952,7 @@ text_data$x <- (-width_link - width_line + x_just) %>%  # 计算最终x坐标
 如果需要改变图例位置的，自己在前面的`plot_right`中调整。
 或者使用`cowplot`包提取图例。
 
-##Puzzle output
+## Puzzle output
 
 Use the 'gridExtra' puzzle package.
 If you need to change the position of the legend, adjust it in the previous' plot_right '.

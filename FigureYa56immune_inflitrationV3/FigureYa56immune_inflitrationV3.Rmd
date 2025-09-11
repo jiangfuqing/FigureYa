@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用TCGA的表达数据，计算免疫浸润，画出paper里的heatmap
 
-#Requirement description
+# Requirement description
 
 Calculate immune infiltration using TCGA expression data and draw heatmap in the paper
 
@@ -46,7 +46,7 @@ from<https://www.tandfonline.com/doi/full/10.1080/2162402X.2017.1382792?scroll=t
 
 - 更多经过测试的基因表达平台，参考这篇：<https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1070-5>
 
-#Application scenarios
+# Application scenarios
 
 Deeply explore tumor RNA seq data and establish a connection with immunity.
 
@@ -64,7 +64,7 @@ reference material:
 
 安装需要的包
 
-#Environment settings
+# Environment settings
 
 Install the required packages
 
@@ -115,7 +115,7 @@ options(stringsAsFactors = FALSE)
 
 # 参数设置
 
-#Parameter settings
+# Parameter settings
 
 ```{r}
 # 指定用于排序的目标基因名称（如PD-L1）
@@ -143,7 +143,7 @@ targetMut <- "IDH"
 
 如果你要画出paper里那样的图，就还需要临床、突变信息：easy_input_cli.csv
 
-#Input data download
+# Input data download
 
 If your data has already been organized into the format of "easy_input-expr. csv", skip this step and go directly to "Calculate Immune Cells".
 
@@ -171,7 +171,7 @@ If you want to draw a graph like the one in the paper, you also need clinical an
 
 - 点击phenotype里的Phenotypes (n=629) TCGA hub，下载带亚型的临床数据：<https://tcga.xenahubs.net/download/TCGA.GBM.sampleMap/GBM_clinicalMatrix.gz>
 
-##File address
+## File address
 
 The following files have been uploaded to Weiyun:< https://share.weiyun.com/5kthgr4 >
 
@@ -195,7 +195,7 @@ From UCSC Xena< https://xenabrowser.net/datapages/ >Enter TCGA Glioblastoma (GBM
 
 *.gz文件是压缩包，解压缩到当前文件夹
 
-##Decompress
+## Decompress
 
 *The. gz file is a compressed file that can be extracted to the current folder
 
@@ -213,7 +213,7 @@ gencode.v23.annotation.gene.probemap
 
 GBM_clinicalMatrix
 
-##Check: There should be these input files in your folder now:
+## Check: There should be these input files in your folder now:
 
 tcga_RSEM_gene_tpm
 
@@ -231,9 +231,9 @@ GBM_clinicalMatrix
 
 ## 提取目标癌症的sample
 
-#Input data organization
+# Input data organization
 
-##Extract samples of target cancer
+## Extract samples of target cancer
 
 ```{r}
 # 读取TCGA表型数据文件（包含患者临床信息）
@@ -263,7 +263,7 @@ dim(targetCancerCase)
 
 ## 提取目标癌症的表达矩阵
 
-##Extract the expression matrix of the target cancer
+## Extract the expression matrix of the target cancer
 
 ```{r}
 # 提取TCGA基因表达数据的首行（列名）到临时文件
@@ -325,7 +325,7 @@ Among the expression data from GDC sources, GBM has 176 samples.
 
 ### 把gene symbol加到最后一列
 
-###Add gene symbol to the last column
+### Add gene symbol to the last column
 
 ```{r}
 # 读取基因ID映射表（包含基因ID与基因符号的对应关系）
@@ -355,7 +355,7 @@ write.csv(targetCancerTPM[1:1000,c(1:2,ncol(targetCancerTPM))],"easy_input_expr_
 
 ## 提取目标基因的表达量
 
-##Extract the expression level of the target gene
+## Extract the expression level of the target gene
 
 ```{r}
 # 提取目标基因(如CD274)在所有样本中的表达量数据
@@ -393,7 +393,7 @@ targetGeneExp$bcr_patient_barcode <- str_replace_all(rownames(targetGeneExp),"[.
 
 ## 提取目标癌症的临床信息
 
-##Extract clinical information of target cancer
+## Extract clinical information of target cancer
 
 ```{r}
 # 读取临床信息数据（包含生存分析相关指标）
@@ -439,7 +439,7 @@ These pieces of information can be drawn to the end of the graph, and different 
 
 不同癌症的列不一样，GBM有一列GeneExp_Subtype，与例文中的Expression subtype一致。
 
-##Extract subtype information of target cancer
+## Extract subtype information of target cancer
 
 The columns for different cancers are different, and GBM has a column called GeneExp_Subtype, which is consistent with the Expression subtype in the example text.
 
@@ -467,7 +467,7 @@ table(targetCancer_sub$histological_type)
 
 ## 提取目标癌症的突变信息
 
-##Extract mutation information of target cancer
+## Extract mutation information of target cancer
 
 ```{r}
 # 读取TCGA全肿瘤突变数据（MAF格式）
@@ -505,7 +505,7 @@ wildSample <- setdiff(all_mutSample, mutSample)
 
 ## 合并以上多个层面的信息
 
-##Merge information from multiple levels above
+## Merge information from multiple levels above
 
 ```{r}
 # 以目标基因表达量数据为基础创建注释表
@@ -573,7 +573,7 @@ write.csv(targetAnno, "easy_input_cli.csv", quote = F, row.names = F)
 - 基因ID为HUGO_symbols或ENTREZ_ID。
 - 取log2，此处输入文件已经过**log2(x+0.001)**转换。<https://xenabrowser.net/datapages/?dataset=tcga_RSEM_gene_tpm&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>: "Data (file names: *.rsem_genes.results) are downloaded, tpm values are extracted, log2(x+0.001) transformed, and combined."
 
-#Calculate immune cells
+# Calculate immune cells
 
 To calculate immune infiltration, only the expression matrix of all genes is needed.
 
@@ -638,7 +638,7 @@ write.csv(targetCancerTPMestimates, "MCPcounter_output.csv", quote = F)
 
 # 开始画图
 
-#Start drawing
+# Start drawing
 
 ```{r}
 # 读取MCPcounter算法输出的免疫细胞浸润度估计结果

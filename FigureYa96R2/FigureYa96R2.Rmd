@@ -109,7 +109,7 @@ head(tcga_expr)[, 1:4]
 
 ### 通过画热图聚类确定高、低免疫浸润的分组
 
-### Subgroups of high and low immune infiltration were identified by drawing heat map clusters
+### Subgroups of high and low immune infiltration were identified BY drawing heat map clusters
 
 ```{r,fig.width=8, fig.height=8}
 ## 数据需要转置，使得样本成为列
@@ -357,7 +357,7 @@ p +
 
 ### 或者写成一个作图函数，方便调用
 
-### Or write it as a graphing function that is easy to call.
+### OR write it as a graphing function that is easy to call.
 
 ```{r}
 # 定义基因表达对比可视化函数

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 RNA-seq的PCA图，同一组用相同颜色，多次重复（批次）用不同形状。我的分组很多，3次重复，不需要像FigureYa38PCA那样画圈画箭头。
 
-##Requirement description
+## Requirement description
 
 PCA plot of RNA seq, with the same color for the same group and different shapes for multiple repetitions (batches). I have many groups and repeat them three times, so I don't need to draw circles or arrows like in FigureYa38PCA.
 
@@ -41,7 +41,7 @@ from<http://genesdev.cshlp.org/content/32/2/96>
 
 不仅限于RNA-seq，同样适用于其他类型的数据。
 
-##Application scenarios
+## Application scenarios
 
 Scenario 1: Each group has a large number of samples obtained from different batches. If various shapes can be used to distinguish batches, it can be seen at a glance which batch is far away from other batches, which helps to determine the impact of batch effects.
 
@@ -53,7 +53,7 @@ Not limited to RNA seq, it also applies to other types of data.
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -84,7 +84,7 @@ options(stringsAsFactors = FALSE)
 - 其他参数可保持默认
 - 函数细节可根据需要自己修改，比如batch的形状（pch参数）
  
- ##Custom functions
+ ## Custom functions
 
 Including PCA analysis process and plotting, parameter settings:
 
@@ -282,9 +282,9 @@ Below are two columns based on the scene for easy imitation by friends.
 
 - easy_input_batch.csv，样品信息，第一列样品名，跟表达矩阵一致；后面两列是分组（batch1）和批次（batch2）。
 
-##Scenario 1, Multiple Batches
+## Scenario 1, Multiple Batches
 
-###Input file
+### Input file
 
 Two input files are required:
 
@@ -319,7 +319,7 @@ indata[1:3,1:3]
 
 ### 调用函数画图
 
-###Call function drawing
+### Call function drawing
 
 ```{r}
 # 自定义颜色
@@ -374,9 +374,9 @@ pca2batch(
 
 - easy_input_meta.csv，样品信息，包括分组condition和重复的批次（batch）。
 
-##Scenario 2: Multiple biological repetitions
+## Scenario 2: Multiple biological repetitions
 
-###Input file
+### Input file
 
 - GSE125184_CCAB_RPKM_ExpMatrix.csv， Gene expression matrix, behavioral genes, listed as samples. Download from< https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE125184 >Decompress, it is the same set of input data as FigureYa98STEMheatmap.
 
@@ -417,7 +417,7 @@ metadata$condition <- factor(metadata$condition, levels = c("VM", "H", "P1", "P2
 
 ### 调用函数画图
 
-###Call function drawing
+### Call function drawing
 
 ```{r}
 # 定义足够多的颜色，用于展示分组

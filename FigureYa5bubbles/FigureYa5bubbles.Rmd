@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 想模仿出2016年XieWei老师那篇Nature的泡泡图。
 I want to imitate the bubble chart of Nature by Professor Xie Wei in 2016.
@@ -29,7 +29,7 @@ I want to imitate the bubble chart of Nature by Professor Xie Wei in 2016.
 from<http://dx.doi.org/10.1038/nature18606>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 同时展示pvalue和表达量，例如：
 
@@ -213,8 +213,8 @@ Check the filtered_genes.pdf, which shows the transcription factors correspondin
 
 It can be observed that there are significantly more transcription factors compared to the paper's diagram. Additionally, the same transcription factor corresponds to multiple motifs, whereas only one motif is shown in the paper. How did the author address this?
 
-## paper作者Jingyi答复：
-## Reply by paper author Jingyi:
+## Paper作者Jingyi答复：
+## Reply BY paper author Jingyi:
 
 我认为你有更多motif的原因是我们使用了不同版本的motif数据库。我在2016年的论文中使用的是一个旧版本，其中包含的motif相对较少。
 

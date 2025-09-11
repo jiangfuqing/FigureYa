@@ -285,7 +285,7 @@ signal_caputer_around_sites <- function(bigWigFile, bed, resolution=50,
 
 ### 提取信号
 
-### Extract the signal 
+### Extract the signal
 
 ```{r}
 # 初始化平均信号矩阵 / Initialize average signal matrix

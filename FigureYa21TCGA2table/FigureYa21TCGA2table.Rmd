@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 TCGA临床数据直接用R代码画出三线表。
 
@@ -27,7 +27,7 @@ Draw a three-line table directly using R code for TCGA clinical data.
 ![](example.png)
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 输入数据是临床样品信息，例如TCGA提供的clinical information。
 
 根据年龄、性别、种族、病毒感染、吸烟史等特征进行分类对比，可能发现疾病、癌症发病、转移、耐药跟这些特征的关系，例如发现亚洲非吸烟女性肺癌发病率高。
@@ -41,7 +41,7 @@ Categorical comparisons based on characteristics such as age, gender, ethnicity,
 If you also want to add the expression data of a certain gene, and calculate the HR of one-way and multi-factor cox regression, you can refer to FigureYa47HRtable, which can also generate tables in html, word and csv formats.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 使用国内镜像安装包
 
@@ -93,7 +93,7 @@ write.csv(cliquery,"easy_input.csv")
 ```
 
 ## 按列分成4组
-## Split into 4 groups by columns
+## Split into 4 groups BY columns
 
 即`Alive`、`Dead with tumor`、`Dead tumor free`、`Total`。
 
@@ -123,9 +123,9 @@ xx = x %>% filter(vital_status != "" & person_neoplasm_cancer_status != "")
 ```
 
 ## 按项细分
-## Breakdown by item
+## Breakdown BY item
 ### 性别
-### gender
+### Gender
 ```{r}
 #还记得前面提取的x1是生存状态是“Alive”的行，把这些行按性别分组
 #remember the rows where x1 was extracted with the survival status "Alive" and group these rows by gender
@@ -337,7 +337,7 @@ res %>%
 \newpage
 
 ## 生成pdf格式的表格
-## Generate a table in pdf format
+## Generate a table in PDF format
 
 1. 打开FigureYa21TCGA2table.Rmd文件，把第5行换成`output: latex_document`
 

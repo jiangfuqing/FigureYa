@@ -12,7 +12,7 @@ Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for 
 
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 TCGA里的正常组织太少，把GTEx的正常组织加进去，用分裂小提琴图展示某个基因在TCGA肿瘤和正常组织中的表达差异。
 
@@ -25,7 +25,7 @@ There is too little normal tissue in TCGA, add normal tissue from GTEx and use s
 from<https://www.sciencedirect.com/science/article/pii/S0896627318308481>, Supplemental material, Figure 3b
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 适用于：
 
@@ -40,7 +40,7 @@ Applicable to:
 2. Display expression data using split violin plots
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 安装需要用到的包
 
@@ -77,7 +77,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 ```
 
 ## 参数设置
-## parameter setting
+## Parameter setting
 
 ```{r}
 targetGene <- "TP53" # 想要画的目标基因 target gene you want to draw

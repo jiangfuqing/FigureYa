@@ -24,7 +24,7 @@ FigureYa80GOclustering用GOSemSim计算GO term之间的相似性，但是只能�
 
 想要合并来源于不同数据库的term，参考DAVID的方法。
 
-##Requirement description
+## Requirement description
 
 Enrichment analysis yields too many terms, many of which are still similar. How to merge them reasonably? ClusterProfiler has a simplify function that can thin down enriched GO terms by removing redundancy of enriched GO terms, but sometimes not enough weight is lost.
 
@@ -62,7 +62,7 @@ Calculate Kappa value based on the first part of the code provided in this artic
 
 原理见：<https://david.ncifcrf.gov/helps/linear_search.html#kappa>
 
-##Application scenarios
+## Application scenarios
 
 Measure the similarity between terms based on the overlap between genes in the term.
 
@@ -74,7 +74,7 @@ The principle is as follows:< https://david.ncifcrf.gov/helps/linear_search.html
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -126,7 +126,7 @@ easy_input.csv，注释信息跟Gene ID的对应关系。至少包含两列：
 - 第二列：Gene ID，此处是ENTREZ ID，也可以是gene symbol等无所谓什么来源的基因ID。
 - 后面画热图时需要的logFC、Pvalue、zscore等信息也放在这里。如果要多组富集分析结果做对比，也都放到这里。多组合并的方法可参考FigureYa80GOclustering。
 
-##Input file
+## Input file
 
 easy_input.csv， The correspondence between annotation information and Gene ID. Include at least two columns:
 
@@ -146,7 +146,7 @@ head(D)
 
 ## 计算Kappa value，用它来衡量注释之间的相似性
 
-##Calculate Kappa value to measure the similarity between annotations
+## Calculate Kappa value to measure the similarity between annotations
 
 ```{r}
 # 按基因标识符对数据框进行升序排序
@@ -291,7 +291,7 @@ write.table(Kappa_matrix, "kappa_matrix.txt", sep="\t", quote = F, col.names = F
 
 下面的画图代码跟FigureYa80GOclustering相似。
 
-##Start drawing
+## Start drawing
 
 The following drawing code is similar to FigureYa80GOclustering.
 

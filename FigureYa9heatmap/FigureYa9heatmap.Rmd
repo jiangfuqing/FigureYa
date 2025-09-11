@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的热图heatmap
 
 Draw heatmap in paper with R code 
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：sample间的相关性，用来评价生物学重复之间的重复性，或者体现不同组的差异
 
@@ -49,7 +49,7 @@ dim(df)
 ## Start drawing
 
 ### 场景一：sample间的相关性，用来评价生物学重复之间的重复性，或者不同组的差异
-### Scenario 1: Correlation between samples, used to assess the reproducibility among biological replicates or to reflect differences between various groups
+### Scenario 1: Correlation between samples, used to assess the reproducibility among biological replicates OR to reflect differences between various groups
 
 ```{r,fig.height=8,fig.width=9}
 #计算每两个sample之间的相关系数，method可选"pearson" (default), "kendall", or "spearman"

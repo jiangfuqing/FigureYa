@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R复现原图的形式。
 
-##Requirement description
+## Requirement description
 
 Reproduce the original image in R format.
 
@@ -30,7 +30,7 @@ from<https://www.cell.com/cell/fulltext/S0092-8674(17)30815-2?_returnURL=https%3
 
 相关系数参考资料：<https://uc-r.github.io/correlations>。里面提到两个展示相关性的好用的画图工具：corrplot和corrgram。corrplot的用法可参考FigureYa70mutationEvents；corrgram基于pairs，包装进了几个现成的函数，这里借鉴了其中的panel.fill函数，corrgram的更多用法举例：<https://rawgit.com/kwstat/corrgram/master/vignettes/corrgram_examples.html>，<https://rstudio-pubs-static.s3.amazonaws.com/6382_886fbab74fd5499ba455f11360f78de7.html>，<http://www.datavis.ca/papers/corrgram.pdf>
 
-##Application scenarios
+## Application scenarios
 
 Simultaneously display the correlation coefficient and the distribution of raw data.
 
@@ -38,7 +38,7 @@ Reference materials for correlation coefficient:< https://uc-r.github.io/correla
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 # 中文注释: 设置R运行环境为英文(显示英文报错信息)
@@ -54,7 +54,7 @@ options(stringsAsFactors = FALSE)
 
 easy_input.csv，将计算并展示每两列之间的相关性。每列一个特征，每行一个sample。
 
-##Input file
+## Input file
 
 easy_input.csv， Calculate and display the correlation between every two columns. One feature per column, one sample per row.
 
@@ -72,7 +72,7 @@ head(df)
 
 这个包的关键是写好画小图的函数，然后用pairs组合成最终的效果。
 
-##Start drawing
+## Start drawing
 
 The key to this package is to write a function for drawing small images and then combine them into the final effect using pairs.
 

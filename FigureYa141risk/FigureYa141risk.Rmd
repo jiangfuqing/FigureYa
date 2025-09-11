@@ -86,7 +86,7 @@ bestvars
 ```
 
 ## 按risk score分组
-## Group by risk score
+## Group BY risk score
 
 这里用中值做cutoff分组。还可以用X-tile找最佳分组cutoff；或用FigureYa4bestSeparation找到P value最小的分组；或用FigureYa35batch_bestSeparation，从一群基因中批量找最佳分组，并筛选出高低两组有显著差异的基因。可参考这篇的思路：<https://mp.weixin.qq.com/s/4s6X0dpvEqOh-KtxES3sTg>
 Here, the median is used as the cutoff group. You can also use X-tile to find the best grouping cutoff; or use FigureYa4bestSeparation to find the group with the smallest P value; or use FigureYa35batch_bestSeparation to batch find the best grouping from a group of genes and filter out genes with significant differences between the high and low groups. You can refer to the idea of this article: <https://mp.weixin.qq.com/s/4s6X0dpvEqOh-KtxES3sTg>

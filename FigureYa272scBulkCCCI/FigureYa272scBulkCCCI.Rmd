@@ -126,8 +126,8 @@ options(stringsAsFactors = FALSE)
 
 The input files consist of two parts: scRNA-seq and bulk RNA-seq (using TCGA data as an example, though other RNA-seq data can also be used).
 
-## scRNA-seq 数据
-## scRNA-seq data
+## ScRNA-seq 数据
+## ScRNA-seq data
 
 下载地址：[GSE146771](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE146771)
 
@@ -164,8 +164,8 @@ CRC_Leukocyte_SM_MD <- read.table("CRC.Leukocyte.Smart-seq2.Metadata.txt",header
 CRC_Leukocyte_SM_RNA <- read.table("CRC.Leukocyte.Smart-seq2.TPM.txt",header = T) 
 ```
 
-## bulk RNAseq数据
-## Bulk RNA-seq Data
+## Bulk RNAseq数据
+## Bulk RNA-seq-RNA-seq Data
 
 从[UCSC Xena](xenabrowser.net)下载后进行预处理（COAD and READ），预处理代码见ScBulkCCCI安装包中的example/ScBulkCCCI_DataPreprocess.R。已打包到R包里，直接加载即可。
 
@@ -462,7 +462,7 @@ nodes[is.na(nodes)] ="Not annotation"
 Below we present the Enrichment analysis results visualized using two network tools: igraph (static) and networkD3 (interactive).
 
 ## 通过igraph绘制网络
-## Plot network by igraph
+## Plot network BY igraph
 
 ```{r}
 # 加载igraph网络分析包

@@ -146,7 +146,7 @@ cc <- ConsensusClusterPlus(d = indata,
                            plot = "pdf") #或png #or png
 ```
 
-# 重新绘制热图 - Figure 1A 
+# 重新绘制热图 - Figure 1A
 # Redraw Heatmap - Figure 1A
 ```{r}
 annCol <- data.frame(Cluster = paste0("C",cc[[3]][[3]]),

@@ -177,7 +177,7 @@ save(TCGA_SKCM_TPM, file = "TCGA_SKCM_TPM.Rdata")
 ```
 
 # 进行TIMER打分，并根据CD8分为3组
-# Perform TIMER scoring and divide into 3 groups based on CD8 levels
+# Perform TIMER scoring and divide into 3 groups based on CD88 levels
 
 这里用immunedeconv包进行TIMER打分
 

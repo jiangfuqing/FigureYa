@@ -187,7 +187,7 @@ connect.count <- sapply(Gly.name,length)
 connection <- data.frame(Protein=rep(connect$Protein,connect.count),Glycan=unlist(Gly.name))
 ```
 
-### merge
+### Merge
 
 seg.clu主要是为了画最后一个Glycan那一点点黄色
 seg.clu is mainly used to draw the last little bit of yellow of Glycan
