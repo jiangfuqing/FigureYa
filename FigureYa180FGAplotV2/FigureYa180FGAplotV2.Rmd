@@ -174,7 +174,7 @@ First, attach the calculation formula for easier understanding:
 因此，Segment中的value值即是log2R。如果是自己的测序数据则要注意是否是log2R，还是copy number（见文末的注意事项）。
 Therefore, the value in the Segment is log2R. If it is your own sequencing data, pay attention to whether it is log2R or copy number (see the precautions at the end of the text).
 
-## 数据清洗 
+## 数据清洗
 
 ## Data cleaning
 
@@ -240,7 +240,7 @@ save(All,file='all_data.Rdata')
 write.csv(All,file = 'KIRC_FGA.csv',row.names = F)
 ```
 
-# 对比cBioPortal上的FGA数据
+# 对比CBioPortal上的FGA数据
 
 # Compare the FGA data on cBioPortal
 

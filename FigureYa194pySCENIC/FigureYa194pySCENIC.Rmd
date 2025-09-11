@@ -60,7 +60,7 @@ co-expression significance of target genes in each dataset. Erythroblast related
 ## SCENIC R
 见`scripts/s0_createEnv.Rmd`
 
-## pySCENIC
+## PySCENIC
 见[createEnv](doc/createEnv.md)
 
 # 输入文件
@@ -233,7 +233,7 @@ pySCENIC的`Input`为**行为gene symbols，列为cell ID的基因表达矩阵**
 
 - [如何用SEEK对cell specific regulon进行验证](doc/validationCellSpecificRegulonWithSEEK.md)
 
-# Combinatorial Regulon Modules  
+# Combinatorial Regulon Modules
 
 - `scripts/s6_Figure3.Rmd`
 

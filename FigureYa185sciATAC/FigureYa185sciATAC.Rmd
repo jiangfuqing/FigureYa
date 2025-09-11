@@ -151,7 +151,7 @@ gene_anno$transcript <- gene_anno$transcript_id
 gene_anno$symbol <- gene_anno$gene_name
 ```
 
-# 评估co-acessiblity打分
+# 评估Co-acessiblity打分
 
 # Evaluate the co-acessiblity score
 
@@ -213,7 +213,7 @@ head(conns)
 
 # Start drawing
 
-## 用cicero画图
+## 用Cicero画图
 
 ## Draw with cicero
 
@@ -233,7 +233,7 @@ plot_connections(conns, "chr2", 9773451,10773451,
 cicero会调用Gviz包，跟Gviz类似，参数找起来太麻烦。很难调到自己理想的状态。因此，下面用washu browser来展示，**重点是搞定输入文件格式转换**。
 cicero will call the Gviz package. Similar to Gviz, it is too troublesome to find the parameters. It's very difficult to adjust to one's ideal state. Therefore, the following is demonstrated using washu browser.  The key point is to handle the input file format conversion.
 
-## 用washu browser展示
+## 用Washu browser展示
 
 ## Display with washu browser
 

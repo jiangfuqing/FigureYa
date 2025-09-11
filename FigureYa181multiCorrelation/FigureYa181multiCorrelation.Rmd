@@ -86,7 +86,7 @@ input2 <- read.table("easy_input2.txt",head=T)
 input2[1:3, 1:3]
 ```
 
-# 计算相关系数、pvalue、fdr（q）
+# 计算相关系数、Pvalue、fdr（q）
 
 # Calculate the correlation coefficient, p-value, and fdr (q)
 

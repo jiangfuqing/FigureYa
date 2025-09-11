@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### 需求描述
-### requirement description
+### Requirement description
 
 想展示我感兴趣的基因附近的ChIP-seq、DNase/ATAC-seq或RNA-seq的bigwig信号图，不想用IGV或UCSC genome browser那种截图，我想要矢量图。
 
 I want to display bigwig signal plots of ChIP-seq, DNase/ATAC-seq, or RNA-seq near the gene I am interested in, without using screenshots from IGV or UCSC genome browser. I want vector plots.
 
 ### 使用场景
-### usage scenario
+### Usage scenario
 
 场景一：用DNase/ATAC-seq或H3K4me3、H3K4me1、H3K27ac等组蛋白修饰的ChIP-seq数据证实基因启动子、增强子的位置。
 

@@ -107,7 +107,7 @@ sam1 <- rownames(subt[which(subt$PAM == "basal"),,drop = F])
 sam2 <- rownames(subt[which(subt$PAM == "luminal"),,drop = F])
 ```
 
-# arm-level amplification and deletion frequencies
+# Arm-level amplification and deletion frequencies
 
 ```{r}
 # 设置扩增和缺失的阈值
@@ -262,7 +262,7 @@ pal
 ggsave("arm-level scnv frequency barplot.pdf", width = 12, height = 10)
 ```
 
-# focal-level amplification and deletion levels
+# Focal-level amplification and deletion levels
 
 对同样cytoband的gene-level的SCNA取均值，得到不同染色体臂不同focal的SCNA
 The gene-level SCNA of the same cytoband was averaged to obtain SCNA with different focal cals of different chromosomal arms

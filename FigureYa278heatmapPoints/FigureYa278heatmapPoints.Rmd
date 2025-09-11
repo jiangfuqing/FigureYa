@@ -154,7 +154,7 @@ write.csv(filtered_dt_A, "easy_input_A.csv", quote = F)
 write.csv(filtered_dt_B, "easy_input_B.csv", quote = F)
 ```
 
-# 求平均值和pvalue
+# 求平均值和Pvalue
 # Calculate averages and p-values
 
 图中圆圈大小和热图颜色都是同一分组内样本的平均值。

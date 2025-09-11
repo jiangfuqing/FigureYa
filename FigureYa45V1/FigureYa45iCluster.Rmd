@@ -49,7 +49,7 @@ iCluster分析过程答疑。
 
 ### 环境准备
 
-#### 安装iClusterPlus
+#### 安装IClusterPlus
 
 `iClusterPlus`需要通过`biocLite`安装，如果速度慢，将下面代码`#options(...)`中的`#`去掉，则会使用国内镜像. 
 

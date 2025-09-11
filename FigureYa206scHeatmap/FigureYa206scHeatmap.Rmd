@@ -330,7 +330,7 @@ phres <- pheatmap(
 ```
 
 ## 点图
-## dotplot
+## Dotplot
 
 原文：We selected GO terms representing the **function of each cell type** with P value < 0.05 among top 30 terms (Figure 1H).
 
@@ -410,7 +410,7 @@ dotplot
 ```
 
 ## 合并
-## combined
+## Combined
 
 你可以使用Adobe Illustrator对以下图表进行修饰完善
 

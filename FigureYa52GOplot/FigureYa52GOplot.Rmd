@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用GOplot展示clusterProfiler的富集分析结果，画出paper里的⭕️图
 
-##Requirement description
+## Requirement description
 
 Display the enrichment analysis results of clusterProfiler using GOplot and draw the data in the paper ⭕ ️ Image
 
@@ -46,7 +46,7 @@ from<https://www.karger.com/Article/FullText/492519>
 
 clusterProfiler除了擅长做GO富集分析以外，还可以用KEGG、Diseaes、Reactome、DAVID、MSigDB等注释库做富集分析。另外，enrichplot自带的gseaplot2函数可以生成GSEA结果的矢量图、多条pathway画到同一个图上，完美代替Java版本的GSEA，看这篇：<https://mp.weixin.qq.com/s/AamfRz0BUENCi_1P0P-Ruw>。有关clusterProfiler、enrichplot本身的问题，建议加入Y叔知识星球提问。
 
-##Application scenarios
+## Application scenarios
 
 Suitable for: those who want to use clusterProfiler for enrichment analysis and GOplot to display results, but do not know how to connect the two.
 
@@ -58,7 +58,7 @@ In addition to being proficient in GO enrichment analysis, clusterProfiler can a
 
 安装需要的包
 
-##Environment settings
+## Environment settings
 
 Install the required packages
 
@@ -104,7 +104,7 @@ options(stringsAsFactors = FALSE)
 
 根据基因名gene symbol找到相应的ensembl ID。模式生物和非模式生物的转换代码稍有不同，根据自己的物种，选择运行以下两段之一。
 
-##Obtain the correspondence between ENTREZ ID and gene name
+## Obtain the correspondence between ENTREZ ID and gene name
 
 If your gene ID is already ENTREZ ID and saved in the format of 'very easy input * *. csv', you can skip this step and directly enter 'enrichment analysis'
 
@@ -118,7 +118,7 @@ Find the corresponding ensembl ID based on the gene symbol name. The conversion 
 
 如果你关心的物种不在这个列表里，请跳过这步，直接进入“非模式生物ENTREZ ID的获取”
 
-###Obtaining ENTREZ IDs for humans and model organisms
+### Obtaining ENTREZ IDs for humans and model organisms
 
 Taking the mouse data in the example article as an example, the other 18 species only need to change the 'OrgDb=' org. Mm. eg. db 'parameter
 
@@ -199,7 +199,7 @@ saveDb(maize.db, "Zmays.AH66225.sqlite")
 
 根据基因名gene symbol获取ENTREZ ID
 
-###Acquisition of ENTREZ ID for non model organisms
+### Acquisition of ENTREZ ID for non model organisms
 
 Model organisms, please skip this paragraph and proceed directly to "Enrichment Analysis".
 
@@ -284,7 +284,7 @@ write.csv(gsym.fc[,c(3,2)], "very_easy_input_Zm.csv",  # 选择第3列(ENTREZID)
 
 如果你已经做好了富集分析，并且保存成“enrichGO_output.csv”的格式，就可以跳过这部分，直接进入“把clusterProfiler输出的富集分析结果转成GOplot所需的格式”
 
-##Enrichment analysis
+## Enrichment analysis
 
 Reference materials:< http://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html#supported -organisms>
 
@@ -377,9 +377,9 @@ cnetplot(egox,
 ggsave("clusterProfiler_not_circle.pdf", width = 8, height = 5)
 ```
 
-## 把clusterProfiler输出的富集分析结果转成GOplot所需的格式
+## 把ClusterProfiler输出的富集分析结果转成GOplot所需的格式
 
-##Convert the enrichment analysis results output by clusterProfiler into the format required by GOplot
+## Convert the enrichment analysis results output by clusterProfiler into the format required by GOplot
 
 ```{r}
 # 读取富集分析结果 | Read enrichment analysis results
@@ -431,7 +431,7 @@ head(circ.gsym)
 
 准备画⭕️图所需的数据格式
 
-##Draw with GOplot ⭕ ️ Image
+## Draw with GOplot ⭕ ️ Image
 
 Reference materials:< http://wencke.github.io/ >
 

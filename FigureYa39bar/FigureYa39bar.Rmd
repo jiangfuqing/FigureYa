@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 图一：不同的癌症用不同的颜色展示
 
@@ -44,7 +44,7 @@ from<https://www.nature.com/articles/s41591-018-0096-5>
 The input data for the original article is the GSVA score; this code only mimics the form and does not include GSVA analysis.
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 场景一：各肿瘤某一指标的比较，例如图一的肿瘤缓解率。
 

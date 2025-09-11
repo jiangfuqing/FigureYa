@@ -12,14 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 RNA-seq read count转换成TPM。
 
 Convert RNA-seq read count to TPM.
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 只能拿到RNA-seq数据的read count，想转换成TPM。
 
@@ -341,8 +341,8 @@ eff_length <- get_eff_len(file = file,
                           transcript_id = "transcript_id")
 ```
 
-## 下载TCGA RNA-seq的read count数据 
-## Download TCGA RNA-seq read count data 
+## 下载TCGA RNA-seq的read count数据
+## Download TCGA RNA-seq read count data
 
 如果你自己的RNA-seq数据已经保存成`easy_input.txt`的格式，就跳过这步，直接进入“输入数据”
 
@@ -388,8 +388,8 @@ expMatrix <- read.table("easy_input.txt",
 expMatrix[1:3,]
 ```
 
-## read count转TPM
-## read count to TPM
+## Read count转TPM
+## Read count to TPM
 
 首先要保证表达矩阵的行名和存放基因长度向量的名字一致, 这一步非常重要
 

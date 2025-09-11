@@ -23,7 +23,7 @@ newpath <- "/home/biostacs/R/backup/env_31723062"
 
 ## 数据预处理
 
-### load data
+### Load data
 ```{r}
 ## 加载Read10X_V3函数，专门用于导入cellranger v3.0以上版本的基因表达矩阵，
 ## 返回一个sparse matrix，行为基因，列为细胞
@@ -88,7 +88,7 @@ expr_mm$cells <- data.frame(
 ```
 
 
-### filter cells and genes
+### Filter cells and genes
 
 > Only genes expressed in at least 40 different nuclei and nuclei with a minimum of 200 genes were generally kept for analysis.
 

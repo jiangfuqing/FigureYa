@@ -302,7 +302,7 @@ p
 save_plot("mRNAsi.pdf", p,base_width = 10,base_height = 8)
 ```
 
-# mDNAsi
+# MDNAsi
 
 ## 输入文件
 ## Input File

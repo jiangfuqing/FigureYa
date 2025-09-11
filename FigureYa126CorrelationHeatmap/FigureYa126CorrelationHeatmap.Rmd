@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 根据相关系数排列的无聚类热图，展示和TIM-3基因表达（某一连续变量）相关的免疫基因（其他连续变量）在样本中的分布情况。使用TCGA GBM数据以及例文给出的基因集，复现原图。
 
-##Requirement description
+## Requirement description
 
 Display the distribution of immune genes (other continuous variables) related to TIM-3 gene expression (a certain continuous variable) in the sample using a non clustered heatmap arranged according to the correlation coefficient. Using TCGA GBM data and the gene set provided in the example text, reproduce the original image.
 
@@ -39,7 +39,7 @@ Figure 3. (C, D) Most immune response related genes were significantly positivel
 
 例如像例文这种，每列一个样本，每行一个基因。上半部分画出与目标基因的表达模式呈正相关的免疫相关基因，下半部分是负相关的。顶部展示样本的亚组、基因型或其他临床信息。
 
-##Application scenarios
+## Application scenarios
 
 Display the expression patterns of multiple genes that are positively/negatively correlated with a certain gene.
 
@@ -49,7 +49,7 @@ For example, in the example text, there is one sample per column and one gene pe
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -106,7 +106,7 @@ gbm_tcga_pub2013_clinical_data.tsv，临床信息。从cBioPortal上下载得到
 
 easy_input_genes.txt，immune-response-related基因集。来自例文补充材料：Supplementary table1.xlsx
 
-##Input file
+## Input file
 
 easy_input_expr.csv，TCGA-GBM.htseq_fpkm， Gene expression profile. Downloaded from XENA, the value is log2 (FPKM+1), with 2 decimal places reserved for ease of transmission. We need to change the gene name to gene symbol.
 
@@ -179,7 +179,7 @@ imm.expr[1:3, 1:3]
 
 ## 与基因集的相关性分析
 
-##Correlation analysis with gene set
+## Correlation analysis with gene set
 
 ```{r}
 # 初始化相关性结果矩阵
@@ -215,7 +215,7 @@ neg.cor.gene <- neg.cor.gene[order(neg.cor.gene$rho,decreasing = F),]
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r}
 ### 设置颜色 ###

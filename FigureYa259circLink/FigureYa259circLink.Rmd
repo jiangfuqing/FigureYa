@@ -147,7 +147,7 @@ tar_dn_col <- "blue"
 # 开始画图
 # Plotting
 
-## 1. 快速预览 
+## 1. 快速预览
 ## 1. Take a glance
 
 > 重要提示！节点和边数据中不能包含列名 'node'、'cross'、'node.type'、'x'、'y'、'degree'！

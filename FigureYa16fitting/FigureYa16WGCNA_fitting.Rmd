@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 WGCNA得到模块以后，用模块包含的基因表达量做拟合曲线。
 
@@ -30,7 +30,7 @@ After WGCNA gets the module, a fitting curve is made with the expression of the 
 from<http://www.pnas.org/content/112/43/13360>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 本质是用一条趋势线代表多个点或线的变化趋势，多用于时间序列数据。
 
@@ -55,7 +55,7 @@ Gene expression within each gene module was output using code 15WGCNA, and each 
 
 The data in the example paper is a time series, and the author extracted the 30 genes with the highest expression and took the average (average gene expression of top 30) to plot the fitted curve.
 
-## 一次画一个module
+## 一次画一个Module
 ## Draw one module at a time
 
 这套输入数据里，每种细胞有5个sample，假装是5个时间点，4次重复，取前30个基因在4次重复里的平均值
@@ -69,7 +69,7 @@ head(t)
 ```
 
 ### 画图
-### draw plots
+### Draw plots
 
 ```{r,warning=FALSE,message=FALSE,fig.width=8,fig.height=4}
 library(ggplot2)
@@ -88,7 +88,7 @@ ggplot(t,aes(x = tp,y = tpm_mean)) +
 
 The default is to fit with the loess model, you can also add the method parameter to fit with other methods, e.g. `method = “lm”`, or “glm”, “gam”, “loess”, “rlm”
 
-## 一次画多个module
+## 一次画多个Module
 ## Draw multiple modules at once
 
 读入当前文件夹中的多个module文件，合并。
@@ -111,7 +111,7 @@ df1<-df[2:22]
 ```
 
 ### 画图
-### draw plots
+### Draw plots
 
 ```{r,warning=FALSE,message=FALSE,fig.width=8,fig.height=6}
 library(ggplot2)

@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用R代码画出paper里的直的染色体分布图
 
@@ -23,7 +23,7 @@ Use R code to draw the straight chromosome distribution map in paper
 from<https://academic.oup.com/brain/article/138/3/616/333368>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 差异表达基因（RNA-seq）、开放染色质（DNase/ATAC-seq）、CTCF结合位点（ChIP-seq）、突变位点（WGS）或DNA甲基化（WGBS）在染色体上的分布，或者只是画Ideogram
 
@@ -42,7 +42,7 @@ If you use this package in a published paper, please cite this paper:
 Hao Z, Lv D, Ge Y, Shi J, Weijers D, Yu G, Chen J. 2020. RIdeogram: drawing SVG graphics to visualize and map genome-wide data on the idiograms. PeerJ Comput. Sci. 6:e251 http://doi.org/10.7717/peerj-cs.251
 
 # 环境设置
-# environment setting
+# Environment setting
 
 ```{r}
 #install.packages("RIdeogram")
@@ -120,7 +120,7 @@ convertSVG("chromosome.svg", device = "png")
 ```
 
 # 格式转换
-# format conversion 
+# Format conversion
 
 运行完上面这段，当前文件夹里会生成一个“chromosome.svg”文件，是矢量图。可以用Inkscape、Illustrator等工具打开、编辑、转换成其他格式。
 

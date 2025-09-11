@@ -268,7 +268,7 @@ row_annot$Gene <- factor(row_annot$Gene, gene_levels)
 分别画出图的每一部分，最后组图
 Draw each part of the picture separately, and then combine them into one
 
-### subtype - column annotation
+### Subtype - column annotation
 
 ```{r}
 # set sub-subtype order as you like
@@ -287,7 +287,7 @@ p_bottom_text <- ggplot(col_annot) +
 p_bottom_text
 ```
 
-### center plot
+### Center plot
 
 ```{r}
 dgm <- as.data.frame(apply(as.data.frame(data_gene_alter[sample_used, genes_used]), 2, function(x){
@@ -318,7 +318,7 @@ p_center <-
 p_center
 ```
 
-### right plot - gene stat
+### Right plot - gene stat
 
 ```{r}
 gene_centric <- matrix(0, nrow = nrow(row_annot), ncol = length(alter_types), 
@@ -340,7 +340,7 @@ p_right <- ggplot(data = ggData_right) +
 p_right
 ```
 
-### top plot - subtype stat
+### Top plot - subtype stat
 
 ```{r}
 subtype_centric <- matrix(0, nrow = length(subtype_used), 
@@ -366,7 +366,7 @@ p_top <- ggplot(data = ggData_subtype) +
 p_top
 ```
 
-### gene annot
+### Gene annot
 
 ```{r}
 p_left <- ggplot(row_annot) +
@@ -383,7 +383,7 @@ p_left_text <- ggplot(row_annot) +
 p_left_text
 ```
 
-### combine plots
+### Combine plots
 
 ```{r, fig.width= 12, fig.height=10}
 ggpubr::ggarrange(NULL,NULL,p_top,NULL,

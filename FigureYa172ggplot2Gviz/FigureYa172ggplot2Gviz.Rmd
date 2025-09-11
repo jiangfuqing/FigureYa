@@ -108,7 +108,7 @@ Download previously published ChIP/ATAC/RNA-seq data from the GEO database. Clic
 - The above data has been uploaded to Weiyun for easy download <https://share.weiyun.com/55dfZPV>
 - If the author of the data you are interested in did not upload a bedgraph, BW, or WIG file, you can start from the SRA format. The method can be found in FigureYa155ATAC.
 
-## bigwig转bedgraph
+## Bigwig转bedgraph
 ## Convert BigWig to BedGraph
 
 作者提供的ATAC-seq数据是bigwig文件，需要转换成纯文本文件bedgraph去画图。
@@ -130,7 +130,7 @@ bigWigToBedGraph -chrom=chr16 -start=16858001 -end=16868347 GSM2863130_NO6_72.RP
 bigWigToBedGraph -chrom=chr16 -start=16858001 -end=16868347 GSM2863131_NO6_cd19pos.RPKM_nor.bw proB_ATAC_Igll1.bedgraph
 ```
 
-# 提取所需位置的track信息
+# 提取所需位置的Track信息
 # Extract the track information for the desired location
 
 例文展示的是Igll1基因附近的区域，把基因位置信息写入Igll1.bed文件，然后提取这段区域的信号，用于画图。

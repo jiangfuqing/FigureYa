@@ -138,7 +138,7 @@ ggsave("UMAP_cluster.pdf", plot = umap.plot, width = 6, height = 6)
 saveRDS(pbmc, file = "pbmc3k.seurat.object.rds") 
 ```
 
-# 构建monocle对象
+# 构建Monocle对象
 # Constructing the monocle object
 
 ```{r}

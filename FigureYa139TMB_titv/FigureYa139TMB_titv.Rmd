@@ -184,7 +184,7 @@ TMB.plot <- lapply(seq_len(length(TMB.plot)), function(i) {
 names(TMB.plot) <- levels(as.factor(TMB.dat$cohort))
 ```
 
-## 准备titv输入数据
+## 准备Titv输入数据
 ## Prepare titv input data
 
 ```{r}

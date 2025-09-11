@@ -319,7 +319,7 @@ After execution, an 'out' folder will be created containing four files: means.tx
 
 The 'out' folder contains CellPhoneDB output files
 
-# 读取cellphoneDB运行结果
+# 读取CellphoneDB运行结果
 # Loading CellPhoneDB results
 
 ```{r}

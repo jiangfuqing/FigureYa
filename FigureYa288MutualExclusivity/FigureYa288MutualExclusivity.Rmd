@@ -163,7 +163,7 @@ mut.binary <- as.data.frame(mut.binary)#; rownames(mut.binary) <- toupper(rownam
 write.table(mut.binary,"binary_mutation_matrix_two_genes.txt",sep = "\t",row.names = T,col.names = NA,quote = F)
 ```
 
-## 计算mutual exclusivity
+## 计算Mutual exclusivity
 ## Calculate mutual exclusivity
 
 ```{r}
@@ -199,7 +199,7 @@ oncoplot(maf,
 invisible(dev.off())
 ```
 
-# 第二种情况：多基因相互之间的mutual exclusivity
+# 第二种情况：多基因相互之间的Mutual exclusivity
 # Case 2: Mutual exclusivity among multiple genes
 
 当存在许多基因时，考虑相互之间的mutual exclusivity，更多情况下可以考虑使用如下展示方法：

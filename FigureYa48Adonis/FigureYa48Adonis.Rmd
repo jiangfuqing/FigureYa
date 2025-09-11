@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 进行置换多元方差分析（PERMANOVA，Adonis），画出图b
 
@@ -36,7 +36,7 @@ b, Bar plot illustrating the top 30 host factors found to be significantly assoc
 from<https://www.nature.com/articles/s41591-018-0164-x>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 分析不同分组或环境因子对样品差异的解释度，例如例文中宿主的临床表型对肠道微生物的影响。
 

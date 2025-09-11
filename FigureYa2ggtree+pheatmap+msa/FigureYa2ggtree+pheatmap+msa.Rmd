@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 基因家族成员进化树、表达谱聚类、多序列比对，组图
 
@@ -33,7 +33,7 @@ This document separately draws three figures, not grouped into one figure.
 Another document to solve the grouping problem (by Uncle Y)
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：多组sample的RNA-seq数据画完heatmap，发现我感兴趣的基因家族所在的cluster当中，有一些功能未知的基因。这些功能未知基因是否也属于这个基因家族？做多序列比对看看，它们是否具有相似的结构区域。
 

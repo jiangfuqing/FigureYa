@@ -190,7 +190,7 @@ samorder <- sort(geneclust$consensusClass)
 
  You can use this matrix to customize enhanced heatmaps (e.g., using pheatmap or ComplexHeatmap in R).
 
-# 计算基因与cluster的相关性
+# 计算基因与Cluster的相关性
 
 该部分我是与作者沟通的，作者回复如下：
 

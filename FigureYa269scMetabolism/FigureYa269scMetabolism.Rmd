@@ -203,7 +203,7 @@ dev.off()
 
 # 右图 - Metabolism pathways
 
-## 运行scMetabolism
+## 运行ScMetabolism
 
 我的电脑跑了7分钟
 
@@ -217,7 +217,7 @@ countexp.Seurat <- sc.metabolism.Seurat(obj = immune.combined,
 saveRDS(countexp.Seurat,"countexp.Seurat.rds")
 ```
 
-## 计算差异显著的metabolism pathway
+## 计算差异显著的Metabolism pathway
 
 ```{r}
 signature_exp <- countexp.Seurat@assays$METABOLISM$score

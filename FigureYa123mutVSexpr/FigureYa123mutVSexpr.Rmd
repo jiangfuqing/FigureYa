@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 昨天在群里问了一下突变和表达的相关性，有小伙伴说只能做分组的bar图，我找到一个网站，可以做出这样的图，都是TCGA的数据，想用R复现：<http://tumorsurvival.org/TCGA/Lung_TCGA_LUAD/process.php?geneName=CD274&devidePatientN=median&LowVal=&HighVal=&subtype=All>
 
-##Requirement description
+## Requirement description
 
 Yesterday, I asked in the group about the correlation between mutations and expression, and a friend said that we can only make bar charts for grouping. I found a website that can make such charts, all of which are TCGA data, and I want to reproduce them using R< http://tumorsurvival.org/TCGA/Lung_TCGA_LUAD/process.php?geneName=CD274&devidePatientN=median&LowVal=&HighVal=&subtype=All >
 
@@ -35,7 +35,7 @@ fromTCGAportal<http://tumorsurvival.org/TCGA/Lung_TCGA_LUAD/data/expression_cBio
 
 用于展示突变与表达之间的相关性（独立性）
 
-##Application scenarios
+## Application scenarios
 
 Used to demonstrate the correlation (independence) between mutations and expression
 
@@ -43,7 +43,7 @@ Used to demonstrate the correlation (independence) between mutations and express
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -106,7 +106,7 @@ display.progress = function ( index, totalN, breakN=20) {
 - SKCM_EXP_CD274.txt，CD274的表达数据
 - SKCM_MUT.txt，突变的01矩阵，从XENA下载：<https://xenabrowser.net/datapages/?dataset=TCGA.SKCM.sampleMap%2Fmutation&host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>
 
-##Input file
+## Input file
 
 Need to express spectrum data and mutation data:
 
@@ -155,7 +155,7 @@ muta <- muta[rowSums(muta) > 0.1* ncol(muta),com_sam]
 
 ## 置换检验独立性
 
-##Substitution test independence
+## Substitution test independence
 
 ```{r}
 # 定义目标基因名称 - 本例中为PD-L1(CD274)
@@ -192,7 +192,7 @@ names(p) <- rownames(muta)
 
 ## 开始画图
 
-## start plot
+## Start plot
 
 
 ```{r}

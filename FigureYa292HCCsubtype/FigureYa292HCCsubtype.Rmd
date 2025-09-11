@@ -381,7 +381,7 @@ draw(hm, heatmap_legend_side = "left", annotation_legend_side = "left")
 invisible(dev.off())
 ```
 
-# 计算group和其他类型的独立性
+# 计算Group和其他类型的独立性
 # Testing independence between groups and other types
 
 ```{r}

@@ -19,14 +19,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用基因ID提取基因表达量，输出csv文件，作为下一步分析的输入文件。
 
 Gene ID is used to extract the gene expression and output a csv file to be used as an input file for the next analysis.
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 场景一：GO富集分析获得了GO term里的多个基因，需要获得这些基因的表达矩阵。
 
@@ -175,7 +175,7 @@ Gene names are presented in a column, one gene name per row.
 ## Start extraction
 
 ### 读入基因表达矩阵
-###  Read the gene expression matrix
+### Read the gene expression matrix
 
 ```{r}
 exprSet<-read.table("easy_input_expr.txt",as.is = T)
@@ -215,7 +215,7 @@ Normally, it ends here. Unless:
 You want to draw the genes in multiple GO terms with a single pheatmap command, go ahead and run the following code:
 
 ### 重复出现的基因名处理
-### handling of repeated gene names
+### Handling of repeated gene names
 
 例如用`FigureYa17 已分类heatmap`，一步画出所有GO term里的基因表达谱heatmap。
 

@@ -140,7 +140,7 @@ sce <- sce[geneFilter, ]
 assays(sce)$norm <- FQnorm(assays(sce)$counts) 
 ```
 
-# 计算pca，聚类，拟时序分析
+# 计算Pca，聚类，拟时序分析
 # Perform PCA, clustering, and pseudotime analysis
 
 ```{r}

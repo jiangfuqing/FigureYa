@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 虽然有那么多调色板：
 
@@ -43,7 +43,7 @@ I still get unsure of my own aesthetic when it comes to picking colors for the p
 Then mimic the color scheme of your (or your boss's) preferred paper!
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 本套代码要做的就是从你心仪的paper里提取它的配色方案。
 
@@ -54,7 +54,7 @@ What this code is going to do is extract its color scheme from your preferred pa
 If you need a lot of colors, then pick a colorful paper.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 用到Y叔推荐的`rPlotter`包<https://mp.weixin.qq.com/s/ZrS8IQOMSwx9R3006HYryA>，先安装它
 
@@ -192,7 +192,7 @@ write.table(allcol,"allcol.txt",row.names = F,col.names = F)
 ```
 
 ## 增减颜色
-## add or subtract colors
+## Add or subtract colors
 
 - 增加过渡色。为了产生同一色系，让画图效果更协调，有时会在几种颜色中间添加过渡色。
 

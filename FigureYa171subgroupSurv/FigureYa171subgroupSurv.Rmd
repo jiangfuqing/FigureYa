@@ -152,7 +152,7 @@ mysurvplot("gleason",">7")
 mysurvplot("stage","T1+T2")
 ```
 
-## 批量运行，把画图结果存为list
+## 批量运行，把画图结果存为List
 
 ```{r}
 # 为了方便批量操作，把筛选条件写成向量形式

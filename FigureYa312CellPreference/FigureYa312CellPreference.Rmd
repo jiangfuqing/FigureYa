@@ -136,7 +136,7 @@ data2 <- data2[c("AL", "PB"), ]
 observe.data <- t(rbind(data2, data1)) 
 ```
 
-# 生成细胞数目分布频数统计表observe.data
+# 生成细胞数目分布频数统计表Observe.data
 # Generate Cell Count Frequency Table observe.data
 
 ```{r}

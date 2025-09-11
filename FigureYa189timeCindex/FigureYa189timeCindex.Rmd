@@ -78,7 +78,7 @@ dat$OS.time <- dat$OS.time/365 # 将时间转化为以年为单位   # converts 
 head(dat)
 ```
 
-# 构建模型用于time-dependent c-index的比较
+# 构建模型用于Time-dependent c-index的比较
 
 # Build a model for the comparison of time-dependent c-index
 

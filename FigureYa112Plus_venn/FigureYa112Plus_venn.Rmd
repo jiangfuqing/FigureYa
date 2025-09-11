@@ -31,7 +31,7 @@ vennyhttp://bioinfogp.cnb.csic.es/tools/venny/，新出来个选项，颜色填�
 
 输入基因列表，画出按百分比填充颜色的venn图，并输出各个区域的基因名。
 
-#Requirement description
+# Requirement description
 
 vennyhttp://bioinfogp.cnb.csic.es/tools/venny/ A new option has emerged, color filling by%.
 
@@ -57,7 +57,7 @@ from<http://bioinfogp.cnb.csic.es/tools/venny/>
 
 适用于2、3或4个list的overlap，超过4个用upsetR更合适。
 
-#Application scenarios
+# Application scenarios
 
 Display overlapping relationships, such as shared and specific differentially expressed genes between multiple groups.
 
@@ -67,7 +67,7 @@ Suitable for overlaps of 2, 3, or 4 lists, with upsetR being more appropriate fo
 
 安装包
 
-#Environment settings
+# Environment settings
 
 Installation package
 
@@ -181,7 +181,7 @@ SKCM_\*_test_result.\*.txt，差异表达结果，可以包含全部基因，这
 
 这里就以FigureYa118MulticlassDESeq2和FigureYa120MulticlassedgeR的输出文件作为输入，画出venn图展示不同对比的重叠情况。
 
-#Input file
+# Input file
 
 SKCM_\*_test_result.\*.txt， The differential expression results can include all genes, and here FDR is used to screen for significantly differentially expressed genes.
 
@@ -197,7 +197,7 @@ Here, taking the output files of FigureYa118MulticlassDESeq2 and FigureYa120Mult
 
 可参考`easy_input_info.txt`文件的格式，自己在Excel里写这个文件，至少要有第一列文件名和最后一列condition。
 
-##Organizing file information
+## Organizing file information
 
 You can refer to the format of the 'easy_input_info. txt' file and write this file yourself in Excel, with at least the first column of file names and the last column of conditions.
 
@@ -257,7 +257,7 @@ write.table(finfo, "easy_input_info.txt", row.names = F,quote = F, sep = "\t")
 
 ## 差异表达基因筛选
 
-##Differential expression gene screening
+## Differential expression gene screening
 
 ```{r}
 # 读入文件信息：从制表符分隔的文本文件中读取先前整理的文件信息
@@ -323,9 +323,9 @@ openxlsx::write.xlsx(fdataset, file = paste0("DEG_adj", adjcutoff, ".xlsx"), row
 
 以SKCM_deseq2_test_result.immune_vs_Others.txt和SKCM_edgeR_test_result.immune_vs_Others.txt为例，展示在两种方法中都被筛到的差异基因。
 
-#Start drawing
+# Start drawing
 
-##Two circles
+## Two circles
 
 Compare two files
 
@@ -433,7 +433,7 @@ write.xlsx(list(Intersect_1_2 = intersect_1_2), "venn_2.xlsx")
 
 以SKCM_deseq2_test_result.immune_vs_Others.txt和SKCM_edgeR_test_result.immune_vs_Others.txt为例，把上调和下调拆开，展示在两种方法中都被筛到的差异基因。
 
-##Four circles
+## Four circles
 
 Compare four files
 
@@ -471,7 +471,7 @@ write.xlsx(list(Intersect_1_2 = intersect_1_2), "venn_4.xlsx")
 
 以DESeq2获得的三种差异表达基因为例，展示其overlap
 
-##Three circles
+## Three circles
 
 Compare three files
 

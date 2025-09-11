@@ -121,7 +121,7 @@ names(fdataset) <- LETTERS[1:length(fnames)]
 names(fdataset)
 ```
 
-## 找overlap
+## 找Overlap
 
 使用ggVennDiagram包里的process_region_data处理数据，统计任意并集元素。
 
@@ -181,7 +181,7 @@ p
 ggsave(filename = "Circled_Venn_diagram.pdf", plot = p, width = 10, height = 10)
 ```
 
-# 输入overlap
+# 输入Overlap
 
 ## 输入文件
 

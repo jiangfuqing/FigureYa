@@ -168,7 +168,7 @@ genes <- read.table("easy_input_gene.txt", header = T)$SYMBOL
 #           "YTHDF1", "YTHDF2", "YTHDF3", "IGF2BP1", "IGF2BP2", )
 ```
 
-# 计算gain和loss频率
+# 计算Gain和loss频率
 # Calculate gain and loss frequency
 ```{r}
 # 将CNV数据转换为数据框并处理基因符号

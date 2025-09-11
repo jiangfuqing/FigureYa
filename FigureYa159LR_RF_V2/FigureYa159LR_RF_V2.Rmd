@@ -31,7 +31,7 @@ From <https://www.nature.com/articles/ncomms4963>
 Figure 3 | The predictive power of pseudogene expression in classification of UCEC subtypes. (a) The UCEC dataset (n 1⁄4 306) was split into training (n 1⁄4 223) and test (n 1⁄4 83) sets. (b) Schematic representation of feature selection and classifiers building through fivefold cross-validation within the training set. (c) The receiver operating characertistic curves of the three classifiers based on the cross-validation within the training set. (d) The receiver operating characertistic curve from applying the best-performing classifier (SVM) built from the whole training set to the test set.
 
 # 应用场景
-#Application scenarios
+# Application scenarios
 
 在LASSO降维的基础上，采用logistic regression或Random forest的方法，进行5-fold cross-validation评估LASSO selected feature的预测效能。
 On the basis of LASSO dimensionality reduction, logistic regression or Random forest methods are used to conduct 5-fold cross-validation to evaluate the prediction performance of LASSO selected features.

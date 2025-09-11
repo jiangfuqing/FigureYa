@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用base plot画美美的火山图
 
-##Requirement description
+## Requirement description
 
 Create a beautiful volcano map using a base plot
 
@@ -25,7 +25,7 @@ Create a beautiful volcano map using a base plot
 
 例如基因的火山图
 
-##Application scenarios
+## Application scenarios
 
 Display multiple features simultaneously, including P value, ajust P value, grouping, size, score, etc.
 
@@ -53,7 +53,7 @@ If you want to use ggplot2 to draw a volcanic map, please refer to Figure Ya59Vo
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 # 中文注释：设置R运行环境显示英文错误信息（便于国际交流或搜索解决方案）
@@ -71,7 +71,7 @@ options(stringsAsFactors = FALSE)
 
 可以换成其他值，例如富集分析结果。
 
-##Input file
+## Input file
 
 The first column is the gene name, followed by 5 columns of feature values.
 
@@ -177,7 +177,7 @@ names(pp) <- rownames(dat)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r}
 # 中文注释：创建PDF输出文件（宽度7英寸，高度6英寸）

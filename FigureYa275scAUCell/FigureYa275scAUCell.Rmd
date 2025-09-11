@@ -270,7 +270,7 @@ cells_AUC <- AUCell_calcAUC(geneSets, cells_rankings,nCores = 10,
 # 开始画图
 # Plotting
 
-## 图2a - 178个筛选ISG基因集的评分分布
+## 图2A - 178个筛选ISG基因集的评分分布
 ## Figure 2a - Score of 178 screened ISG sets.
 
 ```{r}
@@ -293,7 +293,7 @@ dev.off()
 
 Two distinct bimodal peaks are observed. When setting the AUC threshold at 0.22, 2,854 cells exhibit relatively high AUC scores.
 
-## 图2b - 基于单细胞ISG评分的UMAP可视化
+## 图2B - 基于单细胞ISG评分的UMAP可视化
 ## Figure 2b - UMAP plots based on the ISG score of each cell.
 
 ```{r}
@@ -373,7 +373,7 @@ p.final
 ggsave(filename = "UMAP_AUC_value_label.pdf", plot = p.final, height = 6, width = 6)
 ```
 
-# 计算high ISGs celltype 和low ISGs celltype 之间的DEGs
+# 计算High ISGs celltype 和low ISGs celltype 之间的DEGs
 # Calculate DEGs between high ISGs celltype and low ISGs celltype
 
 ```{r}

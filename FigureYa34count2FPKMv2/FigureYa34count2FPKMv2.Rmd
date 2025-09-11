@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### 需求描述
-### requirement description
+### Requirement description
 
 RNA-seq read count转换成FPKM。
 
 RNA-seq read count converted to FPKM.
 
 ### 应用场景
-### application scenario
+### Application scenario
 
 只能拿到RNA-seq数据的read count，想转换成FPKM。
 
@@ -113,8 +113,8 @@ Download TCGA RNA-seq read count and FPKM here, the former is used to demonstrat
 
 The sample is the same as `FigureYa22 FPKM2TPM` and `FigureYa23 count2TPM`.
 
-#### 先下载read count，用于转换成FPKM
-#### download read count first, and use it to convert to FPKM
+#### 先下载Read count，用于转换成FPKM
+#### Download read count first, and use it to convert to FPKM
 
 ```r
 library(TCGAbiolinks)
@@ -179,8 +179,8 @@ expMatrix <- read.csv("easy_input.csv",
 expMatrix[1:3,]
 ```
 
-### read count转FPKM
-### read count to FPKM
+### Read count转FPKM
+### Read count to FPKM
 
 首先要保证表达矩阵的行名和存放基因长度向量的名字一致, 这一步非常重要。
 

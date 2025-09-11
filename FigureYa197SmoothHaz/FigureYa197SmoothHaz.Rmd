@@ -153,7 +153,7 @@ write.csv(clin, "easy_input.csv", quote = F, row.names = F)
 ```
 
 # 输入文件
-# input files
+# Input files
 
 easy_input.csv，包含生存信息，和一列分组信息（此处为gender）。
 easy_input.csv，Contains survival information, and a column of grouping information (in this case, gender)
@@ -163,11 +163,11 @@ clin <- read.csv("easy_input.csv")
 head(clin)
 ```
 
-# 构建muhaz对象
-#Build the muhaz object
+# 构建Muhaz对象
+# Build the muhaz object
 
-## muhaz函数的参数设置
-#Parameter settings for the muhaz function
+## Muhaz函数的参数设置
+# Parameter settings for the muhaz function
 
 - times，生存时间向量
 - delta，生存结局向量
@@ -184,7 +184,7 @@ head(clin)
 - n.min.grid,n.est.grid=101，前者默认51，后者默认101
 - kern="epanechnikov"        设置核函数，使用首字母即可，默认epanechnikov
 
-#Parameter Descriptions for Kernel Density Estimation in Survival Analysis
+# Parameter Descriptions for Kernel Density Estimation in Survival Analysis
 
 -times: Vector of survival times.
 -delta: Vector of event status indicators (0 = censored, 1 = event occurred).
@@ -225,8 +225,8 @@ n.est.grid: Estimation grid size. Default: 101.
 
 Other kernels may be specified by abbreviation (e.g., "e" for Epanechnikov).
 
-## 构建muhaz对象
-#  Build the muhaz object
+## 构建Muhaz对象
+# Build the muhaz object
 
 ```{r}
 smoothhazp <- clin %>% 
@@ -255,7 +255,7 @@ print(maxHaz)
 maxHaz$stratMax[2]/maxHaz$stratMax[1] 
 ```
 
-## 构建cox回归模型，对比一下
+## 构建Cox回归模型，对比一下
 # Build a COX regression model and compare it
 
 两者算出来的HR近乎相等。

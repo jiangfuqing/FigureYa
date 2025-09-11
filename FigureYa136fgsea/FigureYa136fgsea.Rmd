@@ -112,7 +112,7 @@ hallmark <- read.gmt(gmtfile)
 hallmark.list <- hallmark %>% split(.$term) %>% lapply( "[[", 2)
 ```
 
-## 方法一：fgsea直接出图
+## 方法一：Fgsea直接出图
 ## Method 1: fgsea directly outputs the image
 
 后期再借助illustrator等软件进一步美化
@@ -139,7 +139,7 @@ dev.off()
 同原文结果一致，可见MYC——target是显著跟stemness是显著正相关的，而TGF_beta和EMT则呈现负相关。
 The results are consistent with the original paper. It can be seen that MYC-target is significantly positively correlated with stemness, while TGF_beta and EMT are negatively correlated.
 
-## 方法二：用clusterProfiler做GSEA，DIY出paper里的图
+## 方法二：用ClusterProfiler做GSEA，DIY出paper里的图
 ## Method 2: Use clusterProfiler to do GSEA and DIY the graph in the paper
 
 用Y叔的**clusterProfiler**做GSEA分析，然后用base plot画出原文相似的图。相似用法可以参考FigureYa60GSEA_clusterprofiler。

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 画出paper里的曼哈顿图，文字标签好看些。
 
@@ -30,7 +30,7 @@ Draw a picture of Manhattan from the paper, the text labels look better.
 from<https://www.nature.com/articles/s41588-018-0045-8>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 展示每条染色体上的SNP分布，通常作为外显子组测序文章里的第一个图。
 
@@ -88,7 +88,7 @@ chrx$chr <- factor(chrx$chr,levels=c(1:18,"X","Y"))#给染色体排序 order chr
 ```
 
 ## 计算每个SNP的坐标
-## calculate the coordinates of each SNP
+## Calculate the coordinates of each SNP
 
 ```{r}
 #计算每条染色体在x轴上的坐标
@@ -103,7 +103,7 @@ gwas$SNPy <- -log10(gwas$P_value)
 ```
 
 ## 用阈值分类
-## classify by threshold
+## Classify by threshold
 
 ```{r}
 #设置阈值

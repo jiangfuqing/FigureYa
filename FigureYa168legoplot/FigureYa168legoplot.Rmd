@@ -104,7 +104,7 @@ head(data)
 outprefix <- "test" 
 ```
 
-# 从基因组中获取突变位点context
+# 从基因组中获取突变位点Context
 # Get mutation site context from the genome
 
 ```{r}
@@ -137,7 +137,7 @@ data$mut_reverse <- mut_reverse
 # 开始画图
 # Start drawing
 
-## 画lego图
+## 画Lego图
 ## Drawing a Lego Chart
 
 lego图参考了barplot3d包的源码，在其基础上进行了修改，这个R包链接为<https://cran.r-project.org/web/packages/barplot3d/vignettes/barplot3d.html>

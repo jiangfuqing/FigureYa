@@ -244,7 +244,7 @@ head(DEG)
 write.csv(DEG, file = "easy_input_DEG.csv") #保存差异基因  # save the differential genes
 ```
 
-## 对log2FC进行标准化，并对比原文提供的经标准化后的log2FC结果
+## 对Log2FC进行标准化，并对比原文提供的经标准化后的log2FC结果
 
 ## Standardize the log2FC and compare it with the standardized log2FC results provided in the original text
 
@@ -569,7 +569,7 @@ pg2 <- gtable_filter(pg2,
 pgn <- gtable_add_grob(pg1, pg2, t = 14, l = 9, r = 9,z=2)
 ```
 
-## 提取legend、添加上下文字、合并图层
+## 提取Legend、添加上下文字、合并图层
 
 ## Extract legend, add context, and merge layers
 
@@ -610,7 +610,7 @@ dev.off()
 
 # Q & A
 
-## 1. 为什么确定原文用的log2FC标准化是(r-1)/(R-1)变换而不是r/R变换? 为什么说原文里描述的是Foldchange，实际上是log2FC？
+## 1. 为什么确定原文用的Log2FC标准化是(r-1)/(R-1)变换而不是r/R变换? 为什么说原文里描述的是Foldchange，实际上是log2FC？
 
 ## Why is it determined that the log2FC normalization used in the original text is the (r-1)/(r-1) transformation rather than the r/R transformation? Why is it said that what is described as Foldchange in the original text is actually log2FC?
 

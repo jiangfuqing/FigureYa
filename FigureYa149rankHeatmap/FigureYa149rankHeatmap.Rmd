@@ -158,7 +158,7 @@ col_cat <- c("> 2" = "#A80C3A", "1 - 2" = "#ED5E57", "-1 - 1" = "#DDD3D2",
              "-2 - -1" = "#6B9AB7", "< -2" = "#2F5B89", "P >= 0.05" = "white")
 ```
 
-### 2. 自定义一个字体颜色根据cutoff变化的函数
+### 2. 自定义一个字体颜色根据Cutoff变化的函数
 ### 2. Customize a function that changes the font color according to the cutoff
 
 热图颜色为白色和灰色时，字为黑色；蓝色和红色时，字为白色。

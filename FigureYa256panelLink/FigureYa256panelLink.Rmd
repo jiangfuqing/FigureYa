@@ -104,7 +104,7 @@ mycolor <- c("red", "dodgerblue3", "darkorchid1", "darkorange",
 
 # 开始画图
 
-## 1. prepare left panel
+## 1. Prepare left panel
 
 原文：alterations of these genes at mRNA, protein, DNA methylation, mutation and SCNA levels based on hypoxia score-high (**red**) or hypoxia score-low (**blue**) samples across 21 cancer types (left). 
 
@@ -140,7 +140,7 @@ ggplot() +
 p_left
 ```
 
-## 2. prepare right panel
+## 2. Prepare right panel
 
 ```{r}
 bracketData <- drugAnn %>%
@@ -223,7 +223,7 @@ ggplot(
 p_right
 ```
 
-## 3. crosslink combining left and right panels
+## 3. Crosslink combining left and right panels
 
 ```{r fig.width=10, fig.height=8}
 cl_plot(

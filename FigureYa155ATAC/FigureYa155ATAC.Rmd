@@ -48,7 +48,7 @@ Figure d in the original article primarily indicates that under GW3965 treatment
 用热图展示染色质开放程度差异，同样适用于ChIP-seq数据。
 Using heatmaps to display differences in chromatin accessibility is also applicable to ChIP-seq data.
 
-# 环境设置   
+# 环境设置
 # Environment Setup
 
 安装要用到的软件：
@@ -140,7 +140,7 @@ sh command.pfastq.sh
 STEP 7 根据`sra_result.csv`和`SraRunInfo.csv`，手动整理成`samples.conf`文件。分为两列，第一列是SRRxxxx，第二列是对应的需要改成的样本名。
 STEP 7: Manually organize `sra_result.csv` and `SraRunInfo.csv` into the `samples.conf` file. The file is divided into two columns: the first column is SRRxxxx, and the second column is the corresponding sample name to be modified.
 
-## 质控、alignment，bam文件转成bigwig文件用于下游分析
+## 质控、Alignment，bam文件转成bigwig文件用于下游分析
 ## Quality control, alignment, and converting bam files to BigWig files for downstream analysis
 
 ```bash
@@ -174,8 +174,8 @@ bamCoverage -bs 1 --effectiveGenomeSize 2620345972 --normalizeUsing RPKM -b WT_G
 cat samples.conf | while read line; do all=($line);SRR=${all[0]};study=${all[1]};old=$SRR.rmdup.bam; new=$study.bam; mv $old $new; done
 ```
 
-## washu brower 展示bigwig文件
-## washu browser displays bigwig files
+## Washu brower 展示bigwig文件
+## Washu browser displays bigwig files
 
 用[washu epigenome browser](https://epigenomegateway.wustl.edu/browser/)查看bigwig文件。这里截图出来，确实能够重复出原文的趋势。
 Use [washu epigenome browser](https://epigenomegateway.wustl.edu/browser/) to view bigwig files. The screenshots shown here do indeed reproduce the trends in the original article.
@@ -187,14 +187,14 @@ washu is also the visualization method used in most articles and can output SVG 
 
 ![](washu2.png)
 
-## call peak
+## Call peak
 
 ```bash
 for i in *.bam; do x=${i/.bam/}; echo "macs2 callpeak --nomodel -t $i -q 0.01 -f BAM -g mm --keep-dup all --llocal 10000 -n $x 2> $x.macs2.log"; done > command.macs2.sh
 sh command.macs2.sh
 ```
 
-## intersect and merge peak file
+## Intersect and merge peak file
 
 有多次生物学重复，下面是不同生物学重复之间peak overlap的处理方法：
 There are multiple biological replicates. Here's how to handle peak overlap between replicates:
@@ -229,7 +229,7 @@ rm -rf *.tmp.bed *.tmp_merge.bed
 cat *.bed |bedtools sort | bedtools merge -i - > allMerge.bed
 ```
 
-## peak注释
+## Peak注释
 ## Peak Annotation
 
 peak注释到基因层面，主要用Y叔的ChIPseeker。

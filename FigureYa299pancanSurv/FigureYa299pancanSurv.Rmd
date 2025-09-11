@@ -246,7 +246,7 @@ for(i in tumors) {
 write.table(outTab.cox, file = "output_summary of cox result in pancancer.txt",sep = "\r",row.names = F,col.names = T,quote = F)
 ```
 
-# 根据感兴趣基因的最佳cutoff做KM
+# 根据感兴趣基因的最佳Cutoff做KM
 # Perform KM analysis based on the optimal cutoff of genes of interest
 
 有些肿瘤因为数据问题无法估计HR，不过不影响绘图。

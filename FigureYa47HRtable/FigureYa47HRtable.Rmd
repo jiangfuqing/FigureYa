@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 计算coxHR，单因素cox和多因素cox，输出为表格
 
@@ -31,7 +31,7 @@ Calculate coxHR, univariate cox and multivariate cox, output as table
 from<https://jhoonline.biomedcentral.com/articles/10.1186/s13045-017-0445-8>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 对比和展示临床相关因素和基因表达对疾病发病或预后的影响。
 
@@ -272,7 +272,7 @@ uni_multi2<-dplyr::full_join(univartable2,multicox2,by="characteristics")
 uni_multi2$characteristics <- as.character(uni_multi2$characteristics)
 ```
 
-## 输出html格式表格
+## 输出Html格式表格
 ## Output html format table
 
 在Rstudio里点击Knit运行
@@ -312,7 +312,7 @@ cohort and independent validation cohort",
              footnote_as_chunk = T)
 ```
 
-## 生成csv格式的表格
+## 生成Csv格式的表格
 ## Generate a table in CSV format
 
 ```{r}
@@ -332,7 +332,7 @@ str(comtable)
 write.csv(comtable,"Table2.csv", quote = F, row.names = F)
 ```
 
-## 生成word格式的表格
+## 生成Word格式的表格
 ## Generate a table in word format
 
 ```{r}

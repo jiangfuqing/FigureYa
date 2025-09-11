@@ -256,7 +256,7 @@ luadsurvival_tumortime <- luadsurvival_tumortime[, c(1, 6, 7)]  # 选择第1,6,7
 tcgadatatpm$sample <- row.names(tcgadatatpm)  # 将行名转为列/convert row names to column
 ```
 
-### 第三步：整理为cox分析的输入格式
+### 第三步：整理为Cox分析的输入格式
 
 ### Step 3: Organize into an input format for cox analysis
 
@@ -290,7 +290,7 @@ realdata[1:5, 1:5]
 write.csv(realdata, "easy_input_4cox.csv")
 ```
 
-## 单因素cox分析
+## 单因素Cox分析
 
 ## One-way cox analysis
 

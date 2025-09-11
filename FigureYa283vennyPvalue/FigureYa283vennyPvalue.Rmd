@@ -102,7 +102,7 @@ dat <- as.list(dat)
 n.bk <- length(unique(unlist(dat)))
 ```
 
-# 计算p value
+# 计算P value
 # Calculate p-value
 
 输出多个数据集重叠显著P值，基于软件包“SuperExactTest”中MSET函数: Calculate FE and significance of intersection among multiple sets.
@@ -126,7 +126,7 @@ p.value <- mset.res$p.value
 p.value
 ```
 
-# 画venn图
+# 画Venn图
 # Draw Venn diagram
 
 个人比较推荐采用在线工具绘制scale后的韦恩图，方便快捷可编辑，可尝试以下链接：

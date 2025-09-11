@@ -286,7 +286,7 @@ The output file TCGA_*_limma_test_result.tumor_vs_normal.txt from the "Different
 # 开始画图
 # Plotting
 
-## 绘制log2FoldChange的热图
+## 绘制Log2FoldChange的热图
 ## Generate a Heatmap of log2FoldChange Values
 
 ```{r}

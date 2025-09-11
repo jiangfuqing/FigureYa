@@ -144,7 +144,7 @@ It is sufficient to keep all histologic data in the same sample and in the same 
 
 - Clinical survival information must be in the exact same order as the sample of the histology data. Based on the variable screening for survival analysis and the KM curve plotting, CancerSubtypes only utilizes two variables, survival time and survival status, so please check in advance if the samples match!
 
-### 读取mRNA表达数据和miRNA表达数据
+### 读取MRNA表达数据和miRNA表达数据
 
 ### Read mRNA expression data and miRNA expression data
 

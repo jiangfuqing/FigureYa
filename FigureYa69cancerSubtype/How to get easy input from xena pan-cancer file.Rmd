@@ -83,7 +83,7 @@ geneid_df <-geneid_df[!id,]
 head(geneid_df)
 ```
 
-## 提取miRNA和蛋白质的表达数据
+## 提取MiRNA和蛋白质的表达数据
 
 ```{r}
 # 提取感兴趣的癌症里的tumor的样品ID

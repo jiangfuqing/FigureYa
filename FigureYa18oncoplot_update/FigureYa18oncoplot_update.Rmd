@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用R代码画出paper里的这种瀑布图。
 
@@ -29,7 +29,7 @@ Use R code to draw oncoplot like the one in the paper.
 from<https://www.cell.com/cell/abstract/S0092-8674(17)30639-6>
 
 # 使用场景
-# usage scenario
+# Usage scenario
 
 展示多个样本中多个基因的突变情况，包括但不限于SNP、indel、CNV。
 
@@ -54,7 +54,7 @@ Here, use TCGAbiolinks to download data and draw with maftools. If you want more
 Maftools are rich in functions, browse <https://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html> to know what kind of graphs you can draw with it, and then come to it when you need it~
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 
@@ -171,7 +171,7 @@ oncoplot画法：<https://bioconductor.org/packages/release/bioc/vignettes/mafto
 oncoplot drawing method: <https://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/oncoplots.html>
 
 ## 展示突变频率排名前20的基因
-## Show the top 20 genes with mutation frequency 
+## Show the top 20 genes with mutation frequency
 
 ```{r}
 pdf("oncoplotTop20.pdf",width = 15,height = 10)
@@ -206,7 +206,7 @@ dev.off()
 ![](oncoplotLIST.pdf)
 
 ## 重新配色展示突变频率排名前20的基因
-##  Recolor to show the top 20 genes with mutation frequency
+## Recolor to show the top 20 genes with mutation frequency
 
 默认的颜色不够好看，还可以改配色
 

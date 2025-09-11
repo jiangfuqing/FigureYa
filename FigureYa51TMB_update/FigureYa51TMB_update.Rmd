@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用某个基因的表达量来分组，画出各组的TMB box plot，带散点，计算p value。
 
@@ -29,7 +29,7 @@ Use the expression of a particular gene to group, draw a TMB box plot with scatt
 from<https://www.nejm.org/doi/full/10.1056/NEJMoa1406498>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 借助突变数据TMB，把你的基因跟免疫治疗预后联系起来。
 
@@ -44,7 +44,7 @@ You can group based on high or low expression of a particular gene (or group bas
 In the next step, it is also possible to do survival analysis by grouping with high or low TMB values.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 加载R包
 
@@ -99,7 +99,7 @@ rownames(expMatrix_tumor) <- sapply(strsplit(rownames(expMatrix_tumor), "\\."), 
 write.csv(expMatrix_tumor["ENSG00000141510",], "easy_input_expr.csv", quote=F, row.names = T)
 ```
 
-## 根据表达量给sample分组
+## 根据表达量给Sample分组
 ## Group sample based on expression
 
 easy_input_expr.csv，某个基因在各个sample里的表达量。
