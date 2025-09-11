@@ -97,7 +97,7 @@ options(stringsAsFactors = FALSE)
 
 Large files have been uploaded to Weiyun: <https://share.weiyun.com/c8GQyxR4>
 
-## 下载TCGA pan-cancer数据
+## 下载TCGA Pan-cancer数据
 ## Download TCGA Pan-Cancer Data
 
 GSVA的输入数据可以是microarray data，也可以是RNA-seq count、CPM、RPKM、TPM。

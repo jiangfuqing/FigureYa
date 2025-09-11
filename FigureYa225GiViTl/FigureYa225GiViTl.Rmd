@@ -204,7 +204,7 @@ cor(round(as.numeric(PpreV),digits = 6), #我们复现的验证集的预测概�
 
 相关性达到0.999999，基本一致
 
-# 第二步：GiViTI calibration belt
+# 第二步：GiViTI Calibration belt
 
 givitiCalibrationBelt函数说明，可参考文末所附“GiViTI calibration belt and test原理”。
 

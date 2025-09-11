@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 这个PCA很特别
 
@@ -37,7 +37,7 @@ Figure 3. Dynamic Gene-Expression Patterns of Oocyte Subtypes at Stepwise Develo
 (B) Relative gene-expression patterns of representative genes essential for oocyte development along the PC1 dimension.
 
 # 应用场景
-# application scenario
+# Application scenario
 
 单细胞RNA-seq，从PCA结果就能看出基因表达模式跟细胞类型的关系。
 
@@ -52,7 +52,7 @@ Original text: Principal component analysis (PCA) revealed that the four oocyte 
 Consistently, the relative expression levels of **genes known to be essential for follicular development also varied along PC1 axis** (Figures 3B and S3A). Genes promoting follicle development, such as ZP1, BMP15, and GDF9, were progressively **upregulated from oocyte subtype C1 to C4**. Meiotic M phase genes WEE2 and AURKA as well as DNA methyltransferase, DNMT1 and DNMT3A, were also gradually upregulated from subtype C1 to C4 (Figures 3B and S3A). 
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

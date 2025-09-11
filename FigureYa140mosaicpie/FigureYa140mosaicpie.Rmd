@@ -202,7 +202,7 @@ ggsave("mosaicPie.pdf", width = 12, height = 12)
 - TCGA data are downloaded using CGDS-R. For the usage of CGDS-R, please refer to this article: <https://mp.weixin.qq.com/s/pqck8jMk-WIZ6EgkBIWQHA>, taking methylation and mRNA expression as examples
 
 ```r
-# genes of interest
+# Genes of interest
 genes <- setdiff(read.table(file = "cancergenes_list.txt", header = T, sep = "\t")[,1], "")
 
 # Create CGDS object
@@ -247,7 +247,7 @@ hypoMat <- as.data.frame(hypoMat)
 hyperMat <- as.data.frame(hyperMat)
 exprMat <- as.data.frame(exprMat)
 head(hypoMat)
-# return a combined methylation matrix
+# Return a combined methylation matrix
 ```
 
 ### 整理成画图所需的格式

@@ -226,13 +226,13 @@ cgList_selector <- apply(methylation_matrix, 1, function(x) {sum(is.na(x)) == 0}
 cgList_select <- unlist(cgList[cgList_selector])
 ```
 
-## nearest shrunken centroid classification
+## Nearest shrunken centroid classification
 
 先把上面各种信息存到metylation.data里，然后用到pamr包里的两个函数：pamr.train和pamr.predict。
 
 用?pamr.train查看对输入的要求
 
-## nearest shrunken centroid classification
+## Nearest shrunken centroid classification
 
 First, we saved the above information into metylation.data, and then we used two functions from the pamr package: pamr.train and pamr.predict.
 
@@ -310,7 +310,7 @@ cg25247520, cg11201447 in cgsites
 
 ## 开始画图
 
-## plot
+## Plot
 
 ```{r}
 # 遍历筛选出的每个CpG位点，绘制其在肿瘤和正常样本中的甲基化水平分布图（中文注释）

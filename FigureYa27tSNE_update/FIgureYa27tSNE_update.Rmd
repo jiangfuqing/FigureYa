@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用R做单细胞RNA-seq的t-SNE图。
 
@@ -39,7 +39,7 @@ You may get stuck on two problems: R package installation and dataset preprocess
 This code takes you through these two problems smoothly, drawing t-SNE plots, exporting cell classification and candidate marker genes to file.
 
 # 应用场景
-# application scenario
+# Application scenario
 
 场景一：单细胞测序的上百个细胞，识别亚群，找到marker基因；
 
@@ -50,7 +50,7 @@ Scenario 1: Hundreds of cells from single cell sequencing, identify subpopulatio
 Scenario 2: Hundreds of tumor samples, identify subtypes, find marker genes. Used to classify methylation subtypes like the example image.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 安装R包`Seurat`。之前的版本对应2.x, 目前版本对应3.x.x.
 
@@ -231,7 +231,7 @@ obj <- FindVariableFeatures(
 ```
 
 ## 处理混淆因子
-## deal with confounder factor
+## Deal with confounder factor
 
 所谓的混淆因子(confounder factor) 指的就是目标因素（如实验处理）以外的因素对结果的影响， 比如说批次效应。这些因素掩盖了你真正想研究的目标，所以要尽可能排除。
 
@@ -287,8 +287,8 @@ obj <- FindClusters(object = obj,
                     resolution = 1.0)
 ```
 
-## t-SNE非线性降维
-## t-SNE nonlinear dimensionality reduction
+## T-SNE非线性降维
+## T-SNE nonlinear dimensionality reduction
 
 ```{r}
 obj <- RunTSNE(
@@ -315,8 +315,8 @@ Set `pt_size` to modify point size, modify `mycol` to add custom colors
 mycol <- c("#223D6C","#D20A13","#FFD121","#088247","#11AA4D","#58CDD9","#7A142C","#5D90BA","#431A3D","#91612D","#6E568C","#E0367A","#D8D155","#64495D","#7CC767")
 ```
 
-## t-SNE可视化
-## t-SNE visualization
+## T-SNE可视化
+## T-SNE visualization
 
 ```{r}
 pt_size = 1

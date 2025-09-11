@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 已有一个表达谱进行了聚类，找到这个表达谱的signature genes ，同时对另外一个表达谱进行样本聚类。
 
-##Requirement description
+## Requirement description
 
 An expression profile has already been clustered, and the signature genes of this expression profile have been identified. At the same time, another expression profile has been subjected to sample clustering.
 
@@ -37,7 +37,7 @@ from<https://www.nature.com/articles/s41586-019-0987-8>
 
 以皮肤黑色素瘤（TCGA-SKCM）为例，采用监督层次聚类算法，用它的金标准亚型寻找marker。利用监督层次聚类在验证集（假设TCGA-SKCM本身就是验证集）上识别新亚型。
 
-##Application scenarios
+## Application scenarios
 
 Under the premise of existing subtypes (obtained through clustering or gold standard subtypes), search for subtype markers and perform supervised analysis on an independent dataset.
 
@@ -47,7 +47,7 @@ Taking skin melanoma (TCGA-SKCM) as an example, supervised hierarchical clusteri
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -90,7 +90,7 @@ easy_input_info.txt，包含样品的亚型、临床生存信息，用于做生�
 
 SKCM_deseq2_test_result.*_vs_Others.txt，多组差异分析结果，用于找到这个表达谱的signature genes，即marker基因。可以用FigureYa118MulticlassDESeq2，FigureYa119MulticlassLimma，FigureYa120MulticlassedgeR中任意一个的输出作为输入。
 
-##Input file
+## Input file
 
 easy_input_count.txt， Expression matrix, used for training. The use of supervised clustering belongs to cluster analysis, so please choose data types that are robust to cluster analysis, such as FPKM, TPM, standardized count values, and so on.
 
@@ -122,7 +122,7 @@ DEfiles <- c("SKCM_deseq2_test_result.immune_vs_Others.txt",
 
 ## 根据差异表达结果选取每种亚型特异性上调的marker
 
-##Select subtype specific upregulated markers based on differential expression results
+## Select subtype specific upregulated markers based on differential expression results
 
 ```{r}
 # 设置差异表达基因筛选阈值（Set thresholds for differential expression gene screening）
@@ -179,7 +179,7 @@ if(!length(unique(as.character(unlist(topmarker)))) == top * length(DEfiles)) {c
 
 **注意：**理论上这里需要一个独立的验证集，可以是TCGA通过抽样出的测试集，也可以是GEO等数据库下载的，数据类型要满足聚类分析要求。此处直接假设TCGA-SKCM本身为验证集，也就是在原有数据集的基础上做监督聚类，实际处理自己的数据时另外再提供一个文件给expr_test。
 
-##Supervised hierarchical clustering
+## Supervised hierarchical clustering
 
 **Note: In theory, an independent validation set is required here, which can be a test set sampled by TCGA or downloaded from databases such as GEO. The data type should meet the requirements of cluster analysis. Here, we assume that TCGA-SKCM itself is the validation set, which means that supervised clustering is performed on the basis of the original dataset, and an additional file is provided to expr_test when processing its own data.
 
@@ -214,7 +214,7 @@ names(scgroup) <- colnames(indata)  # 设置样本名称为聚类结果的名称
 
 这里简单画个热图判断具体的亚型对应关系，更复杂的外部聚类绘制热图可参考FigureYa91cluster_heatmap
 
-##Draw a heat map to determine the correspondence between subtypes
+## Draw a heat map to determine the correspondence between subtypes
 
 The advantage of hierarchical supervised clustering is that it is very flexible, but the drawback is that you do not know whether the original C1 is the nominal C1 after supervised clustering (it may become C2). Therefore, it is best to use a supervised clustering marker to draw a heatmap, visually determine the specific subtype correspondence, and rename it with the corresponding color.
 
@@ -270,7 +270,7 @@ Please reason for the yellow color block on your own.
 
 ## 开始画图
 
-## start plot
+## Start plot
 
 ```{r}
 # 数据预处理：将生存时间列中的非数值标记替换为缺失值（Data preprocessing: Replace non-numeric markers in survival time column with NA）
@@ -289,7 +289,7 @@ Sinfo$scgroup <- scgroup[rownames(Sinfo)]
 
 如果只是想画生存曲线，可参考FigureYa1survivalCurve。
 
-###Survival analysis of the main classification (gold standard or training set clustering results)
+### Survival analysis of the main classification (gold standard or training set clustering results)
 
 If you just want to draw a survival curve, you can refer to FigureYa1survivalCurve.
 
@@ -333,7 +333,7 @@ ggsave("training_data.pdf")
 
 ### 验证集的生存分析
 
-###Survival analysis of validation set
+### Survival analysis of validation set
 
 ```{r}
 # 执行对数秩检验比较不同聚类组的生存差异（Perform Log-rank test to compare survival differences between clustering groups）

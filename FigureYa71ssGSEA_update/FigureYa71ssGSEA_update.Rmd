@@ -120,7 +120,7 @@ Quantifying immune infiltration with ssGSEA requires two input data:
 
 The following takes you to the two input files:
 
-### 免疫细胞marker genes
+### 免疫细胞marker Genes
 
 这步获得的easy_input_immunity.rdata里面是各种免疫细胞marker genes list，可重复使用。
 
@@ -180,7 +180,7 @@ Here we use TGCAbiolinks to download the gene expression matrix of “TCGA-COAD�
 If you have already generated the gtf_v22.csv file, you can skip the following paragraph.
 
 ```r
-# 先获得protein_coding gene的gene_id跟gene symbol的对应关系
+# 先获得protein_coding Gene的gene_id跟gene symbol的对应关系
 gtf_v22 <- rtracklayer::import("gencode.v22.annotation.gtf")
 gtf_v22 <- as.data.frame(gtf_v22)
 gtf_v22 <- dplyr::select(gtf_v22, c("gene_id", "gene_type", "gene_name")) %>% 
@@ -193,7 +193,7 @@ gtf_v22 <- bitr(gtf_v22$gene_name, fromType = "SYMBOL", toType = "ENTREZID", Org
   merge(., gtf_v22, by.x = "SYMBOL", by.y = "gene_name") %>% 
   mutate(., gene_id = str_sub(gene_id, 1, 15))
 
-# 这步获得gtf_v22.csv文件，包含v22版本protein_coding gene的gene_id、gene symbol和ENTREZ ID的对应关系，可重复使用。
+# 这步获得gtf_v22.csv文件，包含v22版本protein_coding Gene的gene_id、gene symbol和ENTREZ ID的对应关系，可重复使用。
 write.csv(gtf_v22, "gtf_v22.csv", quote = F, row.names = F)
 ```
 ```{r}

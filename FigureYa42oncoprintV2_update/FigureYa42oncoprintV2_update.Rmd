@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 没有具体突变位点信息，只有临床信息和突变名称，对应着每个个体，01矩阵，需要画这样的oncoprint图，按照pathway分开。
 
@@ -34,7 +34,7 @@ Or this
 from<https://www.nejm.org/doi/full/10.1056/NEJMoa1301689>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 展示多个样本中多个基因的变异，以及临床信息。
 
@@ -57,7 +57,7 @@ If you use it in published research, please cite:
 Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional genomic data. Bioinformatics 2016.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

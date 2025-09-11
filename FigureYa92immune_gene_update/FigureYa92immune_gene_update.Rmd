@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 计算免疫浸润跟基因的相关性，画图。
 
-#Requirement description
+# Requirement description
 
 Calculate the correlation between immune infiltration and genes and draw a graph.
 
@@ -59,7 +59,7 @@ Fig. 3 Construction of a prognostic immune-related gene signature. g ssGSEA reve
 
 在“小丫画图”公众号回复“R2”查看类似的图在文章里的用法。
 
-#Application scenarios
+# Application scenarios
 
 Evaluate the impact of genes on immune infiltration, and even write it as a cycle to batch screen candidate genes that affect immune infiltration.
 
@@ -71,7 +71,7 @@ Reply "R2" on the "Xiaoya Painting" official account to check the usage of simil
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -121,7 +121,7 @@ options(stringsAsFactors = FALSE)  # 禁止字符串自动转换为因子，避�
 - ssGSEA_output.csv，免疫细胞矩阵，列是免疫细胞，行是样本，由FigureYa71ssGSEA产生。在FigureYa71ssGSEA读取文件的命令行里添加`check.names = F`，避免行名TCGA id的“-”变成“.”。列也可以是基因，即基因表达矩阵。
 - easy_input_expr.txt，基因表达矩阵，列是样本，行是基因。行也可以是转录本，甚至是临床信息。另外，作者还提供了从TCGA表达矩阵（例如not_easy_input_expr.txt）提取某一基因表达谱的代码，见pick1gene.R文件。
 
-#Input file
+# Input file
 
 Request that the sample names of the two files be consistent
 
@@ -185,7 +185,7 @@ head(y)
 
 进行spearman相关性分析，返回相关性系数和p值
 
-#The correlation between genes and immune cells
+# The correlation between genes and immune cells
 
 Perform Spearman correlation analysis, return correlation coefficient and p-value
 
@@ -231,7 +231,7 @@ write.table(data, "output_cor.txt", sep = "\t", quote = F, row.names = F)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r,message=FALSE, warning=FALSE}
 # 读取预先计算好的相关性结果文件（需确保文件格式与output_cor.txt一致）
@@ -265,7 +265,7 @@ ggsave("gene_Xcell.pdf")
 
 从上面的图可以看出基因跟不同免疫细胞的相关性有差异，可以进一步挑一个相关性最强的免疫细胞，例如TReg，画出基因表达跟免疫细胞浸润在每个样本里的分布。
 
-#The correlation between genes and one type of immune cell
+# The correlation between genes and one type of immune cell
 
 From the above graph, it can be seen that there are differences in the correlation between genes and different immune cells. Therefore, we can further select the immune cell with the strongest correlation, such as TReg, and draw the distribution of gene expression and immune cell infiltration in each sample.
 
@@ -289,7 +289,7 @@ head(plot_df)
 
 图好看，但是速度很慢。
 
-##Drawing with ggscatterstats package
+## Drawing with ggscatterstats package
 
 The picture looks good, but the speed is very slow.
 
@@ -325,7 +325,7 @@ ggscatterstats(
 
 先定义一个函数，返回计算的结果，最终会作为标题放在图上方，他接受两个参数，就是作图文件的两列，分别是免疫数据和表达量数据。
 
-##Draw with ggplot2
+## Draw with ggplot2
 
 First, define a function that returns the calculated result, which will be placed as a title above the graph. It takes two parameters, namely the two columns of the graph file, which are immune data and expression level data.
 

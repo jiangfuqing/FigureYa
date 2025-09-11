@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的图
 
@@ -29,7 +29,7 @@ Draw the figure in paper with R code
 from<https://www.nature.com/articles/nplants2015221>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：评估一个总体的不同组分的比例变化
 
@@ -40,7 +40,7 @@ Scenario 1: Evaluate the proportional changes of different components of a whole
 Scenario 2: Evaluate different indicators under the same measurement system
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -89,7 +89,7 @@ The canvas will be set to 21cm * 29.7cm (width and height) A4 paper
 ### Prepare the svg statement
 
 #### 1.画4个圆
-#### 1.Draw 4 circles
+#### 1.Draw 4 Circles
 
 svg圆语句格式为\<circle cx cy r style="stroke:#006600;fill:#00cc00"/\>，其中参数cx、cy定义原点坐标，r定义圆半径，style定义线颜色宽度类型填充等（其中，stroke定义线的颜色，stroke-width定义线的宽度，stroke-dasharray定义虚线，fill定义圆的填充颜色）
 
@@ -111,7 +111,7 @@ circos <- data.frame(paste("<circle cx=\"", rx, "\" cy=\"", ry, "\" r=\"", .25 *
 ```
 
 #### 2.通过路径（path）画花瓣
-#### 2.Draw flower petals through a path
+#### 2.Draw Flower petals through a path
 
 原理图
 
@@ -150,7 +150,7 @@ mydata$bezier <- paste("<path d=\"M",rx,",",ry," C", cx1, ",", cy1, ",", cx2, ",
 ```
 
 #### 3.文本语句
-#### 3.Text statements
+#### 3.Text Statements
 
 svg文本格式为\<text x y font-size fill >words\</text\>，x，y是文本左下角的坐标
 

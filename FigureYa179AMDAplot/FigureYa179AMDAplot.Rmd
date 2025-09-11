@@ -343,7 +343,7 @@ DEG <- read.csv("easy_input_DEG.csv", row.names = 1)
 head(DEG)
 ```
 
-# 计算AMDA score和p值
+# 计算AMDA Score和p值
 
 # Calculate the AMDA score and P-value
 
@@ -379,7 +379,7 @@ test$AMDA.padj%<>% as.numeric()
 write.csv(test, "AMDAscore_output.csv", row.names = F, quote = F)
 ```
 
-## 导入原文的AMDA score进行比较
+## 导入原文的AMDA Score进行比较
 
 ## Import the AMDA score of the original text for comparison
 
@@ -658,9 +658,9 @@ Answer: In the ICGC-BLCA transcriptome data, the gene names are composed of gene
 因此，这次直接用TCGA-BLCA的数据，里面是ensembl id，直接使用即可，不过这也导致了下面的问题：计算结果偏差，**经对比发现，ICGC转录组的raw.count和TCGA的raw.count完全不一致（相同sample下）**。
 Therefore, this time we directly used the data from TCGA-BLCA, which contains the ensembl id, and could use it directly. However, this also led to the following problem: After comparison, it was found that the raw.count of the ICGC transcriptome and that of the TCGA are completely inconsistent (under the same sample).
 
-## 3. 计算结果与原文的AMDA score的偏差是什么导致的？
+## 3. 计算结果与原文的AMDA Score的偏差是什么导致的？
 
-## 3.What causes the deviation between the calculation result and the original AMDA score?
+## 3.What Causes the deviation between the calculation result and the original AMDA score?
 
 答：除了上面说的用了TCGA导致的偏差外，还有一个文章本身的原因。
 Answer: Besides the deviation caused by the use of TCGA mentioned above, there is also a reason related to the article itself.

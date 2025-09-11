@@ -187,7 +187,7 @@ head(Sinfo)
 write.csv(Sinfo, "output_PPS.csv", quote = F)
 ```
 
-# 用ISOpureR纯化肿瘤样本表达谱 (not run)
+# 用ISOpureR纯化肿瘤样本表达谱 (not Run)
 
 计算纯化后的表达谱，用于与药敏数据的关联分析（该分析需使用原始表达谱，不能进行对数转化）
 

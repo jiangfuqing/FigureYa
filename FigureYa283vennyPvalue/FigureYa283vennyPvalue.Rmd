@@ -102,7 +102,7 @@ dat <- as.list(dat)
 n.bk <- length(unique(unlist(dat)))
 ```
 
-# 计算p value
+# 计算p Value
 # Calculate p-value
 
 输出多个数据集重叠显著P值，基于软件包“SuperExactTest”中MSET函数: Calculate FE and significance of intersection among multiple sets.

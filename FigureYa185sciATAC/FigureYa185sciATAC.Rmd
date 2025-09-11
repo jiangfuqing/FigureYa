@@ -64,7 +64,7 @@ I fell into a trap in software installation. The software installation is a bit 
 ```bash
 conda create -n py36 python=3.6
 conda activate py36
-#conda install -c r r-base=3.6.3
+# Conda install -c r r-base=3.6.3
 conda install -c bioconda r-monocle3
 conda install -c bioconda bioconductor-cicero -y
 ```
@@ -233,7 +233,7 @@ plot_connections(conns, "chr2", 9773451,10773451,
 cicero会调用Gviz包，跟Gviz类似，参数找起来太麻烦。很难调到自己理想的状态。因此，下面用washu browser来展示，**重点是搞定输入文件格式转换**。
 cicero will call the Gviz package. Similar to Gviz, it is too troublesome to find the parameters. It's very difficult to adjust to one's ideal state. Therefore, the following is demonstrated using washu browser.  The key point is to handle the input file format conversion.
 
-## 用washu browser展示
+## 用washu Browser展示
 
 ## Display with washu browser
 

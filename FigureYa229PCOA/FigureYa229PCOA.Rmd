@@ -330,7 +330,7 @@ invisible(dev.off())
 
 ![](PoCA.pdf)
 
-# 附：PERMANOVA test (2-way adonis)
+# 附：PERMANOVA Test (2-way adonis)
 
 各组之间的差异有统计学意义吗？作者用了PERMANOVA test。
 

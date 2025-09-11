@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 用R画出paper里的双因子生存分析图，计算p value。
 
@@ -45,7 +45,7 @@ Additionally, a colleague used this FigureYa to publish an article for reference
 from<https://molecular-cancer.biomedcentral.com/articles/10.1186/s12943-020-01170-0>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 对比两个因素对生存的影响。
 
@@ -56,7 +56,7 @@ Compare the effects of two factors on survival.
 For example, does high expression of both genes A and B result in longer survival compared to low expression of both genes A and B?
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

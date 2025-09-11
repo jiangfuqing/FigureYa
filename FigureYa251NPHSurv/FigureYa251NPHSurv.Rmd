@@ -110,7 +110,7 @@ annCol.imvigor210 <- read.table("easy_input_annCol.txt",sep = "\t",row.names = 1
 imvigor210.surv <- read.table("easy_input_surv.txt",sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T)
 ```
 
-# 采用非比例风险的生存模型（non-proportional-hazard survival model, NPHSurv）评价接受免疫治疗患者的预后情况
+# 采用非比例风险的生存模型（non-proportional-hazard Survival model, NPHSurv）评价接受免疫治疗患者的预后情况
 
 # The non-proportional-hazard survival model (NPHSurv) was used to evaluate the prognosis of patients receiving immunotherapy
 

@@ -142,7 +142,7 @@ Expr <- Expr[Lids,]
 
 # 使用gene-pair构建预后模型
 
-## 第一步：表达谱编秩，然后选取在正常样本中秩序一致率达到95%的基因对，即lncRNA1 - lncRNA2方向一致（<0）的基因对出现在超过95%以上的正常样本中
+## 第一步：表达谱编秩，然后选取在正常样本中秩序一致率达到95%的基因对，即lncRNA1 - LncRNA2方向一致（<0）的基因对出现在超过95%以上的正常样本中
 
 # Use gene-pair to build a prognostic model
 
@@ -308,7 +308,7 @@ for (i in lncA) { # 循环每个lncRNA.A # Cycle each lncRNA.A
 write.table(outTab2,"output_lncRNA partner with cv in all samples.txt",sep = "\t",row.names = F,col.names = T,quote = F)
 ```
 
-## 第四步：检测差异lncRNA（若超过半数lncRNA.A > partner，则该lncRNA.A在该样本中上调，记为1）
+## 第四步：检测差异lncRNA（若超过半数lncRNA.A > Partner，则该lncRNA.A在该样本中上调，记为1）
 
 ## Step 4: Detect differential lncRNAs (if more than half of the lncRNAs.A > partner, the lncRNA.A will be upregulated in the sample and denoted as 1)
 
@@ -368,7 +368,7 @@ pheatmap(dysTab,
 save.image(file = "GP.RData")
 ```
 
-## gene-pair关系的展示
+## Gene-pair关系的展示
 
 这些gene-pair的关系、CV值，以及上下调方向，可以画个网络图来展示，可参考`FigureYa199crosslink`。
 
@@ -384,7 +384,7 @@ Or use heat maps, scatter plots, etc. to show the correlation and p value of gen
 
 Alternatively, a scatter plot can be used to show the expression trend of gene pairs in two groups of samples, please refer to 'FigureYa96R2'
 
-## gene-pair 作为诊断marker的效果（Performance evaluation）
+## Gene-pair 作为诊断marker的效果（Performance evaluation）
 
 生存分析，Fig. 2 abc，可参考`FigureYa1survivalCurve`
 

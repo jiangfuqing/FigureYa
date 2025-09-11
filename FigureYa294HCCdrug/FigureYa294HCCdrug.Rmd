@@ -139,7 +139,7 @@ From Table S10 of the supplementary materials of the example paper, this is the 
 Tinfo <- read.delim("table s10 target.txt",sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
 ```
 
-## 特征基因集（以例文的PPS genes为例）
+## 特征基因集（以例文的PPS Genes为例）
 ## Feature Gene Set (Using the PPS Genes from the Example Paper as an Example)
 
 实际应用时，替换为自己感兴趣的基因集。

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 clusterProfiler的GSEA结果作为输入，画出像paper里这样美的GSEA结果图。
 
@@ -33,7 +33,7 @@ Follow the "Xiaoya drawing" official account (WeChat ID: FigureYa), reply with "
 from<https://www.nature.com/articles/s41467-018-06944-1>
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 可用于在一张图上对比多个通路（上面的例图），以及同一通路多组间对比（下图）。
 
@@ -54,7 +54,7 @@ Suitable for: those who have done enrichment analysis with clusterProfiler and w
 If you want to use Java version of GSEA to do enrichment analysis and DIY result plot by yourself, please use FigureYa13GSEA_Java.
 
 ## 环境设置
-## environment setting
+## Environment setting
 
 ```{r}
 source("install_dependencies.R")
@@ -78,7 +78,7 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor prohibit the conversion
 ```
 
 ## 参数设置
-## parameter setting
+## Parameter setting
 
 此处我们选择“hsa03030”、“hsa03050”这两条通路，突出显示这两条通路里的几个基因。
 

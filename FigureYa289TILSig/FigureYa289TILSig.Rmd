@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 利用纯化细胞系计算免疫相关指数的计算方法，想学习框里的这个复现方法
 
-#Requirement description
+# Requirement description
 
 I want to learn the replication method in the box for calculating immune related indices using purified cell lines
 
@@ -39,7 +39,7 @@ A prognostic signature by focusing tumor-infiltrating immune-related lncRNAs (TI
 
 从表达数据鉴定肿瘤免疫浸润相关lncRNA。
 
-#Application scenarios
+# Application scenarios
 
 Identify tumor immune infiltration related lncRNAs from expression data.
 
@@ -47,7 +47,7 @@ Identify tumor immune infiltration related lncRNAs from expression data.
 
 使用国内镜像安装包
 
-#Environment settings
+# Environment settings
 
 Use domestic image installation package
 
@@ -114,9 +114,9 @@ options(stringsAsFactors = FALSE)
 包括19种免疫细胞系表达谱数据，GENECODE注释文件，RefSeq注释文件。
 CCLE表达谱数据，TCGA胃癌表达谱数据和临床数据，count数据转换为TPM数据的参考数据集。
 
-#Input file
+# Input file
 
-##Data collection
+## Data collection
 
 The large data used in the article has been uploaded to Baidu Cloud, link:< https://pan.baidu.com/s/1mpYgfy1cCZPQPzmkv4VQDA >Extract code: ibzk.
 
@@ -125,7 +125,7 @@ The reference dataset for converting CCLE expression profile data, TCGA gastric 
 
 ## 来自GEO的表达数据处理
 
-##Expression data processing from GEO
+## Expression data processing from GEO
 
 ```{r}
 # 使用DealGPL570处理16个表达谱数据，包含114个细胞系，19种免疫细胞类型
@@ -259,7 +259,7 @@ batchPCA(indata = t(scale(t(data_combat))),
 
 ## 提取lncRNA表达谱数据
 
-##Extract lncRNA expression profile data
+## Extract lncRNA expression profile data
 
 ```{r}
 # 提取lncRNA表达谱数据（Extract lncRNA expression profile data）
@@ -290,7 +290,7 @@ write.table(data_lncRNA, "explncRNA_114line.txt", col.names = T, row.names = T, 
 
 # 对每个免疫细胞系的lncRNA进行排序
 
-#Sort the lncRNAs of each immune cell line
+# Sort the lncRNAs of each immune cell line
 
 ```{r}
 # 提取lncRNA表达谱数据的免疫细胞系注释信息（Extract annotation information of immune cell lines for lncRNA expression profile data）
@@ -367,7 +367,7 @@ head(top_outTab)  # 查看结果前几行（View first few rows of results）
 
 则原文公式中的X(A,i)值分别为(1-1)/(5-1)=0,(2-1)/(5-1)=0.25,(3-1)/(5-1)=0.5,(4-1)/(5-1)=0.75,(5-1)/(5-1)=1
 
-#Calculate TSI and extract ihk lnc
+# Calculate TSI and extract ihk lnc
 
 To calculate TSI, we need to explain the calculation idea of TSI. For example, the expression values of lncRNA (named A) in five immune cell lines are 1, 2, 3, 4, and 5, respectively
 
@@ -417,7 +417,7 @@ ihk_lnc <- unique(tsi_0.4$gene)  # 去重得到ihk-lnc（Remove duplicates to ge
 
 # 筛选TILncRNA
 
-#Screening TILncRNA
+# Screening TILncRNA
 
 ```{r}
 # 读取lncRNA表达谱数据（Read lncRNA expression profile data）
@@ -486,7 +486,7 @@ TILncRNA <- DEG$symbol
 
 # 构建TILSig打分 
 
-#Build TILSig scoring system
+# Build TILSig scoring system
 
 ```{r}
 # 读取TCGA表达谱数据（包含226个癌症样本和22个正常样本，预后分析仅用癌症样本）

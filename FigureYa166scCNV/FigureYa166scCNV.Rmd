@@ -163,7 +163,7 @@ reladata <- sweep(exprdata, 1, rowMeans(exprdata))
 reladata <- minmax(reladata, -3, 3)
 ```
 
-# calc initial CNVs
+# Calc initial CNVs
 
 ```{r}
 window_length <- 100
@@ -188,7 +188,7 @@ which(is.na(initial_cnv)) # check inistal_cnv
 initial_cnv <- sweep(initial_cnv, 2, apply(initial_cnv, 2, median), FUN = "-")
 ```
 
-# get initial CNV scores and CNV correlations
+# Get initial CNV scores and CNV correlations
 
 ```{r}
 # initial CNV score of each single-cell
@@ -206,7 +206,7 @@ initial_cnv_corr <- sapply(colnames(initial_cnv), function(x) {
 
 ```
 
-# get putative maglignant and non-maglignant cells
+# Get putative maglignant and non-maglignant cells
 
 ```{r}
 initial_cnv_score_threshold <- 0.05
@@ -228,7 +228,7 @@ table(annodata[initital_putative_maglignant, "classified  as cancer cell"])
 table(annodata[initital_putative_non_maglignant, "classified as non-cancer cells"])
 ```
 
-# get baselines
+# Get baselines
 
 ```{r}
 annodata_base <- annodata[initital_putative_non_maglignant, c("non-cancer cell type"), drop = F]
@@ -243,7 +243,7 @@ baseline_cnv <- as.matrix(t(apply(initial_cnv[,rownames(annodata_base)], 1, func
 })))
 ```
 
-# calc final CNVs using baseline
+# Calc final CNVs using baseline
 
 ```{r}
 baseline_max <- matrix(rowMax(baseline_cnv), 

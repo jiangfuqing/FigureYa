@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 venny<http://bioinfogp.cnb.csic.es/tools/venny/>，新出来个选项，颜色填充by%，然而只能填充灰色，我想要彩色，而且venny只能保存成png，我想要pdf矢量图。没有现成的R包能直接实现这样的按百分比填充颜色的效果。输入四个基因列表，画出venn图。
 
-##Requirement description
+## Requirement description
 
 venny< http://bioinfogp.cnb.csic.es/tools/venny/ >A new option has been introduced, color filling by%, but only gray can be filled. I want color, and Venny can only save as PNG. I want a PDF vector image. There is no ready-made R package that can directly achieve the effect of filling colors by percentage. Enter four gene lists and draw a Venn diagram.
 
@@ -35,7 +35,7 @@ from<http://bioinfogp.cnb.csic.es/tools/venny/>
 
 展示4组元素（例如差异表达基因）数量重叠，数量多颜色深，数量少颜色浅，一目了然。
 
-##Application scenarios
+## Application scenarios
 
 Display 4 groups of elements (such as differentially expressed genes) with overlapping quantities, with darker colors for larger quantities and lighter colors for smaller quantities, making it clear at a glance.
 
@@ -43,7 +43,7 @@ Display 4 groups of elements (such as differentially expressed genes) with overl
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -99,7 +99,7 @@ options(stringsAsFactors = FALSE)
 
 四个基因列表文件，每个文件中是这组内的所有基因名。
 
-##Input file
+## Input file
 
 Four gene list files, each containing the names of all genes within this group.
 
@@ -163,7 +163,7 @@ Parameter explanation: x is a numerical vector with the name attribute, whose le
 
 ## 计算子区域元素数量、百分比
 
-##Calculate the number and percentage of elements in the subregion
+## Calculate the number and percentage of elements in the subregion
 
 ```{r}
 # 计算子区域数量（Calculate the number of sub-regions）
@@ -234,7 +234,7 @@ percent_area <- (percent_area * 100) %>% paste0("%")  # 转换为百分比格式
 
 使用`RColorBrewer`中的色板构造颜色向量。  
 
-##Calculate the color of each region
+## Calculate the color of each region
 
 Construct color vectors using the palette in RColorBrewer.   
 
@@ -265,7 +265,7 @@ nest1 <- tibble(quantity = quantity_area, percent = percent_area, area = x_area)
 
 ## 开始画图
 
-##Start drawing
+## Start drawing
 
 ```{r}
 # 准备Venn图数据：显示数量（Prepare Venn diagram data: Show quantities）
@@ -315,7 +315,7 @@ dev.off()  # 关闭绘图设备以保存文件（Close plotting device to save f
 * [colorfulVennPlot源代码](https://github.com/cran/colorfulVennPlot/tree/master/R)   
 * [数字转二进制](https://stackoverflow.com/questions/12088080/how-to-convert-integer-number-into-binary-vector)   
 
-##Post processing
+## Post processing
 
 The output PDF is a vector image, which can be opened with software such as Illustrator and adjusted for font size.
 

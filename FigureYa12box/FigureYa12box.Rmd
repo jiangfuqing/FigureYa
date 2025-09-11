@@ -22,7 +22,7 @@ require(cowplot)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的图
 
@@ -45,7 +45,7 @@ Figure 2
 from<https://www.frontiersin.org/articles/10.3389/fphys.2018.00399/full>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 用boxplot展示基因表达量分布，同时计算p value。
 
@@ -55,7 +55,7 @@ Use a boxplot to show the distribution of gene expression and calculate the p-va
 ## Input data
 
 ### 1. 基因表达量列表
-### 1. gene expression list
+### 1. Gene expression list
 
 easy_input_expr.csv，多个sample中所有基因的表达量。
 
@@ -75,7 +75,7 @@ head(d)
 There are `r nrow(d)` gene expression in total
 
 ### 2. 差异表达的基因名列表
-### 2. list of differentially expressed gene names
+### 2. List of differentially expressed gene names
 
 单独一列基因名；
 
@@ -94,7 +94,7 @@ down<-read.table("easy_input_down.txt",header = T, as.is = T, row.names = 1)
 ## Start drawing
 
 ### 1. 多组画在同一个绘图区域
-### 1. multiple groups in the same drawing area
+### 1. Multiple groups in the same drawing area
 
 分别绘制上下调的基因，然后用cowplot来拼。
 

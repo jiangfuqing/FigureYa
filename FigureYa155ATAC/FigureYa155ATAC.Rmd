@@ -119,10 +119,10 @@ SETP 5 提取下载链接并下载SRR文件
 SETP 5 Extract the download link and download the SRR file.
 
 ```bash
-#awk '{FS = ","; print $10}' SraRunInfo.csv > SRRurl.txt
-#这里用wget，你可以尝试迅雷等工具
-#Using wget here, you can try tools like Xunlei.
-#wget -c -i SRRurl.txt
+# Awk '{FS = ","; print $10}' SraRunInfo.csv > SRRurl.txt
+# 这里用wget，你可以尝试迅雷等工具
+# Using wget here, you can try tools like Xunlei.
+# Wget -c -i SRRurl.txt
 mkdir 0sra
 mv SRR* 0sra
 ```
@@ -147,14 +147,14 @@ STEP 7: Manually organize `sra_result.csv` and `SraRunInfo.csv` into the `sample
 ## 质控
 ## Quality control
 fastqc -t 30 *.fastq.gz
-#原文数据质量较好，都可用于下一步分析。
+# 原文数据质量较好，都可用于下一步分析。
 # The original data is of good quality and can be used for further analysis.
 
 ## Alignment 并且去掉duplication
 ## Alignment and remove duplication
-#build index
+# Build index
 bowtie-build mm9.fa MM9
-#align
+# Align
 for i in *.fastq.gz; do x=${i/.fastq.gz/}; echo "bowtie2 -p 6 -x MM9 -U $i | samtools view -bS| samtools sort - | samtools rmdup -s - $x.bam"; done > command.bowtie.sh
 sh command.bowtie.sh
 
@@ -163,7 +163,7 @@ sh command.bowtie.sh
 for i in *.bam; do x=${i/.bam/}; echo "sambamba markdup -r -t 4 $i $x.rmdup.bam"; done > command.rmdup.sh
 sh command.rmdup.sh
 
-## bam转bigwiga,简单show一下开放程度
+## Bam转bigwiga,简单show一下开放程度
 ## Convert bam to bigwiga, a simple demonstration of its openness
 nohup samtools merge KO_GW.bam  SRR5388878.rmdup.bam SRR5388879.rmdup.bam SRR5388880.rmdup.bam SRR5388881.rmdup.bam &
 nohup samtools merge WT_GW.bam SRR5388870.rmdup.bam SRR5388871.rmdup.bam SRR5388872.rmdup.bam SRR5388873.rmdup.bam &
@@ -194,7 +194,7 @@ for i in *.bam; do x=${i/.bam/}; echo "macs2 callpeak --nomodel -t $i -q 0.01 -f
 sh command.macs2.sh
 ```
 
-## intersect and merge peak file
+## Intersect and merge peak file
 
 有多次生物学重复，下面是不同生物学重复之间peak overlap的处理方法：
 There are multiple biological replicates. Here's how to handle peak overlap between replicates:
@@ -224,7 +224,7 @@ for i in KO_DM KO_GW WT_DM WT_GW; do cat $i*.tmp_merge.bed | bedtools sort | bed
 
 rm -rf *.tmp.bed *.tmp_merge.bed
 
-# 把所有的peak文件merge到一起，主要用于后面每个peak中read count数量的计算
+# 把所有的peak文件merge到一起，主要用于后面每个peak中read Count数量的计算
 # Merge all peak files together, primarily for subsequent calculation of read counts within each peak.
 cat *.bed |bedtools sort | bedtools merge -i - > allMerge.bed
 ```

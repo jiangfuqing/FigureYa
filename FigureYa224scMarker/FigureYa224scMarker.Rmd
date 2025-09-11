@@ -243,7 +243,7 @@ pbmc@meta.data$seurat_clusters <- factor(pbmc@meta.data$seurat_clusters,levels=c
 saveRDS(pbmc, "pbmc_test_final.rds")
 ```
 
-# 画图B - marker gene
+# 画图B - Marker gene
 
 图B主要由三部分组成，最上部的克利夫兰图（棒棒糖图），中部的bar图和下部的热图
 

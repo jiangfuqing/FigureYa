@@ -104,7 +104,7 @@ print(lapply(signature,function(x) summary(x%in%rownames(eset))))
 signature <- signature[lapply(signature,function(x) sum(x%in%rownames(eset)==TRUE)) >= mingenecounts]
 ```
 
-## calculate gene set scores
+## Calculate gene set scores
 
 ```{r}
 goi <- names(signature)

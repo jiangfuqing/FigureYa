@@ -329,7 +329,7 @@ write.csv(cluster_df,"branch_pseudotime_gene_list.csv", row.names = F)
 
 Subsequently, use these genes for enrichment analysis and annotate the terms to the corresponding cluster positions on the heatmap.
 
-# 确定热图中Cell fate 1和2对应的轨迹
+# 确定热图中Cell Fate 1和2对应的轨迹
 # Determining the Trajectories Corresponding to Cell Fate 1 and 2 in the Heatmap
 
 即BEAM试图从分支点上的细胞一直向后遍历到根细胞(伪时间为0的细胞)，并将所有这些细胞作为前分支

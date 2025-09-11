@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 基于maximum relevance minimum redundancy (mRMR)算法，采用R语言（包）实现图1。
 
@@ -33,14 +33,14 @@ Data: GSE84465 (a well-known dataset, adopted by several online public accounts)
 from<https://www.frontiersin.org/articles/10.3389/fbioe.2020.00167/full>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 采用minimal Redundancy Maximal Relevance鉴定差异基因，后采用SVM + LOOCV (支持向量机 + 余一交叉验证)法，根据MCC统计量确定最小且最优基因组合用于构建预测模型。
 
 Differential genes are identified using the minimal Redundancy Maximal Relevance method, followed by the application of SVM + LOOCV (Support Vector Machine + Leave-One-Out Cross-Validation) to determine the smallest and most optimal gene combination based on the MCC for constructing the predictive model.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

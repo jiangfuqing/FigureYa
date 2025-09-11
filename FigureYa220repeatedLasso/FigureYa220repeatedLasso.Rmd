@@ -247,7 +247,7 @@ for (i in 1:length(uniquelist)) {
 lasso_res$label <- paste(lasso_res$n.gene,"genes",lasso_res$uniquelab,sep = "_") # 最终模型标签 # Final Model Label
 ```
 
-# 训练集 - 计算risk score和C指数
+# 训练集 - 计算risk Score和C指数
 # Training Set - Calculate the risk score and C-index
 
 ```{r}

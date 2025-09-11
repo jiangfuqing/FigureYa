@@ -110,7 +110,7 @@ GDCdownload(msiquery1)
 coad_msi_results <- GDCprepare_clinic(msiquery1, "msi")
 coad_msi_results <- coad_msi_results[,c(1,3)]
 rownames(coad_msi_results) <- paste0("COAD-",substr(coad_msi_results$bcr_patient_barcode,9,12),"-01A") #zhi 修改样本名匹配表达谱和临床数据
-#zhi Modify sample name to match expression spectrum and clinical data
+# Zhi Modify sample name to match expression spectrum and clinical data
 colnames(coad_msi_results) <- c("sample", "MSI")
 
 # READ直肠癌
@@ -156,7 +156,7 @@ expr <- round(log2(expr[com_sam,] + 1),2) # 表达谱对数转化
 surv <- surv[com_sam,]
 ```
 
-## 计算logrank score和相关性
+## 计算logrank Score和相关性
 ## Calculate logrank score and correlation
 
 ```{r}

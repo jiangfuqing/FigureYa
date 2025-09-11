@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 复现原文免疫细胞之间相关性的网络图
 
-##Requirement description
+## Requirement description
 
 Reproduce the network diagram of the correlation between immune cells in the original text
 
@@ -48,7 +48,7 @@ The color of the node represents the cluster to which the cell belongs, the size
 - 再根据“output_HR_corlor.csv”的最后一列，用Illustrator在圆心上画点，点的颜色代表HR的正负。
 - 最后输出的pdf文件是矢量图，可以用Illustrator等软件调整细胞名等文字的位置。
 
-##Application scenarios
+## Application scenarios
 
 Using a network diagram to simultaneously display relevant relationships pvalue、 The relationship between clustering/classification results and prognosis.
 
@@ -63,7 +63,7 @@ Using a network diagram to simultaneously display relevant relationships pvalue�
 
 ## 环境设置
 
-##Environment settings
+## Environment settings
 
 ```{r}
 source("install_dependencies.R")
@@ -80,7 +80,7 @@ options(stringsAsFactors = FALSE)     # 禁止将字符型变量自动转换为�
 
 ## 参数设置
 
-##Parameter settings
+## Parameter settings
 
 ```{r}
 # 定义网络图中连线的颜色 | Define colors for edges in network graph
@@ -100,7 +100,7 @@ easy_input_immune.csv，免疫细胞矩阵文件，用于计算相关系数和P�
 
 easy_input_HR.csv，生存分析结果，需要HR（节点圆心点的颜色，用AI来加）和p value（节点圆的大小）列。可通过FigureYa47HR2table计算获得。
 
-##Input file
+## Input file
 
 At least provide the easy_input_immune.csv file, such as the immune cell matrix or gene expression matrix (replace the immune cells here with genes). If there are no survival analysis results, other p-values can be used instead.
 
@@ -137,9 +137,9 @@ write.csv(bb, "output_HR_corlor.csv", quote = F)  # 输出用于后续绘图的�
 
 计算每两种细胞间的相关性corr，用corrplot可视化，看看聚成几类比较好。
 
-##Calculation of correlation
+## Calculation of correlation
 
-###Calculate the correlation between every two types of cells
+### Calculate the correlation between every two types of cells
 
 Calculate the correlation corr between every two types of cells, visualize it using corrplot, and see which categories are better clustered.
 
@@ -170,7 +170,7 @@ corrplot(corr, title = "",
 
 也可以用Hmsic包来求，但是发现它输出的P值有限制。
 
-###Calculate the P-value for correlation analysis
+### Calculate the P-value for correlation analysis
 
 It can also be calculated using the Hmsic package, but it was found that its output P value is limited.
 
@@ -205,7 +205,7 @@ head(p.corr[, 1:5])  # 显示p值矩阵的前几行和前5列 | Show first few r
 
 只保留那些相关性较强的连接
 
-###Calculate the connection relationship between nodes
+### Calculate the connection relationship between nodes
 
 Only retain connections with strong correlation
 
@@ -255,7 +255,7 @@ write.csv(corpvlue, "output_links.csv")  # 输出用于网络图的连接数据 
 
 细胞聚类的结果综合考虑了"hclust"的结果、"kmeans"聚类的结果、以及目前的研究现状
 
-##Cluster cells using matrix files
+## Cluster cells using matrix files
 
 The results of cell clustering comprehensively consider the results of "hcluster", "k-means" clustering, and the current research status
 
@@ -298,7 +298,7 @@ nodes  # 显示最终节点数据 | Display final node data
 
 ## 构建网络的input文件
 
-##Build the input file for the network
+## Build the input file for the network
 
 ```{r}
 # 合并生存分析数据和细胞分类数据 | Merge survival analysis data and cell classification data
@@ -350,7 +350,7 @@ net <- graph_from_data_frame(d = links, vertices = nodes, directed = T)
 
 ### 开始画图
 
-###Start drawing
+### Start drawing
 
 ```{r, fig.width=10, fig.height=8}
 # 根据细胞聚类设置节点颜色 | Set node colors based on cell clusters

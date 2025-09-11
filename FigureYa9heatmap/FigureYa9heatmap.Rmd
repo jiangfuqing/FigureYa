@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 用R代码画出paper里的热图heatmap
 
 Draw heatmap in paper with R code 
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：sample间的相关性，用来评价生物学重复之间的重复性，或者体现不同组的差异
 

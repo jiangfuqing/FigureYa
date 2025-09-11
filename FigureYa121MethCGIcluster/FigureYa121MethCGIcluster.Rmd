@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用DNA甲基化数据做分型，画出这个图。
 
-##Requirement description
+## Requirement description
 
 Use DNA methylation data for typing and draw this graph.
 
@@ -38,7 +38,7 @@ DNA甲基化450k数据挑选出CpG位点，然后取高变异的探针，做无�
 
 可用于挖掘TCGA的DNA甲基化数据。
 
-##Application scenarios
+## Application scenarios
 
 Select CpG sites from 450k DNA methylation data, and then use highly variable probes for unsupervised clustering molecular typing.
 
@@ -48,7 +48,7 @@ Can be used to mine DNA methylation data of TCGA.
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -98,7 +98,7 @@ options(stringsAsFactors = FALSE)
 数据于XENA平台下载，进入<https://xenabrowser.net/datapages/>，点击你感兴趣的癌症。此处以UCS为例，因此点击GDC TCGA Uterine Carcinosarcoma (UCS) (12 datasets)，点击DNA methylation下Illumina Human Methylation 450 (n=57) GDC Hub，<https://xenabrowser.net/datapages/?dataset=TCGA.UCS.sampleMap%2FHumanMethylation450&host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>，点击download右侧的链接，下载得到HumanMethylation450.gz，解压到当前文件夹，无后缀名
 
 - easy_input_age.txt，年龄，非必需，仅用于模仿例文的图，还可以是其他数据，可参考FigureYa71ssGSEA获得临床信息。
-##Preparation of input files
+## Preparation of input files
 
 - HumanMethylation450.gz， Due to the large amount of data involved in methylation, we chose UCS, a uterine sarcoma with a relatively small sample size in TCGA, as an example
 
@@ -147,7 +147,7 @@ head(Sinfo)
 
 **题外话：**champ包功能强大，尤其是在差异甲基化功能富集上，感兴趣的小伙伴可以自行学习
 
-##Select CpG sites
+## Select CpG sites
 
 Using the champ package for probe filtering, the probes mainly include CpG, XY chromosomes, and SNPs, while we only retain CpG sites.
 
@@ -216,7 +216,7 @@ indata <- myFilter$beta[prompb, ]
 
 ## 取高变异的探针（此处取2500个）
 
-##Take probes with high variability (here take 2500 probes)
+## Take probes with high variability (here take 2500 probes)
 
 ```{r}
 k <- 2500  # 选择变异程度最高的前k个探针（此处k设为2500）
@@ -241,7 +241,7 @@ topcgimeth[1:3, 1:3]
 
 ## 无监督分子分型
 
-##Unsupervised molecular subtyping
+## Unsupervised molecular subtyping
 
 ```{r}
 # 对样本进行层次聚类（基于高变异性CpG岛探针的甲基化数据）
@@ -286,14 +286,14 @@ names(group) <- colnames(topcgimeth)  # 将组标签与样本名称关联
 
 ### 画法一：pheatmap
 
-##Start drawing
+## Start drawing
 
 Here are two painting methods provided:
 
 -Using pheatmap for drawing is simple and easy to use. If you don't draw age, this is enough.
 -Use complexheatmap for drawing method two to reproduce the original image.
 
-###Drawing Method 1: Pheatmap
+### Drawing Method 1: Pheatmap
 
 ```{r}
 ### 设置颜色 ###
@@ -360,7 +360,7 @@ pheatmap(
 
 ### 画法二：complexheatmap
 
-###Drawing Method 2: Complex Heatmap
+### Drawing Method 2: Complex Heatmap
 
 ```{r}
 # 创建顶部注释（用于ComplexHeatmap可视化）

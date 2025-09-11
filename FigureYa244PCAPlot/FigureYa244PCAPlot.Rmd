@@ -126,7 +126,7 @@ p + theme(
 ggsave("PCA_factoextra.pdf")
 ```
 
-## 方法二: ggplot
+## 方法二: Ggplot
 
 准备数据
 

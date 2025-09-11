@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 求文中甲基化年龄的确定方法。
 
@@ -29,7 +29,7 @@ Determine the method for calculating the methylation age mentioned in the text.
 from<https://clinicalepigeneticsjournal.biomedcentral.com/articles/10.1186/s13148-020-0822-y>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 根据DNA甲基化beta值计算甲基化年龄，并与真实年龄（chronological age）做差值，计算甲基化年龄加速（Epigenetic age acceleration）。
 
@@ -66,7 +66,7 @@ for Fig.4f, you can refer to FigureYa99smoothHR.
 For more works by Big Fish & Begonia, see: <https://k.koudai.com/OFad8N0w>
 
 # 环境设置
-# environment setting
+# Environment setting
 
 使用国内镜像安装包
 

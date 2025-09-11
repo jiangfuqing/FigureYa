@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 临床的亚组分析，我想用R做出文章里的样子。
 
@@ -33,7 +33,7 @@ It is only reproduced here formally, if you need the calculation process, please
 from<https://ascopubs.org/doi/full/10.1200/JCO.2017.75.6155?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub%3Dpubmed>
 
 ## 使用场景
-## usage scenario
+## Usage scenario
 
 场景一：临床的亚组分析。例如，能从参与临床试验的那么多人当中发现EGFR抑制剂唯独对亚洲非吸烟女性有效。
 

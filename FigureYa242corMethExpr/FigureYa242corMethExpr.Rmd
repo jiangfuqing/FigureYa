@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # 需求描述 / Requirements Description
 # FPKM跟启动子区甲基化的相关性。输入数据是TCGA的FPKM和DNA甲基化数据。 / Correlation between FPKM and promoter methylation. Input data is TCGA FPKM and DNA methylation data.
 
-# 希望能学习到怎么获取基因启动子区的甲基化探针，自己跑代码时就能灵活自定义将启动子区调整TSS1500，TSS200，甚至分析gene body区域甲基化与基因表达的关系。 / Hope to learn how to obtain methylation probes in gene promoter regions, and be able to flexibly customize promoter regions like TSS1500, TSS200, and even analyze the relationship between gene body methylation and gene expression.
+# 希望能学习到怎么获取基因启动子区的甲基化探针，自己跑代码时就能灵活自定义将启动子区调整TSS1500，TSS200，甚至分析gene Body区域甲基化与基因表达的关系。 / Hope to learn how to obtain methylation probes in gene promoter regions, and be able to flexibly customize promoter regions like TSS1500, TSS200, and even analyze the relationship between gene body methylation and gene expression.
 
 # 出自 / From: https://academic.oup.com/nar/article/48/D1/D856/5584613
 

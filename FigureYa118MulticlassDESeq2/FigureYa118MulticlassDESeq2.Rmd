@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用DESeq2实现多组差异分析。能用来替换FigureYa109SubtypeGSEA中的配对差异表达过程（亚型数目>=3），并跟它无缝对接。
 
-##Requirement description
+## Requirement description
 
 Implement multi group differential analysis using DESeq2. Can be used to replace the paired differential expression process (subtype number>=3) in FigureYa109SubtypeGSEA and seamlessly integrate with it.
 
@@ -35,7 +35,7 @@ Implement multi group differential analysis using DESeq2. Can be used to replace
 
 这里针对read count表达矩阵作为输入的情况，如果你的数据是FPKM/RPKM或芯片数据，请参考FigureYa119Multiclasslimma
 
-##Application scenarios
+## Application scenarios
 
 Based on Figure Ya109 subtype GSEA, analyze the differentially expressed genes between each group and other samples, and identify subtype specific enriched pathways;
 
@@ -49,7 +49,7 @@ For the case where the read count expression matrix is used as input, if your da
 
 使用国内镜像安装包
 
-##Environment settings
+## Environment settings
 
 Use domestic image installation package
 
@@ -190,7 +190,7 @@ twoclassDESeq2 <- function(res.path=NULL, countsTable=NULL, prefix=NULL, complis
 
 ## 输入文件
 
-##Input file
+## Input file
 
 ```{r}
 # 读取read count表达矩阵
@@ -218,7 +218,7 @@ n.sub  # 显示亚型数量
 
 ## 开始分析
 
-##Start analyzing
+## Start analyzing
 
 ```{r}
 ### 创建配对比较的列表信息 ###

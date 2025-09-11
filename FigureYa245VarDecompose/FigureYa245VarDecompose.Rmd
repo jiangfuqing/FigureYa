@@ -132,7 +132,7 @@ table(kept.rows)
 mouse <- mouse[kept.rows, ]
 ```
 
-# 1) 按照直系同源关系(one2one orthologs)合并人鼠转录组
+# 1) 按照直系同源关系(one2one Orthologs)合并人鼠转录组
 
 # 1) Merge human-mouse transcriptomes according to orthologous relationships (one2one orthologs).
 
@@ -159,7 +159,7 @@ data <- cbind(human, mouse)
 ```
 
 # 2) 数据重构，使之方便应用线性混合模型
-#2) Data reconstruction to facilitate the application of linear hybrid models
+# 2) Data reconstruction to facilitate the application of linear hybrid models
 
 ```{r}
 data <- data %>% 

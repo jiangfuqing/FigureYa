@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 这里有文章解读：<https://www.jianshu.com/p/58eab0d8ac22?from=singlemessage&isappinstalled=0>
 
-##Requirement description
+## Requirement description
 
 How were the 7 genes selected in the article?
 
@@ -45,7 +45,7 @@ Here is an article interpretation:< https://www.jianshu.com/p/58eab0d8ac22?from=
 
 答：lasso在允许的时候高度依赖种子，因为你需要交叉验证，而交叉验证的过程是随机选取样本的。所以一旦你更换了种子，最优lambda就会改变，最终得到的特征就会改变。共识就是在多次运行lasso（不依赖种子）后，那么高频次被保留下的特征，可以认为是对感兴趣话题最有影响的。因为如果我运行500次，A特征出现了300次，和B特征出现了30次，它们的重要程度肯定是不同的。不是选共同的，是对频次排序，这是我的理解。频次的顺序代表了这些特征的影响程度，然后依次把这些特征纳入cox模型，当AUROC达到峰值的时候停止纳入，此时模型最优，并且所含特征最少。
 
-##Application scenarios
+## Application scenarios
 
 Find marker genes.
 
@@ -61,9 +61,9 @@ Answer: lasso heavily relies on seeds when allowed, as you need cross validation
 
 ### 使用国内镜像安装和加载包
 
-##Environment settings
+## Environment settings
 
-###Install and load packages using domestic images
+### Install and load packages using domestic images
 
 ```{r}
 source("install_dependencies.R")
@@ -110,7 +110,7 @@ options(stringsAsFactors = FALSE)
 
 ### 自定义函数
 
-###Custom functions
+### Custom functions
 
 ```{r}
 # 显示进程
@@ -169,7 +169,7 @@ surv_lasso <- function(iter.times = NULL, surv.obj = NULL, expr.obj = NULL, nfol
 
 如果你的文件已经整理成easy_input_expr.csv和easy_input_cli.csv的格式，就可以跳过这步，直接进入“筛选基因”。
 
-##Preparation of input files
+## Preparation of input files
 
 If your file has already been organized into the formats of easy_input-expr.csv and easy_input_cli.csv, you can skip this step and go directly to "Filter Genes".
 
@@ -183,7 +183,7 @@ If your file has already been organized into the formats of easy_input-expr.csv 
 
 - clinical_PANCAN_patient_with_followup.tsv，带followup的临床信息，从这个页面下载<https://gdc.cancer.gov/about-data/publications/PanCanStemness-2018>，下载地址：<https://api.gdc.cancer.gov/data/0fc78496-818b-4896-bd83-52db1f533c5c>
 
-###Download of input files
+### Download of input files
 
 Need to express matrix and clinical data with followup.
 

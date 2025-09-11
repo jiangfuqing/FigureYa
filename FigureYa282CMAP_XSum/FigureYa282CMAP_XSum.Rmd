@@ -186,7 +186,7 @@ write.table(dis_sig, "dis_sig.csv", sep=",", quote=F, row.names=F, col.names=T)
 head(dis_sig)
 ```
 
-# 计算CMap score  
+# 计算CMap Score  
 # Calculating CMap Score
 
 ```{r}

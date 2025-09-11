@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 需求描述
-## requirement description
+## Requirement description
 
 把RNA-seq的FPKM转换成TPM。
 
 Convert FPKM from RNA-seq to TPM
 
 ## 应用场景
-## application scenario
+## Application scenario
 
 RNA-seq基因表达量是FPKM，想转变成TPM。不仅限于TCGA数据。
 

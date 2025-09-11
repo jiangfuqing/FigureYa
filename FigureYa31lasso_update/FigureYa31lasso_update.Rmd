@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 需求描述
-# requirement description
+# Requirement description
 
 画出paper中的lasso回归图，给出图中线所对应的基因顺序。
 
@@ -37,7 +37,7 @@ from<https://linkinghub.elsevier.com/retrieve/pii/S1470-2045(13)70491-1>
 How to interpret lasso results? Read this: <https://mp.weixin.qq.com/s/Odf3zYOu77DvN-ph4gHPJQ>
 
 # 应用场景
-# application scenario
+# Application scenario
 
 筛选差异基因之后，进一步筛选有预后意义的基因，组成基因表达signature。
 
@@ -48,7 +48,7 @@ After screening for differential genes, genes with prognostic significance are f
 LASSO is more suitable for high-dimensional, strongly correlated, and small-sample survival data.
 
 # 环境设置
-# environment setting
+# Environment setting
 
 采用R包`glmnet`，它是目前最好用的拟合广义线性模型的R包，由`LASSO` 回归的发明人，斯坦福统计学家 Trevor Hastie 领衔开发。 
 

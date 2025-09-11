@@ -217,7 +217,7 @@ countexp.Seurat <- sc.metabolism.Seurat(obj = immune.combined,
 saveRDS(countexp.Seurat,"countexp.Seurat.rds")
 ```
 
-## 计算差异显著的metabolism pathway
+## 计算差异显著的metabolism Pathway
 
 ```{r}
 signature_exp <- countexp.Seurat@assays$METABOLISM$score

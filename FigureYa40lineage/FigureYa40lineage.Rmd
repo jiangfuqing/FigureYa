@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 用R画出文章里的这个图
 
-##Requirement description
+## Requirement description
 
 Draw the image in the article using R
 
@@ -38,7 +38,7 @@ from<https://www.cell.com/cell/abstract/S0092-8674(17)30596-2>
 
 细胞谱系分析，主要用于单细胞测序数据，展示细胞在二维状态空间的拟时间（pseudotime）排列，即一群细胞怎样变成另一群细胞。
 
-##Application scenarios
+## Application scenarios
 
 Cell lineage analysis is mainly used for single-cell sequencing data, displaying the pseudotime arrangement of cells in a two-dimensional state space, that is, how a group of cells become another group of cells.
 
@@ -54,7 +54,7 @@ CRAN镜像备选
 - 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
 - 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
-##Software installation
+## Software installation
 
 The packages currently used for cell lineage analysis are mainly [Monocle2]（ https://bioconductor.org/packages/release/bioc/html/monocle.html )
 
@@ -99,7 +99,7 @@ library(pheatmap)
 
 如果用的是10X Genomics技术，表达矩阵是UMI，则不需要进行额外的TPM/FPKM标准化。
 
-##Input data
+## Input data
 
 There are two types of input data:
 
@@ -186,7 +186,7 @@ The first column here is the cell ID, the second column is the patient, the thir
 
 先构建表达矩阵。根据之前对数据集的简单了解，原先的数据集前两列是不必要信息，所以要去掉，而行名对应第一列
 
-##Build newCellDataset
+## Build newCellDataset
 
 Subsequent analysis relies on Monocle, so three datasets need to be compiled
 
@@ -373,9 +373,9 @@ If expressionFamily selects either 'negminomial. size()' or 'negminomial()', the
 
 单细胞聚类分析见"FIgureYa27tSNE"
 
-##Cell lineage analysis
+## Cell lineage analysis
 
-###Step 1: Define sorting genes
+### Step 1: Define sorting genes
 
 There are many options for sorting genes:
 
@@ -454,7 +454,7 @@ CDS <- setOrderingFilter(CDS,
 
 降维有很多种方法, 不同方法的最后展示的图都不太一样, 其中"DDRTree"是Monocle2使用的默认方法，ICA则是Monocle2的方法
 
-###Step 2: Dimensionality Reduction
+### Step 2: Dimensionality Reduction
 
 This step is quite time-consuming Dimensionality reduction is to better display data.
 
@@ -476,7 +476,7 @@ CDS <- reduceDimension(CDS, max_components = 2,
 
 ### 第三步: 在谱系上对细胞排序
 
-###Step 3: Sort the cells on the lineage
+### Step 3: Sort the cells on the lineage
 
 ```{r}
 # 读取上一步保存的CDS对象（已注释，当前未执行） | Read the previously saved CDS object (commented out, not executed)
@@ -500,7 +500,7 @@ CDS <- orderCells(CDS)
 
 - 按照状态着色
 
-###Step 4: Drawing
+### Step 4: Drawing
 
 You can set enough colors by yourself. The coloring on the graph can be achieved by modifying the 'color-by' parameter, where the value can be the column name of the 'pData (CDS)' result. The size of the point can be modified through 'cell_2'
 

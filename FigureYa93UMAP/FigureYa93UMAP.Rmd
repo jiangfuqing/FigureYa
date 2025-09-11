@@ -321,7 +321,7 @@ Parameter Description.
 - normalization.method: standardization method, options are LogNormalize, CLR, RC
 - scale.factor: typically 10000
 
-### 识别HVG(highly variable features)
+### 识别HVG(highly Variable features)
 
 为了降低运算量，我们通常使用哪些在样本间存在变化的基因(HVG)用于下游分析，而非全部的基因集
 

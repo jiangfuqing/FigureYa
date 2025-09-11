@@ -169,8 +169,8 @@ dim(bglist)
 用rentrez包获取NCBI gene数据库里的Interactions，即基因与它有相互作用的基因的list，保存到Interactions.RData。The general interactions in this section are provided, without review by Gene staff, by the external sources listed in <ftp://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interaction_sources>。详情看这里：<https://www.ncbi.nlm.nih.gov/books/NBK3841/#EntrezGene.Interactions>
 
 ```r
-#Download TF related interactions genes from NCBI Gene
-#来源：https://github.com/ropensci/rentrez/wiki/Find-genes-known-to-interact-with-a-given-gene
+# Download TF related interactions genes from NCBI Gene
+# 来源：https://github.com/ropensci/rentrez/wiki/Find-genes-known-to-interact-with-a-given-gene
 res <- c()
 for (i in 1:nrow(TFlist)) {
  output <- print(as.character(TFlist$GeneSym[i]),quote=FALSE)
@@ -423,7 +423,7 @@ r[lower.tri(r)] <- NA
 
 ### 画图
 
-### plot
+### Plot
 
 ```{r}
 # 创建PDF文件用于保存热图，设置宽度为11英寸，高度为10英寸
