@@ -40,19 +40,16 @@ To show the overlap genes between multiple groups and each specific gene, a venn
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("ggVennDiagram")
 ```
 
@@ -113,7 +110,7 @@ adjcutoff <- 0.05
 read_cut_ID <- function(file){
   df <- read.table(file, header = T)
   DEG <- df[df$FDR <= adjcutoff, ]$id #不想根据FDR筛选基因的话就删掉这行，改用下一行 # If you don't want to screen genes based on FDR, delete this line and use the next line instead
-  # DEG <- df$id 
+  # DEG <- df$id
 }
 fdataset <- lapply(fnames, read_cut_ID)
 
@@ -149,124 +146,3 @@ dt_all$name <- gsub("\\..", "\\", dt_all$name)
 
 ## 画图
 ## Drawing
-
-```{r fig.width=10, fig.height=10}
-# 给每个区域一样的值，保证每个区域占据长度高度一致
-# Give the same value to each region to ensure that the length of each region is consistent
-dt_all$value <- 100
-dt_all$level <- nchar(dt_all$name)
-dt_all$level %<>% factor(., levels = c(1:max(.)) %>% rev())
-
-level <- levels(dt_all$level)
-dt_all_final <- c()
-for (i in level) {
-  dt <- subset(dt_all,level==i)
-  dt_all_final <- rbind(dt_all_final, dt)
-}
-dt_all_final$label <- paste0(dt_all_final$name, "\n", dt_all_final$num)
-dt_all_final$name %<>% factor(., levels = .)
-
-p <- ggplot(dt_all_final, aes(x = level, y = value, fill = num)) +
-  geom_bar(stat="identity", position = "fill", width = 1, colour = "black")+
-  scale_fill_gradientn(colours=c("white", "forestgreen")) +
-  geom_text(aes(label = label),color="black", size = 4, position = position_fill(vjust = 0.5))+
-
-  coord_polar(theta="y",direction=-1)+ #direction=-1 逆时针方向 # direction=-1 counterclockwise
-  theme_bw() +
-  theme(legend.position='none')+
-  theme(panel.grid = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        panel.border=element_blank())
-
-p
-ggsave(filename = "Circled_Venn_diagram.pdf", plot = p, width = 10, height = 10)
-```
-
-# 输入overlap
-
-## 输入文件
-
-easy_input.csv，这里直接用例文提供的各组之间的overlap基因画图（文章附件Supplemental Table S3.csv）。
-
-每种组合放到一列，例如第一列的列名ABCDEF，即ABCDEF组的共有基因，有32030个基因名，对应圆心上的数字32030。以此类推其后各列。
-
-# Enter overlap
-
-## Input files
-
-easy_input.csv, here is the direct use case provided for the mapping of overlap genes between groups (article attachment Supplemental Table S3.csv).
-
-Each combination is placed in a column, for example, the first column is named ABCDEF, which is the common gene of the ABCDEF group, which has 32030 gene names, corresponding to the number 32030 in the center of the circle. And so on for the next columns.
-
-```{r}
-df <- read.csv("easy_input.csv")
-name <- colnames(df) %>% as.vector(.)
-dt_all <- c()
-for (i in name) {
-  sub_df <- df[,i] %>% .[which(!.%in%"")] #删除空值的元素 # Remove null elements # 统计每个区域的元素数量 # Count the number of elements in each region
-  dt <- data.frame(name=i, num=length(sub_df))
-  dt_all <- rbind(dt_all, dt)
-}
-```
-
-## 画图
-
-与第一部分相同
-
-## Drawing
-
-Same as the first part
-
-```{r fig.width=10, fig.height=10}
-# 给每个区域一样的值，保证每个区域占据长度高度一致
-# Give the same value to each region to ensure that the length of each region is consistent
-dt_all$value <- 100
-dt_all$level <- nchar(dt_all$name)
-dt_all$level %<>% factor(., levels = c(1:max(.)) %>% rev())
-
-level <- levels(dt_all$level)
-dt_all_final <- c()
-for (i in level) {
-  dt <- subset(dt_all,level==i)
-  dt_all_final <- rbind(dt_all_final, dt)
-}
-dt_all_final$label <- paste0(dt_all_final$name, "\n", dt_all_final$num)
-dt_all_final$name %<>% factor(., levels = .)
-
-# 小技巧
-# 如果等比例按照基因数量填充颜色，圆心数量远大于其他区域，其他区域都会是很浅的颜色
-# 为了达到较好的视觉效果，我们把>1000个基因的区域统一定义为1000
-# Tips
-# If you fill the color according to the number of genes in equal proportions, the number of circle centers is much larger than that of other regions, and the other regions will be very light colors
-# In order to achieve a better visual effect, we define the region > 1000 genes as 1000
-dt_all_final[dt_all_final$num > 1000, ]$num <- 1000 # 根据自己的数据调整，或删掉这行 # Adjust to your own data, or delete this line
-
-p <- ggplot(dt_all_final,aes(x = level,y = value,fill = num)) +
-  geom_bar(stat="identity",position = "fill", width = 1,colour = "black") +
-  scale_fill_gradientn(colours=c("white", "forestgreen")) +
-  geom_text(aes(label = label),color="black", size = 4, position = position_fill(vjust = 0.5)) +
-  
-  # 想和原文一样标签为白色底色的话run下面这句，但效果感觉不好
-  # If you want to be labeled with a white background like the original text, run the following sentence, but the effect doesn't feel good
-  #geom_label(aes(label = name),fill="white",color="black", size = 3, 
-  #           label.padding = unit(0.15, "lines"),label.r = unit(0,"lines"),
-  #           position = position_fill(vjust = 0.5))+ 
-  coord_polar(theta="y",direction=-1)+ #direction=-1 逆时针方向  # direction=-1 counterclockwise
-  theme_bw() +
-  theme(legend.position='none') +
-  theme(panel.grid = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        panel.border = element_blank())
-p
-ggsave("Circled_Venn_diagram_ori.pdf", plot = p, width = 10,height = 10)
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

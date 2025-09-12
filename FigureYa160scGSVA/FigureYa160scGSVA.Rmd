@@ -38,13 +38,11 @@ Single-cell data: From matrix to grouping, calculate pathway expression using GS
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
 Using a Chinese mirror to install the package
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
 ```
 
 加载包
@@ -107,7 +105,7 @@ Used to start from the raw gene expression matrix.
 如果已经完成了聚类，请移动到STEP 2。
 If clustering has been completed, please move to STEP 2.
 
-使用seurat分析单细胞数据需要注意的几个地方: 
+使用seurat分析单细胞数据需要注意的几个地方:
 Several points to note when using Seurat to analyze single-cell data:
 
 ## 1. 数据过滤
@@ -181,177 +179,3 @@ How do you identify the cell type of each cluster? The classic approach is to id
 
 选择感兴趣的两个细胞亚群（cluster），用GSVA算出pathway的表达量，然后对比，画出感兴趣的pathway的图。
 Select two cell subpopulations (clusters) of interest, calculate pathway expression using GSVA, compare them, and plot the pathway of interest.
-
-```{r}
-# 加载 STEP 1 获得的pbmc # Load the PBMC file obtained in Step 1
-# Load the PBMC file obtained in Step 1
-pbmc <- readRDS("PBMC_pc10_res0.6.rds")
-
-# 导入gmt文件，这里以MsigDB中的Hallmark为例
-# MsigDB链接(https://www.gsea-msigdb.org/gsea/msigdb/)
-# 下载文件时，注意选择对应的gene格式吗，一般10X的结果，都是gene symbol格式的。
-genesets <- getGmt("h.all.v7.0.symbols.gmt")
-# Import the gmt file. Here, we use the Hallmark file from MsigDB as an example.
-# MsigDB link (https://www.gsea-msigdb.org/gsea/msigdb/)
-# When downloading the file, be sure to select the corresponding gene format. Generally, 10X results are in gene symbol format.
-genesets <- getGmt("h.all.v7.0.symbols.gmt")
-
-### 1. 找到感兴趣的细胞组别，两者间进行比较
-# 这里以cluster6和cluster8为例
-### 1. Find the cell groups of interest and compare them.
-# Here, we use cluster 6 and cluster 8 as examples.
-subcluster = c(6, 8)
-sub <- subset(pbmc, idents = subcluster)
-df.data <- GetAssayData(object = sub, slot = "data")
-
-# 将细胞所属的group信息保存起来
-# Save the cell group information.
-df.group <- data.frame(umi = names(Idents(sub)), 
-                       cluster = as.character(sub@meta.data$RNA_snn_res.0.6), 
-                       stringsAsFactors = F)
-# 查看一下结果是什么样子的
-# Check the results.
-head(df.group)
-
-### 2. 做gsva
-# 因为是normalized后的数据，所以使用默认参数就可以了。根据自己的电脑cpu来调整parallel.sz
-gsvascore <- gsva(data.matrix(df.data), genesets, parallel.sz = 2)
-# 因为单细胞数据中有很多基因表达值为0，所以会出现红色的warning信息，没有关系。
-### 2. Perform gsva analysis.
-# Since the data is normalized, the default parameters are sufficient. Adjust parallel.sz according to your computer's CPU.
-gsvascore <- gsva(data.matrix(df.data), genesets, parallel.sz = 2)
-# Because many gene expression values in the single-cell data are 0, a red warning message will appear. This is not a problem.
-
-# 查看一下结果
-# Check the results
-gsvascore[1:5, 1:5]
-
-# 先用热图展示一下hallmarker中全部的50个geneset得到的结果
-# First use a heatmap to display the results for all 50 genesets in hallmarker
-ha.t <- HeatmapAnnotation(Cluster = df.group$cluster)
-Heatmap(as.matrix(gsvascore), 
-        show_column_names = F, 
-        cluster_rows = T, 
-        cluster_columns = T, 
-        top_annotation = ha.t, 
-        column_split = df.group$cluster, 
-        row_names_gp = gpar(fontsize = 8), 
-        row_names_max_width = max_text_width(rownames(gsvascore), 
-                                             gp = gpar(fontsize = 8)))
-
-### 3. 挑选出要使用小提琴图展示的通路
-### 3. Select pathways to display using violin plots
-# 使用limma包进行差异分析，然后根据差异分析结果，对通路进行选择。
-# Use the limma package to perform differential analysis and then select pathways based on the results.
-cluster.group <- as.numeric(df.group$cluster) 
-# 确定分组信息
-# Determine grouping information
-group2 <- 6 
-# 根据子集中细胞类型的名称来定
-# Determine based on the cell type name in the subset
-# 这里cluster6作为实验组（group2)，cluster8作为对照组（group1)
-# Here, cluster6 is the experimental group (group2), and cluster8 is the control group (group1)
-cluster.group[which(cluster.group != group2)] <- 0
-cluster.group[which(cluster.group == group2)] <- 1
-design <- cbind(sampleGroup1=1, sampleGroup2vs1=cluster.group)
-
-# 利用limma包进行差异分析
-# Perform differential analysis using the limma package
-fit <- lmFit(gsvascore, design)    
-fit <- eBayes(fit)
-sigPathways <- topTable(fit, coef="sampleGroup2vs1", 
-                        number=Inf, p.value=0.05, adjust="BH")
-# 添加一下分组信息，方便导出的数据区分实验组和对照组。
-# Add grouping information to facilitate distinguishing experimental and control groups in the exported data.
-sigPathways$celltype <- rep(group2, length(nrow(sigPathways))) 
-# 保存到文件
-# Save to file
-write.csv(sigPathways, file = "PBMC_DE_genesets_hallmarker_cluster6_vs_8.csv")
-```
-
-# STEP 3：根据已经得到的分组信息，挑选出需要的通路，画图
-# STEP 3: Based on the obtained grouping information, select the desired pathways and plot them.
-
-从sigPathways中挑选一个gene set来展示例图的画法。你也可以写成循环，画多个。
-Select a gene set from sigPathways to demonstrate how to plot an example plot. You can also create a loop to plot multiple plots.
-
-```{r}
-# 这里选第一个pathway画图
-# Select the first pathway to plot
-count <- gsvascore[rownames(sigPathways)[1], , drop = FALSE]
-count <- as.data.frame(t(count))
-colnames(count) <- "geneset"
-count$cluster <- as.character(Idents(sub))
-# 用通路的名称作为图形标题
-# Use the name of the pathway as the graph title
-title.name = rownames(sigPathways)[1]
-
-# 添加P值
-# 得到cluster6和cluster10中的gsva score 最大值
-# Add P value
-# Get the maximum gsva score in cluster6 and cluster10
-count.geneset.group1 <- count$geneset[count$cluster == subcluster[1]]
-count.geneset.group2 <- count$geneset[count$cluster == subcluster[2]]
-
-# 确定P值添加的位置
-# Determine the position to add the P value
-ysegment1 <- max(count.geneset.group1)
-ysegment2 <- max(count.geneset.group2)
-ysegment.max <- max(ysegment1, ysegment2)
-
-# 根据P值确定加几颗星
-# Add stars based on P value
-pval <- sigPathways$P.Value[1]
-
-if (pval < 0.001) {
-  pval.label = "***"
-} else if (pval < 0.005) {
-  pval.label = "**"
-} else if (pval < 0.05) {
-  pval.laben = "*"
-} else if (pval >= 0.05) {
-  pval.label = "non.sig"
-}
-
-# 自定义颜色
-# Custom color
-blue <- "#619CD6"
-green <- "#89C32E"
-p <- ggplot(count, aes(x = cluster, y = geneset, fill = cluster)) +
-  geom_violin() +
-  scale_fill_manual(values = c(blue, green)) + # 用自定义颜色填充 # Fill with custom color
-  theme_classic() +
-  theme(panel.grid = element_blank(), 
-        plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm"), 
-        axis.title.x = element_text(color = "black", size = 20), 
-        axis.title.y = element_blank(), 
-        axis.text = element_text(color = "black", size = 16), 
-        axis.line = element_line(colour = "black", size = 0.6), 
-        plot.title = element_text(size = 20, hjust = 0.5)) + 
-  # 添加图形标题 # Add graph title
-  ggtitle(title.name) +
-  guides(fill = F)
-p
-
-# 前面已经得到了pvalue,添加上去就可以了
-# We already got the pvalue, so just add it.
-p + 
-  # 图形中的一个横线和两个竖线 # One horizontal line and two vertical lines in the graph
-  annotate("segment", x = 1, xend = 2, y = ysegment.max + 0.02, yend = ysegment.max + 0.02) + 
-  annotate("segment", x = 1, xend = 1, y = ysegment1 + 0.01, yend = ysegment.max + 0.02) +
-  annotate("segment", x = 2, xend = 2, y = ysegment2 + 0.01, yend = ysegment.max + 0.02) +
-  # 添加P值对应的星号 # Add asterisks for P values
-  annotate("text", 
-           size = 12, # *的大小 # Size of the *
-           x = 1.5, 
-           y = ysegment.max - 0.03, #可以微调*所在的位置 # You can fine-tune the position of the *
-           label = pval.label)
-
-ggsave("PBMC_DE_genesets_hallmarker_cluster6_vs_8.pdf", width = 5.5, height = 5)
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

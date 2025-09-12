@@ -112,7 +112,7 @@ zcat Figure2-batch-removed.txt.gz | head -1 | tr "\t" "\n" | sed 's/\"//g' > Fig
 - `s1_subsampling.Rmd`
 
   - brief intro: 定义了AvgN()函数，将基因表达矩阵(row=genes, col=cells)变成pooling后的基因表达矩阵(row=genes, col=Avg20-cells)。此外，将基因表达矩阵转变为loom格式（作为pySCENIC AUCell的输入，用于计算RAS矩阵）。
-  - input: 
+  - input:
     -  `Cell.Info.txt`
     - `CellType.Info.txt`
     - `Figure2-batch-removed.txt.gz`(基因表达矩阵，行为基因，列为细胞)
@@ -148,37 +148,37 @@ pySCENIC的`Input`为**行为gene symbols，列为cell ID的基因表达矩阵**
 
   - brief intro: 分别执行pySCENIC的三个步骤，`grnboost2`、`ctx`、`aucell`
   - grnboost2
-    - input: 
+    - input:
       - `s1_avg20_rep1.loom`
     - reference:
       -  `mm_mgi_tfs.txt`
     - output：
       - `s2_avg20_rep1.adj.tsv`（基因共表达网络的邻接矩阵）
   - ctx (cisTarget)
-    - input: 
-    
+    - input:
+
       - `s2_avg20_rep1.adj.tsv`
       - `s1_avg20_rep1.loom`
-    
+
     - reference:
-    
+
       - `motifs-v9-nr.mgi-m0.001-o0.0.tbl`
       - `mm10__refseq-r80__10kb_up_and_down_tss.mc9nr.feather`
       - `mm10__refseq-r80__500bp_up_and_100bp_down_tss.mc9nr.feather`
-    
+
       注：后两个文件可以二选一，或者可以一块使用
-    
+
     - output:
-    
+
       -  `s2_avg20_rep1.reg.tsv`（记录了regulon的信息）
   - aucell
-    - input: 
+    - input:
       - `s1_exprMat.loom`
       - `s2_avg20_rep1.reg.tsv`
-    - output: 
-      
+    - output:
+
       - `s2_avg20_rep1.pyscenic.loom`
-      
+
 # 利用RAS矩阵对单细胞数据进行降维
 
 - [pySCENIC的结果解读](doc/outputOfPySCENIC.md)

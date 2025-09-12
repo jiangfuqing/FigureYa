@@ -44,13 +44,9 @@ You may also want to read this article: Complete survival analysis of 20,000 gen
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
-Use a domestic mirror to install the package
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
 
 ```
 
@@ -85,108 +81,3 @@ blue <- "#57B5AB"
 
 以age>=60为例，提取数据、绘制生存曲线。
 Take age>=60 as an example, extract data, and plot the survival curve.
-
-```{r}
-## 提取数据
-## Extract data
-rt <- dd[dd$age==">=60",] 
-
-## 生存分析
-## Survival analysis
-fit <- survfit(Surv(futime, fustat) ~ Risk, data = rt)
-
-## 作图
-## Plot
-ggsurvplot(fit,
-           pval = TRUE,
-           palette = c(orange, blue),
-           title="age>=60",
-           xlab="Time in days")
-```
-
-# 批量操作
-# Batch operation
-
-本质上就是每次按条件筛选数据，然后做生存分析，重点是在筛选数据
-Essentially, this involves filtering data by condition each time and then performing a survival analysis. The key is in filtering the data.
-
-## 自定义函数
-## Custom function
-
-给一个筛选标准，直接画图。
-Give a filtering criterion and plot directly.
-
-支持单次操作
-Supports single operations
-
-```{r}
-mysurvplot <- function(cols=cols,filter=filter){
-  ## 过滤条件 ## Filter condition
-  index = dd[,cols]==filter
-  ## 按行过滤数据 ## Filter data by row
-  rt = dd[index,]
-  ## 生存分析 ## Survival analysis
-  fit = survfit(Surv(futime, fustat) ~ Risk, data = rt)
-  ## 计算p值 ## Calculate p-value
-  x = survdiff(Surv(futime, fustat) ~ Risk, data = rt)
-  pValue=1-pchisq(x$chisq,df=1)
-  pValue= round(pValue,3)
-  ## 作图 ## Plot
-  p=ggsurvplot(fit,
-             pval = pValue,
-             palette = c(orange, blue),
-             title=paste0(cols,filter),
-             xlab="Time in days")
-  return(p)
-}
-```
-
-## 函数用法 ## Function Usage
-# Test the function with three examples
-
-```{r}
-# 举三个例子测试函数
-## Run in batches, saving the plot results as a list
-mysurvplot("age","<60")
-mysurvplot("gleason",">7")
-mysurvplot("stage","T1+T2")
-```
-
-## 批量运行，把画图结果存为list
-
-```{r}
-# 为了方便批量操作，把筛选条件写成向量形式
-# For ease of batch operation, write the filter criteria as a vector
-cols <- c("age","age","gleason","gleason","psa","psa","stage","stage")
-filter <- c(">=60","<60","<=7",">7","<=10",">10","T1+T2","T3+T4")
-
-p <- list()
-for ( i in 1:length(cols)) {
-  p[[i]] = mysurvplot(cols[i],filter[i])
-}
-```
-
-拼图
-Merge Graph
-
-```{r, fig.width=20, fig.height=10}
-## arrange_ggsurvplots来自于survminer包，用于排列结果
-## print = T，直接显示
-## arrange_ggsurvplots comes from the survminer package and is used to arrange the results.
-## print = T, direct display
-arrange_ggsurvplots(p, print = T,
-                    ncol = 4, nrow = 2,
-                    labels=LETTERS[1:8])
-
-## 或者print = F, 然后保存到PDF文件
-## Or print = F, then save to PDF file
-res <- arrange_ggsurvplots(p, print = F,
-                           ncol = 4, nrow = 2)
-ggsave("subgroupSurv.pdf", res, width = 20, height = 10)
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

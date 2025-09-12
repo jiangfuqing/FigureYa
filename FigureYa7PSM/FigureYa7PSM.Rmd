@@ -72,11 +72,11 @@ source("install_dependencies.R")
 #install.packages("wakefield")
 library(wakefield)
 set.seed(1234)
-df.patients <- r_data_frame(n = 250, 
-                            age(x = 30:78, 
-                                name = 'Age'), 
-                            sex(x = c("Male", "Female"), 
-                                prob = c(0.70, 0.30), 
+df.patients <- r_data_frame(n = 250,
+                            age(x = 30:78,
+                                name = 'Age'),
+                            sex(x = c("Male", "Female"),
+                                prob = c(0.70, 0.30),
                                 name = "Sex"))
 df.patients$Sample <- as.factor('CASE')
 df.patients$ID<-paste("CASE",rownames(df.patients),sep = "")
@@ -92,11 +92,11 @@ Create a dataframe called df.population. I want the data in this dataset to be a
 
 ```{r}
 set.seed(1234)
-df.population <- r_data_frame(n = 1000, 
-                              age(x = 18:80, 
-                                  name = 'Age'), 
-                              sex(x = c("Male", "Female"), 
-                                  prob = c(0.50, 0.50), 
+df.population <- r_data_frame(n = 1000,
+                              age(x = 18:80,
+                                  name = 'Age'),
+                              sex(x = c("Male", "Female"),
+                                  prob = c(0.50, 0.50),
                                   name = "Sex"))
 df.population$Sample <- as.factor('CONTROL')
 df.population$ID<-paste("CONTROL",rownames(df.population),sep = "")
@@ -128,42 +128,3 @@ write.table(mydata,"easy_input.txt",row.names = F,quote = F,sep = "\t")
 Generate matched case group dataset and control group dataset
 
 The matchit function from the MatchIT package is used to match two types of samples
-
-```{r}
-#install.packages("MatchIt")
-library(MatchIt)
-#要找年龄最接近的，因此选用method=‘nearest’。
-#ratio=1意味着这是一一配对
-#同时也请注意Group变量需要是逻辑型变量
-#To find the nearest age, use method='nearest'.
-#ratio=1 means this is a one-to-one pairing
-#Please also note that Group variables need to be logical variables
-set.seed(1234)
-match.it <- matchit(Group ~ Age + Sex, data = mydata, method="nearest", ratio=1)
-plot(match.it, type = 'jitter', interactive = FALSE)
-```
-
-## 生成CASE-CONTROL一一配对的格式
-## Generate CASE-CONTROL one-to-one matching format
-
-```{r}
-df.match <- match.data(match.it)[1:ncol(mydata)]
-df<-df.match[order(df.match$Age),]#按年龄排序 sort by age
-df<-df[order(df$Sex),]#按性别排序 sort by gender
-df<-df[order(df$Group),]#按组排序 sort by Group
-#配对
-#match
-dfpairinfo<-data.frame(df$ID[1:250],df$Age[1:250],df$Sex[1:250],df$ID[251:500],df$Age[251:500],df$Sex[251:500])
-colnames(dfpairinfo)<-c("CASEID","CASEage","CASEgender","CONTROLID","CONTROLage","CONTROLgender")
-head(dfpairinfo)
-write.table(dfpairinfo,"pair_info.txt",quote = F,sep = "\t",row.names = F )
-
-dfpair<-data.frame(df$ID[1:250],df$ID[251:500])
-colnames(dfpair)<-c("CASEID","CONTROLID")
-head(dfpair)
-write.table(dfpair,"pair_ID.txt",quote = F,sep = "\t",row.names = F )
-
-sessionInfo()
-```
-
-

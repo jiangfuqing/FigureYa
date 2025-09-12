@@ -1,15 +1,15 @@
 ---
 title: "FigureYa316RF_XGBoost_Boruta"
 params:
-  author: "Guoqi Li; Yasi Zhang"  
+  author: "Guoqi Li; Yasi Zhang"
   reviewer: "Ying Ge"
   date: "2025-05-20"
 output: html_document
 ---
 
-**Author(s)**: `r params$author`  
-**Reviewer(s)**: `r params$reviewer`  
-**Date**: `r params$date` 
+**Author(s)**: `r params$author`
+**Reviewer(s)**: `r params$reviewer`
+**Date**: `r params$date`
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -133,215 +133,12 @@ In addition, the FigureYa we have crowdfunded can realize several of the images 
 # 环境设置
 # Requirements Description
 
-使用国内镜像安装包。
-
-Using domestic mirrors for package installation.
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 BiocManager::install("randomForest")
-```
-
-
-```{r}
-# 显示英文报错信息
-# Show English error messages
-Sys.setenv(LANGUAGE = "en") 
-
-# 禁止chr转成factor
-# Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
-```
-
-# 输入文件
-# Input Files
-
-easy_input.csv，带有分组信息的矩阵。来自FigureYa65 <https://k.youshop10.com/5RZm-I9h>。
-
-可自行准备，至少包含以下信息：
-
-- 第一列：sample ID
-- 第二列：样本分组信息，最好为二分类变量
-- 第三列之后：表达矩阵
-
-easy_input.csv, matrix with grouping information. From FigureYa65 <https://k.youshop10.com/5RZm-I9h>.
-
-Can be prepared by yourself, must contain at least:
-
-- First column: sample ID
-- Second column: sample grouping info, preferably binary
-- Third column onwards: expression matrix
-
-```{r}
-# 读取数据
-# Read data
-data <- read.csv("easy_input.csv", row.names = 1, as.is = F)
-set.seed(100)
-```
-
-# RF算法
-# Random Forest Algorithm
-
-```{r fig.width=5, fig.height=5}
-library(randomForest)
-
-# 为了节约时间，使用部分数据进行展示
-# Use partial data for demonstration
-rf_input <- data[, 1:51]
-
-# 寻找最佳mtry参数 
-# Find optimal mtry parameter
-n <- length(names(rf_input))
-outTab <- data.frame()
-for (i in 1:(n-1)) {
-  mtry_fit <- randomForest(group~., data = rf_input, mtry = i)
-  err <- mean(mtry_fit$err.rate)
-  print(err)
-  outTab <- rbind(outTab,err)
-  colnames(outTab) <- "err"
-}
-
-# 选取randomforest –mtry节点值，对应误差最小的节点值为41
-# Select the randomForest mtry parameter value - the node value with minimum error is 41.
-which.min(outTab$err)
-
-# 随机设置决策树的大小，以找到模型内误差基本稳定点所对应的决策树数目
-# Randomly set the number of decision trees to identify the point where the model's internal error stabilizes and determine the corresponding optimal number of trees.
-ntree_fit <- randomForest(group~., data = rf_input, mtry = 41, ntree = 2000)
-
-# 绘制误差曲线
-# Plot error curve
-plot(ntree_fit)
-
-# 保存图形
-# Save plot
-pdf("A_RF.pdf", width = 5, height = 5)
-plot(ntree_fit)
-dev.off()
-
-# 之后选择ntree值，ntree指定随机森林所包含的决策树数目，默认为500；
-# 在1500左右时，模型内误差基本稳定，故取ntree = 1500
-# Then select the ntree value. ntree specifies the number of decision trees in the random forest, with a default of 500.
-# When reaching around 1500, the model's internal error stabilizes, therefore we set ntree = 1500.
-rf <- randomForest(group ~., data = rf_input, mtry = 41, ntree = 1500, importance = T)
-rf
-
-# 获取变量重要性
-# Get variable importance
-importance <- importance(x=rf)
-importance
-
-# 保存结果
-# Save results
-write.table(importance,"output_importance_RF.txt", col.names = T, row.names = T, sep = "\t", quote = F)
-
-# 绘制重要性图
-# Plot importance
-pdf("B_RF.pdf", width = 5, height = 5)
-varImpPlot(rf)
-dev.off()
-```
-
-# XGBoost算法
-# XGBoost Algorithm
-
-```{r fig.width=5, fig.height=5}
-library(xgboost)
-library(Matrix)
-#install.packages("Ckmeans.1d.dp")
-#如果此处报错，例如
-#Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
-#Try removing ‘C:\Users\96251\Documents\R\win-library\4.1/00LOCK’
-#只需要去上述所指定的路径下（例子为C:\Users\96251\Documents\R\win-library\4.1/）删除00LOCK文件夹即可
-
-#install.packages("Ckmeans.1d.dp")
-#If encountering errors like:
-#Error in install.packages : ERROR: failed to lock directory ‘C:\Users\96251\Documents\R\win-library\4.1’ for modifying
-#Try removing the ‘00LOCK’ folder at the specified path (e.g., C:\Users\96251\Documents\R\win-library\4.1/)
-
-# 数据准备
-# Prepare data
-matrix <- sparse.model.matrix(group ~ .-1, data = data)
-label <- as.numeric(ifelse(data$group=="NR", 0, 1))
-fin <- list(data=matrix,label=label) 
-dmatrix <- xgb.DMatrix(data = fin$data, label = fin$label) 
-
-# 模型训练
-#Model training
-xgb <- xgboost(data = dmatrix,max_depth=6, eta=0.5,  
-               objective='binary:logistic', nround=25)
-
-# 重要重要性排序 
-# Feature importance ranking
-xgb.importance <- xgb.importance(matrix@Dimnames[[2]], model = xgb)  
-head(xgb.importance)
-
-# 保存结果
-# Save results
-write.table(xgb.importance, "output_importance_XGBoost.txt", col.names = T, row.names = T, sep = "\t", quote = F)
-
-# 绘制重要性图 
-# Plot importance
-pdf("XGBoost.pdf", width = 5, height = 5)
-xgb.ggplot.importance(xgb.importance)
-dev.off()
-```
-
-# Boruta算法
-# Boruta Algorithm
-
-```{r fig.width=5, fig.height=5}
-library(Boruta)
-library(mlbench)
-
-# 为了节约时间，使用部分数据进行展示
-# Use partial data for demonstration
-Boruta_input <- data[, 1:51]
-
-# 运行Boruta算法
-# Run Boruta algorithm
-boruta <- Boruta(group ~ ., data = Boruta_input, doTrace = 2, maxRuns = 500)
-
-# 查看结果
-# View results
-print(boruta)
-
-# 通过计算发现19个特征是重要特征，对应下图绿色，29个是不重要的特征，对应下图红色，2个是不明确重要特征，对应下图蓝色
-# Analysis shows: 19 important features (green), 29 unimportant features (red), and 2 uncertain features (blue) in the plot
-
-# 可视化选择的结果
-# Visualize selection results
-pdf("A_Boruta.pdf",width = 5, height = 5)
-plot(boruta, las = 2, cex.axis = 0.7)
-dev.off()
-
-# 可视化具体的选择过程
-# Visualize selection process
-pdf("B_Boruta.pdf", width = 5, height = 5)
-plotImpHistory(boruta)
-dev.off()
-
-#采用TentativeRoughFix的方法来解析不确定的特征
-# Resolve tentative features using TentativeRoughFix method
-bor <- TentativeRoughFix(boruta)
-print(bor)
-
-# 显示最终特征选择的结果
-# Show final feature selection
-attStats(boruta)
-write.table(attStats(boruta), "output_importance_Boruta.txt", col.names = T, row.names = T, sep = "\t", quote = F)
-```
-
-# 会话信息
-# Session Info
-
-```{r}
-# 显示会话信息
-# Show session information
-sessionInfo()
 ```

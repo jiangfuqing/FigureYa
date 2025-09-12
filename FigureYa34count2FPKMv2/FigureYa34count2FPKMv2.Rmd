@@ -117,7 +117,7 @@ The sample is the same as `FigureYa22 FPKM2TPM` and `FigureYa23 count2TPM`.
 
 ```r
 library(TCGAbiolinks)
-expquery <- GDCquery(project = "TCGA-LIHC", 
+expquery <- GDCquery(project = "TCGA-LIHC",
                 data.category = "Transcriptome Profiling",
                 data.type = "Gene Expression Quantification",
                 workflow.type = "HTSeq - Counts",
@@ -150,7 +150,7 @@ from<https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_P
 Download HTSeq - FPKM here
 
 ```r
-expquery <- GDCquery(project = "TCGA-LIHC", 
+expquery <- GDCquery(project = "TCGA-LIHC",
                 data.category = "Transcriptome Profiling",
                 data.type = "Gene Expression Quantification",
                 workflow.type = "HTSeq - FPKM",
@@ -188,7 +188,7 @@ It is very important to make sure that the names of the rows of the expression m
 
 ```{r}
 eff_length2 <-read.csv("gene_length.csv", row.names = 1, header = T)
-rownames(eff_length2)<-eff_length2$gene_id 
+rownames(eff_length2)<-eff_length2$gene_id
 colnames(eff_length2)<-c("gene_id","eff_length")
 rownames(eff_length2) <- do.call(rbind,strsplit(as.character(eff_length2$gene_id),'\\.'))[,1]
 
@@ -202,7 +202,7 @@ if (! all(feature_ids %in% rownames(eff_length2))){
   tbl <- table(feature_ids %in% rownames(eff_length2))
   msg1 <- sprintf("%i gene is shared, %i gene is specified", tbl[[2]],tbl[[1]])
   warning(msg1)
-} 
+}
 
 if (! identical(feature_ids, rownames(eff_length2))){
   msg2 <- sprintf("Given GTF file only contain %i gene, but experssion matrix has %i gene", nrow(eff_length2), nrow(expMatrix))
@@ -259,38 +259,3 @@ write.table(fpkms.m, "output_count2fpkm.txt", sep="\t", quote=F, row.names=T)
 直接比较count转成的FPKM 和 从TCGA下载的FPKM，你或许会发现两者的结果有一些差异。这和你选择的GTF版本以及FPKM的生成方式有关，下面比较相关性。
 
 Directly comparing the FPKM converted by count and the FPKM downloaded from TCGA, you may find some differences between the two results. This is related to the version of GTF you chose and the way FPKM is generated, compare the correlation below.
-
-```{r}
-#导入从TCGA下载的FPKM
-#import FPKM downloaded from TCGA
-TCGAfpkm <- read.csv("TCGA_FPKM.csv", row.names = 1)
-head(TCGAfpkm[1:3,])
-# 将原始计数与计数的FPKM进行比较
-# compare raw count with FPKM from count
-cor(x=expMatrix[,1], y=fpkms.m[,1])
-# 将原始计数与TCGA的FPKM进行比较
-# compare raw count with FPKM from TCGA
-cor(x=expMatrix[,1],
-    y=TCGAfpkm$TCGA.DD.A11D.01A.11R.A131.07)
-# 将TCGA的FPKM与计数的FPKM进行比较
-# compare FPKM from TCGA with FPKM from count
-cor(x=fpkms.m[,1],
-    y=TCGAfpkm$TCGA.DD.A11D.01A.11R.A131.07)
-```
-
-以第一个sample为例，raw count 和 count转成的FPKM的相关系数是0.898；
-
-raw count 和 从TCGA直接下载的FPKM的相关系数是 0.898。
-
-而count转成的FPKM和从TCGA下载的FPKM的相关系数是1, 证明了count2FPKM的代码是有效的。
-
-Taking the first sample as an example, the correlation coefficient between the raw count and the FPKM converted from the count is 0.898;
-
-The correlation coefficient between raw count and FPKM downloaded directly from TCGA is 0.898.
-
-The correlation coefficient between the FPKM converted from count and the FPKM downloaded from TCGA is 1, which proves that the code of count2FPKM is valid.
-
-```{r}
-sessionInfo()
-```
-

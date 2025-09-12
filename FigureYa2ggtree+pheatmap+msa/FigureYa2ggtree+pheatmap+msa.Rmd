@@ -59,10 +59,10 @@ annotation_col = data.frame(group = factor(rep(c("group1","group2"),c(6,12))))
 rownames(annotation_col) = colnames(df)
 ann_colors = list(Stage = c(group1 = "#FFFFCC", group2 = "#FEFF23"))
 p1<-pheatmap(df,method="spearman", cluster_rows=T, cluster_cols=T,
-         cellwidth = 10, cellheight = 10, fontsize = 10, 
+         cellwidth = 10, cellheight = 10, fontsize = 10,
          color = colorRampPalette(c("navy", "white", "firebrick3"))(20),
          scale="row", show_colnames=F,
-         annotation_col = annotation_col, 
+         annotation_col = annotation_col,
          annotation_colors = ann_colors)
 
 #输出pdf文件
@@ -79,60 +79,3 @@ dev.off()
 msa包需要LaTex，MAC系统推荐安装MacTex
 
 The msa package requires LaTex, and it is recommended to install MacTex in the MAC system
-
-```{r,message=FALSE,warning=FALSE}
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("msa")
-require(msa)
-#输入文件
-#借用msa自带的exampleAA.fasta
-#input file
-#borrow the exampleAA.fasta that comes with msa
-mySequenceFile <- system.file("examples", "exampleAA.fasta", package="msa")
-mySequences <- readAAStringSet(mySequenceFile)
-#自己的fasta文件读入方式：
-#the way to read in your own fasta file:
-#mySequences <- readAAStringSet("file.fa")
-
-#多序列比对
-#multiple sequence comparison
-myFirstAlignment <- msa(mySequences)
-
-#输出pdf文件
-#output pdf file
-msaPrettyPrint(myFirstAlignment, output="pdf", 
-                 paperWidth=15, paperHeight=10, 
-                 showNames="right",showLogo="none", showNumbering="none",
-                 showConsensus = "none",
-                 askForOverwrite=FALSE, verbose=FALSE)
-```
-![](myFirstAlignment.pdf)
-
-## 进化树
-## Evolutionary tree
-
-```{r,message=FALSE,warning=FALSE}
-#install.packages(c("seqinr","ape"))
-#用多序列比对的结果计算距离
-#calculate the distance using the results of multiple sequence comparison
-require(seqinr)
-myAlignment <- msaConvert(myFirstAlignment, type="seqinr::alignment")
-d <- dist.alignment(myAlignment, "identity")
-
-#构建NJ树
-#construct the NJ tree
-require(ape)
-tree <- nj(d)
-
-#画树并输出到PDF文件ggtree.pdf
-#draw the tree and output to PDF file ggtree.pdf
-require(ggtree)
-p2 <- ggtree(tree, layout='circular') + geom_tiplab2(size=3, offset=.1) + xlim(-.2, 3) 
-p2
-#输出pdf文件
-#output pdf file
-pdf(file="ggtree.pdf")
-p2
-dev.off()
-```
-

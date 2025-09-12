@@ -29,9 +29,9 @@ From <https://www.nature.com/articles/nm.4479>
 
 Figure 4 MeXis alters chromosome architecture at the Abca1 locus.
 
-(e) Heat maps of the accessibility regions in WT and MeXis−/− macrophages with or without GW3965 treatment. 
+(e) Heat maps of the accessibility regions in WT and MeXis−/− macrophages with or without GW3965 treatment.
 
-Top, genome-wide accessibility sites significantly induced by GW3965 in both WT and MeXis−/− macrophages. 
+Top, genome-wide accessibility sites significantly induced by GW3965 in both WT and MeXis−/− macrophages.
 
 Bottom, accessibility sites significantly induced by GW3965 only in WT macrophages. Significance was determined on the basis of a P value threshold of 0.05 using DESeq2 in the bioconductor statistical package.
 
@@ -47,7 +47,7 @@ Figure d in the original article primarily indicates that under GW3965 treatment
 用热图展示染色质开放程度差异，同样适用于ChIP-seq数据。
 Using heatmaps to display differences in chromatin accessibility is also applicable to ChIP-seq data.
 
-# 环境设置   
+# 环境设置
 # Environment Setup
 
 安装要用到的软件：
@@ -69,8 +69,7 @@ source("install_dependencies.R")
 ```
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
 BiocManager::install("DESeq2")
 BiocManager::install("ChIPseeker")
 ```
@@ -243,137 +242,3 @@ Here, a txdb annotation file is created using a gtf file. This also works for sp
 
 除了生成txdb注释文件，还会输出一个bed文件，用于后面的进行reads的定量。
 In addition to generating the txdb annotation file, a bed file is also output for subsequent read quantification.
-
-```{r, eval=FALSE}
-# 生成txdb注释文件
-# Generate txdb comment file
-TxDb.MM9 <- makeTxDbFromGFF("mm9.gtf", format="gtf", organism="Mus musculus")
-
-peak <- readPeakFile("allMerge.bed",head=F)
-peakAnn <- annotatePeak(peak, TxDb=TxDb.MM9, level="gene")
-peakAnn <- as.data.frame(peakAnn)
-write.table(peakAnn,"peakAnn.txt",sep="\t",quote=F,row.names=F)
-
-peakSaf <- peakAnn[,c(12,1,2,3)]
-peakSaf$Strand <- "."
-colnames(peakSaf) <- c("GeneID","Chr","Start","End","Strand")
-peakSaf$GeneID <- paste(peakSaf$GeneID,1:nrow(peakSaf),sep="_")
-write.table(peakSaf,"peak.saf",sep="\t",quote=F,row.names=F)
-```
-
-## FeatureCount定量reads
-## FeatureCount read quantification
-
-```bash
-featureCounts -a peak.saf -F SAF -T 20 -o rawCount.txt *.bam
-```
-
-# 开始画图
-# Start plotting
-
-rawCount.txt，前面生成的。每行一个基因，前6列是基因位置信息，后面每列是一个样本的read count。可以类比成RNA-seq的read count进行差异分析。
-rawCount.txt, generated earlier. Each line contains one gene. The first six columns contain gene location information, and the following columns each contain the read count for a sample. This can be compared to RNA-seq read count analysis for differential analysis.
-
-先筛选显著差异基因，然后画图。
-First, screen for significantly differentially expressed genes, then plot the graph.
-
-```{r}
-data <- read.table("rawCount.txt",head=T)
-rownames(data) <- data[,1]
-data <- data[,-c(1:6)]
-colnames(data) <- substring(colnames(data),1,7)
-
-# 用DESeq2计算差异
-# Calculate the difference using DESeq2
-sample <- data.frame(conditions=substring(colnames(data),1,5))
-ddsFullCountTable <- DESeqDataSetFromMatrix(countData = data,colData = sample,  design= ~ conditions)
-dds <- DESeq(ddsFullCountTable)
-
-rawcount <- as.data.frame(counts(dds, normalized=TRUE))
-
-# WT_GW > WT_DM，并且KO_GW > KO_DM作为上面的heatmap
-# WT_GW > WT_DM, and KO_GW > KO_DM as the heatmap above
-# WT_GW > WT_DM，但是KO_GW <= KO_DM作为下面的heatmap
-# WT_GW > WT_DM, but KO_GW <= KO_DM as the heatmap below
-contrast_WT_GW_WT_DM <- c("conditions","WT_GW","WT_DM")
-res_WT_GW_WT_DM <- results(dds,contrast=contrast_WT_GW_WT_DM)
-up1 <- rownames(subset(as.data.frame(res_WT_GW_WT_DM), as.data.frame(res_WT_GW_WT_DM)$log2FoldChange > 0 & as.data.frame(res_WT_GW_WT_DM)$padj <= 0.05))
-
-contrast_KO_GW_KO_DM <- c("conditions", "KO_GW", "KO_DM")
-res_KO_GW_KO_DM <- results(dds,contrast=contrast_KO_GW_KO_DM)
-up2 <- rownames(subset(as.data.frame(res_KO_GW_KO_DM), as.data.frame(res_KO_GW_KO_DM)$log2FoldChange > 0 & as.data.frame(res_KO_GW_KO_DM)$padj <= 0.05))
-
-top <- intersect(up1,up2)
-bottom <- setdiff(up1,up2) 
-top_df <- rawcount[top,]
-bottom_df <- rawcount[bottom,]
-
-#处理成平均数
-#Process into average
-top_df_matrix <- matrix(c(rowMeans(top_df[,9:12]),rowMeans(top_df[,1:4]),rowMeans(top_df[,13:16]),rowMeans(top_df[,5:8])),ncol=4)
-colnames(top_df_matrix) <- c("WT_DM","KO_DM","WT_GW","KO_GW")
-rownames(top_df_matrix) <- rownames(top_df)
-
-bottom_df_matrix <- matrix(c(rowMeans(bottom_df[,9:12]),rowMeans(bottom_df[,1:4]),rowMeans(bottom_df[,13:16]),rowMeans(bottom_df[,5:8])),ncol=4)
-colnames(bottom_df_matrix) <- c("WT_DM","KO_DM","WT_GW","KO_GW") 
-rownames(bottom_df_matrix) <- rownames(bottom_df)
-
-#计算percentage
-#Calculate percentage
-top_perce <- top_df_matrix
-for (i in 1:4){ 
-    top_perce[,i] <- top_df_matrix[,i]/top_df_matrix[,3]*100 
-    } 
-bottom_perce <- bottom_df_matrix
-for (i in 1:4){ 
-        bottom_perce[,i] <- bottom_df_matrix[,i]/bottom_df_matrix[,3]*100 
-} 
-
-# 排序
-# Sort
-ord_top <- order(top_perce[,3],top_perce[,4],decreasing=T)
-ht1 <- top_perce[ord_top,]
-ord_bottom <- order(bottom_perce[,3],bottom_perce[,4],decreasing=T)
-ht2 <- bottom_perce[ord_bottom,]
-
-# 注释mark的位点
-# Comment the mark position
-locations <- which(str_match(rownames(ht2),"ENSMUST00000030010*")!="NA")
-labels <- c("Abca 1 (site 1)","Abca 1 (site 2)","Abca 1 (site 3)")
-
-# 颜色设置
-# Color settings
-# 这里作者玩了个小trick：小于50%的都是白色
-# The author used a little trick here: all sites with less than 50% are white.
-col <- c(rep("white",5), brewer.pal(6,"YlOrRd")) 
-seq <- seq(0,100,10)
-
-ha <- rowAnnotation(foo = anno_mark(at = locations, labels = labels))
-a <- Heatmap(ht1,col = colorRamp2(seq,col),
-    show_row_names=F,cluster_columns = FALSE,
-    cluster_rows=F, show_column_names = F,
-    name="Percentage")
-
-b <- Heatmap(ht2,col = colorRamp2(seq,col),
-    show_row_names=F,cluster_columns = FALSE,
-    cluster_rows=F,show_column_names = T,
-    right_annotation = ha, show_heatmap_legend =F)
-
-pdf(file="heatmap.pdf",width=3,height=6)
-a%v%b
-dev.off()
-```
-
-![heatmap](heatmap.pdf)
-
-这里剩下位点有点少，原文在作比较的时候用的pvalue<=0.05,而不是用的矫正后的p值。如果按照原文的话，会得到多的基因。但是，还是没有原文说的6个位点Abca1。
-There are a few remaining loci here. The original paper used pvalue<=0.05 for comparisons, rather than corrected p-values. Following the original paper would yield more genes. However, the six Abca1 loci mentioned in the original paper are still missing.
-
-一种猜测就是原文做了4次生物学重复，而作者可能在其中选择某几个重复去做，而不是全部，然后通过不断的尝试，选在最能证明观点的数据进行可视化。
-One hypothesis is that the original paper used four biological replicates, and the authors may have selected a few of these replicates, rather than all, and then, through repeated trial and error, selected the data that best supported their findings for visualization.
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

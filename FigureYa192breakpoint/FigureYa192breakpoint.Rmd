@@ -46,16 +46,13 @@ Here, we take the data from the SEER database as an example, which can also be u
 
 # Environment Setup
 
-使用国内镜像安装包
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("strucchange")
 ```
 
@@ -88,7 +85,7 @@ View(dat)
 Clean the data according to the example text
 
 ```{r eval=FALSE}
-dat <- dat[which(dat$`Derived AJCC Stage Group, 7th ed (2010-2015)` %in% 
+dat <- dat[which(dat$`Derived AJCC Stage Group, 7th ed (2010-2015)` %in%
                    c("IA","IB","IE","IEA","IEB","II","IIA","IIB","IIE","IIEA","IIEB","III","IIIA")),]
 dat <- dat[as.numeric(dat$`Regional nodes examined (1988+)`) >= 1,]
 
@@ -165,119 +162,3 @@ head(Coxoutput)
 
 用base plot画图。如果想理解某一行代码的含义，就从plot开始到该语句一起运行。
 Draw a plot using base plot. If you want to understand the meaning of a certain line of code, run from plot to that statement together.
-
-```{r}
-# 设置颜色
-# Set Colors
-jcoBlue   <- "#2874C5"
-jcoYellow <- "#EABF00"
-
-pdf("breakpoint.pdf",width = 4.5,height = 8)
-par(mfrow = c(2,1)) # 画上下两张图   # Draw two pictures, upper and lower
-
-## 画上图
-## Draw the picture above
-# 计算y轴宽度
-# Calculate the width of the Y-axis
-yrange <- range(c(Coxoutput$upper, Coxoutput$lower))
-ymin <- floor(yrange[1] * 10)/10
-ymax <- ceiling(yrange[2] * 10)/10
-par(bty = "o", mgp = c(2,.6,0), mar = c(3,3,1,1), las = 1, font.axis = 1) # 基础参数
-# foundation parameters
-plot(x = ELN.count,
-     y = c(1, Coxoutput$HR), # 补上以ELN为1时候的HR参考值（均为1）  # Add the HR reference values when ELN is 1 (all are 1)
-     xaxt = "n",
-     xlab = "",
-     ylab = "Hazard Ratio",
-     ylim = c(ymin,ymax),
-     type = "p",
-     pch = 19,
-     col = jcoBlue,
-     cex = 1.2)
-
-# 重新补上x轴坐标
-# Re-fill in the X-axis coordinates
-# 用seq(from=0, to=max(ELN.count), by=10)
-# Use seq(from=0, to=max(ELN.count), by=10)
-axis(side = 1, 
-     at = seq(from=0, to=max(ELN.count), by=10), #生成以10为间隔的x轴label  # Generate X-axis labels at intervals of 10
-     labels = seq(from=0, to=max(ELN.count), by=10), 
-     cex.axis = 0.8) # 字大小  # word size
-
-# 添加误差线
-# Add error lines
-# 垂直线
-# Vertical Line
-segments(ELN.count[-1], Coxoutput$lower, 
-         ELN.count[-1], Coxoutput$upper, 
-         lwd = 1.5)
-# 水平封口
-# Horizontal Sealing
-arrows(ELN.count[-1], Coxoutput$lower, 
-       ELN.count[-1], Coxoutput$upper, 
-       lwd = 1.5, angle = 90,
-       code = 3, length = 0.05)
-
-# 添加平滑曲线
-# Add smooth curves
-hr.lowess <- lowess(c(1, Coxoutput$HR)~ELN.count, f = 2/3) # 原文设置f即bandwith为2/3  # The original text sets f as bandwith to 2/3
-lines(hr.lowess, col = jcoYellow, lwd = 2)
-
-## 画下图
-## Draw the following picture
-# 原图靠近横坐标的黄色线，文中没有描述它代表哪个特征，因此没有画。
-# The original image shows the yellow line near the horizontal coordinate. The text does not describe which feature it represents, so it is not drawn.
-# 用Chow test寻找变点并绘图
-# Use Chow test to find the change points and plot
-f <- Fstats(hr.lowess$y ~ ELN.count)
-bk <- breakpoints(f)$breakpoints # bk代表是第几个观测，只是这里恰好等于ELN的数目  # bk represents which observation it is, but here it exactly equals the number of ELN
-# 打印变点的位置
-# Print the position of the change point
-bk
-
-# 构建平滑点的线性回归
-# Constructing linear regression with smooth points
-lm1 <- lm(hr.lowess$y[1:bk] ~ ELN.count[1:bk]) # y是第1到第bk个平滑值，x是第1到第bk个ELN的数目
-# y is the 1st to the bk smooth value, and x is the number of the 1st to the bk ELN
-lm2 <- lm(hr.lowess$y[bk:length(ELN.count)] ~ ELN.count[bk:length(ELN.count)]) # y是第bk到最后一个平滑值，x是第bk到最后一个ELN的数目   # y is the smooth value from the bk to the last, and x is the number of elNs from the bk to the last
-
-yrange <- range(Coxoutput$HR)
-ymin <- floor(yrange[1] * 10)/10
-ymax <- ceiling(yrange[2] * 10)/10
-par(bty = "o", mgp = c(2,.6,0), mar = c(3,3,0,1), las = 1, font.axis = 1) # 基础参数  # Basic Parameters
-plot(hr.lowess,
-     col = jcoYellow,
-     lwd = 2,
-     type = "l",
-     ylim = c(ymin,ymax),
-     xlab = "ELN Count",
-     ylab = "Estimated Hazard Ratio",
-     xaxt = "n")
-axis(side = 1, at = seq(from=0, to=max(ELN.count), by=5), #生成以5为间隔的x轴label  # Generate X-axis labels at intervals of 5
-     labels = seq(from=0, to=max(ELN.count), by=5), 
-     cex.axis = 0.8) # 字大小   # word size
-
-lines(ELN.count[1:bk],
-      predict(lm1, x = ELN.count[1:bk]),
-      col = jcoBlue, 
-      lty = 2,
-      lwd = 2)
-lines(ELN.count[bk:length(ELN.count)],
-      predict(lm2, x = ELN.count[bk:length(ELN.count)]),
-      col = jcoBlue, 
-      lty = 2,
-      lwd = 2)
-legend("topright", paste0("Structural break point\nELN count = ",ELN.count[bk]), adj = 0.55, bty = "n")
-
-# 关闭图像句柄
-# Close the image handle
-invisible(dev.off())
-```
-
-![](breakpoint.pdf)
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

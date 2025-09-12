@@ -106,7 +106,7 @@ unique(gsmplatforms)
 gsmlist = Filter(function(gse) {Meta(gse)$platform_id=='GPL22286'},GSMList(gse))
 Table(gsmlist[[1]])[1:5,]
 probesets <- Table(GPLList(gse)[[1]])$ID
-data.matrix <- do.call('cbind',lapply(gsmlist,function(x) 
+data.matrix <- do.call('cbind',lapply(gsmlist,function(x)
 {tab <- Table(x)
 mymatch <- match(probesets,tab$ID_REF)
 return(tab$VALUE[mymatch])
@@ -157,16 +157,16 @@ exprSet_processed_back <- exprSet_processed
 ## Convert IDs
 idmap <- bitr(geneID = rownames(exprSet_processed), fromType = "ENSEMBL", toType = "SYMBOL", OrgDb="org.Hs.eg.db", drop = TRUE)
 exprSet_processed <- as.data.frame(exprSet_processed)
-exprSet_processed <- exprSet_processed %>% 
-  rownames_to_column(var="ENSEMBL") %>% 
-  inner_join(idmap,by="ENSEMBL") %>% 
-  dplyr::select(-ENSEMBL) %>% 
+exprSet_processed <- exprSet_processed %>%
+  rownames_to_column(var="ENSEMBL") %>%
+  inner_join(idmap,by="ENSEMBL") %>%
+  dplyr::select(-ENSEMBL) %>%
   dplyr::select(SYMBOL,everything()) %>%
-  dplyr::mutate(rowMean =rowMeans(.[grep("MB_", names(.))])) %>% 
-  dplyr::filter(SYMBOL != "NA") %>% 
-  dplyr::arrange(desc(rowMean)) %>% 
-  dplyr::distinct(SYMBOL,.keep_all = T) %>% 
-  dplyr::select(-rowMean) %>% 
+  dplyr::mutate(rowMean =rowMeans(.[grep("MB_", names(.))])) %>%
+  dplyr::filter(SYMBOL != "NA") %>%
+  dplyr::arrange(desc(rowMean)) %>%
+  dplyr::distinct(SYMBOL,.keep_all = T) %>%
+  dplyr::select(-rowMean) %>%
   column_to_rownames(var = "SYMBOL")
 exprSet_processed[1:5,1:5]
 ```
@@ -174,7 +174,7 @@ exprSet_processed[1:5,1:5]
 ## Calculate RNA stemness
 
 ```{r}
-fnSig <- "pcbc-stemsig.tsv" 
+fnSig <- "pcbc-stemsig.tsv"
 w <- read.delim(fnSig, header = FALSE, row.names = 1 ) %>% as.matrix() %>% drop()
 w[1:10]
 #
@@ -188,7 +188,7 @@ stopifnot( all( rownames(X) %in% names(w)))
 w <- w[ rownames(X) ]
 w[1:5]
 
-# Score the Matrix `X` using Spearman correlation. 
+# Score the Matrix `X` using Spearman correlation.
 s <- apply( X, 2, function(z) {cor( z, w, method="sp", use="complete.obs" )} )
 s[1:5]
 
@@ -228,9 +228,9 @@ blue      <- "#0A0745"
 lightgrey <- "#dcddde"
 # 自定义主题
 # Custom theme
-My_Theme1 <- theme_bw() + 
-  theme(panel.grid =element_blank()) + 
-  theme(panel.border = element_rect(size = 1)) + 
+My_Theme1 <- theme_bw() +
+  theme(panel.grid =element_blank()) +
+  theme(panel.border = element_rect(size = 1)) +
   theme(legend.position="none") +
   theme(axis.title.x=element_blank(),
         axis.title.y=element_text(size = 12,angle = 90),
@@ -238,7 +238,7 @@ My_Theme1 <- theme_bw() +
         axis.ticks.x = element_blank()
         )+
     theme(plot.margin = margin(0,0.1,0,0.1, "cm"))
-    
+
 My_Theme2 = theme_minimal()+
   theme(legend.position="none") +
   theme(axis.title.x=element_blank(),
@@ -329,7 +329,7 @@ ss[1,1:3]
 ss <- ss - min(ss)
 ss <- ss / max(ss)
 ss <- as.data.frame(t(ss))
-colnames(ss) <- "mDNAsi"  
+colnames(ss) <- "mDNAsi"
 head(ss)
 save(ss, file = "MB_mDNAsi.Rda")
 ```
@@ -364,9 +364,9 @@ darkred   <- "#F2042C"
 blue      <- "#0A0745"
 lightgrey <- "#dcddde"
 
-My_Theme1 <- theme_bw() + 
-  theme(panel.grid =element_blank()) + 
-  theme(panel.border = element_rect(size = 1)) + 
+My_Theme1 <- theme_bw() +
+  theme(panel.grid =element_blank()) +
+  theme(panel.border = element_rect(size = 1)) +
   theme(legend.position="none") +
   theme(axis.title.x=element_blank(),
         axis.title.y=element_text(size = 12,angle = 90),
@@ -382,7 +382,7 @@ My_Theme2 = theme_minimal()+
         axis.text = element_blank(),
         axis.ticks = element_blank())+
   theme (panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  theme(plot.margin = margin(0,0.1,0,0.1, "cm")) 
+  theme(plot.margin = margin(0,0.1,0,0.1, "cm"))
 
 p1 <- ggplot(input,aes(index,mDNAsi))+
   geom_bar(stat="identity",col = blue)+

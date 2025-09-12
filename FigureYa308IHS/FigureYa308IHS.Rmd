@@ -1,15 +1,15 @@
 ---
 title: "FigureYa308IHS"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
+  author: "Xiaofan Lu; Yasi Zhang"
   reviewer: "Ying Ge"
   date: "2025-05-20"
 output: html_document
 ---
 
-**Author(s)**: `r params$author`  
-**Reviewer(s)**: `r params$reviewer`  
-**Date**: `r params$date` 
+**Author(s)**: `r params$author`
+**Reviewer(s)**: `r params$reviewer`
+**Date**: `r params$date`
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -42,7 +42,7 @@ D，9种共抑制性免疫检查点基因蛋白活性的IHS值。
 
 Source: <https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01143-6>
 
-Fig. 5 Immune heterogeneity in HCC. 
+Fig. 5 Immune heterogeneity in HCC.
 D, IHS of protein activity of 9 co-inhibitory immune checkpoint genes.
 Dotted lines indicate the median IHS value across 5099 proteins
 
@@ -76,17 +76,13 @@ For more heterogeneity figures, see here<https://k.youshop10.com/S-utnyI7>
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
-
-Install packages using domestic mirror
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("optparse")
 ```
 
@@ -102,11 +98,11 @@ library(ggrepel)
 
 # 显示英文报错信息
 # Show English error messages
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止chr转成factor
 # Prevent character to factor conversion
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 自定义函数以计算IHS
@@ -121,16 +117,16 @@ CalIHS <- function(vec, clin, method){
   # 患者内肿瘤异质性越强，得分越高
   # vec: Activity values for each sample
   # clin: Clinical info (must contain 'Patient' column), sample order should match vec
-  # method: 'nlme' or 'hclust' 
+  # method: 'nlme' or 'hclust'
   # Higher scores indicate stronger intratumor heterogeneity
-  
+
   IHS <- switch(
     method,
     "nlme" = {
       df <- cbind(clin, "regulon" = vec)
       fit <- lme(regulon~1, random=~1|Patient, data=df)
       var <- as.numeric(data.frame(as.character(VarCorr(fit)))[,1])
-      
+
       var_sum <- data.frame(between_group=var[1],
                             within_group=var[2],
                             std1=var[3],
@@ -163,196 +159,3 @@ easy_input_cli.csv，样本分组信息。共三列，第一列为样本名，�
 Renji_cohort_MR_exp.matrix, the sample expression matrix. Each row represents a gene, each column represents a sample. The first row contains sample names, the first column contains gene names. Downloaded from <https://zenodo.org/record/7336311#.ZBE6xbRBzt0>
 
 easy_input_cli.csv, the sample grouping information. Contains three columns: the first column is sample names (matching those in the expression matrix); the second column is Patient ID; the third column is the Sample ID for each Patient.
-
-```{r}
-# 工作目录路径
-# Working directory path
-work.path <- "."; #setwd(work.path)
-
-# 存放脚本的路径
-# Path for storing scripts
-pkg.path <- file.path(work.path, "Packages") 
-
-# 存放结果的路径
-# Path for storing results 
-res.path <- file.path(work.path, "Results") 
-
-# 读取样本表达矩阵，构建样本分组信息
-# Read expression matrix and build sample grouping info
-expr <- read.table("Renji_cohort_MR_exp.matrix", header = T, row.names = 1)
-
-# 去除正常样本(列名以"N"开头)
-# Remove normal samples (columns starting with "N")
-expr <- expr[, -grep("^N", colnames(expr))]
-
-# 保存表达矩阵
-# Save the expression matrix
-saveRDS(expr, file.path(res.path, "expr.rds")) 
-
-# 例文的样本名中带有分组信息，格式为：T患者编号_该患者的样本编号。我们从中提取出分组信息
-# The sample names in example data contain grouping info with format: TPatientID_SampleID
-#clin.info <- data.frame(row.names = colnames(expr),
-#                        "Patient" = gsub("(.+)_(.+)", "\\1", colnames(expr)),
-#                        "Sample" = gsub("(.+)_(.+)", "\\2", colnames(expr)))
-#write.csv(clin.info, "easy_input_cli.csv", quote = F)
-
-# 自己的数据，可以参考easy_input_cli.csv的格式提供分组信息
-# For custom data, provide grouping info referencing easy_input_cli.csv format
-clin.info <- read.csv("easy_input_cli.csv", header = T)
-```
-
-# 计算蛋白活性
-# Protein Activity Calculation
-
-由于需要进行200次bootstrap，耗时较长大概在2天左右，请耐心等待。
-
-Since 200 bootstrap iterations are required, the process will take approximately 2 days to complete. Please wait patiently.
-
-```{r eval=FALSE}
-# pisce所在的文件夹
-# Directory containing pisce 
-pisce.path <- pkg.path 
-system(paste("Rscript", file.path(pisce.path, "pisce.R"), # pisce主代码位置 | Main pisce script location
-             file.path(pisce.path),                       # pisce输入数据路径 | Data directory for pisce
-             file.path(res.path),                         # pisce结果存放位置 | Output directory for pisce results
-             "human", "symbol", 1e-8, 200))               # 物种(human, mouse)，基因名称类型(ensg, symbol)、P值阈值，bootstrap次数 | Species (human/mouse), Gene ID type (ensg/symbol), P-value threshold, Bootstrap iterations
-```
-
-这里会生成`out_unPruned.rds`文件，用于下一步计算。`out_unPruned.rds`文件已上传至百度网盘，便于测试。下载地址：<https://pan.baidu.com/s/18_Q329zr_33edK2TSJYYnQ?pwd=a6hx>。下载后删除扩展名`.txt`，存入Result文件夹，即可继续往下运行。
-
-```{r}
-# 读取ARACNe网络推断结果
-# Read ARACNe network results 
-out_unPruned <- readRDS(file.path(res.path, "out_unPruned.rds")) 
-
-# 使用VIPER计算蛋白活性矩阵
-# Compute protein activity matrix using VIPER 
-vip.mat <- viper(expr, out_unPruned, method = "none",     
-                 eset.filter = FALSE, minsize = 5)
-
-# 保存活性矩阵结果
-# Save activity matrix
-saveRDS(vip.mat, file.path(res.path, "vip.mat.rds"))
-```
-
-# 计算IHS
-# Calculating IHS
-
-患者内肿瘤异质性越强，integrated heterogeneity score (IHS) 得分越高。
-
-The higher the integrated heterogeneity score (IHS), the greater the intratumor heterogeneity within patients.
-
-```{r}
-# 读取蛋白活性矩阵
-# Load protein activity matrix
-vip.mat <- readRDS(file.path(res.path, "vip.mat.rds"))
-
-# 计算整合异质性分数 (IHS) 
-# Calculate Integrated Heterogeneity Score (IHS) 
-IHS <- data.frame(
-  "Protein" = rownames(vip.mat),
-  "lme" = apply(vip.mat, 1, function(x){
-    CalIHS(vec = x, clin = clin.info, method = "nlme")
-  }),
-  "hclust" = apply(vip.mat, 1, function(x){
-    CalIHS(vec = x, clin = clin.info, method = "hclust")
-  })
-)
-
-# 计算两种方法的几何平均数
-# Compute geometric mean of two methodss
-IHS$IHS <- sqrt(IHS$lme * IHS$hclust) 
-
-# 保存结果文件
-# Save results
-write.table(IHS, file.path(res.path, "output_IHS.txt"), row.names = T, col.names = T, sep = "\t", quote = F)
-```
-
-# 开始画图
-# Plotting
-
-```{r fig.width=4, fig.height=4}
-# 自定义要在图中标注基因名的点
-# Define genes to highlight in plot
-to.plot <- c("CD47", "CEACAM1", "CD274", "LGALS9", "PDCD1", "CD160", "CD244", "LAG3", "CD48")
-
-# 读取IHS评分结果
-# Load IHS scores
-IHS <- read.table(file.path(res.path, "output_IHS.txt"))
-
-# 计算中位值作参考线
-# Calculate median for reference line
-medianIHS <- median(IHS$IHS)
-
-# 准备绘图数据
-# Prepare plotting data
-plot.data <- data.frame(
-  "protein" = IHS$Protein,
-  "IHS" = IHS$IHS
-)
-
-# 创建标注列
-# Create annotation columns 
-plot.data$label <- ifelse(plot.data$protein %in% to.plot, plot.data$protein, NA)
-
-# 配色方案：蓝色=目标基因，灰色=其他
-# Color scheme: blue=highlighted, grey=others 
-plot.data$color <- ifelse(plot.data$protein %in% to.plot, "deepskyblue3", "grey80")
-
-# 点大小区分
-# Size differentiation
-plot.data$size <- ifelse(plot.data$protein %in% to.plot, 2, 1)
-
-# 按IHS分数排序因子水平 
-# Order proteins by IHS score
-plot.data$protein <- factor(plot.data$protein, levels = plot.data$protein[order(plot.data$IHS)])
-
-# 绘制落石图
-# Generate dot plot
-ggplot(plot.data, aes(x = protein, y = IHS, label = label)) +
-  
-  # 添加中位数参考线
-  # Add median reference line
-  geom_hline(yintercept = medianIHS, color="black", 
-             linetype="longdash", lwd = 0.5) +
-  
-  # 基础点图
-  # Base points 
-  geom_point(col = plot.data$color, size = plot.data$size) +
-  
-  # 标签定位
-  # Label positioning
-  geom_label_repel() +
-  #geom_text_repel() +
-  
-  # 颜色映射
-  # Color mapping 
-  scale_color_manual(values = c("deepskyblue3" = "deepskyblue3", "grey80" = "grey80")) +
-  
-  # 重新绘制高亮点确保图层顺序
-  # Re-plot highlights for z-ordering 
-  geom_point(mapping = aes(x = protein, y = IHS, col = color), data = plot.data[plot.data$color == "deepskyblue3", ]) +
-  
-  # 坐标轴标签
-  # Axis labels 
-  labs(x="Heterogeneity of protein activity of \n co-inhibitory checkpoint targets", y="Integrated heterogeneity score (IHS)", title="") + 
-  
-  # 主题设置
-  # Theme customization
-  theme_classic() +
-  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
-  guides(color = "none") 
-
-# 保存图形
-# Save plot
-ggsave(file.path(res.path, "IHS.pdf"), width = 4, height = 4)
-```
-
-# 会话信息
-# Session Info
-
-```{r}
-# 显示会话信息
-# Show session information
-sessionInfo()
-```

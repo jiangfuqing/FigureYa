@@ -44,15 +44,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # 环境设置
 
-使用国内镜像安装包
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("meta")
 ```
 
@@ -79,7 +77,7 @@ head(input)
 
 ```{r}
 input <- input %>%
-        mutate(`Hazard Ratio(95%CI)` = paste(HR,'(',LCI,'-',HCI,')',sep=""))   
+        mutate(`Hazard Ratio(95%CI)` = paste(HR,'(',LCI,'-',HCI,')',sep=""))
 
 # 对不服从正态分布的HR对数转换
 lnhr <- log(input$HR)
@@ -114,13 +112,13 @@ metamodel
 
 ```{r,fig.height=6,fig.width=10,fig.align='center'}
 pdf("meta_random_diy.pdf", width = 8, height = 5)
-forest(metamodel, 
+forest(metamodel,
        rightcols = c("Hazard Ratio(95%CI)","pvalue"), # 设置右侧标签
        leftcols = c("Groups"),                        # 设置左侧标签
        digits.tau2 = 3,label.right = c(input$pvalue,metamodel$pval.random),
-       
+
        # 原图选择随机效应模型，故前者设置为F，后者设置为T
-       comb.fixed = F, comb.random = T, 
+       comb.fixed = F, comb.random = T,
        print.pval.Q = T,print.I2 = T,print.tau2 = T,        # 是否打印异质性检验的结果
        col.square = "#8B0000",col.square.lines = "#8B0000", # 设置HR方块颜色
        col.diamond = "#8B0000",col.diamond.lines = "#8B0000")# 设置合并效应量HR的颜色
@@ -135,58 +133,3 @@ dev.off()
 
 - 两种方式计算获得的合并的效应量HR基本一致；
 - 出图存在一定的差异，可以生成pdf文件，是矢量图，借助Illustrator进一步修改图和文字。或用export包导出ppt文件，进一步修改；如果安装export包遇到问题，可[参考此帖](https://www.jianshu.com/p/ff5bcf46c34a)
-
-```{r}
-# export::graph2ppt(file = "MetaREM forest.pptx",width = 18/2.54,height = 12/2.54)
-```
-
-还可以套用RevMan 5风格
-
-```{r}
-pdf("meta_random_revman5.pdf", width = 8, height = 5)
-forest(metamodel,
-       comb.fixed = F, comb.random = T, 
-       layout = 'revman5') # 套用RevMan 5风格
-dev.off()
-```
-
-![](meta_random_revman5.pdf)
-
-## 固定效应模型
-
-```{r}
-pdf("meta_fixed_revman.pdf", width = 8, height = 5)
-forest(metamodel,
-       # 固定效应模型，故前者设置为T，后者设置为F
-       comb.fixed = T, comb.random = F, 
-       layout = 'revman5') # 套用RevMan 5风格
-dev.off()
-```
-
-![](meta_fixed_revman.pdf)
-
-# 附
-
-## 发表偏倚的检验
-
-```{r}
-funnel(metamodel)  # 查看纳入研究是否对称分布
-metabias(metamodel, method="rank")  # Begg's检验
-metabias(metamodel, method="linreg")# Egger's检验
-```
-
-- 警告信息：“Number of studies (k=3) too small to test for small study effects (k.min=10). Change argument 'k.min' if appropriate.”
-
-可以发现meta包建议纳入至少10项及以上的研究进行分析，原文仅纳入三项研究进行meta分析，并不可取。个人观点，欢迎讨论。
-
-## 敏感性分析
-
-```{r}
-forest(metainf(metamodel,pooled = 'random'), layout = "JAMA")
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

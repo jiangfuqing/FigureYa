@@ -143,9 +143,9 @@ The code below removes those bad genes or samples.
 if (!gsg$allOK){
   # 可选择打印被删除的基因和样本名称：
   # Optionally, print the gene and sample names that were removed:
-  if (sum(!gsg$goodGenes)>0) 
+  if (sum(!gsg$goodGenes)>0)
      printFlush(paste("Removing genes:", paste(names(datExpr0)[!gsg$goodGenes], collapse = ", ")));
-  if (sum(!gsg$goodSamples)>0) 
+  if (sum(!gsg$goodSamples)>0)
      printFlush(paste("Removing samples:", paste(rownames(datExpr1)[!gsg$goodSamples], collapse = ", ")));
   # 从数据中删除违规基因和样本：
   # Remove the offending genes and samples from the data:
@@ -187,7 +187,7 @@ For example, using 35000 as the cutoff would remove the leftmost 4 four samples,
 plot(sampleTree, main = "Sample clustering to detect outliers", sub="", xlab="", cex.lab = 1.5, cex.axis = 1.5, cex.main = 2) +
 #想用哪里切，就把“h = 35000”和“cutHeight = 35000”中的“500”换成你的cutoff
 #Replace the “500” in “h = 35000” and “cutHeight = 35000” with your cutoff wherever you want to cut.
-abline(h = 35000, col = "red") 
+abline(h = 35000, col = "red")
 clust = cutreeStatic(sampleTree, cutHeight = 35000, minSize = 10)
 keepSamples = (clust==1)
 datExpr = datExpr1[keepSamples, ]
@@ -334,9 +334,9 @@ Show correlation between all modules and phenotypes
 
 ```{r}
 pdf("3Module-trait.pdf",width = 6, height = 6)
-labeledHeatmap(Matrix = modTraitCor, xLabels = colnames(samples), yLabels = names(MEsWW), cex.lab = 0.5,  yColorWidth=0.01, 
+labeledHeatmap(Matrix = modTraitCor, xLabels = colnames(samples), yLabels = names(MEsWW), cex.lab = 0.5,  yColorWidth=0.01,
                xColorWidth = 0.03,
-               ySymbols = colnames(modlues), colorLabels = FALSE, colors = blueWhiteRed(50), 
+               ySymbols = colnames(modlues), colorLabels = FALSE, colors = blueWhiteRed(50),
                textMatrix = textMatrix, setStdMargins = FALSE, cex.text = 0.5, zlim = c(-1,1)
                , main = paste("Module-trait relationships"))
 dev.off()

@@ -31,13 +31,13 @@ FPKM跟TPM的计算都考虑了基因长度，因此相对于read count转TPM来
 
 如果你需要从read count转TPM，请购买FigureYa23count2TPM；从read count转FPKM，请购买FigureYa34count2FPKM。
 
-The RNA-seq gene expression is in FPKM and needs to be converted to TPM. This is not limited to TCGA data. 
+The RNA-seq gene expression is in FPKM and needs to be converted to TPM. This is not limited to TCGA data.
 
-Both FPKM and TPM calculations consider gene length, making the conversion from FPKM to TPM more convenient and faster than from read count to TPM. 
+Both FPKM and TPM calculations consider gene length, making the conversion from FPKM to TPM more convenient and faster than from read count to TPM.
 
 If you need to convert from read count to TPM, please purchase FigureYa23count2TPM; to convert from read count to FPKM, please purchase FigureYa34count2FPKM.
 
-## 下载TCGA RNA-seq的FPKM数据 
+## 下载TCGA RNA-seq的FPKM数据
 ## Download FPKM data for TCGA RNA-seq
 
 此处以TCGA的数据为例。
@@ -53,10 +53,10 @@ source("install_dependencies.R")
 #source("https://bioconductor.org/biocLite.R")
 #biocLite("TCGAbiolinks")
 library(TCGAbiolinks)
-expquery <- GDCquery(project = "TCGA-LIHC", 
+expquery <- GDCquery(project = "TCGA-LIHC",
                 data.category = "Transcriptome Profiling",
                 data.type = "Gene Expression Quantification",
-                workflow.type = "STAR - Counts" 
+                workflow.type = "STAR - Counts"
                 )
 GDCdownload(expquery)
 expquery2 <- GDCprepare(expquery)

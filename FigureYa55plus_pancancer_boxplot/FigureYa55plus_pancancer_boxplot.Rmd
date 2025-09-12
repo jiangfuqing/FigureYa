@@ -90,8 +90,8 @@ p1
 # draw the box while drawing the scatter points
 p2 <- ggboxplot(tcga_gtex, x = "Tissues", y = "Gene", fill = 'Groups',
                 ylab = ylabname,
-                color = "Groups", 
-                palette = "jco", 
+                color = "Groups",
+                palette = "jco",
                 add = "jitter", #加散点 add scatter points
                 #shape = "Groups", #两组散点用不同形状 two sets of scatter points use different shapes
                 ggtheme = theme_minimal())
@@ -102,14 +102,14 @@ p2
 anno_df <- compare_means(Gene ~ Groups, group.by = "Tissues", data = tcga_gtex,
                          #这里是两组对比，用wilcox.test或t.test
                          #here are two sets of comparisons, using wilcox.test or t.test
-                         method = "wilcox.test", 
+                         method = "wilcox.test",
                          #如果多组对比就用下面这行，kruskal.test或anova
                          #if you want to compare multiple groups, use the following line, kruskal.test or anova
-                         #method = "kruskal.test", 
+                         #method = "kruskal.test",
                          p.adjust.method = "holm") #
 head(anno_df)
 
-p3 <- p2 + 
+p3 <- p2 +
   stat_pvalue_manual(anno_df, x = "Tissues", y.position = 15,
                      label = "p.signif", position = position_dodge(0.8))
 p3
@@ -143,7 +143,7 @@ pvalues <- sapply(tcga_gtex_withNormal$Tissues, function(x) {
 })
 
 pv <- data.frame(gene = tcga_gtex_withNormal$Tissues, pvalue = pvalues)
-pv$sigcode <- cut(pv$pvalue, c(0,0.0001, 0.001, 0.01, 0.05, 1), 
+pv$sigcode <- cut(pv$pvalue, c(0,0.0001, 0.001, 0.01, 0.05, 1),
                   labels=c('****','***', '**', '*', 'ns'))
 
 # 画box plot
@@ -160,7 +160,7 @@ p.box <- ggplot(tcga_gtex_withNormal, aes(x=Tissues, y=Gene, color=Groups, fill=
                                    angle = 45, hjust = .5, vjust = .5)) +
   geom_text(aes(x=gene, y=max(tcga_gtex_withNormal$Gene) * 1.1,
                          label = pv$sigcode),
-                     data=pv, 
+                     data=pv,
                      inherit.aes=F) +
   ylab(ylabname)
 p.box
@@ -176,7 +176,7 @@ ggsave("pancancer_ggplot2boxDot.pdf", width = 14, height = 5)
 
 # 把不带normal的tissue也画上
 # draw the non-normal issue as well
-p.box.dot + 
+p.box.dot +
   # MESO
   geom_boxplot(alpha = .5, data = tcga_gtex_MESO,
                      mapping = aes(x=Tissues,y=Gene,fill=Groups)) +

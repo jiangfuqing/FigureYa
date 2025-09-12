@@ -28,14 +28,14 @@ tsne dimensionality reduction, marking GO function
 出自<https://www.frontiersin.org/articles/10.3389/fimmu.2020.606164/full>
 from<https://www.frontiersin.org/articles/10.3389/fimmu.2020.606164/full>
 
-FIGURE 2 | Functional enrichment analysis. 
-(D) The distribution of GBM and Control cells in GSE135437. 
-(E) The distribution of status of macrophages in GSE135437. 
+FIGURE 2 | Functional enrichment analysis.
+(D) The distribution of GBM and Control cells in GSE135437.
+(E) The distribution of status of macrophages in GSE135437.
 (F) The distribution of top-six biological processes in GSE135437.
 
-Almost all **M2 macrophages were in the GBM cells**, 
-while **M1 macrophages were in the control cells** (Figures 2D, E). 
-Furthermore we explored the **relationship between the biological process and cell types** and found that the signal transduction and angiogenesis enriched in a subgroup of M2 macrophages, however the cell adhesion widely distributed in both control and GBM cells (Figure 2F). 
+Almost all **M2 macrophages were in the GBM cells**,
+while **M1 macrophages were in the control cells** (Figures 2D, E).
+Furthermore we explored the **relationship between the biological process and cell types** and found that the signal transduction and angiogenesis enriched in a subgroup of M2 macrophages, however the cell adhesion widely distributed in both control and GBM cells (Figure 2F).
 
 # 应用场景
 
@@ -63,16 +63,13 @@ You need to compare and contrast the presentation from various angles to find th
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 ```
 
 加载包
@@ -95,235 +92,3 @@ GSE135437，从<https://github.com/rsankowski/sankowski-et-al-microglia>下载�
 # Standard Seurat process
 
 GSE135437, download the data from the <https://github.com/rsankowski/sankowski-et-al-microglia> and extract it to the current folder
-
-```{r}
-#读取作者处理好的数据
-# Read the data processed by the author
-(load("data/unnormalized_counts_ctrl_gbm.RData")) # 表达矩阵 # Expression matrix
-(load("data/metadata-ctrl-gbm.RData")) # metadata
-```
-
-运行标准的seurat流程
-Run the standard seurat process
-
-```{r}
-metadata = df; rownames(metadata) = df$cell_ID
-
-# 创建Seurat对象
-# Create a Seurat object
-SeuratObj <- CreateSeuratObject(counts = counts_unnorm, 
-                                project = "ctrl-gbm", 
-                                min.cells = 3, 
-                                min.features = 200,
-                                meta.data = metadata)
-
-# 提取线粒体基因
-# Extract mitochondrial genes
-SeuratObj[["percent.mt"]] <- PercentageFeatureSet(SeuratObj, pattern = "^MT-")
-
-# 这个地方表达矩阵内无线粒体基因，所以不进行过滤
-# This place expresses the un-partondrial genes within the matrix, so it is not filtered
-VlnPlot(SeuratObj, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
-
-# 进行标准化，归一化
-# Standardization, normalization
-SeuratObj = SeuratObj %>%
-  NormalizeData() %>%
-  FindVariableFeatures() %>%
-  ScaleData()
-
-# 运行PCA
-# Run PCA
-SeuratObj = RunPCA(SeuratObj, features = VariableFeatures(object = SeuratObj))
-
-ElbowPlot(SeuratObj)
-
-# 选取前10个PC进行降维
-# Select the first 10 PCs for dimensionality reduction
-SeuratObj = RunTSNE(SeuratObj,dims = 1:10)
-```
-
-# 用不同颜色展示分组
-# Show the grouping with different colors
-
-## 根据Patient_ID分组
-## Group according to Patient_ID
-
-查看来自不同人的细胞分布情况
-See the distribution of cells from different people
-
-```{r}
-DimPlot(SeuratObj, 
-        reduction = "tsne", 
-        group.by = "Patient_ID")
-```
-
-可以看出Ctrl在左，GBM在右。下面用两种颜色标注，更直观。
-You can see that Ctrl is on the left and GBM is on the right. The following is marked with two colors, which is more intuitive.
-
-## 根据Diagnosis列分组 - 画图2D
-## Grouping by Diagnosis Column - Paint 2D
-
-GBM和Ctrl两组
-GBM and Ctrl
-
-```{r}
-DimPlot(SeuratObj, 
-        reduction = "tsne", 
-        group.by = "Diagnosis", # metadata的Diagnosis列
-        cols = c("royalblue3", "yellow2"),
-        pt.size = 1.5)
-```
-
-## 根据细胞周期分组 - 画图2E
-## Grouping according to cell cycle - Plot 2E
-
-```{r}
-# 根据作者文章的定义对巨噬细胞进行分类
-# Classify macrophages according to the definition in the author's article
-Putative_M2_cells <- WhichCells(SeuratObj, expression = CD163 >= 1 | FPR3 >= 1 | SIGLEC1 >= 1)
-
-metadata$MAC_type = ifelse(metadata$cell_ID %in% Putative_M2_cells,"M2","M1")
-SeuratObj$MAC_type = metadata$MAC_type
-
-# 复现图2E
-# Reproduce Figure 2E
-DimPlot(SeuratObj, 
-        reduction = "tsne", 
-        group.by = "MAC_type",
-        cols = c("paleturquoise3", "khaki2"),
-        pt.size = 1.5)
-# 保存数据，后面接着用
-# Save the data and use it later
-#saveRDS(SeuratObj,"./SeuratObj.rds")
-```
-
-# 用渐变色展示pathway的表达量 - Single-Cell Signature Explorer score
-# Single-Cell Signature Explorer score is displayed with gradient color
-
-```{r eval=FALSE}
-# 读取前面保存的数据
-# Read the previously saved data
-SeuratObj <- readRDS("./SeuratObj.rds")
-
-# 准备好表达矩阵，作为Single Cell Scorer软件的输入
-# Prepare the expression matrix as input to the Single Cell Scorer software
-write.table(t(as.matrix(SeuratObj@assays$RNA$data)), "SeuratObj.tsv", sep="\t", row.names = TRUE, col.names=NA)
-```
-
-## 准备基因集
-## Prepare the gene set
-
-```{r}
-ensembl <- useMart("ensembl",dataset="hsapiens_gene_ensembl") #uses human ensembl annotations
-
-# 要展示的GO term
-# GO term to showcase
-go_id <- c("GO:0007165",#signal transduction
-         "GO:0045944",#positive regulation of transcription from RNA polymerase 2 promoter
-         "GO:0000122",#negative regulation of transcription from RNA polymerase 2 promoter
-         "GO:0007155",#cell adhesion
-         "GO:0043547",# positive regulation of GTPase activity
-         "GO:0001525")#angiogenesis
-
-# 提取每个GO term里的基因
-# Extract the genes in each GO term
-data <- list()
-for (i in go_id) {
-  gene.data <- getBM(attributes=c('hgnc_symbol', 'go_id'),
-                     filters = 'go', values = i, mart = ensembl)
-  gene <- unique(gene.data$hgnc_symbol)
-  data[[i]] <- gene
-}
-
-# saveRDS(data,"GO_genelist.rds")
-```
-
-准备好基因集，保存到`geneset`文件夹下，作为Single Cell Scorer软件的输入
-Prepare the gene set and save it to the 'geneset' folder as input to the Single Cell Scorer software
-
-```{r}
-for (i in c(1:length(data))) {
-  # i = 1
-  id = names(data)[i]
-  id = gsub(":", "_", id)
-  gene = data[[i]]
-  gene = data.frame(gene = gene)
-  write.table(gene, file=paste0("./geneset/",id,".txt"), quote=FALSE,row.names = F,col.names=F)
-}
-```
-
-## 使用Single-Cell Signature Explorer进行打分
-
-在此下载 <https://sites.google.com/site/fredsoftwares/products/single-cell-signature-explorer>，下载后文件夹下有操作手册。
-
-## Use the Single-Cell Signature Explorer for scoring
-
-In this download <https://sites.google.com/site/fredsoftwares/products/single-cell-signature-explorer>, there is an operation manual under the folder after downloading.
-
-The **Single-Cell Signature Scorer** was compiled for GNU Linux and Microsoft©Windows™ 64 bits, and can be compiled for any platform using cross-compilation by Go. <https://academic.oup.com/nar/article/47/21/e133/5531181>
-
-Windows系统下Single-Cell Signature Explorer的使用：
-
-1. 将SeuratObj.tsv软件复制到SingleCellSignatureScorer/data文件夹下
-
-2. 将geneset文件复制到到SingleCellSignatureScorer/databases/SignatureExamples文件夹下，可以替代示例文件
-
-3. 双击SingleCellSignatureScorer_Win64_036.exe，输入0，然后回车
-
-4. 结果在SingleCellSignatureScorer/results中
-
-Using Single-Cell Signature Explorer on Windows:
-
-1. Copy the SeuratObj.tsv software to the SingleCellSignatureScorer/data folder
-
-2. Copy the geneset file to the SingleCellSignatureScorer/databases/SignatureExamples folder as an alternative to the sample file
-
-3. Double-click on the SingleCellSignatureScorer_Win64_036.exe, enter 0, and press Enter
-
-![](scorer.png)
-4. The results are in SingleCellSignatureScorer/results
-
-## 读取打分结果并画图
-## Read the scoring results and draw a graph
-
-```{r}
-# 读入Single-Cell Signature Explorer算出的score
-# Read the score calculated by the Single-Cell Signature Explorer
-score <- read.table("./SignatureExamples_SeuratObj.tsv",header = T,row.names = 1)
-
-# 把Single-Cell Signature Explorer算出的score添加进去
-# Add the score calculated by the Single-Cell Signature Explorer
-SeuratObj = AddMetaData(SeuratObj, score, col.name = colnames(score))
-
-#查看新的的metadata
-# View the new metadata
-head(SeuratObj[[]]) 
-```
-
-复现图2F
-Reproduce Figure 2F
-
-```{r, fig.width=12, fig.height=5}
-FeaturePlot(SeuratObj, 
-            features = c("GO_0007165","GO_0045944","GO_0000122","GO_0007155","GO_0043547","GO_0001525"), 
-            reduction = "tsne",
-            ncol = 3, # 画三列
-            cols = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100)) # 或rev(rainbow(5))
-
-ggsave("scScore.pdf", width = 12, height = 5)
-```
-
-# 后期处理
-
-输出的pdf文件都是矢量图，可以用矢量图工具打开，编辑文字和图形。例如像例文那样删掉坐标轴等。
-
-# Post-processing
-
-The output PDF files are all vector graphics, which can be opened with vector tools to edit text and graphics. For example, delete the axes as in the examples.
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

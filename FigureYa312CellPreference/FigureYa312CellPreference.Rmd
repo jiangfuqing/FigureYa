@@ -1,15 +1,15 @@
 ---
 title: "FigureYa312CellPreference"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
+  author: "Xiaofan Lu; Yasi Zhang"
   reviewer: "Ying Ge"
   date: "2025-05-20"
 output: html_document
 ---
 
-**Author(s)**: `r params$author`  
-**Reviewer(s)**: `r params$reviewer`  
-**Date**: `r params$date` 
+**Author(s)**: `r params$author`
+**Reviewer(s)**: `r params$reviewer`
+**Date**: `r params$date`
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -40,7 +40,6 @@ Source: <https://www.nature.com/articles/s41586-022-05400-x>
 Fig. 3 | Neutrophil heterogeneity and functional validation in humans.
 b, Tissue preference of neutrophil clusters in humans, revealed by
 **Ro/e (ratio of observed cell number to expected cell number)**.
-
 
 
 类似的图：
@@ -81,17 +80,13 @@ For more single-cell analysis visualization tools from FigureYa: <https://k.yous
 # 环境设置
 # Requirements Description
 
-使用国内镜像安装包。
-
-Using domestic mirrors for package installation.
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("epitools")
 ```
 
@@ -104,11 +99,11 @@ library(ComplexHeatmap)
 
 # 显示英文报错信息
 # Show English error messages
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止chr转成factor
 # Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 # 输入文件
@@ -120,106 +115,4 @@ neu-CountBySample.csv和neu-CountByTissue.csv，频数统计表，为例文作�
 
 ```{r eval=FALSE}
 as.matrix(as.data.frame.matrix(table(seu.obj$Tissue, seu.obj$Celltypes)))
-```
-
-```{r}
-# 这里读取例文作者提供的注释数据
-# 数值为特定组织中特定细胞类型的实际细胞数目
-# Here we read the annotation data provided by the example paper authors
-# The values are actual cell counts of specific cell types in specific tissues
-data1 <- read.csv("neu-CountBySample.csv", row.names = 1)
-data1 <- split(data1, substr(rownames(data1), 6, 8))
-data1 <- data1[c("HCC", "ICC", "CHC")]
-data1 <- lapply(data1, colSums)
-data1 <- as.data.frame(do.call(rbind, data1))
-
-data2 <- read.csv("neu-CountByTissue.csv", row.names = 1)
-data2 <- data2[c("AL", "PB"), ]
-
-observe.data <- t(rbind(data2, data1)) 
-```
-
-# 生成细胞数目分布频数统计表observe.data
-# Generate Cell Count Frequency Table observe.data
-
-```{r}
-# 生成期望频数表
-# Generate expected frequency table
-expected.data <- expected(observe.data) 
-
-# 计算实际细胞数目与期望细胞数目的比值
-# Calculate ratio of actual to expected cell counts
-plot.data <- observe.data/expected.data
-```
-
-# 开始画图
-# Plotting
-
-```{r}
-plot.data[plot.data>3] = 3
-
-# 绘图数据的列顺序
-# Column order for plotting data
-col.order <- c("PB", "AL", "HCC", "CHC", "ICC") 
-
-# 对绘图数据列进行排序
-# Sort plotting data columns
-plot.data <- plot.data[, col.order] 
-
-# 对绘图数据行进行排序
-# Sort plotting data rows
-plot.data <- plot.data[order(apply(plot.data, 1, which.max), decreasing = T), ] 
-# 如果想深色色块在主对角线使用which.min，在副对角线则使用which.max
-# If you want darker blocks on main diagonal use which.min, for secondary diagonal use which.max
-
-rownames(plot.data) <- substr(rownames(plot.data), 5, 6)
-
-# 热图颜色设定
-# Heatmap color settings
-cols <- setNames(object = c("#FEE6CE", "#FDC08C", "#F5904B", "#E6550D"),
-                 nm = c("1", "1.5", "3", ">5"))
-
-cell_fun = function(j, i, x, y, width, height, fill) {
-  if(plot.data[i,j] < as.numeric(names(cols)[1])) {
-    grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = cols[1], fill = cols[1]))
-    grid.text("\u00B1", x = x, y = y)
-  } else if(plot.data[i,j] < as.numeric(names(cols)[2])) {
-    grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = cols[2], fill = cols[2]))
-    grid.text("+", x = x, y = y)
-  } else if(plot.data[i,j] < as.numeric(names(cols)[3])) {
-    grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = cols[3], fill = cols[3]))
-    grid.text("++", x = x, y = y)
-  } else {
-    grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = cols[4], fill = cols[4]))
-    grid.text("+++", x = x, y = y)
-  }
-}
-
-# 生成热图
-# Generate heatmap
-hm = Heatmap(plot.data, cell_fun = cell_fun,
-             cluster_rows = F, cluster_columns = F,
-             width = unit(5, "cm"), height = unit(11, "cm"), 
-             show_heatmap_legend = F)
-
-# 生成图例
-# Generate legend
-lgd = Legend(labels = names(cols), title = expression(R[o/e]), legend_gp = gpar(fill = cols))
-
-draw(hm, annotation_legend_list = lgd)
-
-# 输出到文件
-# Output to file
-pdf("RatioHeatmap.pdf", width = 8, height = 6)
-draw(hm, annotation_legend_list = lgd)
-invisible(dev.off())
-```
-
-# 会话信息
-# Session Info
-
-```{r}
-# 显示会话信息
-# Show session information
-sessionInfo()
 ```

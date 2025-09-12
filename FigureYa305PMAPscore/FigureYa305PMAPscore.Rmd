@@ -1,15 +1,15 @@
 ---
 title: "FigureYa305PMAPscore"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
+  author: "Xiaofan Lu; Yasi Zhang"
   reviewer: "Ying Ge"
   date: "2025-05-20"
 output: html_document
 ---
 
-**Author(s)**: `r params$author`  
-**Reviewer(s)**: `r params$reviewer`  
-**Date**: `r params$date` 
+**Author(s)**: `r params$author`
+**Reviewer(s)**: `r params$reviewer`
+**Date**: `r params$date`
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -56,17 +56,13 @@ The PMAPscore requires pathway information in kgml format, so MSigDB gene sets c
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
-
-Using domestic mirrors for package installation.
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("PMAPscore")
 browseVignettes("PMAPscore")
 BiocManager::install("SPIA")
@@ -83,17 +79,17 @@ library(SPIA)
 
 # 修正的源代码
 # Corrected source code
-source("utils.R") 
+source("utils.R")
 
 options(timeout=500)
 
 # 显示英文报错信息
 # Show English error messages
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止chr转成factor
 # Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 # 输入文件
@@ -114,164 +110,3 @@ Taking the built-in data of PMAPscore as an example:
 - sur: Patient survival data (row names should match sample names in maf_data), containing STATUS and TIME columns
 - gene_symbol_Entrez: Mapping table between Gene SYMBOL and Entrez ID
 - roc_data: Sample grouping information, requiring at least sample and response columns
-
-```{r}
-# 加载数据
-# Load data
-data("maffile", "gene_Ucox_res", "sur", "gene_symbol_Entrez", "roc_data")
-
-# 清理数据
-# Clean data
-maf_data <- maffile@data[, c("Hugo_Symbol", "Variant_Classification", "Tumor_Sample_Barcode")]
-# maf_data <- maf_data[maf_data$Hugo_Symbol %in% intersect(rownames(gene_Ucox_res), gene_symbol_Entrez$Hugo_Symbol), ]
-patient <- intersect(rownames(sur), unique(maf_data$Tumor_Sample_Barcode))
-maf_data <- maf_data[maf_data$Tumor_Sample_Barcode %in% patient, ]
-# gene_Ucox_res <- gene_Ucox_res[, "HR"]
-sur <- sur[patient, ]
-roc_data <- as.data.frame(roc_data[, c("sample", "response")])
-```
-
-# 下载并生成KEGG通路基因集，只需运行一次
-# Download and generate KEGG pathway gene sets (only need to run once)
-```{r eval=FALSE}
-id <- unique(keggLink("pathway", "hsa"))
-id <- gsub("path:", "", id)
-for (x in id){
-  if (!file.exists(file.path("Inputdata", "KEGG", paste0(x, ".xml")))){
-    download.file(url = file.path("https://rest.kegg.jp/get", x, "kgml"),
-                  destfile = file.path("Inputdata", "KEGG", paste0(x, ".xml")), quiet = T)
-  }
-  
-  # 避免下载次数过多导致服务器拒绝访问
-  # Avoid server access denial due to excessive download requests
-  Sys.sleep(0.2) 
-}
-
-## 将kgml格式的通路文件转换为Rdata
-## Convert kgml format pathway files to Rdata
-makeSPIAdata(kgml.path = "InputData/KEGG", organism = "hsa", out.path = "InputData")
-```
-
-# 计算签名
-# Calculate signature
-
-```{r}
-# 设置所用基因集为自定义基因集
-# Set custom gene sets as the gene sets to be used
-data.dir = "InputData/"
-
-## 整理突变信息，转换为基因×样本的矩阵
-## Organize mutation information and convert to gene×sample matrix
-mut_status <- get_mut_status(maf_data = maf_data,  
-                             nonsynonymous = TRUE) 
-
-## 计算各通路的突变相关评分
-## Calculate mutation-associated scores for each pathway
-pfs_score <- get_pfs_score(mut_status = mut_status,                 
-                           percent = 0.03,                          
-                           gene_Ucox_res = gene_Ucox_res,           
-                           gene_symbol_Entrez = gene_symbol_Entrez, 
-                           verbose = F,
-                           data.dir = data.dir)                    
-
-## 生成预后相关的签名
-## Generate prognostic signature
-final_signature <- get_final_signature(pfs_score = pfs_score,  
-                                       sur = sur)              
-
-## 计算风险得分（multiple_score列）
-## Calculate risk score (multiple_score column)s
-km_data <- neo_get_km_data(mut_sam = mut_status,               
-                           gene_Ucox = gene_Ucox_res,           
-                           symbol_Entrez = gene_symbol_Entrez,  
-                           sur = sur,                           
-                           path_Ucox_mul = NULL,                
-                           sig = final_signature,               
-                           TRAIN = T,                           
-                           data.dir = data.dir)                           
-
-## 划分高低分组
-## Divide into high/low risk groups
-cls <- neo_get_sam_cla(km_data = km_data,    
-                       cut_off = -0.986)      
-```
-
-# 开始画图
-# Plotting
-
-```{r}
-## 绘制KM曲线图
-## Plot KM survival curve
-get_km_survival_curve(km_data = km_data, TRAIN = TRUE, risk.table=TRUE) 
-dev.copy2pdf(file = "km_curve.pdf", width = 5, height = 5)
-
-## 绘制ROC曲线图
-## Plot ROC curve
-roc_data$risk_score <- km_data$multiple_score
-get_roc_curve(roc_data, print.auc = TRUE, main = "Objective Response") 
-dev.copy2pdf(file = "roc_curve.pdf", width = 5, height = 5)
-
-## 绘制OncoPlot
-## Generate OncoPlot
-load(file = file.path(system.file("extdata", package = "PMAPscore"), "hsaSPIA.RData"))   
-load(file = file.path(data.dir, "hsaSPIA.RData"))                                       
-path_gene <- getPathGene(path.info = path.info, gene_symbol_Entrez = gene_symbol_Entrez) 
-risk_score <- km_data$multiple_score
-names(risk_score) <- rownames(km_data)
-cut_off <- median(risk_score)
-get_Oncoplots(maffile = maffile,                 
-              path_gene = path_gene,            
-              mut_status = mut_status,            
-              risk_score = risk_score,            
-              cut_off = cut_off,                  
-              final_signature = final_signature,  
-              pathway_name = "Gap junction")      
-dev.copy2pdf(file = "Oncoplots.pdf", width = 8, height = 6)
-
-## 绘制风险得分热图
-## Generate risk score heatmap
-plot.data <- km_data
-
-# 按照风险评分升序排列
-# Sort by risk score (ascending) 
-plot.data <- dplyr::arrange(plot.data, plot.data$multiple_score)                  
-# 制作列注释信息
-# Prepare column annotations
-annCol <- plot.data[, c("event", "survival", "multiple_score")]                 
-plot.data <- plot.data[, setdiff(colnames(plot.data), colnames(annCol))]   
-
-# 从绘图数据剔除列注释信息
-# Remove annotation columns from plot data
-annCol$survival = NULL
-annColor <- list()                                                              
-
-# 指定列注释颜色
-# Define annotation colors
-annColor[["event"]] = setNames(object = c("white", "black"), nm = c("0", "1"))
-annColor[["multiple_score"]] = colorRampPalette(c("#F7FBFF", "#2171B5"))(100)
-
-plot.data <- t((plot.data))
-range = min(apply(plot.data, 1, max))   
-
-# 作为热图主矩阵的上限
-# Set as upper limit for heatmap
-plot.data[plot.data>range] = range      
-
-pheatmap(mat = plot.data, 
-         color = colorRampPalette(c("#440259","#345F8C","#228C8A","#78CE51","#FAE71F"))(100), 
-         show_rownames = T, show_colnames = F,       
-         cluster_cols = F, cluster_rows = T,        
-         annotation_col = annCol, 
-         annotation_colors = annColor,
-         name = "PFS score")
-dev.copy2pdf(file = "PFSscore.Heatmap.pdf", width = 10, height = 6)
-```
-
-# 会话信息
-# Session Info
-
-```{r}
-# 显示会话信息
-# Show session information
-sessionInfo()
-```

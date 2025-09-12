@@ -100,8 +100,7 @@ conda install -c bioconda intervene
 install packages
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
 install.packages("corrplot")
 ```
 
@@ -121,10 +120,10 @@ library(RColorBrewer)
 library(pheatmap)
 
 # 设置环境变量使R显示英文错误信息 | Set environment variable to display error messages in English
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止将字符串自动转换为因子类型 | Disable automatic conversion of strings to factors
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 ## 输入文件的获取
@@ -168,7 +167,7 @@ gunzip *narrowPeak.gz
 ```bash
 for i in `ls *.narrowPeak`
 do
-x=${i/_ChIP_K562*.narrowPeak/} 
+x=${i/_ChIP_K562*.narrowPeak/}
 x=${x/GSM*_/}
 sort $i -k1,1V -k2,2n -k3,3n > $x.bed
 done
@@ -202,7 +201,7 @@ Extract the name of the factor according to the naming rules of this set of data
 ```bash
 for i in `ls *.narrowPeak`
 do
-x=${i/_ChIP_K562*.narrowPeak/} 
+x=${i/_ChIP_K562*.narrowPeak/}
 x=${x/GSM*_/}
 sort $i -k1,1V -k2,2n -k3,3n > $x.bed
 done
@@ -236,7 +235,7 @@ rm -rf *.narrowPeak
 通过pearson或者spearman等计算不同peak之间的相关系数，例文用的是pearson
 
 ```bash
-intervene pairwise -i ./*.bed --filenames --htype color --corr --corrtype pearson 
+intervene pairwise -i ./*.bed --filenames --htype color --corr --corrtype pearson
 ```
 
 intervene还有许多参数，比如不计算fraction而用jaccard index，需要加--compute jaccard
@@ -254,7 +253,7 @@ intervene还有许多参数，比如不计算fraction而用jaccard index，需�
 Calculate the correlation coefficient between different peaks using Pearson or Spearman, etc. The example used is Pearson
 
 ```bash
-intervene pairwise -i ./*.bed --filenames --htype color --corr --corrtype pearson 
+intervene pairwise -i ./*.bed --filenames --htype color --corr --corrtype pearson
 ```
 
 There are still many parameters in the interlayer, such as using the Jaccard index instead of calculating the fraction, which requires adding -- calculate Jaccard
@@ -274,89 +273,3 @@ There are still many parameters in the interlayer, such as using the Jaccard ind
 ### Draw with corrplot
 
 If you feel that the above image is not cool enough and want more free space to express yourself, you can DIY draw with the file 'Intervene_pairwas_frac_matrix. txt'. HCLUST Cluster Diagram:
-
-```{r}
-# 从文本文件读取交集矩阵数据并转换为矩阵格式 | Read intersection matrix data from text file and convert to matrix format
-intersection_matrix <- as.matrix(read.table("Intervene_results/Intervene_pairwise_frac_matrix.txt"))
-
-# 计算矩阵列之间的Pearson相关系数 | Compute Pearson correlation coefficients between columns of the matrix
-intersection_matrix <- cor(intersection_matrix, method="pearson")
-
-# Intervene自带的代码，打开Intervene_pairwise_frac.R文件就能看到
-# Intervene's built-in code, can be found in Intervene_pairwise_frac.R file
-#pdf("Intervene_pairwise_frac.pdf", width=8, height=8)
-
-# 使用corrplot绘制相关系数矩阵图 | Visualize correlation matrix using corrplot
-corrplot(intersection_matrix, 
-         method ="color",  # 使用颜色表示相关系数 | Use color to represent correlation coefficients
-         title="Pairwise intersection-pearson correlation(Fraction of overlap)",  # 图表标题 | Plot title
-         tl.col="black", tl.cex=0.8,  # 设置文本标签颜色和大小 | Set text label color and size
-         is.corr = TRUE,  # 输入是否为相关系数矩阵 | Whether input is a correlation matrix
-         diag=FALSE, addrect=1,  # 不显示对角线，添加1个矩形框 | Don't show diagonal, add 1 rectangle
-         mar=c(0,0,2,1),  # 设置边距 | Set margins
-         rect.col = "black")  # 矩形框颜色 | Rectangle color
-#invisible(dev.off())
-
-# 充分利用corrplot的参数，让图上展示的信息更丰富
-# Leverage more corrplot parameters to enhance information visualization
-# https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html
-pdf("Intervene_pairwise_frac_plus.pdf", width=8, height=8)  # 保存高信息密度图表为PDF | Save enhanced plot as PDF
-
-#自定义颜色 | Custom color palette
-cols <- brewer.pal(11,"Spectral")  # 使用Spectral调色板 | Use Spectral color palette
-# 更多可选的调色板：BrBG PiYG PRGn PuOr RdBu RdGy RdYlBu RdYlGn Spectral
-# More color palettes: BrBG PiYG PRGn PuOr RdBu RdGy RdYlBu RdYlGn Spectral
-
-# 使用增强参数绘制相关系数矩阵图 | Enhanced visualization with more parameters
-corrplot(intersection_matrix, 
-         method ="color",  # 使用颜色表示相关系数 | Use color to represent correlation coefficients
-         title="Pairwise intersection-pearson correlation(Fraction of overlap)",  # 图表标题 | Plot title
-         tl.col="black", tl.cex=0.8,  # 设置文本标签颜色和大小 | Set text label color and size
-         is.corr = TRUE,  # 输入是否为相关系数矩阵 | Whether input is a correlation matrix
-         diag=FALSE,  # 不显示对角线 | Don't show diagonal
-         col = cols,  # 使用自定义颜色 | Use custom color palette
-         order = "hclust",  # 按层次聚类排序变量 | Order variables by hierarchical clustering
-         addrect = 4,  # 添加4个聚类矩形框 | Add 4 clustering rectangles
-         mar=c(0,0,2,1),  # 设置边距 | Set margins
-         rect.col = "black")  # 矩形框颜色 | Rectangle color
-invisible(dev.off())  # 关闭PDF设备 | Close PDF device
-```
-
-![](Intervene_pairwise_frac_plus.pdf)
-
-### 用pheatmap画图
-
-corrplot的热图参数很丰富，然而不能画树。我们还是用pheatmap画吧～
-
-### Draw with pheatmap
-
-The heatmap parameters of corrplot are rich, but it cannot draw trees. Let's use pheatmap to draw it
-
-```{r}
-# 使用pheatmap绘制热图可视化相关性矩阵 | Visualize correlation matrix using pheatmap
-pheatmap(intersection_matrix, 
-         cellwidth = 8,  # 每个单元格的宽度（像素） | Width of each cell (pixels)
-         cellheight = 8,  # 每个单元格的高度（像素） | Height of each cell (pixels)
-         fontsize = 8,  # 文本字体大小 | Font size for text
-         
-         # 自定义颜色渐变：从深蓝色到白色再到深红色 | Custom color gradient: navy -> white -> firebrick
-         color = colorRampPalette(c("navy", "white", "firebrick3"))(20),
-         
-         show_colnames = TRUE,  # 显示列名 | Show column names
-         show_rownames = TRUE,  # 显示行名 | Show row names
-         
-         # 可选：隐藏行聚类树状图 | Optional: Hide row clustering dendrogram
-         # treeheight_row = "0",
-         
-         # 可选：隐藏列聚类树状图 | Optional: Hide column clustering dendrogram
-         # treeheight_col = "0",
-         
-         filename = "Intervene_pairwise_frac_tree.pdf",  # 保存的文件名 | Output file name
-         border_color = "NA")  # 不显示单元格边框 | No border around cells
-```
-
-![](Intervene_pairwise_frac_tree.pdf)
-
-```{r}
-sessionInfo()
-```

@@ -10,7 +10,6 @@ If you use this code in your work or research, we kindly request that you cite o
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 
-
 ## 需求描述
 ## Requirement description
 
@@ -47,10 +46,7 @@ Applicable to:
 Install the required packages
 
 ```r
-#使用国内镜像安装包
-#use the domestic mirror installation package
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("TCGAbiolinks", version = "3.8")
@@ -213,7 +209,7 @@ tcga_gtex<-rbind(tcgatable2,gtextable2)
 ```{r}
 statable<-data.frame()
 for (tissuer in sort(unique(tcga_gtex$tissue))){
-  
+
   tcga_gtex_tissuer<-tcga_gtex[tcga_gtex$tissue==tissuer,]
 
   tissuer_tumor_TCGA <- paste0(tissuer,"_tumor_TCGA")
@@ -268,9 +264,9 @@ gtex_tpm <- read_part("gtex_RSEM_gene_tpm.gz", rows = generownum)
 tcga_colnames <- read_part("tcga_RSEM_gene_tpm.gz", rows = 1)
 tcga_tpm <- read_part("tcga_RSEM_gene_tpm.gz", rows = generownum)
 
-tpm <- as.numeric(c(gtex_tpm[2:length(gtex_tpm)], 
+tpm <- as.numeric(c(gtex_tpm[2:length(gtex_tpm)],
                     tcga_tpm[2:length(tcga_tpm)] ))
-names(tpm) <- c(gtex_colnames[2:length(gtex_colnames)], 
+names(tpm) <- c(gtex_colnames[2:length(gtex_colnames)],
                     tcga_colnames[2:length(tcga_colnames)] )
 
 tcga_gtex$tpm <- tpm[tcga_gtex$sample]
@@ -335,8 +331,8 @@ p <- ggplot(tcga_gtex_withNormal, aes(x = tissue, y = tpm, fill = type2)) + #x�
   scale_fill_manual(values = c("#DF2020", "#DDDF21"))+
   theme_set(theme_set(theme_classic(base_size=20)))+
   theme(axis.text.x = element_text(angle = 45, hjust = .5, vjust = .5)) + #x轴label倾斜45度 x-axis label is tilted 45 degrees
-  
-  guides(fill = guide_legend(title = NULL)) + 
+
+  guides(fill = guide_legend(title = NULL)) +
   theme(legend.background = element_blank(), #移除整体边框 remove overall border
         #图例的左下角置于绘图区域的左下角
         #the lower left corner of the legend is placed in the lower left corner of the drawing area
@@ -368,4 +364,3 @@ ggsave(paste0(targetGene, "expression.pdf"),width = 20, height = 6)
 ```{r}
 sessionInfo()
 ```
-

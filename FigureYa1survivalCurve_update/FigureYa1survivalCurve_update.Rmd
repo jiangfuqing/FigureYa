@@ -87,9 +87,8 @@ Or instead of using expression grouping, use known subtypes (obtained by cluster
 Install the required packages
 
 ```r
-#使用国内镜像安装包
-#Installation of packages using domestic mirrors
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+
+
 install.packages("survival")
 install.packages("survminer")
 ```
@@ -179,116 +178,3 @@ svData$Expression <- factor(svData$Expression, levels = c("high","low"))
 Common adjustment parameters are color, line type, whether to display confidence intervals, etc.
 
 See more parameter settings with ?ggsurvplot
-
-```{r}
-# 这里用默认参数做回归
-# 如果想先判断符合哪种分布再选择合适的方法回归，我们再众筹吧。
-# Here the regression is done with default parameters
-# If you want to determine which distribution is met before choosing the appropriate method of regression, let's crowdsource it again.
-fit <- survfit(Surv(Months, Status) ~ Expression, data = svData)
-
-#先用默认参数画，用于校对后面画的图
-#Drawing with default parameters first is used to proofread the diagrams drawn later on
-ggsurvplot(fit)
-
-#不画置信区间
-#No confidence intervals are drawn
-ggsurvplot(fit, pval = TRUE,linetype = c("solid", "dashed"), #线的类型 type of line
-           palette = c("red","blue"),#线的颜色 color of line
-           legend.title="",legend=c(0.7,0.9),#图例的位置 location of legend
-           legend.labs=c("High-expression","Low-expression"),
-           conf.int = F) #不显示置信区间 confidence intervals are not shown
-ggsave(file="survivalcurve_2.pdf", width = 4, height = 4)
-
-#画置信区间
-#Draw confidence intervals
-pdf("survivalcurve_2_table.pdf", width = 6, height = 5)
-ggsurvplot(fit, pval = TRUE, linetype = "solid", #都画实线 draw solid lines
-           palette = c("red","blue"),
-           legend.title="",legend=c(0.7,0.9),
-           legend.labs=c("High-expression","Low-expression"),
-           
-           # 画表格 
-           # draw a table
-           risk.table = TRUE,
-           tables.height = 0.2,
-           tables.theme = theme_cleantable(),
-
-           conf.int = T,#显示置信区间 show confidence intervals
-           conf.int.style="ribbon",#展示方式 display mode
-           conf.int.alpha=0.1)#透明度 transparency
-dev.off()
-```
-
-![](survivalcurve_2_table.pdf)
-
-## 三组对比
-## Three groups of comparisons
-
-如果有更多组要对比，就按照规律在参数里添加即可。
-
-If there are more groups to compare, just follow the pattern and add them in the parameters.
-
-### 输入文件
-### Input file
-
-```{r}
-svData <- read.table("easy_input_3.txt", header = T, as.is = T)
-head(svData)
-unique(svData$Expression)
-
-svData$Expression <- factor(svData$Expression, levels = c("high","med","low"))
-```
-
-### 开始画图
-### Start drawing
-
-pvalue的计算方法可修改，可通过?surv_pvalue查看可选的method
-
-The method of calculating pvalue can be modified, see the optional method via ?surv_pvalue
-
-```{r}
-fit <- survfit(Surv(Months, Status) ~ Expression, data = svData)
-
-#先用默认参数画，用于校对后面画的图
-#Drawing with default parameters first is used to proofread the diagrams drawn later on
-ggsurvplot(fit)
-
-#不画置信区间
-#No confidence intervals are drawn
-ggsurvplot(fit, pval = TRUE,linetype = c("solid", "solid", "solid"), #线的类型 type of line
-           palette = c("red","navy","darkgreen"),#线的颜色 color of line
-           legend.title="",legend=c(0.7,0.9), #图例的位置 location of legend
-           legend.labs=c("High-expression", "med-expression", "low-expression"),
-           conf.int = F) #不显示置信区间 confidence intervals are not shown
-ggsave(file="survivalcurve_3.pdf", width = 4, height = 4)
-
-#画置信区间
-#Draw confidence intervals
-pdf("survivalcurve_3_table.pdf", width = 7, height = 6)
-ggsurvplot(fit, pval = TRUE, linetype = "solid", #都画成实线 draw solid lines
-           palette = c("red","navy","darkgreen"),
-           legend.title="",legend=c(0.8,0.9),
-           legend.labs=c("High-expression","med-expression", "low-expression"),
-           
-           # 画表格
-           # draw a table
-           risk.table = TRUE,
-           tables.height = 0.3,
-           tables.theme = theme_cleantable(),
-
-           conf.int = T,#显示置信区间 show confidence intervals
-           conf.int.style="ribbon",#展示方式 display mode
-           conf.int.alpha=0.1)#透明度 transparency
-dev.off()
-```
-
-![](survivalcurve_3_table.pdf)
-
-输出的pdf文件是矢量图，可以在Illustrator等软件里进行字体、字号等编辑操作
-
-The output pdf file is a vector image, can be in Illustrator and other software for fonts, font size and other editing operations
-
-```{r}
-sessionInfo()
-```

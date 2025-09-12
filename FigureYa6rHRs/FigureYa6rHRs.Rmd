@@ -153,7 +153,7 @@ forestplot(labeltext=tabletext, #图中的文本 text in figure
            graphwidth = unit(.4,"npc"),#图在表中的宽度比例 width ratio of the graph in the table
            fn.ci_norm="fpDrawDiamondCI",#box类型选择钻石 box type selection diamond
            col=fpColors(box="steelblue", lines="black", zero = "black"),#box颜色 box color
-           boxsize=c(NA,NA,NA,data$Percent,NA)/75,#box大小根据样本量设置 box size is set according to the sample size 
+           boxsize=c(NA,NA,NA,data$Percent,NA)/75,#box大小根据样本量设置 box size is set according to the sample size
            lwd.ci=2,ci.vertices.height = 0.1,ci.vertices=TRUE,#置信区间用线宽、高、型 confidence interval with line width, height, and type
            zero=1,#zero线横坐标 horizontal coordinates of the zero line
            lwd.zero=2,#zero线宽 zero line width

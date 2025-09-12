@@ -73,8 +73,8 @@ GSH_mean <- c(rep(0,nrow(a)))
 GSL_mean <- c(rep(0,nrow(a)))
 Mean_abun <- c(rep(0,nrow(a)))
 log2_fc <- c(rep(0,nrow(a)))
-Pvalue <- c(rep(0,nrow(a)))   
-FDR <- c(rep(0,nrow(a))) 
+Pvalue <- c(rep(0,nrow(a)))
+FDR <- c(rep(0,nrow(a)))
 
 # 2~6列是GSH组,6~11列是GSL组；
 # Columns 2~6 are GSH groups, columns 6~11 are GSL groups;
@@ -88,7 +88,7 @@ for(i in 1:nrow(a)){
 		}
 # 对p value进行FDR校正
 # Perform FDR correction on p value
-FDR=p.adjust(Pvalue, "BH") 
+FDR=p.adjust(Pvalue, "BH")
 # 在原文件后面加入要统计的新内容到生成新的列；
 # Add the new content to be counted after the original file to generate a new column;
 v1_wilcox <-cbind(a,GSH_mean,GSL_mean,Mean_abun,log2_fc,Pvalue,FDR)

@@ -42,17 +42,13 @@ In cohort studies, like the B-figure in the example, there are both opt-in and o
 # 环境设置
 # Environment setting
 
-使用国内镜像安装包
-
-use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("magick")
 install.packages("cmprsk")
 ```
@@ -161,17 +157,17 @@ head(pbc)
 Draw one
 
 ```{r,message=FALSE,fig.width=6,fig.height=5}
-mod1 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+mod1 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
                  predictors="model1", # 跟上一步模型的名字一致 same name as the model in the previous step
               cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
 
-#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #             predictors="model2", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
 
-#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #             predictors="model3", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
 
-#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #             predictors="model4", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="FALSE")
 ```
 
@@ -183,7 +179,7 @@ Multiple comparisons
 pdf("net_benefit.pdf",width = 6,height = 6)
 stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
       predictors=c("model1","model2","model3","model4"), # 跟前面模型的名字保持一致 consistent with the name of the previous model
-      cmprsk=TRUE, smooth=TRUE, 
+      cmprsk=TRUE, smooth=TRUE,
       xstop=0.5,intervention="FALSE")
 dev.off()
 ```
@@ -198,16 +194,16 @@ dev.off()
 Draw one
 
 ```{r,message=FALSE,fig.width=6,fig.height=5}
-mod1 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+mod1 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
       predictors="model1", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
 
-#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod2 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #      predictors="model2", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
 
-#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod3 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #      predictors="model3", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
 
-#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825, 
+#mod4 <- stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
 #      predictors="model4", cmprsk=TRUE, smooth=TRUE, xstop=0.5,intervention="TRUE")
 ```
 
@@ -218,8 +214,8 @@ Multiple comparisons
 ```{r,message=FALSE}
 pdf("net_reduction.pdf",width = 6,height = 6)
 stdca(data=pbc, outcome="status", ttoutcome="time", timepoint=1825,
-      predictors=c("model1","model2","model3","model4"), 
-      cmprsk=TRUE, smooth=TRUE, 
+      predictors=c("model1","model2","model3","model4"),
+      cmprsk=TRUE, smooth=TRUE,
       xstop=0.5,intervention="TRUE")
 dev.off()
 ```

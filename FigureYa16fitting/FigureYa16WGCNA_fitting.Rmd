@@ -75,7 +75,7 @@ head(t)
 library(ggplot2)
 ggplot(t,aes(x = tp,y = tpm_mean)) +
   geom_smooth(color="black") + #拟合曲线的颜色 color of the fitted curve
-  labs(x = "Days after injury", y = "Expression Level", title = "black") + 
+  labs(x = "Days after injury", y = "Expression Level", title = "black") +
   theme_bw() + #去除背景色 remove background color
   theme(panel.grid =element_blank()) + #去除网格线 remove gridlines
   theme(panel.border = element_blank()) + #去除外层边框 remove outer border
@@ -123,7 +123,7 @@ for (mod in unique(df1$module)){
   t<-data.frame(tp=1:5,tpm_mean = log2( c(mean(as.matrix(specmod[1:30,1:4])),mean(as.matrix(specmod[1:30,5:8])),mean(as.matrix(specmod[1:30,9:12])),mean(as.matrix(specmod[1:30,13:16])),mean(as.matrix(specmod[1:30,17:20])))))
   plist[[tag]]<-ggplot(t,aes(x = tp, y = tpm_mean)) +
   geom_smooth(color = mod) + #拟合曲线的颜色 color of the fitted curve
-  labs(x = "Days after injury", y = "Expression Level", title = mod) + 
+  labs(x = "Days after injury", y = "Expression Level", title = mod) +
   theme_bw() + #去除背景色 remove background color
   theme(panel.grid =element_blank()) + #去除网格线 remove gridlines
   theme(panel.border = element_blank()) + #去除外层边框 remove outer border
@@ -140,5 +140,3 @@ ggsave(file="myfitting.pdf")
 ```{r}
 sessionInfo()
 ```
-
-

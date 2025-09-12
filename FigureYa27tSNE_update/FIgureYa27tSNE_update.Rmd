@@ -105,13 +105,13 @@ make && sudo make install
 
 输入数据是基于UMI的表达矩阵而不是count数据，其中数据集中的行表示基因，列表示细胞。
 
-出自<https://www.nature.com/articles/srep39921> 
+出自<https://www.nature.com/articles/srep39921>
 
 Please unzip tung.zip in the current directory, which contains the test dataset.
 
 The input data is based on UMI expression matrix instead of count data, where rows in the dataset represent genes and columns represent cells.
 
-from<https://www.nature.com/articles/srep39921> 
+from<https://www.nature.com/articles/srep39921>
 
 ## 读取数据
 ## Read data
@@ -133,7 +133,7 @@ molecules[1:10,1:3]
 Data initialization and initial screening
 
 ```{r}
-obj <- CreateSeuratObject(counts = molecules, 
+obj <- CreateSeuratObject(counts = molecules,
                    min.cells = 3, #筛选至少在3个细胞中表达的基因 screen genes expressed in at least 3 cells
                    min.features = 200) #筛选至少有200个基因表达的细胞 screen cells with at least 200 gene expressions
 ```
@@ -188,7 +188,7 @@ VlnPlot(obj, features = c("nCount_RNA","nFeature_RNA"), group.by = "orig.ident")
 Generally, we filter out cells with low expression genes. In the figure above, you can consider cells with nCount_RNA below `25000` and nFeature_RNA below `6000` as low-quality cells. Write these two values into the parameters for filtering cells below:
 
 ```{r}
-obj <- subset(obj, subset = nCount_RNA  > 25000 & 
+obj <- subset(obj, subset = nCount_RNA  > 25000 &
                 nFeature_RNA > 6000)
 ```
 
@@ -205,8 +205,8 @@ The standardization step is similar to mixed-pool RNA-seq, in that raw counts ar
 
 ```{r, message=FALSE}
 obj <- NormalizeData(
-    object = obj, 
-    normalization.method = "LogNormalize", 
+    object = obj,
+    normalization.method = "LogNormalize",
     scale.factor = 10000
 )
 ```
@@ -224,8 +224,8 @@ obj <- FindVariableFeatures(
     mean.function = ExpMean, #计算x轴的值的方法 method for calculating the value of the x-axis
     dispersion.function = LogVMR, #计算y轴的值的方法 method for calculating the value of the y-axis
     do.plot = F,
-    x.low.cutoff = 0.0125, 
-    x.high.cutoff = 3, 
+    x.low.cutoff = 0.0125,
+    x.high.cutoff = 3,
     y.cutoff = 0.5
 )
 ```
@@ -239,7 +239,7 @@ The so-called confounder factor refers to the influence on the results by factor
 
 ```{r, message=FALSE, warning=FALSE}
 obj <- ScaleData(
-    object = obj, 
+    object = obj,
     vars.to.regress = c("nCount_RNA")
 )
 ```
@@ -261,8 +261,8 @@ This number of principal components will be used in the next section in the `pca
 
 ```{r}
 obj <- RunPCA(
-    object = obj, 
-    pc.genes = obj@var.genes, 
+    object = obj,
+    pc.genes = obj@var.genes,
     do.print = FALSE
 )
 ElbowPlot(object = obj)
@@ -308,184 +308,3 @@ obj <- RunTSNE(
 Color according to cellular subgroups (`group.by="ident"`)
 
 Set `pt_size` to modify point size, modify `mycol` to add custom colors
-
-```{r}
-#定义足够多的颜色，后面从这里选颜色
-#define enough colors, and later select colors from here
-mycol <- c("#223D6C","#D20A13","#FFD121","#088247","#11AA4D","#58CDD9","#7A142C","#5D90BA","#431A3D","#91612D","#6E568C","#E0367A","#D8D155","#64495D","#7CC767")
-```
-
-## t-SNE可视化
-## t-SNE visualization
-
-```{r}
-pt_size = 1
-df <- obj@reductions$tsne@cell.embeddings
-df <- cbind(df, as.data.frame(obj$seurat_clusters))
-colnames(df) <- c("x", "y", "ident")
-p <- ggplot(df, aes(x=x, y=y)) + geom_point(aes(colour=ident),size=pt_size) + 
-  labs(x="t-SNE 1", y ="t-SNE 2") +
-  theme_classic()
-```
-
-## 画椭圆线
-## Draw elliptical line
-
-用于辅助区分不同细胞类群
-
-Used to assist in distinguishing different cell groups
-
-```{r}
-obs <- p$data[,c("x","y","ident")]
-ellipse_pro <- 0.98
-theta <- c(seq(-pi, pi, length = 50), seq(pi, -pi, length = 50))
-circle <- cbind(cos(theta), sin(theta))
-
-ell <- ddply(obs, 'ident', function(x) {
-  if(nrow(x) <= 2) {
-    return(NULL)
-  }
-  sigma <- var(cbind(x$x, x$y))
-  mu <- c(mean(x$x), mean(x$y))
-  ed <- sqrt(qchisq(ellipse_pro, df = 2))
-  data.frame(sweep(circle %*% chol(sigma) * ed, 2, mu, FUN = '+'))
-})
-names(ell)[2:3] <- c('x', 'y')
-
-ell <- ddply(ell, .(ident) , function(x) x[chull(x$x, x$y), ])
-p1 <- p + geom_polygon(data = ell, aes(group = ident), 
-                       colour = "black",
-                       alpha = 1,fill = NA,
-                       linetype="dashed") 
-# linetype可选类型:
-# linetype optional type:
-# blank, solid, dashed, dotted, dotdash, longdash, twodash
-```
-
-## 修改图例名
-## Modify the legend name
-
-```{r}
-cell_nums <- as.data.frame(table(p$data$ident))
-cell_nums$Var1 <- as.roman(as.numeric(cell_nums$Var1))
-cell_labels <- paste0(cell_nums$Var1," ","(n=",cell_nums$Freq,")")
-
-p2 <- p1 + scale_discrete_manual("colour",
-                                 name = "Cell type",
-                                 labels= cell_labels,
-                                 values = mycol)
-p2
-
-ggsave("t-SNE.pdf")
-```
-
-## 突出显示某些细胞
-## Highlight certain cells
-
-实际做图时，要结合你手中的样品信息给出这个列表，例如结合DNA测序数据挑出带有某个基因突变的细胞，或者结合DNA甲基化测序数据挑出高甲基化的细胞。
-
-When actually making the graph, give this list in conjunction with the information about the samples you have, for example, in conjunction with DNA sequencing data to pick out cells with a certain gene mutation, or in conjunction with DNA methylation sequencing data to pick out cells that are hypermethylated.
-
-```{r}
-#此处取排名前100个细胞
-#the top 100 cells are taken here
-mutList<-colnames(molecules)[1:100]
-
-DimPlot(obj, reduction = "tsne", 
-        cells.highlight = mutList,
-        cols.highlight = mycol[3], #用黄色突出显示，其余细胞是黑色 highlighted in yellow, the rest of the cells are black
-        sizes.highlight = 1.5, #把点调大，更突出 make the dots larger and more prominent.
-        group.by = "ident")
-```
-
-## 按照其他元信息的列进行着色。
-## Colorize by columns of other meta-information
-
-按照个体着色，查看来源于三个人的细胞的分布情况
-
-Colorize by individual to see the distribution of cells originating from three individuals
-
-```{r}
-DimPlot(obj, reduction = "tsne", 
-        cols = mycol,
-        group.by = "individual")
-```
-
-# 输出分类信息
-# Output classification information
-
-## 输出marker基因
-## Output marker genes
-
-获取每个分类的可能标记基因(候选分子标记)
-
-Get possible marker genes (candidate molecular markers) for each classification
-
-```{r}
-markers <- FindAllMarkers(obj,
-                         test.use = "wilcox",
-                         min.pct = 0.1,
-                         min.diff.pct = -Inf)
-write.csv(markers, file="cell_type_markers.csv",quote = FALSE,
-          row.names = TRUE)
-```
-
-## 展示候选marker基因的表达量
-## Show the expression of candidate marker genes
-
-可以画一个基因，也可以同时画多个基因
-
-通常会用候选marker基因画图，参考例图paper里的`Extended Data Figure 8d`
-
-从上一部分“输出marker基因”输出的`cell_type_markers.csv`文件里选出每类`p_val_adj`排名第一的基因，例如第II类(class为1)的`ENSG00000205364`。
-
-You can plot one gene or multiple genes at the same time.
-
-Usually, we will use the candidate marker gene to draw a graph, refer to `Extended Data Figure 8d` in the example paper.
-
-From the `cell_type_markers.csv` file output from the previous section “Output marker genes”, select the top-ranked gene in each class `p_val_adj`, for example, `ENSG00000205364` in class II (class 1).
-
-```{r,fig.width=8,fig.height=16}
-FeaturePlot(obj, reduction = "tsne",
-            features = c("ERCC-00025","ENSG00000205364","ENSG00000164265","ENSG00000154556","ENSG00000014641","ENSG00000053438","ENSG00000053438","ENSG00000131969","ENSG00000135549"), 
-            ncol  = 2, #画在2列里 draw in 2 columns
-            cols = c("green","grey","red"), #用三种颜色，分别展示低表达、中表达和高表达 using three colors, show low expression, medium expression and high expression respectively
-            #do.return =T, #返回ggplot2对象，便于组图 return ggplot2 object for easy combining plots
-            #no.legend = F, #显示图例 show legend
-            pt.size = 1
-            ) 
-ggsave("marker.pdf")
-```
-
-## 输出分类信息及表达矩阵
-## Output categorization information and expression matrix
-
-可用于下一步分析、作图：
-
-- 后续应用一：像例图paper的Figure4c那样，用各组样品ID提取临床信息和高频突变基因，绘制瀑布图oncoprint，见`FigureYa18 oncoprint`；
-
-- 后续应用二：用各组候选marker基因表达矩阵画heatmap，见`FigureYa17 heatmap`。
-
-输出样本ID对应的分类信息，这里输出的是所有基因的标准化、去除混淆因子的表达矩阵。
-
-It can be used for the next step of analysis and graphing:
-
-- Follow-up application 1: extract clinical information and high-frequency mutated genes using the sample IDs of each group as in Figure4c of the example paper, and draw oncoprint, see `FigureYa18 oncoprint`;
-
-- Follow-up application 2: draw heatmap using the candidate marker gene expression matrix for each group, see `FigureYa17 heatmap`.
-
-Output the categorical information corresponding to the sample IDs, in this case the normalized, confounder-removed expression matrix for all genes.
-
-```{r}
-cell_type_df <- as.data.frame(obj$seurat_clusters)
-colnames(cell_type_df) <- "CellType"
-cell_type_df <- cbind(cell_type_df, t(LayerData(obj, layer="scale.data")))
-write.csv(t(cell_type_df),"molecules_in_cell_types.csv")
-```
-
-# 会话信息
-# Session Info
-
-```{r}
-sessionInfo()
-```

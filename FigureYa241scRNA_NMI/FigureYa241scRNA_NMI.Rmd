@@ -56,13 +56,10 @@ In Figures 2D and 2G of the example paper, expression programs were extracted us
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包
 Using a domestic image installation package
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 ```
 
@@ -75,7 +72,7 @@ library(rhdf5)
 library(tidyverse)
 Sys.setenv(LANGUAGE = "en") #显示英文报错信息 #Display English error messages
 options(stringsAsFactors = FALSE) #禁止chr转成factor #Disable conversion of chr to factor
-``` 
+```
 
 # 0. 导入数据
 # 0. Import data
@@ -96,7 +93,7 @@ duplicated(genes$ensgID) %>% table
 
 ```{r}
 cells.annot <- read.csv("data/GSE154989_mmLungPlate_fQC_dZ_annot_smpTable.csv")
-cells.annot <- cells.annot %>% 
+cells.annot <- cells.annot %>%
   left_join(cells, by = "sampleID")
 row.names(cells.annot) <- cells.annot$sampleID
 head(cells.annot)
@@ -173,7 +170,7 @@ length(de.genes)
 ## 1.2 Feature Genes in NMF
 
 > 这里也直接采用作者的计算结果 We also use the author's calculation results directly here.
- 
+
 ```{r}
 dat <- readxl::read_excel("data/supp/tableS2.xlsx", sheet = "Top weighted NMF topic markers")
 head(dat)
@@ -251,7 +248,7 @@ Here, we use a pair of cells as an example to calculate NMI.
 ```{r}
 require(entropy)
 
-x <- disc.expr[, 1] # discretized transcriptional profile of cell 1 
+x <- disc.expr[, 1] # discretized transcriptional profile of cell 1
 y <- disc.expr[, 2] # discretized transcriptional profile of cell 2
 
 ## 计算p(x), p(y)以及p(x,y)
@@ -281,7 +278,7 @@ nmi
 ## 3.2 抽样计算NMI
 ## 3.2 Calculating NMI by Sampling
 
-> In order to account for differences in the number of cells across samples, we subsampled 100 cells from each time-point (or mouse) 100 times and calculated the median NMI across each within-timepoint sampled pair. 
+> In order to account for differences in the number of cells across samples, we subsampled 100 cells from each time-point (or mouse) 100 times and calculated the median NMI across each within-timepoint sampled pair.
 
 这里是一个例子，用来计算同一(时间点)肿瘤样本抽样的100个细胞所有cell pairs的NMI的中值
 Here is an example of calculating the median NMI for all cell pairs of 100 cells sampled from the same tumor sample (at the same time point).
@@ -291,8 +288,8 @@ cells <- rownames(subset(cell.meta, timesimple == "01_T_early_ND"))
 
 ## all cell pairs
 cell.pairs <- combn(
-  x = sample(x = cells, size = 100, replace = FALSE), 
-  m = 2, 
+  x = sample(x = cells, size = 100, replace = FALSE),
+  m = 2,
   simplify = F
 ) ## return list: length=C(100,2)=4960
 
@@ -316,289 +313,3 @@ pbapply::pbsapply(cell.pairs, function(xx) {
 
 将上述计算过程写成函数
 Write the above calculation process as a function
-
-```{r}
-#' @title Calculating median NMI for a given cells.
-#' @param X matrix, discrete gene expression matrix. Rows, genes; columns, cells.
-#' @param cells vector, selected cells. Match to colnames(X)
-#' @param N.cells int, sample size of selected cells.
-#' @param seed int, seed for sampling.
-#' @param sample.on.cell.pairs bool, whether sample on cell pairs for NMI calculation.
-#' @param N.cell.pairs int, sample size of cell pairs for NMI calculation.
-#' @return numeric, median NMI
-sample.nmi <- function(X, cells, N.cells=100, seed=1, sample.on.cell.pairs=FALSE, N.cell.pairs=100) {
-  set.seed(seed)
-  cell.pairs <- combn(
-    x = sample(x = cells, size = N.cells, replace = FALSE), 
-    m = 2, 
-    simplify = F)
-  if(sample.on.cell.pairs) {
-    cell.pairs <- sample(cell.pairs, N.cell.pairs, replace = FALSE)
-  }
-  sapply(cell.pairs, function(xx) {
-    x <- X[, xx[1]]
-    y <- X[, xx[2]]
-    nmi(x, y)
-  }) %>% median()
-}
-
-sample.nmi(X = disc.expr, cells = cells, sample.on.cell.pairs = T)
-```
-
-100次抽样计算
-100 sampling calculations
-
-1次抽样计算(100 cells)大约需要30s，100次抽样计算大约需要50min。这个计算时间成本太高 <br>
-两种解决方案：One sampling calculation (100 cells) takes about 30 seconds, and 100 sampling calculations take about 50 minutes. This computational cost is too high. <br>
-1) 对cell pairs也进行抽样，降低计算时间 1) Sample cell pairs to reduce computational time <br>
-令sample.nmi()中的sample.on.cell.pairs=TRUE Set sample.on.cell.pairs=TRUE in sample.nmi(). <br>
-2) 并行计算 Parallel computation. <br>
-
-### 方案一：抽样
-### Solution 1: Sampling
-
-#### Whole lung: multiple tumors
-```{r}
-n.cells = 100    # 每次抽样的样本(细胞)数 # Number of samples (cells) sampled each time
-n.sampling = 100 # 抽样次数 # Number of sampling times
-
-cell.meta <- FetchData(seu, c("sampleID", "mouseID", "timesimple"))
-
-stages <- c("01_T_early_ND", "02_KorKP_early_ND", "04_K_12w_ND", "05_K_30w_ND", "06_KP_12w_ND") # in timesimple field of cell.meta
-
-dat.nmi <- lapply(stages, function(xx) {
-  message(paste("Processing", xx, "..."))
-  data.frame(
-    stages = xx,
-    round = 1:n.sampling,
-    nmi = pbapply::pbsapply(1:n.sampling, function(yy) 
-      sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, timesimple == xx)), 
-        N.cells = n.cells, 
-        seed = yy, 
-        sample.on.cell.pairs = TRUE))
-  )
-})
-dat.nmi <- do.call(rbind, dat.nmi)
-
-saveRDS(dat.nmi, "dat.nmi.rds")
-```
-
-#### Single tumors
-```{r}
-table(cell.meta$mouseID)[table(cell.meta$mouseID) > 100]
-# 选择细胞数大于100的样本 # Select samples with > 100 cells
-mouseIDs <- c("KP_20w_ND_m4", "KP_20w_ND_m5", "KP_20w_ND_m6", "KP_30w_ND_m1_T1", "KP_30w_ND_m1_T2", "KP_30w_ND_m1_T4", "KP_30w_ND_m2_T1", "KP_30w_ND_m2_T2", "KP_30w_ND_m3_T1", "KP_30w_ND_m3_T7", "KP_30w_ND_m3_T9")
-
-dat.nmi.2 <- lapply(mouseIDs, function(xx) {
-  message(paste("Processing", xx, "..."))
-  data.frame(
-    stages = xx,
-    round = 1:n.sampling,
-    nmi = pbapply::pbsapply(1:n.sampling, function(yy) 
-      sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, mouseID == xx)), 
-        N.cells = n.cells, 
-        seed = yy, 
-        sample.on.cell.pairs = TRUE))
-  )
-})
-dat.nmi.2 <- do.call(rbind, dat.nmi.2)
-saveRDS(dat.nmi.2, "dat.nmi.2.rds")
-```
-
-#### Plot
-```{r}
-theme_set(
-  theme_classic(base_size = 15) + 
-    theme(axis.line = element_line(color="black"),
-          axis.text = element_text(color = "black"),
-          plot.title = element_text(hjust = .5, face = "bold"),
-          panel.grid = element_blank(),
-          legend.background = element_rect(fill=alpha('white', 0))
-    )
-)
-```
-
-```{r, fig.width=9, fig.height=5.5}
-dat.nmi <- readRDS("dat.nmi.rds")
-dat.nmi.2 <- readRDS("dat.nmi.2.rds")
-data.use <- rbind(dat.nmi, dat.nmi.2)
-
-segment.y <- 0.18 # 横线的位置 # The position of the horizontal line
-text.y <- 0.183 # 文字的位置 # The position of the text
-
-data.use %>% 
-  ggplot(aes(stages, nmi)) + 
-  labs(x="", y="Transcriptional homogeneity (NMI)") + 
-  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) + 
-  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) + 
-  annotate("segment", x = 6, xend = 16, y = segment.y, yend = segment.y) + 
-  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors") + 
-  annotate("text", x = 11, y = text.y, label="Single tumors") + 
-  theme(axis.text.x = element_text(angle=45, hjust = 1))
-```
-
-### 方案二：并行计算
-### Solution 2: Parallel computing
-
-并行计算需要`doParallel`包
-Parallel computing requires `doParallel` package
-
-```{r}
-require(doParallel)
-
-## ==== do parallel start ====
-## apply for 20 workers
-cl <- makeCluster(20) # 设定CPU数量 # Set the number of CPUs
-registerDoParallel(cl)
-```
-
-
-#### Whole lung: multiple tumors
-
-```{r}
-n.cells = 100    # 每次抽样的样本(细胞)数 # Number of samples (cells) sampled each time
-n.sampling = 100 # 抽样次数 # Number of sampling times
-
-cell.meta <- FetchData(seu, c("sampleID", "mouseID", "timesimple"))
-
-stages <- c("01_T_early_ND", "02_KorKP_early_ND", "04_K_12w_ND", "05_K_30w_ND", "06_KP_12w_ND") # in timesimple field of cell.meta
-
-dat.nmi <- lapply(stages, function(xx) {
-  message(paste("Processing", xx, "..."))
-  data.frame(
-    stages = xx,
-    round = 1:n.sampling,
-    nmi = foreach(yy=1:n.sampling, 
-                  .combine = "c", 
-                  .packages = c("entropy"),
-                  .export = c("cell.meta", "n.cells", "disc.expr", "sample.nmi", "%>%", "nmi"))
-    %dopar% {
-      sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, timesimple == xx)), 
-        N.cells = n.cells, 
-        seed = yy)
-    }
-  )
-})
-dat.nmi <- do.call(rbind, dat.nmi)
-saveRDS(dat.nmi, "dat.nmi.parallel.rds")
-```
-
-#### Single tumors
-```{r}
-mouseIDs <- c("KP_20w_ND_m4", "KP_20w_ND_m5", "KP_20w_ND_m6", "KP_30w_ND_m1_T1", "KP_30w_ND_m1_T2", "KP_30w_ND_m1_T4", "KP_30w_ND_m2_T1", "KP_30w_ND_m2_T2", "KP_30w_ND_m3_T1", "KP_30w_ND_m3_T7", "KP_30w_ND_m3_T9")
-
-dat.nmi.2 <- lapply(mouseIDs, function(xx) {
-  message(paste("Processing", xx, "..."))
-  data.frame(
-    stages = xx,
-    round = 1:n.sampling,
-    nmi = foreach(yy=1:n.sampling, 
-                  .combine = "c", 
-                  .packages = c("entropy"),
-                  .export = c("cell.meta", "n.cells", "disc.expr", "sample.nmi", "%>%", "nmi"))
-    %dopar% {
-      sample.nmi(
-        X = disc.expr, 
-        cells = rownames(subset(cell.meta, mouseID == xx)), 
-        N.cells = n.cells, 
-        seed = yy)
-    }
-  )
-})
-dat.nmi.2 <- do.call(rbind, dat.nmi.2)
-saveRDS(dat.nmi.2, "dat.nmi.2.parallel.rds")
-```
-
-```{r}
-## close workers (free memory taken up by workers)
-stopCluster(cl)
-## ==== do parallel end ====
-```
-
-#### Plot
-```{r, fig.width=9, fig.height=5}
-dat.nmi <- readRDS("dat.nmi.parallel.rds")
-dat.nmi.2 <- readRDS("dat.nmi.2.parallel.rds")
-data.use <- rbind(dat.nmi, dat.nmi.2)
-
-segment.y <- 0.17 # 横线的位置 # Position of horizontal line
-text.y <- 0.172 # 文字的位置 # text position
-
-data.use %>% 
-  ggplot(aes(stages, nmi)) + 
-  labs(x="", y="Transcriptional homogeneity (NMI)") + 
-  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) + 
-  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) + 
-  annotate("segment", x = 6, xend = 16, y = segment.y, yend = segment.y) + 
-  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors") + 
-  annotate("text", x = 11, y = text.y, label="Single tumors") + 
-  theme(axis.text.x = element_text(angle=45, hjust = 1))
-```
-
-
-# 4. 计算统计显著性
-# 4. Calculate statistical significance
-
-> To estimate a p-value for the difference in NMI value between two groups we compare the number of sub-samples from in A group vs all those in another B group and report 
-
-$$ P=(\sum_i\sum_j|A_i<B_j|+1)/(|A|\cdot|B|+1) $$
-
-```{r, eval=TRUE}
-dat.nmi <- readRDS("dat.nmi.parallel.rds")
-dat.nmi.2 <- readRDS("dat.nmi.2.parallel.rds")
-data.use <- rbind(dat.nmi, dat.nmi.2)
-
-estimate.P <- function(A,B){
-  P <- (sum(sapply(A, function(xx) xx<B))+1)/(length(A)*length(B)+1)
-  return(list(p.value=P))
-}
-
-stages.use <- c(names(table(dat.nmi$stages)), "KP_20w_ND_m4", "KP_30w_ND_m1_T1")
-compare <- data.frame(
-  A = c(stages.use[1:4], stages.use[6]),
-  B = c(stages.use[2:5], stages.use[7])
-) %>% t() %>% as.data.frame() %>% as.list()
-
-sapply(compare, function(xx) {
-  x <- subset(data.use, stages==xx[1])$nmi
-  y <- subset(data.use, stages==xx[2])$nmi
-  estimate.P(x, y)
-})
-```
-
-# 5. Final plot
-
-```{r, eval=TRUE}
-require(ggsignif)
-
-segment.y <- 0.19 # 横线的位置  # Position of horizontal line
-text.y <- 0.2 # 文字的位置 # Position of text
-p.y <- sapply(compare, function(xx) quantile(subset(data.use, stages %in% xx)$nmi, 0.99)) + 0.005 # P值的位置 # Position of P value
-
-data.use %>% 
-  filter(stages %in% stages.use) %>% 
-  ggplot(aes(stages, nmi)) + 
-  labs(x="", y="Transcriptional homogeneity (NMI)") + 
-  geom_boxplot(fill = "grey", outlier.shape = NA, width=0.5) + 
-  ylim(0, 0.2) + 
-  annotate("segment", x = 1, xend = 5, y = segment.y, yend = segment.y) + 
-  annotate("segment", x = 5.5, xend = 7.5, y = segment.y, yend = segment.y) +
-  annotate("text", x = 3, y = text.y, label="Whole lung: multiple tumors", size=5) +
-  annotate("text", x = 6.5, y = text.y, label="Single tumors", size=5) + 
-  geom_signif(comparisons = compare, 
-              y_position = p.y, tip_length = 0,
-              test = estimate.P, map_signif_level = T, textsize = 5) + 
-  scale_x_discrete(labels=c("T\n2 wk","KT & KPT\n2 wk","KT\n12 wk","KT\n30 wk","KPT\n12 wk","KPT\n20 wk","KPT\n30 wk"))
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

@@ -1,15 +1,15 @@
 ---
 title: "FigureYa300pancanCor"
 params:
-  author: "Xiaofan Lu; Yasi Zhang"  
+  author: "Xiaofan Lu; Yasi Zhang"
   reviewer: "Ying Ge"
   date: "2025-05-20"
 output: html_document
 ---
 
-**Author(s)**: `r params$author`  
-**Reviewer(s)**: `r params$reviewer`  
-**Date**: `r params$date` 
+**Author(s)**: `r params$author`
+**Reviewer(s)**: `r params$reviewer`
+**Date**: `r params$date`
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -78,14 +78,9 @@ FigureYa can be used to create multiple figures as shown in the example article,
 # 环境设置
 # Environment Setup
 
-使用国内镜像安装包。
-
-Using domestic mirrors for package installation.
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 ```
 
@@ -103,11 +98,11 @@ library(tidyr)
 
 # 显示英文报错信息
 # Show English error messages
-Sys.setenv(LANGUAGE = "en") 
+Sys.setenv(LANGUAGE = "en")
 
 # 禁止chr转成factor
 # Prevent character-to-factor conversion
-options(stringsAsFactors = FALSE) 
+options(stringsAsFactors = FALSE)
 ```
 
 自定义函数将gmt文件读取为list
@@ -119,7 +114,7 @@ gmt2list <- function(annofile){
   if (!file.exists(annofile)) {
     stop("There is no such gmt file.")
   }
-  
+
   if (tools::file_ext(annofile) == "xz") {
     annofile <- xzfile(annofile)
     x <- scan(annofile, what="", sep="\n", quiet=TRUE)
@@ -129,10 +124,10 @@ gmt2list <- function(annofile){
   } else {
     stop ("Only gmt and gmt.xz are accepted for gmt2list")
   }
-  
+
   y <- strsplit(x, "\t")
   names(y) <- sapply(y, `[[`, 1)
-  
+
   annoList <- lapply(y, `[`, c(-1,-2))
 }
 ```
@@ -159,251 +154,3 @@ merged_sample_quality_annotations.tsv: Tumor annotation file. Downloaded from <h
 EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.tsv: Expression matrix, where the first column contains gene names and subsequent columns contain expression values for each sample. Downloaded from<http://api.gdc.cancer.gov/data/3586c0da-64d0-4b74-a449-5ff4d9136611>.
 
 Survival_SupplementalTable_S1_20171025_xena_sp: Survival data. Obtained from<https://xenabrowser.net/datapages/?dataset=Survival_SupplementalTable_S1_20171025_xena_sp&host=https%3A%2F%2Fpancanatlas.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443>.
-
-```{r}
-# 读取风险基因以及对应系数（来自原文补充材料表格Table S6）
-# Read risk genes and their corresponding coefficients (from supplementary Table S6 of the original paper)
-risk.coeff <- read.table("table s6 risk coefficients.txt",sep = "\t", row.names = NULL,check.names = F,stringsAsFactors = F,header = T)
-
-# 读取肿瘤注释文件
-# Read tumor annotation file
-rawAnno <- read.delim("merged_sample_quality_annotations.tsv",sep = "\t",row.names = NULL,check.names = F,stringsAsFactors = F,header = T)
-rawAnno$simple_barcode <- substr(rawAnno$aliquot_barcode,1,15)
-samAnno <- rawAnno[!duplicated(rawAnno$simple_barcode),c("cancer type", "simple_barcode")]
-samAnno <- samAnno[which(samAnno$`cancer type` != ""),]
-write.table(samAnno,"output_simple_sample_annotation.txt",sep = "\t",row.names = F,col.names = T,quote = F)
-
-# 快速读取表达谱数据并做数据预处理
-# Quickly read expression profile data and perform preprocessing
-expr <- fread("EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.tsv",sep = "\t",stringsAsFactors = F,check.names = F,header = T)
-expr <- as.data.frame(expr); rownames(expr) <- expr[,1]; expr <- expr[,-1]
-gene <- sapply(strsplit(rownames(expr),"|",fixed = T), "[",1)
-expr$gene <- gene
-expr <- expr[!duplicated(expr$gene),]
-rownames(expr) <- expr$gene; expr <- expr[,-ncol(expr)]
-
-# 对于这份泛癌数据，将略小于0的数值拉到0，否则不能取log（其他途径下载的泛癌数据可能不需要此操作）
-# For this pan-cancer dataset, adjust slightly negative values to 0 to enable log transformation (may not be necessary for other pan-cancer datasets)
-expr[expr < 0] <- 0 
-
-colnames(expr) <- substr(colnames(expr),1,15)
-gc()
-
-# 去掉对于风险基因存在NA值的样本
-# Remove samples with NA values for risk genes
-expr.sub <- expr[risk.coeff$Gene, ] 
-expr.sub <- as.data.frame(t(na.omit(t(expr.sub)))) 
-keepSam <- colnames(expr.sub)
-expr <- expr[,keepSam] 
-
-# 读取生存数据(虽然在本代码中没有用到，但是原文使用的样本是具有生存数据的)
-# Read survival data (though not used in this code, the original study only included samples with survival data)
-surv <- read.delim("Survival_SupplementalTable_S1_20171025_xena_sp", sep = "\t",row.names = 1,check.names = F,stringsAsFactors = F,header = T) 
-
-# 确定肿瘤样本以及对应肿瘤类型
-# Identify tumor samples and their corresponding cancer types
-sam <- samAnno[which(samAnno$`cancer type` != "LAML"),"simple_barcode"] 
-comsam <- intersect(intersect(colnames(expr), sam), rownames(surv)) #
-tumsam <- comsam[substr(comsam,14,14) == "0"] 
-tumAnno <- samAnno[which(samAnno$simple_barcode %in% tumsam),] 
-tumAnno <- tumAnno[order(tumAnno$`cancer type`),] 
-tumors <- unique(tumAnno$`cancer type`) 
-```
-
-# 计算NETs得分
-# Calculate NETs Score
-
-oncogenic.gmt，将原文补充材料S4以及S6的基因制作成的gmt文件。Table S4: Gene sets related to angiogenesis, cell proliferation, and epithelial to mesenchymal transition. Table S6: 19-gene NETs-characteristic signature with the risk coefficients
-
-oncogenic.gmt - A GMT file created from genes in Supplementary Tables S4 and S6 of the original paper. Table S4: Gene sets related to angiogenesis, cell proliferation, and epithelial-to-mesenchymal transition. Table S6: 19-gene NETs-characteristic signature with risk coefficients.
-
-```{r}
-# 在所有样本中计算NETs得分(在本代码中仅仅是为了确定根据cox-based nets score确定肿瘤的level)
-# Calculate NETs score across all samples (used here only to determine tumor levels based on Cox-based NETs score) 
-nets.score <- list() 
-nets.mean <- c() 
-outTab <- NULL
-for (i in tumors) {
-  
-  # 提取当前肿瘤类型的肿瘤样本
-  # Extract tumor samples of current cancer type
-  sam <- tumAnno[which(tumAnno$`cancer type` == i),"simple_barcode"] 
-  
-  # 提取表达谱子集并进行log2转化
-  # Extract expression subset and apply log2 transformation
-  expr.sub <- log2(expr[risk.coeff$Gene,sam] + 1) 
-  
-  # 计算经过z-score的NETs得分
-  # Calculate z-score normalized NETs score  
-  nets <- scale(apply(expr.sub,2,function(x) {x %*% risk.coeff$Coefficient})) 
-  nets.score[[i]] <- nets
-  nets.mean <- c(nets.mean, mean(nets))
-  outTab <- rbind.data.frame(outTab, 
-                             data.frame(tumor = i, 
-                                        NETs = as.numeric(nets), 
-                                        row.names = sam,
-                                        stringsAsFactors = F),
-                             stringsAsFactors = F)
-}
-sapply(nets.score, range) 
-write.table(outTab, file = "output_nets score of all tumor sample across 32 tumor types.txt",sep = "\t",row.names = T,col.names = F,quote = F)
-names(nets.mean) <- tumors
-
-# 根据均值对肿瘤进行排序
-# Sort tumors by mean score 
-nets.mean <- sort(nets.mean, decreasing = T) 
-
-# 将排序结果作为肿瘤因子的等级
-# Use sorted order as tumor factor levels
-tumor.level <- names(nets.mean) 
-
-# 在所有样本中通过z-score计算致癌通路以及NETs得分（注意：此时NETs得分不再是由cox系数计算，而是由zscore算法下的单样本富集得到）
-# Calculate oncogenic pathway and NETs scores via z-score across all samples (Note: NETs score here is not Cox-based but derived from single-sample enrichment using z-score)  
-
- # 将原文补充材料S4以及S6的基因制作成gmt文件，并将gmt文件读取为list
-# Convert genes from Supplementary Tables S4 & S6 into GMT format and read as list 
-oncosig <- gmt2list("oncogenic.gmt")
-
-# 去掉list中的空值
-# Remove empty entries 
-oncosig <- sapply(oncosig, function(x) setdiff(x,"")) 
-zscore.list <- list()
-outSig <- NULL
-for (i in tumors) {
-  message(i)
-  sam <- tumAnno[which(tumAnno$`cancer type` == i), "simple_barcode"]
-  expr.sub <- log2(expr[, sam] + 1)
-  
-  param <- zscoreParam(
-    exprData = as.matrix(expr.sub),
-    geneSets = oncosig,
-    minSize = 1,
-    maxSize = Inf
-  )
-  
-  zscore.list[[i]] <- quiet(gsva(param))
-  
-  outSig <- rbind.data.frame(
-    outSig,
-    cbind.data.frame(
-      tumor = i,
-      as.data.frame(t(zscore.list[[i]]))
-    ),
-    stringsAsFactors = F
-  )
-}
-write.table(outSig, file = "output_oncogenic and nets score of all tumor sample across 32 tumor types.txt",sep = "\t",row.names = T,col.names = F,quote = F)
-```
-
-# 开始画图
-# Plotting
-
-```{r}
-# 设置颜色
-# Set color palette
-mycol <- c("#A6CEE3",
-           "#1F78B4",
-           "#B2DF8A",
-           "#33A02C",
-           "#FB9A99",
-           "#E31A1C",
-           "#FDBF6F",
-           "#FF7F00",
-           "#CAB2D6",
-           "#6A3D9A",
-           "#B15928",
-           "#8DD3C7",
-           "#BEBADA",
-           "#FB8072",
-           "#80B1D3",
-           "#FDB462",
-           "#B3DE69",
-           "#FCCDE5",
-           "#D9D9D9",
-           "#BC80BD",
-           "#CCEBC5",
-           "#FFED6F",
-           "#8C510A",
-           "#BF812D",
-           "#DFC27D",
-           "#F6E8C3",
-           "#80CDC1",
-           "#35978F",
-           "#01665E",
-           "#003C30",
-           "#8E0152",
-           "#C51B7D")
-
-# 制作绘图数据并绘图
-# Prepare plot data and generate plots
-plotdata <- outSig
-plotdata <- gather(plotdata, oncogenic, zscore, Angiogenesis:`Cell cycle`, factor_key=TRUE)
-plotdata$tumor <- factor(plotdata$tumor, levels = tumor.level)
-
-# 泛癌相关性散点图
-# Pan-cancer correlation scatter plot
-p1 <- ggplot(data = plotdata, aes(x = zscore, y = NETs)) + 
-  geom_point(aes(color=tumor),size=1.5,alpha = 0.5) +
-  scale_color_manual(values = mycol) + 
-  geom_smooth(method = "lm", se = FALSE) +
-  geom_ribbon(stat = "smooth",method = "lm",se = TRUE,alpha = 0,linetype = "dashed") + 
-  xlab("Oncogenic (z-score)") + ylab("NETs (z-score)") + 
-  stat_cor(method = "pearson", label.x = -40, label.y = 10) + 
-  facet_wrap(.~oncogenic, nrow = 1) + 
-  theme_bw() + 
-  theme(axis.text.x = element_text(vjust = 0.5, size = 12, color = "black"),
-        axis.ticks = element_line(size=0.2, color="black"),
-        axis.ticks.length = unit(0.2, "cm"),
-        legend.position = "right",
-        axis.title = element_text(size = 12),
-        axis.text = element_text(size = 12))
-ggsave(filename = "correlation scatter plot of zscored oncogenic and NETs in pancancer.pdf", width = 15,height = 5)
-
-tmp1 <- plotdata[which(plotdata$oncogenic == "Angiogenesis"),]
-p2 <- ggplot(data = tmp1, aes(x = zscore, y = NETs)) + 
-  geom_point(aes(color=tumor),size=1.2,alpha = 0.5) +
-  scale_color_manual(values = mycol) + 
-  geom_smooth(method = "lm", se = FALSE) +
-  geom_ribbon(stat = "smooth",method = "lm",se = TRUE,alpha = 0,linetype = "dashed") + 
-  stat_cor(method = "pearson", label.x = -40, label.y = 10) + 
-  xlab("Angiogenesis (z-score)") + ylab("NETs (z-score)") + 
-  facet_wrap(.~tumor, ncol = 8) + 
-  theme_bw() + 
-  theme(axis.text.x = element_text(vjust = 0.5, size = 12, color = "black"),
-        axis.ticks = element_line(size=0.2, color="black"),
-        axis.ticks.length = unit(0.2, "cm"),
-        legend.position = "none",
-        axis.title = element_text(size = 12),
-        axis.text = element_text(size = 12))
-ggsave(filename = "correlation scatter plot of zscored Angiogenesis and NETs in pancancer.pdf", width = 15,height = 8)
-
-tmp2 <- plotdata[which(plotdata$oncogenic == "EMT"),]
-p3 <- ggplot(data = tmp2, aes(x = zscore, y = NETs)) + 
-  geom_point(aes(color=tumor),size=1.2,alpha = 0.5) +
-  scale_color_manual(values = mycol) + 
-  geom_smooth(method = "lm", se = FALSE) +
-  geom_ribbon(stat = "smooth",method = "lm",se = TRUE,alpha = 0,linetype = "dashed") + 
-  stat_cor(method = "pearson", label.x = -40, label.y = 10) + 
-  xlab("EMT (z-score)") + ylab("NETs (z-score)") + 
-  facet_wrap(.~tumor, ncol = 8) + 
-  theme_bw() + 
-  theme(axis.text.x = element_text(vjust = 0.5, size = 12, color = "black"),
-        axis.ticks = element_line(size=0.2, color="black"),
-        axis.ticks.length = unit(0.2, "cm"),
-        legend.position = "none",
-        axis.title = element_text(size = 12),
-        axis.text = element_text(size = 12))
-ggsave(filename = "correlation scatter plot of zscored EMT and NETs in pancancer.pdf", width = 15,height = 8)
-
-p <- plot_grid(p1,p2,p3, align = "v", ncol = 1)
-ggsave(filename = "combined correlation scatter plot of zscored oncogenic and NETs in pancancer.pdf", width = 15,height = 18)
-```
-
-# 会话信息
-# Session Info
-
-```{r}
-# 显示会话信息
-# Show session information
-sessionInfo()
-```

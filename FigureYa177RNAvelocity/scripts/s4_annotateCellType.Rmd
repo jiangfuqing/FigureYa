@@ -10,7 +10,6 @@ If you use this code in your work or research, we kindly request that you cite o
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 
-
 ```{r, include=FALSE}
 source("install_dependencies.R")
 knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE)
@@ -36,7 +35,7 @@ if (!exists("seu.CCA")) {
 }
 ```
 
-> Cluster annotation to heart cell types. 
+> Cluster annotation to heart cell types.
 To identify specifc markers for each cluster and consequently annotate them with the respective heart cell type, we applied Seurat “FindAllMarkers” function using the AUCbased scoring classifer with default parameters. We used the default Wilcoxon’s rank-sum test for the specifc cell type analysis.
 
 计算cell markers
@@ -70,11 +69,11 @@ tsne.emb <- cbind(tsne.emb, FetchData(seu.CCA, vars.all = known.markers))
 tsne.emb <- as.data.frame(tsne.emb)
 
 plot.list <- lapply(seq_along(known.markers), function(i) {
-  ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=get(known.markers[i]))) + 
+  ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=get(known.markers[i]))) +
   geom_point(size = .1) +
-  scale_color_gradient(low = "grey", high = "red") + 
-  ggtitle(label = names(known.markers)[i], subtitle = known.markers[i]) + 
-  theme_bw() + 
+  scale_color_gradient(low = "grey", high = "red") +
+  ggtitle(label = names(known.markers)[i], subtitle = known.markers[i]) +
+  theme_bw() +
   theme(legend.position = "none",
         plot.title = element_text(hjust = .5),
         plot.subtitle = element_text(hjust = .5),
@@ -99,9 +98,9 @@ Heart cell type annotation derived from data of the [Tabula Muris consortium](ht
 ```{r, fig.width=5, fig.height=4, eval=TRUE}
 load("../ref/droplet_Heart_and_Aorta_seurat_tiss.Robj")
 tiss
-DimPlot(tiss, reduction.use = "tsne", 
-        do.label = TRUE, 
-        group.by = "cell_ontology_class", 
+DimPlot(tiss, reduction.use = "tsne",
+        do.label = TRUE,
+        group.by = "cell_ontology_class",
         label.size = 5,
         no.legend = TRUE)
 ```
@@ -140,7 +139,7 @@ head(metadata(sce.heart)$scmap_cluster_index)
 ```
 
 ```{r}
-scmapCluster_results <- scmapCluster(projection = sce.query, 
+scmapCluster_results <- scmapCluster(projection = sce.query,
                                      index_list = list(
                                        ref1 = metadata(sce.heart)$scmap_cluster_index
                                        )
@@ -159,13 +158,13 @@ tsne.emb$scmap_cluster <- seu.CCA@meta.data$scmap_cluster
 
 tsne.emb <- subset(tsne.emb, scmap_cluster != "unassigned")
 
-p1 <- ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=scmap_cluster)) + 
+p1 <- ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=scmap_cluster)) +
   geom_point(size = .1) +
-  guides(colour = guide_legend(title = "scmap cluster", 
-                               title.hjust=0.5, 
-                               keyheight = 1.5, 
-                               override.aes = list(size=6))) + 
-  theme_bw() + 
+  guides(colour = guide_legend(title = "scmap cluster",
+                               title.hjust=0.5,
+                               keyheight = 1.5,
+                               override.aes = list(size=6))) +
+  theme_bw() +
   theme(strip.text = element_text(size = 15, face = "bold"))
 ```
 
@@ -187,7 +186,7 @@ cowplot::plot_grid(p1, p2, ncol = 2, rel_widths = c(7,5))
 ```{r}
 plot(
   getSankey(
-    colData(sce.query)$tree.ident, 
+    colData(sce.query)$tree.ident,
     scmapCluster_results$combined_labs,
     plot_width = 800,
     plot_height = 600
@@ -272,7 +271,7 @@ seu.CCA@meta.data$cell_type_label <- as.character(seu.CCA@meta.data$cell_type_la
 
 ```{r, fig.width=6, fig.height=5, eval=TRUE}
 DimPlot(seu.CCA, reduction.use = "tsne", group.by = "cell_type_label",
-        do.label = TRUE, label.size = 4, 
+        do.label = TRUE, label.size = 4,
         pt.size = .1, no.legend = TRUE)
 ```
 
@@ -280,4 +279,3 @@ DimPlot(seu.CCA, reduction.use = "tsne", group.by = "cell_type_label",
 ```{r, eval=FALSE}
 saveRDS(seu.CCA, "tmp/s4.2-seu_CCA_clustering_cellAnnotation.rds")
 ```
-

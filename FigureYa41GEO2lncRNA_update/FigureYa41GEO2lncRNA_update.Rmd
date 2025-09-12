@@ -71,20 +71,15 @@ Scenario 2: You are planning to do RNA-seq, and are designing the experiment, an
 
 Scenario 3: If the cancer type of interest in TCGA has too few samples or is not available, or if you want to validate using data from multiple sources, use [Module 1] to download microarray data from GEO.
 
-> This article includes more text to accommodate special cases. If your data belongs to the majority, you don’t need to read all the text, just replace the GSE and GPL or the “easy_input.csv” file with your own data and run the code.  
+> This article includes more text to accommodate special cases. If your data belongs to the majority, you don’t need to read all the text, just replace the GSE and GPL or the “easy_input.csv” file with your own data and run the code.
 
 ## 环境设置
 ## Environment setting
 
-使用国内镜像安装包
-
-Use the domestic mirror installation package
 
 ```r
-#使用国内镜像安装包
-#use the domestic mirror installation package
-#options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-#options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
+
 BiocManager::install("GEOquery")
 BiocManager::install("biomaRt")
 ```
@@ -123,10 +118,10 @@ If you have used FigureYa22, 23, 34 to obtain the gene expression matrix of TCGA
 **Note:** Replace GSE with the data you want to use, and remember to also replace it with GPL (which chip platform) used for this set of data in order to get the correct probe set annotation information. **Where to find the GPL? **Search platform on the <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE36895> page, and the GPL is listed to the right of it.
 
 ```{r,message=FALSE}
-gset <- getGEO("GSE36895", GSEMatrix =TRUE, getGPL = TRUE, AnnotGPL = TRUE) 
+gset <- getGEO("GSE36895", GSEMatrix =TRUE, getGPL = TRUE, AnnotGPL = TRUE)
 #如果提示没有GPL***.anno.gz文件，就用下面这句
 #If prompted that there is no GPL***.anno.gz file, use the following sentence
-#gset <- getGEO("GSE36895", GSEMatrix =TRUE, getGPL = TRUE) 
+#gset <- getGEO("GSE36895", GSEMatrix =TRUE, getGPL = TRUE)
 
 if (length(gset) > 1) idx <- grep("GPL570", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
@@ -264,184 +259,3 @@ The biomaRt package is used here, from ensembl.
 Here we use the latest version of human ensembl, if you want to use an older genome version or another species, you need to change the parameter after host = according to the comment.
 
 Click on the link, <http://asia.ensembl.org/info/website/archives/assembly.html>, to see the correspondence between genome assembly and enssembl version
-
-```{r}
-#用下面这行查看ensembl基因组版本跟host的对应关系
-#use the following line to see the correspondence between the Ensembl genome version and the host
-#listEnsemblArchives()
-
-#运行下面两行，查看基因组
-#run the following two lines to view the genome
-#mart = useMart('ensembl')
-#listDatasets(mart)
-#你需要哪个物种，就复制它在dataset列里的词，放在下面这行的`dataset = `参数里
-#which species you need, copy its word in the dataset column and put it in the `dataset = ` parameter on the following line
-ensembl <- useMart(biomart = "ENSEMBL_MART_ENSEMBL", 
-                   dataset = "hsapiens_gene_ensembl", #人 human
-                   #dataset = "mmusculus_gene_ensembl", #小鼠 mouse
-                   #dataset = "rnorvegicus_gene_ensembl", #大鼠 rat
-                   #dataset = "dmelanogaster_gene_ensembl", #果蝇 fruit fly
-                   host = "www.ensembl.org") 
-```
-
-```r
-#植物用下面三行，以拟南芥为例
-#use the following three lines for plants, using Arabidopsis as an example
-mart <- useMart(biomart = 'plants_mart', host = "plants.ensembl.org")
-listDatasets(mart)
-ensembl <- useMart(biomart = "plants_mart",
-                   dataset = "athaliana_eg_gene", 
-                   host = "plants.ensembl.org") 
-```
-
-- 第二步，提取biotype
-
-我们需要用gene symbol或ensembl ID来提取gene_biotype
-
-然后用gene biotype区分lncRNA、miRNA和mRNA
-
-- Step 2: Extract the biotype
-
-We need to extract gene_biotype with gene symbol or ensembl ID
-
-Then use the gene biotype to distinguish lncRNA, miRNA and mRNA
-
-```{r,message=FALSE}
-#查看Filters和Attributes提供了哪些信息
-#会看到基因名gene symbol在第62行
-#你的芯片数据不一定在第62行哦，要具体看的
-#see what information is provided by Filters and Attributes
-#you will see the gene symbol in line 62
-#your microarray data may not be on line 62, you need to check it specifically
-#listFilters(ensembl)
-#listAttributes(ensembl)
-listAttributes(ensembl)[62,]
-#下面的“filters = ”要用到这个name
-#the following "filters = " will use this name
-
-feature_info <- getBM(attributes = c("gene_biotype",
-                                     #"transcript_biotype",#还可以提取transcript_biotype transcript_biotype can also be extracted
-                                     #如果基因名是gene symbol，就运行下面这行
-                                     #if the gene name is gene symbol, run the following line
-                                     "hgnc_symbol"), 
-                                     #如果基因名是ensembl ID，就运行下面这行 if the gene name is ensembl ID, run the following line
-                                     #"ensembl_gene_id"),
-                      #如果基因名是gene symbol，就运行下面这行
-                      #if the gene name is gene symbol, run the following line
-                      filters = "hgnc_symbol", #小鼠是mgi_symbol，大鼠是mgi_symbol mouse is mgi_symbol, rat is mgi_symbol
-                      #如果基因名是ensembl ID，就运行下面这行
-                      #if the gene name is ensembl ID, run the following line
-                      #filters = "ensembl_gene_id",
-                      values = rownames(exprdf_uniq), mart = ensembl)
-
-#有些芯片注释的gene symbol跟最新版本ensembl的基因名不一致，需要返回上一步，换比较老的版本。
-#TCGA数据的ensembl ID跟最新版ensembl一致
-#the gene symbol of some chip annotations is inconsistent with the gene name of the latest version of ensembl, you need to return to the previous step and change to the older version.
-#the ensembl ID of TCGA data is consistent with the latest version of ensembl
-if (nrow(exprdf_uniq) != nrow(feature_info)){
-  #查看哪些基因名不一致
-  #view which gene names are inconsistent
-  library(dplyr)
-  diffName<-setdiff(rownames(exprdf_uniq),feature_info[,2])
-  length(diffName)
-  head(diffName)
-}
-
-length(unique(feature_info$hgnc_symbol))
-#有些gene symbol对应多个ensembl id，因此会有多个biotype，例如
-#some gene symbols correspond to multiple ensembl ids, resulting in multiple biotypes, for example
-feature_info[feature_info$hgnc_symbol == "ARHGEF26-AS1",]
-#TCGA数据不会遇到这个问题，因为ensembl id跟gene_biotype是一一对应的关系
-#TCGA data does not encounter this problem because ensembl id and gene_biotype have a one-to-one correspondence
-
-#把基因的biotype保存到文件
-#save the biotype of the gene to a file
-write.csv(feature_info[,c(2,1)],"gene_biotype.csv",quote = F,row.names = F)
-```
-
-### 识别lncRNA、mRNA和miRNA
-### Identify lncRNA, mRNA, and miRNA
-
-对lncRNA的定义，可参考Vega的标准：
-<http://vega.archive.ensembl.org/info/about/gene_and_transcript_types.html>
-
-The definition of lncRNA can refer to the standard of Vega: <http://vega.archive.ensembl.org/info/about/gene_and_transcript_types.html>
-
-```{r}
-#查看gene biotype的类型
-#view the type of gene biotype
-unique(feature_info$gene_biotype)
-
-#此处定义protein_coding作为mRNA
-#protein_coding is defined here as the mRNA
-mRNA <-"protein_coding"
-#定义lncRNA
-#define lncRNA
-lncRNA <- "lncRNA"
-#还可以定义miRNA
-#miRNA can also be defined
-miRNA <-"miRNA"
-
-#下面就是表达矩阵里的mRNA、lncRNA、miRNA及其数量，把每类基因的基因名保存到相应的文件里。
-#Below are the mRNA, lncRNA, and miRNA in the expression matrix along with their quantities, save the gene names of each gene category into the corresponding file.
-mRNA.list<-feature_info[grepl(mRNA, feature_info$gene_biotype),]
-write.table(mRNA.list,"mRNA.list.txt",quote = F,row.names = F, col.names = F)
-nrow(mRNA.list)
-
-lncRNA.list<-feature_info[grepl(lncRNA, feature_info$gene_biotype),]
-write.table(lncRNA.list,"lncRNA.list.txt",quote = F,row.names = F, col.names = F)
-nrow(lncRNA.list)
-
-miRNA.list<-feature_info[grepl(miRNA, feature_info$gene_biotype),]
-write.table(miRNA.list,"miRNA.list.txt",quote = F,row.names = F, col.names = F)
-nrow(miRNA.list)
-```
-
-## 【模块三】根据基因名提取对应的表达矩阵
-## [Module 3] Extract the corresponding expression matrix based on gene name
-
-### 输入文件
-### Input file
-
-两个输入文件：
-
-- 表达矩阵：easy_input.csv。第一列：基因名。可以是gene symbol（【模块一】的输出文件），或者ensembl_gene_id（FigureYa22、23、34输出文件）。第二列开始是表达量。每行一个基因，每列一个sample。
-
-- 基因列表：mRNA.list.txt。【模块二】的输出文件。包含一列基因名，可以是gene symbol，或者ensembl_gene_id，要跟表达矩阵的基因名一致。
-
-Two input files:
-
-- Expression matrix: easy_input.csv. first column: gene name. It can be gene symbol ([Module 1] output file), or ensembl_gene_id (FigureYa22, 23, 34 output files). The second column starts with the expression. One gene per row, one sample per column.
-
-- Gene list: mRNA.list.txt. output file of [Module 2]. It contains a column of gene names, either gene symbol, or ensembl_gene_id, and must be consistent with the gene names in the expression matrix.  
-
-```{r}
-exprdf_uniq<-read.csv("easy_input.csv",header = T,row.names = 1)
-head(exprdf_uniq)
-
-#以lncRNA基因列表为例
-#take the lncRNA gene list as an example
-lncRNA.list<-read.table("lncRNA.list.txt")
-head(lncRNA.list)
-```
-
-### 提取表达矩阵，保存到文件
-### Extract the expression matrix and save it to a file
-
-```{r}
-mRNA_expr <- exprdf_uniq[as.character(mRNA.list[,2]),]
-write.csv(mRNA_expr,"mRNA_expr.csv",quote = F,row.names = T)
-head(mRNA_expr)
-
-lncRNA_expr <- exprdf_uniq[as.character(lncRNA.list[,2]),]
-write.csv(lncRNA_expr,"lncRNA_expr.csv",quote = F,row.names = T)
-head(lncRNA_expr)
-
-miRNA_expr <- exprdf_uniq[as.character(miRNA.list[,2]),]
-write.csv(miRNA_expr,"miRNA_expr.csv",quote = F,row.names = T)
-head(miRNA_expr)
-```
-
-```{r}
-sessionInfo()
-```

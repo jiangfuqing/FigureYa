@@ -64,7 +64,7 @@ The environment configuration of the article is as follows
 
 ## Install and configure cellranger
 
-### cellranger安装 
+### cellranger安装
 
 ### Cellranger Installation
 
@@ -131,7 +131,7 @@ cellranger mkref --genome="gencode_vM12" \
 这一步大概需要32GB内存。设定为8个threads，大约需要1小时。
 This step requires approximately 32GB of memory. Set it to 8 threads, it will take approximately 1 hour.
 
-> Indexing a typical human 3Gb FASTA file often takes up to 8 core hours and requires 32 GB of memory. 
+> Indexing a typical human 3Gb FASTA file often takes up to 8 core hours and requires 32 GB of memory.
 
 这一步的结果如下
 The result of this step is as follows
@@ -411,9 +411,9 @@ Take this sample as an example. The command for cellranger count is as follows:
 cellranger count --id=young3 \
 --transcriptome=../ref/gencode_vM12 \
 --fastqs=fastq/Y3/ \
---sample=Y3_SaS_CB_004 \ # 注意这里必须是fastq文件的SampleName前缀名，cellranger会将带有这一前缀的文件看做同一个样本  # Note that this must be the SampleName prefix of the fastq file. 
+--sample=Y3_SaS_CB_004 \ # 注意这里必须是fastq文件的SampleName前缀名，cellranger会将带有这一前缀的文件看做同一个样本  # Note that this must be the SampleName prefix of the fastq file.
 --localcores=16 \ # 指派16个核   # assigns 16 cores
---expect-cells=10000 \ 
+--expect-cells=10000 \
 --localmem=64 # 指派64G内存  # assigns 64G of memory
 ```
 

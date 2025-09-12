@@ -47,12 +47,9 @@ Use the signature found by TCGA data and then use other data sets for verificati
 ## 环境设置
 ## Environment settings
 
-使用国内镜像安装包
-Use the domestic mirror installation package
 
 ```r
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
 install.packages(c("dendsort", "squash"))
 ```
 
@@ -61,7 +58,7 @@ Load package
 
 ```{r}
 source("install_dependencies.R")
-library(ClassDiscovery) 
+library(ClassDiscovery)
 library(dendsort)
 library(squash)
 
@@ -124,8 +121,8 @@ legend(x=0.4,y=0.9, # 位置（需要微调）
        cex=1, border=NA, y.intersp=.8, x.intersp=0.2, # 细节参数，包括大小，横向纵向间距
 # Detail parameters, including size, horizontal and vertical spacing
        bty = "n") # 不绘制图例框 # Do not draw legend frame
-legend(x=0.4,y=0.72, 
-       legend = c("Clust","C1","C2"), 
+legend(x=0.4,y=0.72,
+       legend = c("Clust","C1","C2"),
        fill = c(NA,jco[2:1]),
        cex=1, border=NA, y.intersp=.8, x.intersp=0.2,
        bty = "n")
@@ -145,68 +142,3 @@ easy_input_set2.txt, expression matrix of MSKCC cohort
 
 easy_input_set2_suv.txt，MSKCC队列的生存信息
 easy_input_set2_suv.txt, survival information of MSKCC cohort
-
-```{r}
-# 表达数据
-# Expression data
-vad2.expr <- read.table("easy_input_set2.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = 1)
-vad2.expr[1:2,1:4]
-
-# 生存信息
-# Survival information
-vad2.sinfo <- read.table("easy_input_set2_suv.txt",sep = "\t",check.names = F,stringsAsFactors = F,header = T,row.names = 1)
-vad2.sinfo[1:2,]
-
-# 两个文件一致性检测
-# Two files consistency check
-if(!identical(colnames(vad2.expr),rownames(vad2.sinfo))) {
-  cat("Expression matrix mismatched sample information. Please check!\n")
-}
-```
-
-### 聚类和画图
-### Clustering and drawing
-```{r}
-indata <- vad2.expr
-hcs <- hclust(distanceMatrix(as.matrix(indata), "pearson"), "ward.D") # 样本层次聚类
-# Sample hierarchical clustering
-c.clust <- cutree(hcs,k=2) # 切割树为2类
-# Cut the tree into 2 categories
-
-# 生成聚类信息并添加样本信息
-# Generate clustering information and add sample information
-annCol_val <- data.frame(Clust=paste0("C",as.character(c.clust)), # 
-                         OS=vad2.sinfo$OS_STATUS,
-                         PFS=vad2.sinfo$DFS_STATUS,
-                         row.names = names(c.clust),
-                         stringsAsFactors = F)
-
-annCol_val[is.na(annCol_val$OS),"OS"]="N/A" # 没有OS设置为N/A # No OS is set to N/A
-annColors_val <- list() # 生成注释文件对应的颜色 # Generate the color corresponding to the annotation file
-annColors_val[["Clust"]] <- c("C1"=jco[1],"C2"=jco[2])
-annColors_val[["OS"]] <- c("LIVING"=lightgrey,"DECEASED"=cherry,"N/A"="white")
-annColors_val[["PFS"]] <- c("DiseaseFree"=lightgrey,"Recurred/Progressed"=cherry)
-
-my.dend <- dendsort(hcs) # 利用dendsort来排序树，稍微好看一点 # Use dendsort to sort the tree, which is a little better
-my.mat <- annCol_val
-
-# 根据注释信息修改颜色
-# Modify the color according to the annotation information
-my.mat$Clust <- ifelse(my.mat$Clust == "C1",jco[2],jco[1])
-my.mat$OS <- ifelse(my.mat$OS == "LIVING",lightgrey,ifelse(my.mat$OS == "DECEASED",cherry,"white"))
-my.mat$PFS <- ifelse(my.mat$PFS == "DiseaseFree",lightgrey,cherry)
-
-pdf("dendrogram for validation 2.pdf",height = 6,width = 7)
-dendromat(my.dend, my.mat,
-          las = 2,labRow = NA)
-legend(x=0.4,y=0.9, legend = c("PFS","DiseaseFree","Recurred/Progressed"), fill = c(NA,lightgrey,cherry),cex=1, border=NA, y.intersp=.8, x.intersp=0.2,bty = "n")
-legend(x=0.4,y=0.72, legend = c("OS","LIVING","DECEASED","N/A"), fill = c(NA,lightgrey,cherry,"white"),cex=1, border=NA, y.intersp=.8, x.intersp=0.2,bty = "n")
-legend(x=0.4,y=0.54, legend = c("Clust","C1","C2"), fill = c(NA,jco[2:1]),cex=1, border=NA, y.intersp=.8, x.intersp=0.2,bty = "n")
-invisible(dev.off())
-```
-
-![](dendrogram for validation 2.pdf)
-
-```{r}
-sessionInfo()
-```

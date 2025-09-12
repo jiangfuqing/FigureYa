@@ -28,7 +28,7 @@ Hello, I would like to crowdfund this diagram to show the relationship between d
 出自<https://clincancerres.aacrjournals.org/content/26/1/135>
 from<https://clincancerres.aacrjournals.org/content/26/1/135>
 
-Figure 3. Alignment of PDAC metabolic subgroups with known gene expression subtypes. 
+Figure 3. Alignment of PDAC metabolic subgroups with known gene expression subtypes.
 A, Overlay of metabolic profiles (inner ring) with PDAC expression subtypes (outer rings) based on the Moffitt and colleagues’ (4), Bailey and colleagues’ (2), and Collisson and colleagues’ (3) classifications.
 
 # 应用场景
@@ -45,16 +45,12 @@ We have also crowdfunded Figure 1ABC for example, which selects co-expressed gen
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 ```
 
@@ -79,126 +75,3 @@ easy_input.txt，多组分类信息。也可用于FigureYa25Sankey，画成桑�
 # Input the file
 
 easy_input.txt. Multiple groups of classified information. It can also be used for FigureYa25Sankey, which is drawn as a Sankey diagram.
-
-```{r}
-# 加载亚型数据并依次排序
-# Load the subtype data and sort them in turn
-subt <- read.table("easy_input.txt", sep = "\t", row.names = 1, check.names = F, stringsAsFactors = F, header = T)
-head(subt)
-
-# 亚型依次排序
-# Isotypes are sorted in order
-subt <- subt[order(subt$TCGA_subtype, 
-                   subt$Moffitt_subtype, 
-                   subt$`Bailey subtype`, 
-                   subt$`Collisson subtype`), ]
-```
-
-# 开始画图
-
-用circlize画图，参考作者的电子书<https://jokergoo.github.io/circlize_book/book/>。
-
-看每段开头的注释，了解每段的功能，就可以灵活修改分组的数量、颜色了。
-
-# Start drawing
-
-Draw with circlize, referring to the author's e-book <https://jokergoo.github.io/circlize_book/book/>.
-
-Look at the comments at the beginning of each paragraph to understand the function of each paragraph, and you can flexibly modify the number and color of the grouping.
-
-```{r}
-# 设置各个亚型的颜色
-# Set the color of each subtype
-subtype1.col <- c("#9AAF57", "#6AA1AB", "#E1B52E", "#81552E")
-subtype2.col <- c("#717579", "#DFE8EE")
-subtype3.col <- c("#9B1C1F", "#8F7999", "black", "#9FC6EC")
-subtype4.col <- c("#6978BC", "#F7F07C", "#D3BDDC")
-
-# 映射各亚型各水平的颜色
-# Map the colors of each subtype and each level
-col_subt1 <- c("Cholesterogenic" = subtype1.col[1],
-               "Glycolytic" = subtype1.col[2],
-               "Quiescent" = subtype1.col[3],
-               "Mixed" = subtype1.col[4])
-col_subt2 <- c("Basal-like" = subtype2.col[1], 
-               "Classical" = subtype2.col[2])
-col_subt3 <- c("Squamous" = subtype3.col[1], 
-               "Immunogenic" = subtype3.col[2], 
-               "Progenitor" = subtype3.col[3], 
-               "ADEX" = subtype3.col[4])
-col_subt4 <- c("Quasi-mesenchymal" = subtype4.col[1],
-               "Exocrine-like" = subtype4.col[2],
-               "Classical" = subtype4.col[3])
-
-# 创建图例
-# Create a legend
-lgd_subt1 <- Legend(title = "TCGA subtype", # 图例title # Legend title
-                    at = names(col_subt1), # 图例的水平 # The level of the legend
-                    legend_gp = gpar(fill = col_subt1)) # 图例所填充的颜色 # The color of the legend filled
-lgd_subt2 <- Legend(title = "Moffitt subtype", 
-                    at = names(col_subt2), 
-                    legend_gp = gpar(fill = col_subt2))
-lgd_subt3 <- Legend(title = "Bailey subtype", 
-                    at = names(col_subt3), 
-                    legend_gp = gpar(fill = col_subt3))
-lgd_subt4 <- Legend(title = "Collisson subtype", 
-                    at = names(col_subt4), 
-                    legend_gp = gpar(fill = col_subt4))
-
-# 自定义函数，正式合并图像和图例
-# Custom functions to formally merge images and legends
-circlize_plot = function() {
-  circos.heatmap(subt$TCGA_subtype, 
-                 split = factor(subt$TCGA_subtype,levels = c("Cholesterogenic", "Glycolytic", "Quiescent", "Mixed")), # 按照亚型因子顺序排列 # Listed in order of subtype factor
-                 col = col_subt1, 
-                 track.height = 0.14,
-                 show.sector.labels = TRUE) # 显示区块名 # Displays the block name
-  circos.heatmap(subt$Moffitt_subtype, 
-                 split = factor(subt$Moffitt_subtype, levels = c("Basal-like", "Classical")), 
-                 col = col_subt2, 
-                 track.height = 0.14)
-  circos.heatmap(subt$`Bailey subtype`, 
-                 split = factor(subt$`Bailey subtype`, levels = c("Squamous", "Immunogenic", "Progenitor", "ADEX")), 
-                 col = col_subt3, 
-                 track.height = 0.14)
-  circos.heatmap(subt$`Collisson subtype`, 
-                 split = factor(subt$`Collisson subtype`, levels = c("Quasi-mesenchymal", "Exocrine-like", "Classical")), 
-                 col = col_subt4, 
-                 track.height = 0.14)
-  circos.clear() # 清除图像的连接(注意：每次重新画圈图必须清除图像连接) # Clear the connection of the image (Note: The image connection must be cleared every time you redraw the circle)
-}
-
-## 开始画图 ## Start drawing
-plot.new() # 请从这句开始到你想修改/理解的那行代码，整段运行 # Please start with this sentence and run the whole line of code you want to modify/understand
-circle_size = unit(0.8, "snpc") # snpc会设置一个正方形的区域 # SNPC will set a square area
-pushViewport(viewport(x = 0, y = 0.5, 
-                      width = circle_size, 
-                      height = circle_size,
-                      just = c("left", "center")))
-par(omi = gridOMI(), new = TRUE)
-quiet(circlize_plot())
-
-# 添加正中心的文字
-# Add text in the center
-text(0, 0, "PDAC\nsamples", cex = 0.9) # 添加正中心的文字 # Add text in the center
-upViewport()
-
-# 画图例
-# Draw a legend
-lgd_list <- packLegend(lgd_subt1, 
-                       lgd_subt2, 
-                       lgd_subt3, 
-                       lgd_subt4, 
-                       max_height = unit(0.9*dev.size()[2], "inch"))
-draw(lgd_list, x = circle_size, just = "left")
-
-# 直接保存图像到本地
-# Save images directly to your local computer
-dev.copy2pdf(file = "subtype circos plot.pdf") 
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

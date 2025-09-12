@@ -40,16 +40,13 @@ The Bland-Altman plot was used to compare the agreements among different evaluat
 
 # Environment Setup
 
-使用国内镜像安装包
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r, eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+
 install.packages(c("BlandAltmanLeh", "MethComp", "smatr"))
 ```
 
@@ -85,35 +82,35 @@ BA.baseplot <- function(measurement1 = NULL, # 方法一的结果 # the result o
 
   if(length(measurement1) != length(measurement2)) {stop("The length of measurements must be the same!\n")}
   if(!is.element(slope.methed,c("OLS","SMA","MA"))) {stop("The method for slope test must be one of OLS, SMA, MA!\n")}
-  
+
   ba.stats <- bland.altman.stats(measurement1,measurement2) # 得到BA有关的统计量 # get ba related statistics
-  
-  meth <- ifelse(slope.methed == "OLS",0, 
+
+  meth <- ifelse(slope.methed == "OLS",0,
                  ifelse(slope.methed == "SMA",1,2))
-  
-  # 进行斜率检验 
+
+  # 进行斜率检验
   # Conduct the slope test
   slope <- slope.test(y = ba.stats$diffs,
                       x = ba.stats$means,
                       test.value = slope.test.value,
                       method = meth) # 根据选择的斜率检验方法设置meth值  # Set the meth value according to the selected slope test method
-  
-  # 绘图 
+
+  # 绘图
   # Drawing
   pdf(paste0("BAplot_",fig.label,".pdf"), width = width, height = height)
   par(bty="o", mgp = c(2,0.5,0), mar = c(4.1,4.1,2.1,2.1), tcl=-.25, font.main=3, las=1)
   par(xpd=F)
-  
-  # 设置坐标轴区间 
+
+  # 设置坐标轴区间
   # Set the coordinate axis intervals
   if(range(ba.stats$diffs)[1] > ba.stats$lines[1]) {
     ylim1 <- ba.stats$lines[1] - ceiling(range(ba.stats$diffs)[2]-range(ba.stats$diffs)[1]/10)
   } else {ylim1 <- range(ba.stats$diffs)[1]}
-  
+
   if(range(ba.stats$diffs)[2] < ba.stats$lines[3]) {
     ylim2 <- ba.stats$lines[3] + ceiling(range(ba.stats$diffs)[2]-range(ba.stats$diffs)[1]/10)
   } else {ylim2 <- range(ba.stats$diffs)[2]}
-  
+
   # 设置空画布（第一次）
   # Set an Empty Canvas (First Time)
   plot(NULL, NULL,ylim = c(ylim1,ylim2),xlim = range(ba.stats$means),
@@ -121,27 +118,27 @@ BA.baseplot <- function(measurement1 = NULL, # 方法一的结果 # the result o
        main = main,
        sub=paste("Critical difference is", round(ba.stats$critical.diff,3)),
        col="white",yaxt="n",xaxt="n")
-  
+
   axis(side = 2,at = pretty(c(ylim1,ylim2)),labels = pretty(c(ylim1,ylim2)))
   axis(side = 1,at = pretty(ba.stats$means),labels = pretty(ba.stats$means))
-  
+
   rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "#EAE9E9",border = F) # 填充背景色（此时画布外缘黑线被遮盖） # fill the background color (the canvas covering the outer black line)
   grid(col = "white", lty = 1, lwd = 1.5) # 添加网格 # Add grid
-  
+
   # 添加非金标准的结果（散点）
   # Add non-gold standard results (scattered points)
-  points(ba.stats$means, 
-         ba.stats$diffs, 
-         col = ggplot2::alpha(point.color,0.8), 
+  points(ba.stats$means,
+         ba.stats$diffs,
+         col = ggplot2::alpha(point.color,0.8),
          pch = 19)
-  
+
   # 添加置信区间
   # Add confidence intervals
-  abline(h = ba.stats$lines, 
-         lty=c(2,4,2), 
+  abline(h = ba.stats$lines,
+         lty=c(2,4,2),
          lwd=c(1.5,2,1.5),
          col=c(confline.color,refline.color,confline.color))
-  
+
   # 重新创建空画布（第二次）还原外侧线
   # Recreate an Empty canvas (Second Time) Restore the outer lines
   par(new = T, bty="o",xpd=F)
@@ -150,14 +147,14 @@ BA.baseplot <- function(measurement1 = NULL, # 方法一的结果 # the result o
        xlim = range(ba.stats$means), ylim = range(ba.stats$diffs),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
-  
+
   # 添加斜率检验结果
   # Add the slope test result
   legend("topright",
          legend = paste0("Slope",ifelse(slope$b < 0.001," < 0.001",paste0(" = ",round(slope$b,3))),"\nP ",
                          ifelse(slope$p < 0.001," < 0.001",paste0(" = ",round(slope$p,3)))),
          border=NA,bty = "n", y.intersp=1,cex = 0.9)
-  
+
   # 关闭图像句柄
   # Close the image handle
   invisible(dev.off())
@@ -183,31 +180,3 @@ table(dat$dataset)
 
 调用前面的自定义函数，检验和画图一步到位。
 By calling the previous custom function, verification and drawing can be accomplished in one step.
-
-```{r}
-# 测试结果
-# Test Results
-test <- abs(dat[which(dat$dataset == "TEST"),"error"]) 
-
-# 金标准结果
-# Gold Standard Results
-gt <- abs(dat[which(dat$dataset == "GT"),"error"]) 
-
-BA.baseplot(measurement1 = test, # 测试方法的结果 # test method result
-            measurement2 = gt, # 金标准结果  # Gold Standard result
-            slope.methed = "OLS", # 斜率方法选择OLS # select OLS for the slope method
-            xlab = "Means of Dice error in Left", # 添加x轴名 # add the X-axis name
-            ylab = "Differences of Dice error in Left", # 添加y轴名 # add the name of the Y-axis
-            point.color = "#224A8D", # 散点颜色  # scatter color
-            refline.color = "#E53435", # 参考线颜色 # reference line color
-            confline.color = "grey30", # 置信线颜色 # confidence line color
-            fig.label = "example") # 输出文件名  # Output file name
-```
-
-![](BAplot_example.pdf)
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

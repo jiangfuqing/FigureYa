@@ -5,7 +5,7 @@ date: "2025-5-20"
 output: html_document
 ---
 
-[<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="120px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
+[<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="120px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg)
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -108,11 +108,11 @@ require(ggplot2)
 box <- lapply(list(up=row.names(up), down=row.names(down)), function(ii) {
     dd <- d[ii,]
     dd$gene = rownames(dd)
-    
+
     ## 宽变长，变成tidy data frame，好用于ggplot2画图
     ## The width becomes length and becomes tidy data frame, which is easy to use for ggplot2 drawing.
     d2 <- gather(dd, sample, expr, 1:30)
-    
+
     ## 通过sample名，衍生出stage变量
     ## derive the stage variable from the sample name
     d2$stage <- paste('stage', sub(".*_(\\d)$", "\\1", d2$sample))
@@ -127,9 +127,9 @@ box <- lapply(list(up=row.names(up), down=row.names(down)), function(ii) {
 
     ## 画boxplot，并标识p-value
     ## draw boxplot and identify p-value
-    ggplot(d2, aes(gene, expr, fill=stage)) + 
-      geom_boxplot() + 
-      geom_text(aes(gene, y=max(d2$expr) * 1.1, 
+    ggplot(d2, aes(gene, expr, fill=stage)) +
+      geom_boxplot() +
+      geom_text(aes(gene, y=max(d2$expr) * 1.1,
                     label=paste("p = ",round(pvalue, 2))),
                 data=pv, #
                 inherit.aes=F) + #
@@ -150,7 +150,7 @@ ggsave(file="box1.pdf")
 
 把pvalue变成sigcode，然后再下面画图代码中`label=paste("p = ",round(pvalue, 2))`标记p值的地方，改成`label = sigcode`即可。
 
-If you want to use "\**" or "***" to denote <0.05 or <0.001, proceed as follows: 
+If you want to use "\**" or "***" to denote <0.05 or <0.001, proceed as follows:
 
 Change p-value to sigcode, and then in the plotting code below, change `label=paste("p = ",round(pvalue, 2))` where the p-value is labeled to `label = sigcode`.
 
@@ -165,16 +165,16 @@ box <- lapply(list(up=row.names(up), down=row.names(down)), function(ii) {
         summary(res)[[1]]$'Pr(>F)'[1] #
     })
     pv <- data.frame(gene = d2$gene, pvalue = pvalues)
-    
+
     ## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-    pv$sigcode <- cut(pv$pvalue, c(0, 0.001, 0.01, 0.05, 0.1, 1), 
+    pv$sigcode <- cut(pv$pvalue, c(0, 0.001, 0.01, 0.05, 0.1, 1),
                     labels=c('***', '**', '*', '.', ' '))
 
-    ggplot(d2, aes(gene, expr, fill=stage)) + 
-      geom_boxplot() + 
-      geom_text(aes(gene, y=max(d2$expr) * 1.1, 
+    ggplot(d2, aes(gene, expr, fill=stage)) +
+      geom_boxplot() +
+      geom_text(aes(gene, y=max(d2$expr) * 1.1,
                     label=pv$sigcode),
-                data=pv, inherit.aes=F) + 
+                data=pv, inherit.aes=F) +
       xlab(NULL)+ylab("Relative expression (log2)")
 })
 
@@ -191,7 +191,7 @@ box2 <- lapply(c(row.names(up), row.names(down)), function(i) {
     dd <- d[i,]
     dd$gene = rownames(dd)
     d2 <- gather(dd, sample, expr, 1:30)
-    
+
     ## 通过sample名，衍生出stagge变量
     ## derive the stagge variable from the sample name.
     d2$stage <- paste('stage', sub(".*_(\\d)$", "\\1", d2$sample))
@@ -210,7 +210,7 @@ box2 <- lapply(c(row.names(up), row.names(down)), function(i) {
     lab <- paste(dd$gene, pv1.lab, pv2.lab, sep="\n")
 
     label <- ggdraw() + draw_label(lab)
-    plot_grid(label, 
+    plot_grid(label,
               ggplot(d2, aes(stage, expr, fill=stage)) +
                 geom_boxplot() +
                 xlab("") +

@@ -10,8 +10,6 @@ If you use this code in your work or research, we kindly request that you cite o
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 
-
-
 ```{r}
 source("install_dependencies.R")
 knitr::opts_chunk$set(eval = FALSE, warning = FALSE, message = FALSE)
@@ -46,10 +44,10 @@ seu.CCA <- readRDS("tmp/s3.2-seu_CCA_clustering.rds")
 tsne.emb <- GetDimReduction(seu.CCA, reduction.type = "tsne", slot = "cell.embeddings")
 tsne.emb <- as.data.frame(tsne.emb)
 tsne.emb$sample_id <- as.character(seu.CCA@meta.data[rownames(tsne.emb),]$sample_id)
-ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=sample_id)) + 
+ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=sample_id)) +
   geom_point(size = .1) +
-  facet_wrap(~sample_id, ncol = 3) + 
-  theme_bw() + 
+  facet_wrap(~sample_id, ncol = 3) +
+  theme_bw() +
   theme(legend.position = "none",
         strip.text = element_text(size = 15, face = "bold"))
 ```
@@ -66,7 +64,7 @@ seu.CCA <- FindClusters(seu.CCA, reduction.type = "cca.aligned", dims.use = 1:20
 
 > The robustness of the clusters was calculated using the function “AssessNodes” from Seurat. For each cluster, a phylogenetic tree based on the distance matrix in gene expression space was computed. Next, Seurat computed an out-of-bag error for a random forest classifer trained on each internal node split of the tree.
 
-构建phylogenetic tree 
+构建phylogenetic tree
 ```{r, eval=TRUE}
 seu.CCA <- BuildClusterTree(seu.CCA, reorder.numeric = TRUE, do.reorder = TRUE, do.plot = FALSE)
 ```
@@ -87,14 +85,14 @@ PlotClusterTree(seu.CCA)
 ```{r, fig.width=12, fig.height=8, eval=TRUE}
 tsne.emb$ident <- factor(as.character(seu.CCA@ident), levels = levels(seu.CCA@ident))
 
-ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=ident)) + 
+ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=ident)) +
   geom_point(size = .1) +
-  facet_wrap(~sample_id, ncol = 3) + 
-  guides(colour = guide_legend(title = "Cluster", 
-                               title.hjust=0.5, 
-                               keyheight = 1.5, 
-                               override.aes = list(size=6))) + 
-  theme_bw() + 
+  facet_wrap(~sample_id, ncol = 3) +
+  guides(colour = guide_legend(title = "Cluster",
+                               title.hjust=0.5,
+                               keyheight = 1.5,
+                               override.aes = list(size=6))) +
+  theme_bw() +
   theme(strip.text = element_text(size = 15, face = "bold"))
 ```
 
@@ -102,20 +100,20 @@ ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=ident)) +
 ```{r, fig.width=5, fig.height=4, eval=TRUE}
 tsne.emb$is_2_3 <- tsne.emb$ident %in% c(2,3)
 
-ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=is_2_3)) + 
+ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=is_2_3)) +
   geom_point(size = .1) +
-  scale_color_manual(values = c("grey","red")) + 
+  scale_color_manual(values = c("grey","red")) +
   guides(colour = guide_legend(title = "Cluster 2&3",
-                               title.hjust=0.5, 
-                               keyheight = 1.5, 
-                               override.aes = list(size=6))) + 
-  theme_bw() + 
+                               title.hjust=0.5,
+                               keyheight = 1.5,
+                               override.aes = list(size=6))) +
+  theme_bw() +
   theme(strip.text = element_text(size = 15, face = "bold"))
 ```
 
 合并节点37，重新构建phylogenetic tree
 ```{r, eval=TRUE}
-seu.CCA <- MergeNode(seu.CCA, node.use = 37, rebuild.tree = TRUE, 
+seu.CCA <- MergeNode(seu.CCA, node.use = 37, rebuild.tree = TRUE,
                      reorder.numeric = TRUE, do.reorder = TRUE, do.plot = FALSE)
 plotClusterTree(seu.CCA)
 ```
@@ -131,14 +129,14 @@ oob
 ```{r, fig.width=12, fig.height=8, eval=TRUE}
 tsne.emb$ident <- factor(as.character(seu.CCA@ident), levels = levels(seu.CCA@ident))
 
-ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=ident)) + 
+ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=ident)) +
   geom_point(size = .1) +
-  facet_wrap(~sample_id, ncol = 3) + 
-  guides(colour = guide_legend(title = "Cluster", 
-                               title.hjust=0.5, 
-                               keyheight = 1.5, 
-                               override.aes = list(size=6))) + 
-  theme_bw() + 
+  facet_wrap(~sample_id, ncol = 3) +
+  guides(colour = guide_legend(title = "Cluster",
+                               title.hjust=0.5,
+                               keyheight = 1.5,
+                               override.aes = list(size=6))) +
+  theme_bw() +
   theme(strip.text = element_text(size = 15, face = "bold"))
 ```
 
@@ -147,4 +145,3 @@ ggplot(data = tsne.emb, aes(x=tSNE_1, y=tSNE_2, color=ident)) +
 saveRDS(oob, "tmp/s3.1-clustering_robustness.rds")
 saveRDS(seu.CCA, "tmp/s3.2-seu_CCA_clustering.rds")
 ```
-

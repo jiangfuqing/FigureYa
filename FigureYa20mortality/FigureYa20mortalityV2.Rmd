@@ -5,7 +5,7 @@ date: "2025-5-20"
 output: html_document
 ---
 
-[<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg) 
+[<img src="https://guangchuangyu.github.io/blog_images/biobabble.jpg" width="100px"/>](https://guangchuangyu.github.io/blog_images/biobabble.jpg)
 
 # Academic Citation
 If you use this code in your work or research, we kindly request that you cite our publication:
@@ -70,7 +70,7 @@ head(x)
 require(dplyr)
 y <- group_by(x, Tumor.size) %>%
   summarize(ratio = mean(Survival == 1),
-            int95 = qt(0.975, length(Survival)-1) * sd(Survival==1)/sqrt(length(Survival))) 
+            int95 = qt(0.975, length(Survival)-1) * sd(Survival==1)/sqrt(length(Survival)))
 head(y)
 ```
 
@@ -81,7 +81,7 @@ head(y)
 require(ggplot2)
 
 p1 <-ggplot(y, aes(Tumor.size, ratio)) +
-     geom_ribbon(aes(ymin=ratio-int95, ymax=ratio+int95), fill="grey") + 
+     geom_ribbon(aes(ymin=ratio-int95, ymax=ratio+int95), fill="grey") +
      geom_line() + xlab("Tumor Size (mm)") +
      ylab("5-Year XXX Mortality") + theme_minimal()
 p1
@@ -94,45 +94,3 @@ p1
 The plot is not smooth enough because Tumor.size comprises positive integers, which are discrete points.
 
 This can be smoothed by using Local Regression, also known as LOESS.
-
-```{r,fig.width=6,fig.height=4}
-#可以试着更改一下span参数，指定多少的smoothing span
-#try changing the span parameter to specify how much of a smoothing span
-span <- 0.5
-loess_ratio <- loess(ratio ~ Tumor.size, data=y, span=span) 
-loess_ci <- loess(int95 ~ Tumor.size, data=y, span=span) 
-
-y$ratiop = predict(loess_ratio)
-y$int95p = predict(loess_ci)
-
-p2 <-ggplot(y, aes(Tumor.size, ratiop)) +
-     geom_ribbon(aes(ymin=ratiop-int95p, ymax=ratiop+int95p), fill="grey") + 
-     geom_line() + xlab("Tumor Size (mm)") +
-     coord_cartesian(xlim = c(0,51),ylim = c(0,0.3)) + #设置坐标轴范围 set the axis range
-     scale_x_continuous(expand = c(0, 0)) + scale_y_continuous(expand = c(0, 0)) +#让x和y轴都从0开始 let both the x and y axes start at 0
-     theme_bw() + #去除背景色 remove background color
-     theme(panel.grid =element_blank()) + #去除网格线 remove gridlines
-     theme(panel.border = element_blank()) + #去除外层边框 remove outer border
-     theme(axis.line = element_line(colour = "black")) + #坐标轴画成黑色 coordinate axes are drawn in black
-     ylab("5-Year XXX Mortality")
-p2
-ggsave("mortality.pdf",width = 6,height = 4)
-```
-
-p2画出来就非常好看了
-
-把没做smoothing的叠加上去看看：
-
-p2 looks great when drawn
-
-Overlay the version without smoothing to take a look:
-
-```{r}
-p2 + geom_ribbon(aes(ymin=ratio-int95, ymax=ratio+int95), fill="steelblue", alpha=.3) + 
-     geom_line(aes(Tumor.size, ratio), color='red') + xlab("Tumor Size (mm)") +
-     ylab("5-Year XXX Mortality") + theme_minimal()
-```
-
-```{r}
-sessionInfo()
-```

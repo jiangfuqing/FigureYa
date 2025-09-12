@@ -36,7 +36,7 @@ c 热图展示了源自11个肿瘤的44个代谢基因的成对相关性。聚�
 from<https://www.nature.com/articles/s41422-020-0374-x>
 
 Fig. 2 Malignant cell clusters and common malignant signatures revealed in NPC.
-c A heatmap depicts the pairwise correlations of 44 metagenes derived from 11 tumors. Clustering identified **five coherent malignant gene expression signatures** across the tumors. 
+c A heatmap depicts the pairwise correlations of 44 metagenes derived from 11 tumors. Clustering identified **five coherent malignant gene expression signatures** across the tumors.
 
 The colleague who raised the request also found this figure in this 2017 Cell article:
 
@@ -68,7 +68,7 @@ Figure 3. Unbiased Clustering Reveals a Common Program of p-EMT in HNSCC Tumors
 
 仔细读全文，小丫发现例文的很多图我们都有[相应的FigureYa](https://k.koudai.com/McawGY6=)啦！例如：
 
-- `FigureYa166scCNV`能帮你实现例文1的Figure 1c 和例文2的Figure 1B。用 单细胞RNA-seq数据计算CNV，用来separate the malignant cells from the non-malignant cells with normal karyotypes. 
+- `FigureYa166scCNV`能帮你实现例文1的Figure 1c 和例文2的Figure 1B。用 单细胞RNA-seq数据计算CNV，用来separate the malignant cells from the non-malignant cells with normal karyotypes.
 - `FigureYa194pySCENIC`能帮你实现例文1的Figure 4i，用SCENIC找出potential TFs underlying the regulation across subtypes.
 - `FigureYa178receptorLigand`能帮你实现例文1的Figure 6，用CellPhoneDB找出ligand–receptor pairs and molecular interactions among the major cell types.
 
@@ -92,17 +92,13 @@ Read the entire text carefully, and Xiao Ya found that we have [corresponding Fi
 # 环境设置
 # Environment setting
 
-使用国内镜像安装包
-
-use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("Seurat")
 BiocManager::install("AUCell")
 BiocManager::install("GEOquery")
@@ -144,7 +140,7 @@ Here, enrichment analysis is performed using the two most commonly employed anno
 Alternatively, you may modify the function to perform enrichment analysis using your preferred annotation database. Refer to FigureYa209batchEnrich to identify an annotation database suitable for your data.
 
 ```{r}
-Myenrich <- function(genes, category = c("kegg", "gobp"), 
+Myenrich <- function(genes, category = c("kegg", "gobp"),
                      geneid = c("SYMBOL", "ENTREZID", "ENSEMBL", "UNIPROT")){
   library(clusterProfiler)
   category <- match.arg(category)
@@ -175,294 +171,3 @@ Myenrich <- function(genes, category = c("kegg", "gobp"),
 The file is rather large and has been uploaded to Weiyun: <https://share.weiyun.com/mpXIOggi>
 
 Data download: Download the GSE150430_npc_scRNA_hg19_processed_data.txt.gz file from the GEO database (GSE150430), <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE150430>, decompress and preprocess it.
-
-```{r eval=FALSE}
-# 需要大内存，练习时可直接跳到下一步“运行NMF”
-# This process requires a large amount of memory, when practicing, you can directly skip to the next step "Run NMF"
-dat <- read.table("GSE150430_npc_scRNA_hg19_processed_data.txt", header = T, sep = "\t")
-celldat <- dat[1, , drop = F] %>% t() %>% as.data.frame()
-epicells <- celldat[celldat$Cell_type == "Malignant", , drop = F] %>% rownames() 
-epidat <- dat[-1, ] %>% .[, colnames(.) %in% epicells]
-write.table(epidat, file = "GSE150430Malignant.txt", sep = "\t", quote = F)
-```
-
-# 运行NMF
-# Run NMF
-
-对P01样本1834个细胞，选择sd最高的6000个基因进行nmf分析，本FigureYa作者的运行时间约为23min。
-
-作者在运行nmf的时候，nrun选择的是4；一般而言我们还是运行多个run，针对每个样品，选择一个最佳的nrun值。具体怎样选择最佳个数，可以参考FigureYa158MutationPattern。
-
-For the P01 sample consisting of 1,834 cells, the top 6,000 genes with the highest standard deviation were selected for NMF analysis. The author's runtime for this figure was approximately 23 minutes.
-
-When running NMF, the author chose nrun to be 4; however, it is generally advisable to run multiple runs and select the optimal number of nrun for each sample. For guidance on how to choose the best number, you can refer to FigureYa158MutationPattern.
-
-```{r}
-epidat <- read.table("GSE150430Malignant.txt", header = T, sep = "\t")
-boxplot(epidat[, 1:6]) # 数据已经经过log转换过的 The data has already been log-transformed
-patients <- str_split(colnames(epidat), "_") %>% sapply(., "[[", 1) %>% unique()
-patients
-
-#各个样品其鉴定到的上皮细胞数
-#The number of epithelial cells identified in each sample
-table(str_split(colnames(epidat), "_") %>% sapply(., "[[", 1))
-```
-
-```{r}
-# 参数
-# Parameters
-topn <- 6000
-ranks <- 4
-```
-
-耐心等待，小丫的电脑跑了一天。练习时可先跳过这步，直接进入“NMF program聚类”。
-
-Please be patient, Xiaoya's computer has been running all day. During practice sessions, you can skip this step and proceed directly to the "NMF program clustering".
-
-```{r eval=FALSE}
-# 单细胞数据基因有很空值，为了降低噪音，我们选择sd变化前6000个基因进行NMF
-# Single-cell data contains numerous gene null values. To reduce noise, we select the top 6,000 genes by standard deviation variation for NMF
-for (i in patients){
-  if (!dir.exists("nmfSingle")){
-    dir.create("./nmfSingle")
-  }
-   if (!dir.exists(paste0("nmfSingle/", i))){
-    dir.create(paste0("nmfSingle/", i))
-  }
-  nmfdat <- epidat[, str_detect(colnames(epidat), i)]
-  ## Step 02: chose top 6000 genes with highest sds
-  nmfdat[nmfdat < 0] <- 0 #小于零的基因值用0代替 Negative gene values are replaced with 0
-  genesd <- apply(nmfdat, 1, sd)
-  topNgene <- genesd[order(genesd, decreasing = T)][1:topn]
-  nmfdat <- nmfdat[rownames(nmfdat) %in% names(topNgene), ]
-  # nrun可以选择在30-50之间
-  # nrun can be selected between 30 and 50
-  print(system.time(res_4 <- nmf(nmfdat, rank = ranks, method="brunet", nrun=30, seed=123456))) 
-  signature <- NMF::basis(res_4)
-  # consensusdat <- res_4@consensus #consensus matrix，可以保存出来自己画样品聚类图 consensus matrix, which can be saved to generate your own sample clustering diagram
-  # 看聚类的轮廓值
-  # View the contour values of the clustering
-  # si <- silhouette(res_4, what = 'consensus')
-  # sicluster <- si[1:ncol(nmfdat), ]
-  # 保存NMF的一些聚类图
-  # Save some cluster plots from NMF
-  # tiff(paste0("./nmfSingle/", i, "/consensus_", topn, ".tiff"), 
-  #      width = 6*480, height = 4*480, res = 300)
-  # consensusmap(res_4)
-  # dev.off()
-  # tiff(paste0("./nmfSingle/", i, "/basicmap_", topn, ".tiff"), 
-  #      width = 8 * 480, height = 4*480, res = 300)
-  # basismap(res_4)
-  # dev.off()
-  # tiff(paste0("./nmfSingle/", i, "/coefmap_", topn, ".tiff"), 
-  #      width = 8 * 480, height = 4*480, res = 300)
-  # coefmap(res_4)
-  # dev.off()
-  colnames(signature) <- paste0(i, "_", 1:ranks)
-  signature <- as.data.frame(signature)
-  # 保存数据
-  # Save data
-  write.table(signature, paste0("./nmfSingle/", i, "/singature", topn, ".txt"),
-              sep = "\t")
-  # saveRDS(res_4, file = paste0("./nmfSingle/", i, "/res", ranks, "_", topn, ".rds"))
-  print(paste0("NMF for the", i, "is Done!"))
-}
-```
-
-# NMF program聚类，画图
-# NMF program clustering and graphing
-
-```{r}
-# 提取program
-# Extract program
-topRank <- 100
-programG <- list()
-for (i in 1:length(patients)){
-  filedir <- paste0("./nmfSingle/", patients[i], "/singature", topn, ".txt")
-  geneloading <- read.table(filedir, header = T, sep = "\t")
-  geneloading$maxC <- apply(geneloading, 1, which.max) %>% 
-    paste0(patients[i], "_", .)
-  
-  topgenelist <- rownames_to_column(geneloading, var = "gene") %>%
-      pivot_longer(., cols = starts_with("P"), 
-                  names_to = "program", values_to = "loading")
-  
-  topgenelist <- dplyr::filter(topgenelist, maxC == program) %>% 
-      group_by(maxC) %>% top_n(n = topRank, wt = loading)
-  topgenelist <- split(topgenelist$gene, topgenelist$maxC)
-  programG <- c(programG, topgenelist)
-}
-
-#对上皮细胞进行打分，这里我们选择AUCell
-#Score the epithelial cells, here we choose AUCell
-cells_rankings <- AUCell_buildRankings(as.matrix(epidat), nCores = 5, plotStats=TRUE)
-cells_AUC <- AUCell_calcAUC(geneSets = programG, cells_rankings, aucMaxRank=nrow(cells_rankings)*0.05)
-programAUC <- getAUC(cells_AUC)
-```
-
-下面进行聚类
-
-这一步需要自己看聚类结果，调整clusterK的数量。
-
-Next, let's proceed with clustering
-
-This step requires you to look at the clustering results yourself and adjust the number of clusterK.
-
-```{r fig.width=5, fig.height=3}
-clusterK = 7
-M <- cor(t(programAUC), method = "pearson")
-
-#用corrplot画图，便于标出各cluster的黑色方框
-#Plot using corrplot to facilitate labelling each cluster with a black box
-#pdf("scNMF.pdf")
-corrplot(M, 
-         method = "color", #用颜色展示相关系数，还可以改为"circle" (default), "square", "ellipse", "number", "pie", "shade" Display correlation coefficients using colour, or alternatively select "circle" (default), "square", "ellipse", "number", "pie", "shade"
-         order = "hclust", 
-         hclust.method = "ward.D2", 
-         addrect = clusterK, #画黑色方框 Draw a black square
-         tl.pos = "n", #“n”表示不添加文本标签 "n" means don't add textlabel
-         col = rev(brewer.pal(n = 8, name = "RdBu"))) # 运行?brewer.pal查看更多配色方案 Run ?brewer.pal to view more colour schemes
-#dev.off()
-```
-
-输出的pdf文件是矢量图，可以用Illustrator等软件打开，根据下面的富集分析结果总结归纳各Signature的功能，添加到图中。
-
-The output PDF file is a vector graphic and can be opened using software such as Illustrator. Based on the enrichment analysis results below, summarise and categorise the functions of each Signature, then incorporate them into the diagram.
-
-# 提取program
-# Extract program
-
-```{r fig.width=16, fig.height=10}
-cororder <- corrMatOrder(M, order = "hclust", hclust.method = "ward.D2")
-M.hc <- M[cororder, cororder]
-tree <- hclust(as.dist(1 - M.hc), method = "ward.D2")
-clus <- cutree(tree, clusterK)
-table(clus)
-head(clus)
-
-# 提取signature
-# Extract signature
-ProSig <- split(names(clus), clus) 
-names(ProSig) <- paste0("MalignantSig", names(ProSig))
-ProSig <- lapply(ProSig, function(z){
-  programG[which(names(programG) %in% z)] %>% unlist() %>% as.character() %>% 
-    unique()
-})
-sapply(ProSig, length)
-```
-
-7个program的基因存储在ProSig里面，下面批量做富集分析[Over Representation Analysis(ORA)](https://yulab-smu.top/clusterProfiler-book/chapter2.html#over-representation-analysis)
-
-The genes from seven programs are stored in ProSig, and enrichment analysis will now be performed in batches[Over Representation Analysis(ORA)](https://yulab-smu.top/clusterProfiler-book/chapter2.html#over-representation-analysis)
-
-# 功能注释
-# Functional annotation
-
-原文没有说具体用了哪个数据库，我们用最常用的GO BP和KEGG做富集分析，具体到自己的数据，可以参考FigureYa209batchEnrich，找到最适合自己的注释数据库。
-
-The original text does not specify which database was used, we performed enrichment analysis using the most commonly utilized GO BP and KEGG databases. For your specific data, you can refer to FigureYa209batchEnrich to identify the most suitable annotation database.
-
-## 用GO的biological process做功能注释
-## Perform functional annotation using GO biological processes
-
-```{r fig.width=16, fig.height=10}
-Sigbp <- lapply(ProSig, Myenrich, category = "gobp", geneid = "SYMBOL")
-
-Sigbpplot <- lapply(names(Sigbp), function(z)barplot(Sigbp[[z]], showCategory = 10) +
-                   ggtitle(z) + scale_x_discrete(labels=function(x) str_wrap(x, width=40)))
-keppcol <- which(sapply(Sigbpplot, function(z)nrow(z$data)) != 0)
-if (length(keppcol) != 0){
-  Sigbpplot <- Sigbpplot[keppcol]
-  cowplot::plot_grid(plotlist = Sigbpplot, ncol = 3) 
-}
-ggsave(paste0("MalignantSiggobp", "_", topn, ".pdf"), width = 16, height = 10)
-```
-
-## 用KEGG做功能注释
-## Perform functional annotation using KEGG
-
-```{r fig.width=14, fig.height=10}
-Sigkegg <- lapply(ProSig, Myenrich, category = "kegg", geneid = "SYMBOL")
-
-Sigkeggplot <- lapply(names(Sigkegg), function(z)barplot(Sigkegg[[z]], showCategory = 10) +
-                   ggtitle(z) + scale_x_discrete(labels=function(x) str_wrap(x, width=30)))
-keppcol <- which(sapply(Sigkeggplot, function(z)nrow(z$data)) != 0)
-if (length(keppcol) != 0){
-  Sigkeggplot <- Sigkeggplot[keppcol]
-  cowplot::plot_grid(plotlist = Sigkeggplot, ncol = 3) 
-}
-ggsave(paste0("MalignantSiggkegg", "_", topn, ".pdf"), width = 16, height = 10)
-```
-
-## 归纳总结功能注释：
-## Summarize and generalize the functional annotations:
-
-根据以上富集结果，我们可以定义：
-
-- Sig1：是跟EBV病毒感染有关的免疫反应；
-- Sig2-3：都可以定义为Epidif；
-- Sig4/7：主要是蛋白质定位合成相关；
-- Sig5：Cell cycling；
-- Sig6: 细胞呼吸，氧化磷酸化等功能。
-
-具体归纳Signature的功能需要根据癌种以及相关的背景知识加以定义。
-
-输出的pdf文件是矢量图，可以用Illustrator等软件打开`scNMF.pdf`文件，把以上定义添加到图中，为每类进行功能注释。
-
-EBV病毒感染有关的免疫反应在另一篇鼻咽癌单细胞文章中有重点说明；
-[Single-cell transcriptomic analysis defines the interplay between tumor cells, viral infection, and the microenvironment in nasopharyngeal carcinoma.](https://pubmed.ncbi.nlm.nih.gov/32901110/)
-
-Based on the enrichment results above, we can define:
-
-- Sig1: It is related to immune responses associated with EBV infection;
-- Sig2-3: Both can be defined as Epidif;
-- Sig4/7: Mainly related to protein localization and synthesis;
-- Sig5: Cell cycling;
-- Sig6: Functions such as cellular respiration and oxidative phosphorylation.
-
-The specific summarization of the functions of the Signatures needs to be defined based on the type of cancer and relevant background knowledge.
-
-The output PDF file is a vector graphic. Open the `scNMF.pdf` file using software such as Illustrator, incorporate the above definitions into the diagram, and annotate the functions for each category.
-
-The immune response related to EBV infection is specifically described in another single-cell article on nasopharyngeal carcinoma;
-[Single-cell transcriptomic analysis defines the interplay between tumor cells, viral infection, and the microenvironment in nasopharyngeal carcinoma.](https://pubmed.ncbi.nlm.nih.gov/32901110/)
-
-# 定义metagene
-# Define metagene
-
-按照原文方法对每个MalignantSig里的每个program前100个基因算其平均的gene loading。
-加载量最高的前30个基因被定义为该**特征的标志基因**。
-
-Following the method described in the original text, calculate the average gene loading for the top 100 genes in each program within MalignantSig.
-the top 30 genes with the highest loading were defined as the **marker genes for the signature**.
-
-```{r}
-metalist <- split(names(clus), clus) 
-patientLoading <- lapply(patients, function(z){
-  filedir <- paste0("./nmfSingle/", z, "/singature", topn, ".txt")
-  geneloading <- read.table(filedir, header = T, sep = "\t")
-  data.frame(Gene = rownames(geneloading), geneloading)
-})
-AllLoading <- Reduce(function(x, y)merge(x = x, y = y, by = "Gene", all = T), patientLoading)
-head(AllLoading)
-metaGene <- list()
-for (i in 1:length(metalist)){
-  programs <- metalist[[i]]
-  Selgene <- ProSig[[i]]
-  metaGene[[i]] <- AllLoading[AllLoading$Gene %in% Selgene, 
-                              colnames(AllLoading) %in% c("Gene",  programs)] %>%
-    pivot_longer(cols = starts_with("P"), 
-                 names_to = "program", values_to = "loading")  %>% na.omit() %>%
-    dplyr::group_by(Gene) %>% summarise(Avgloading = mean(loading)) %>% 
-    top_n(n = 30, wt = Avgloading) %>% pull(Gene)
-}
-sapply(metaGene, length)
-metaGene
-```
-
-# Session Info
-# 会话信息
-
-```{r}
-sessionInfo()
-```

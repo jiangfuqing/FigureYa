@@ -61,16 +61,12 @@ In addition, Figure S6H uses color and shape to display the grouping information
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
 
 ```
 
@@ -111,7 +107,7 @@ load("sc.seurat.Rdata")
 markers <- c("DDX4", "AMH", "COL1A2", "ACTG2", "CDH5", "KLRB1", "CD163")
 
 df <- FetchData(sc, vars = c(markers, "aging", "cluster_short")) %>%
-  reshape2::melt(id.vars = c("aging", "cluster_short"), 
+  reshape2::melt(id.vars = c("aging", "cluster_short"),
                  variable.name = "gene",
                  value.name = "expression") %>%
   mutate(aging = factor(aging, levels = c("Y", "O")),
@@ -183,21 +179,21 @@ ggplot(df, mapping = aes(aging, expression, fill = aging, color = aging)) +
   #geom_violin(show.legend = F) + # 画violin # Draw violin
   scale_fill_manual(values = c("#2874C5", "#EABF00")) + # 两组分别填充蓝色和黄色 # The two groups are filled with blue and yellow, respectively
   scale_color_manual(values = c("#2874C5", "#EABF00")) + # 边框跟填充颜色一致 # The border is the same color as the fill
-  
+
   # 如果你喜欢，可以叠加box plot
   # If you like, you can overlay box plots
-  geom_boxplot(outlier.size = -1, 
+  geom_boxplot(outlier.size = -1,
                show.legend = FALSE, # 不显示图例 # Legend is not displayed
                color="black", lwd=0.2, # 线的粗细 # The thickness of the line
                alpha = 0.7) + # 透明化 # Transparency
   # 还可以叠加散点 # Scatters can also be overlayed
   geom_point(shape = 21, size=.6, # 点的形状和大小 # The shape and size of the dots
              show.legend = FALSE, # 不显示图例 # Legend is not displayed
-             position = position_jitterdodge(), 
-             alpha = 0.3)+ 
+             position = position_jitterdodge(),
+             alpha = 0.3)+
   # 甚至可以注释掉上面geom_violin那行，不画violin，只画box和散点
   # You can even comment the line of geom_violin, don't draw violin, only box and scatter
-  
+
   facet_grid(gene ~ cluster_short) +
   theme_bw() +
   xlab("") +
@@ -205,7 +201,7 @@ ggplot(df, mapping = aes(aging, expression, fill = aging, color = aging)) +
   theme(panel.grid = element_blank(),
         strip.background.x = element_rect(fill = "grey95"), # 顶部填充浅灰色 # The top is filled with light gray
         strip.text.y = element_text(angle = 0),
-        strip.background.y = element_blank()) 
+        strip.background.y = element_blank())
 
 ggsave("scViolin_color.pdf", width = 9, height = 7)
 ```
@@ -219,10 +215,10 @@ ggsave("scViolin_color.pdf", width = 9, height = 7)
 With the help of ggpubr plus pvalue or salient star*, the method of adding pvalue to facets refers to this <https://www.datanovia.com/en/blog/how-to-add-p-values-to-ggplot-facets/>
 
 ```{r, fig.width=9, fig.height=9}
-stat.test <- df %>% 
-  group_by(cluster_short, gene) %>% 
+stat.test <- df %>%
+  group_by(cluster_short, gene) %>%
   t_test(expression ~ aging) %>%
-  adjust_pvalue(method = "bonferroni") %>% 
+  adjust_pvalue(method = "bonferroni") %>%
   add_significance()
 
 stat.test
@@ -231,8 +227,8 @@ stat.test
 
 stat.test <- stat.test %>% add_xy_position(x = "aging")
 
-v1 <- ggviolin(df, x = "aging", y = "expression", 
-               fill = "aging", 
+v1 <- ggviolin(df, x = "aging", y = "expression",
+               fill = "aging",
                color = "aging", # 如果想要黑色边框，就删掉这行 # If you want a black border, delete this line
                facet = c("gene","cluster_short")) +
   scale_fill_manual(values = c("#2874C5", "#EABF00")) +
@@ -242,7 +238,7 @@ v1 <- ggviolin(df, x = "aging", y = "expression",
   theme(panel.grid = element_blank(),
         strip.text.y = element_text(angle = 0),
         strip.background.x = element_rect(fill = "grey95"), # 顶部填充浅灰色 # The top is filled with light gray
-        strip.background.y = element_blank()) 
+        strip.background.y = element_blank())
 v1
 
 # 显著标星*
@@ -252,9 +248,9 @@ ggsave("scViolin_plus.pdf", width = 9, height = 9)
 
 # 还可以同时显示pvalue数值和标星*
 # It is also possible to display both pvalue and star*
-v1 + 
-  stat_pvalue_manual(stat.test, 
-                     bracket.nudge.y = 1, 
+v1 +
+  stat_pvalue_manual(stat.test,
+                     bracket.nudge.y = 1,
                      hide.ns = TRUE, #不显示不显著的，这里有个特殊情况是图右上角M ~ DDX4出现了NaN，是因为该组所有样本表达量都为0 # The non-significant ones will not be displayed, and there is a special case here that NaN appears in M ~ DDX4 in the upper right corner of the figure, because the expression level of all samples in this group is 0
                      label = "{p.adj}{p.adj.signif}", # pvalue和星标 # pvalue and star
                      label.size = 3, # pvalue字的大小 # The size of the pvalue word
@@ -287,76 +283,3 @@ The following code is from 'FigureYa206scHeatmap' and will generate a 'sc.seurat
 1) UMI count, download from NCBI[GSE130664](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130664): 'GSE130664_merge_UMI_count.txt.gz' file.
 
 ![](download.png)
-
-```{r download, eval=FALSE}
-#download.file("https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE130664&format=file&file=GSE130664%5Fmerge%5FUMI%5Fcount%2Etxt%2Egz", 
-              #destfile = "GSE130664_merge_UMI_count.txt.gz")
-```
-
-2) metadata，从[例文的](https://doi.org/10.1016/j.cell.2020.01.009)Supplementary Tables获得：`1-s2.0-S0092867420300568-mmc1.xlsx`
-
-2) metadata, obtained from (https://doi.org/10.1016/j.cell.2020.01.009) Supplementary Tables in [example text]: '1-s2.0-S0092867420300568-mmc1.xlsx'
-
-## Read data
-
-```{r, eval=FALSE}
-umi <- read.table(file = gzfile("GSE130664_merge_UMI_count.txt.gz"), header = T, row.names = 1, sep = "\t")
-qc <- readxl::read_excel("1-s2.0-S0092867420300568-mmc1.xlsx", sheet = 2)
-meta <- readxl::read_excel("1-s2.0-S0092867420300568-mmc1.xlsx", 3) %>% 
-  column_to_rownames("cell")
-```
-
-## 数据预处理
-## Data preprocessing
-
-See Methods:  
-QUANTIFICATION AND STATISTICAL ANALYSIS -> Single-Cell RNA-Seq Data Processing
-
-```{r, eval=FALSE}
-# QC of Cells
-cells <- qc %>% 
-  filter(`Mapping rate` >= 0.2 &
-           `Gene number` >= 700 &
-           UMI >= 3000) %>%
-  pull(Rename)
-
-# seurat object
-sc <- CreateSeuratObject(counts = umi[,cells], meta.data = meta)
-
-# expression transformation
-sc@assays$RNA$data <- sc@assays$RNA$counts %>% 
-  apply(2, function(x){
-    log2(10^5*x/sum(x)+1)
-    })
-
-# remove other cells
-sc <- sc[,sc$cluster != "other"]
-
-# 给cluster改名
-# Rename the cluster
-sc$cluster_short <- factor(
-  plyr::mapvalues(sc$cluster, 
-                  c("Oocyte", "Natural killer T cell", "Macrophage",
-                    "Granulosa cell", "Endothelial cell", 
-                    "Smooth muscle cell", "Stromal cell"),
-                  c("OO", "NKT", "M", "GC", "EC", "SMC", "SC")),
-  levels = c("OO", "NKT", "M", "GC", "EC", "SMC", "SC"))
-
-# 给cluster自定义颜色
-# Customize the color for the cluster
-cluster_colors <- setNames(brewer.pal(7, "Set1"), levels(sc$cluster_short))
-
-# 保存一下，便于停下来接着跑
-# Save it so you can stop and run
-#save(sc, cluster_colors, file = "sc.seurat.Rdata")
-
-# 还可以把表达矩阵输出到文件
-# It is also possible to output the expression matrix to a file
-#write.csv(sc@assays$RNA@data, "easy_input_expr.csv", quote = F)
-```
-
-# Session Info
-
-```{r}
-sessionInfo()
-```

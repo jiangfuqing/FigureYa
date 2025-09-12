@@ -28,7 +28,7 @@ Genes are clustered and then annotated on the graph. Needless to say, you need t
 出自<https://www.sciencedirect.com/science/article/pii/S2352396421003340?via%3Dihub>
 from <https://www.sciencedirect.com/science/article/pii/S2352396421003340?via%3Dihub>
 
-Fig. 1. Prognostic stratification of PDAC through their GT gene expression profile (a, b) and clinical features of patients with their PDAC molecular profiles (c, d). 
+Fig. 1. Prognostic stratification of PDAC through their GT gene expression profile (a, b) and clinical features of patients with their PDAC molecular profiles (c, d).
 (a) Biplot of the HCPC analysis result based on RNA-seq data of 74 PDAC and 169 GT genes.
 
 # 应用场景
@@ -41,19 +41,16 @@ Take a look at the <https://mp.weixin.qq.com/s/kNHM5teMRtL2dSZXzm4m8w> here to t
 
 # 环境设置
 
-使用国内镜像安装包
 
 # Environment settings
 
-Use the domestic mirror installation package
 
 ```{r}
 source("install_dependencies.R")
 ```
 
 ```{r eval=FALSE}
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+
 install.packages("factoextra")
 devtools::install_github("cmartin/ggConvexHull")
 install.packages("ggrepel")
@@ -104,8 +101,8 @@ pca <- prcomp(t(data2))
 
 ```{r, fig.width=5, fig.height=5}
 p <- fviz_pca_ind(
-  X = pca, 
-  repel = T, 
+  X = pca,
+  repel = T,
   geom = c("point", "text"), # 如果不想要文字标记,去掉text即可 # If you don't want the text tag, just remove the text
   habillage = k2$cluster, # 添加分组信息 # Add group information
   legend.title = "cluster", # 图例标题 # Legend title
@@ -153,18 +150,18 @@ colors.use <- c("red", "blue")
 Drawing
 
 ```{r, fig.width=5, fig.height=5}
-ggplot(data.use, aes(PC1, PC2, shape=cluster, color=cluster)) + 
-  geom_point(size = 2.5) + 
-  ggConvexHull::geom_convexhull(aes(fill=cluster), alpha = 0.15) + 
+ggplot(data.use, aes(PC1, PC2, shape=cluster, color=cluster)) +
+  geom_point(size = 2.5) +
+  ggConvexHull::geom_convexhull(aes(fill=cluster), alpha = 0.15) +
   ggrepel::geom_text_repel(
-    aes(label=name), 
-    size = 3, 
+    aes(label=name),
+    size = 3,
     max.iter = 2000, # 如果样本太多，text overlap无法解决，可以增大max.iter参数 # If there are too many samples and the text overlap cannot be solved, you can increase the max.iter parameter
-    show.legend = F) + 
-  scale_color_manual(values = colors.use) + 
-  scale_fill_manual(values = colors.use) + 
-  labs(x = xlab, y = ylab) + 
-  theme_classic(base_size = 15) + 
+    show.legend = F) +
+  scale_color_manual(values = colors.use) +
+  scale_fill_manual(values = colors.use) +
+  labs(x = xlab, y = ylab) +
+  theme_classic(base_size = 15) +
   theme(
     legend.position = "top",
     plot.title = element_blank(),

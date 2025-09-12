@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 从GEO数据库下载芯片数据，筛选差异表达基因，无缝对接FigureYa59volcano画火山图。
 
-Download chip data from the GEO database, screen for differentially expressed genes, and seamlessly connect with FigureYa59volcano to plot a volcano map.  
+Download chip data from the GEO database, screen for differentially expressed genes, and seamlessly connect with FigureYa59volcano to plot a volcano map.
 
 ## 应用场景
 ## Application scenario
@@ -124,9 +124,9 @@ dim(Table(gpl)) #查看一共有多少行探针组 view how many rows of probe s
 
 如果芯片平台自带的注释信息不符合你的要求，需要重注释，使用FigureYa58lncRNAreannotation，获得探针ID跟gene symbol的对应关系“gplTOgene.csv”文件，就跳过这步，直接进入“Transfer ID to Gene Symbol”。
 
-The probe set and gene symbol correspondence provided by the chip platform is used here.  
+The probe set and gene symbol correspondence provided by the chip platform is used here.
 
-If the annotation information of the chip platform does not meet your requirements and you need to re-annotate, use FigureYa58lncRNAreannotation to get the correspondence between probe ID and gene symbol in the "gplTOgene.csv" file, then skip this step and go directly to “Transfer ID to Gene Symbol”. 
+If the annotation information of the chip platform does not meet your requirements and you need to re-annotate, use FigureYa58lncRNAreannotation to get the correspondence between probe ID and gene symbol in the "gplTOgene.csv" file, then skip this step and go directly to “Transfer ID to Gene Symbol”.
 
 ```{r}
 colnames(Table(gpl)) #查看列名 view column name
@@ -165,10 +165,10 @@ annotation <- read.csv("gplTOgene.csv")
 head(annotation)
 
 exprSet$probe_id <- rownames(exprSet)
-express <- merge(x = exprSet, y = annotation[,c(1:2)], by = "probe_id", all.x = T) 
+express <- merge(x = exprSet, y = annotation[,c(1:2)], by = "probe_id", all.x = T)
 #如果想轉換成ENTREZ_GENE_ID，就用下面这行
 #if you want to convert to ENTREZ_GENE_ID, use the following line
-#express <- merge(x = exprSet, y = annotation[,c(1:3)], by = "probe_id", all.x = T) 
+#express <- merge(x = exprSet, y = annotation[,c(1:3)], by = "probe_id", all.x = T)
 express$probe_id <- NULL
 
 # 有些gene对应多个探针组，此处保留其中表达量最大值
@@ -190,142 +190,3 @@ write.csv(express, "easy_input_expr.csv", quote = F)
 
 ### 按照实验设计整理分组信息
 ### Organize group information according to experimental design
-
-```{r}
-# 获得样品信息
-# obtain sample information
-pdata <- pData(eset)
-i <- sapply(pdata, is.factor)
-pdata[i] <- lapply(pdata[i], as.character)
-
-# 按照实验设计，构建分组矩阵
-# construct the grouping matrix according to the experimental design.
-group_list <- subset(pdata, select = title) # Sample的分组信息 Sample's grouping information
-group_list$condition = rep(c("a","b"), each = 3)
-group_list
-
-# 至此，分组矩阵（design）已构建好
-# at this point, the grouping matrix (design) has been constructed
-write.table(group_list, "easy_input_pheno.txt", quote = F, sep = "\t", row.names = F)
-```
-
-## 输入数据预处理
-## Input data preprocessing
-
-输入数据：
-
-- easy_input_expr.csv，基因表达矩阵，每行一个基因，以gene symbol命名，每列一个sample
-- easy_input_pheno.txt，样品分组，第一列是sample ID，第二列是分组
-
-Input data
-
-- easy_input_expr.csv, gene expression matrix, one gene per row, named by gene symbol, one sample per column
-- easy_input_pheno.txt, sample grouping, first column is sample ID, second column is grouping
-
-### 均一化处理
-### Normalization
-
-如果你的数据已经进行过均一化处理，就直接运行下面这段的最后一行
-
-If your data has already been normalized, directly run the last line of the following paragraph.
-
-```{r, fig.width=10, fig.height=10}
-express <- read.csv("easy_input_expr.csv", row.names = 1)
-
-# 必须检查该矩阵是否基于 log2
-# 通常，log2 值应在 0 - 18 之间
-# Have to check whether this matrix is log2 based
-# usually, log2 value should be in between 0 - 18
-range(express)
-# 如果是，则无需进行log transfer，如果高于此范围，则必须进行log transfer。
-# if yes no need to log transfer, if above this range, have to do log transfer.
-express <- log2(express)
-
-par(mfrow=c(2,1))
-boxplot(express,outline = F) #均一化前 pre-normalization
-
-# 均一化数据分位数
-# Normalise data quantiles
-library(preprocessCore)
-express.norm <- normalize.quantiles(as.matrix(express))
-
-colnames(express.norm) <- colnames(express)
-rownames(express.norm) <- rownames(express)
-boxplot(express.norm, outline=F) #均一化后 after normalization
-
-#不需要再做均一化处理，就只运行这一行：
-#without further homogenization, just run this line:
-#express.norm <- express
-```
-
-### 离群sample的处理
-### Process outlier samples
-
-如果不需要处理离群sample，就只运行下面这段的第一行。
-
-If you don't need to process outlier samples, just run the first line of the following paragraph.
-
-```{r}
-group_list <- read.table("easy_input_pheno.txt", sep = "\t", header = T)
-group_list
-
-# 样本之间的相关性
-# Correlation between the samples
-heatmap(cor(express.norm), scale = "none")
-round(cor(express.norm), 2)
-
-# 通過correlation，可能会發現某个sample与同一組其他sample之间距離很遠，需要删除。
-# 此处删除GSM431123
-# by correlation, you may find that a sample is far away from other samples in the same group and needs to be deleted.
-# delete GSM431123 here
-group_list <- group_list[c(-3),] #删除第3个sample delete the third sample
-express.norm <- express.norm[,c(-3)] #删除第3列 delete the third column
-
-# 样本之间再次相关
-# Correlation between the samples again
-heatmap(cor(express.norm),scale="none")
-round(cor(express.norm),2)
-```
-
-### 差异表达分析
-### Differential expression analysis
-
-用于差异表达基因分析（DEG）的 Limma ([limma powers differential expression analyses](https://academic.oup.com/nar/article/43/7/e47/2414268/limma-powers-differential-expression-analyses-for))**
-
-Limma for differential expression gene analysis (DEG) ([limma powers differential expression analyses](https://academic.oup.com/nar/article/43/7/e47/2414268/limma-powers-differential-expression-analyses-for))**
-
-```{r}
-design <- model.matrix(~ 0 + factor(group_list$condition))
-colnames(design) <- levels(factor(group_list$condition))
-rownames(design) <- colnames(express.norm)
-design
-
-# 构建差异比较矩阵
-# construct differential comparison matrix
-contrast.matrix <- makeContrasts(b-a, levels = design)
-# 至此，差异表达矩阵已构建好
-# at this point, the differential expression matrix has been constructed
-
-fit <- lmFit(express.norm,design)
-fit2 <- contrasts.fit(fit,contrast.matrix)
-fit2 <- eBayes(fit2)
-# 得到两两差异表达的结果
-# get two-by-two differential expression results
-# b vs. a
-x <- topTable(fit2, coef = 1, n = Inf, adjust.method = "BH", sort.by = "P")
-
-#把全部基因的limma分析结果保存到文件
-#save limma analysis results for all genes to file
-write.csv(x, "easy_input_limma.csv", quote = F)
-```
-
-## 开始画图
-## Start drawing
-
-用上面获得的`easy_input_limma.csv`作为输入文件，继续运行FigureYa59volcano里的代码，即可画最美火山图。
-
-Use the `easy_input_limma.csv` obtained above as the input file and continue to run the code in FigureYa59volcano to draw the most beautiful volcano map.
-
-```{r}
-sessionInfo()
-```

@@ -10,7 +10,6 @@ If you use this code in your work or research, we kindly request that you cite o
 Xiaofan Lu, et al. (2025). FigureYa: A Standardized Visualization Framework for Enhancing Biomedical Data Interpretation and Research Efficiency. iMetaMed. https://doi.org/10.1002/imm3.70005
 
 
-
 ```{r, include=FALSE}
 source("install_dependencies.R")
 knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE)
@@ -79,7 +78,7 @@ table(seu.CCA@meta.data[, c("cell_type", "sample_id")])
 
 ```{r}
 cell_type.ncells <- table(seu.CCA@meta.data[, c("cell_type")])
-cell_types.forDEG <- names(cell_type.ncells)[cell_type.ncells > 500] 
+cell_types.forDEG <- names(cell_type.ncells)[cell_type.ncells > 500]
 cell_types.forDEG
 ```
 
@@ -130,31 +129,10 @@ weighted pvalue相对于DESeq2的adjusted pvalue来说检测差异基因的敏�
 ihwRes <- ihw(pvalue ~ baseMean,  data = res, alpha = 0.1)
 res$weighted_pvalue <- ihwRes@df$weighted_pvalue
 res$significant_change <- res$weighted_pvalue < 0.01
-res$change <- ifelse(res$significant_change, 
-                     ifelse(res$log2FoldChange < 0, "up in old", "up in young"), 
+res$change <- ifelse(res$significant_change,
+                     ifelse(res$log2FoldChange < 0, "up in old", "up in young"),
                      "no change")
 table(res[, c("significant_change", "change")])
 ```
 
 获得差异表达基因
-```{r}
-## sort res by weighted_pvalue
-res <- res[order(res$weighted_pvalue),]
-## get the DEG
-fib.DEG <- rownames(subset(res, significant_change))
-fib.DEG
-```
-
-查看差异基因在样本中的表达量(C4b)
-```{r, fig.width=4, fig.height=3}
-p1 <- VlnPlot(seu.CCA, features.plot = fib.DEG[1], 
-              group.by = "sample_id", point.size.use = .1, do.return = TRUE)
-p1 + ylab("ln(CPM/10+1)") + xlab("Sample") + 
-  theme(plot.title = element_text(hjust = .5))
-```
-
-```{r, eval=FALSE}
-saveRDS(res, "tmp/s5.2-DEG_fibroblast.rds")
-```
-
-
