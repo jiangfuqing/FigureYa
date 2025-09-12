@@ -50,12 +50,21 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("SimDesign", "cowplot", "data.table", "ggplot2", "ggpubr", "tidyr")
+cran_packages <- c("repos", "ggplot2", "cowplot", "ggpubr", "SimDesign", "tidyr", "simple_barcode")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
 }
 
+# Installing Bioconductor packages
+cat("\nInstalling Bioconductor packages...\n")
+bioc_packages <- c("GSVA")
+
+for (pkg in bioc_packages) {
+  install_bioc_package(pkg)
+}
+
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+

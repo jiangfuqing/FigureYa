@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("CoreGx", "PharmacoGx", "dplyr", "ggplot2", "ggrepel", "ggthemes", "gridExtra", "lsa", "magicaxis", "parallel", "relations", "shinydashboard", "shinyjs", "stringr", "tibble", "tidyverse")
+cran_packages <- c("repos", "PharmacoGx", "CoreGx", "shinyjs", "shinydashboard", "magicaxis", "lsa", "relations", "parallel", "dplyr", "stringr", "tidyverse", "tibble", "ggplot2", "ggrepel", "ggthemes", "gridExtra", "tstat")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
@@ -67,3 +67,4 @@ for (pkg in bioc_packages) {
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+

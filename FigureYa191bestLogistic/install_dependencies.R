@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("SimDesign", "tdROC")
+cran_packages <- c("repos", "tdROC", "SimDesign", "grey60", "new_group")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
@@ -59,3 +59,4 @@ for (pkg in cran_packages) {
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+

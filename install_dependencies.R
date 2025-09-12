@@ -50,10 +50,18 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("ggtern", "tidyverse", "scales", "ggplot2")
+cran_packages <- c("pROC", "grey40", "repos", "BiocManager", "impute", "ClassDiscovery", "rho", "FDR", "ImmClust", "BSgenome.Hsapiens.UCSC.hg19", "tidyverse", "magrittr", "readxl", "stringr", "forcats", "deconstructSigs", "NMF", "Seurat", "dplyr", "ggVennDiagram", "export", "ggplot2", "openxlsx", "coin", "devtools", "ConsensusClusterPlus", "corrplot", "reshape2", "IFN.gamma.Response", "TCGA.Participant.Barcode", "TGF.beta.Response", "Macrophages", "Lymphocytes", "Wound.Healing", "cgdsr", "glmnet", "randomForest", "group", "AUC", "ggpubr", "plyr", "cowplot", "velocyto.R", "SDMTools", "survival", "randomForestSRC", "randomSurvivalForest", "ranger", "OS", "pec", "riskRegression", "SimDesign", "officer", "tdROC", "grey60", "new_group", "meta", "pvalue", "Groups", "givitiR", "foreign", "rms", "ResourceSelection", "response", "aplot", "ridge", "car", "RCircos", "rtracklayer", "PharmacoGx", "CoreGx", "shinyjs", "shinydashboard", "magicaxis", "lsa", "relations", "parallel", "tibble", "ggrepel", "ggthemes", "gridExtra", "tstat", "survminer", "ggpp", "Paired", "DealGPL570", "readr", "tidyr", "simple_barcode", "xgboost", "Matrix", "NR", "Boruta", "mlbench", "circlize", "ggsci", "spearman", "DDRTree", "GEOquery", "gene_biotype", "enrichplot", "hsa04110", "gtable", "grid", "panel", "ggtern", "scales", "ggstatsplot", "viridis", "iCluster_2.1.0.tar.gz", "CancerSubtypes", "forestplot", "black", "gganatogram", "TCGA", "GOSemSim", "ggtree", "ape", "statmod", "motifbreakR")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
+}
+
+# Installing Bioconductor packages
+cat("\nInstalling Bioconductor packages...\n")
+bioc_packages <- c("preprocessCore", "GO.db", "AnnotationDbi", "WGCNA", "gplots", "pheatmap", "BSgenome", "GenomeInfoDb", "ComplexHeatmap", "GSVA", "GSEABase", "limma", "pcaMethods", "monocle", "scmap", "DESeq2", "IHW", "TCGAbiolinks", "biomaRt", "sva", "clusterProfiler", "RColorBrewer", "Biobase")
+
+for (pkg in bioc_packages) {
+  install_bioc_package(pkg)
 }
 
 cat("\n===========================================\n")

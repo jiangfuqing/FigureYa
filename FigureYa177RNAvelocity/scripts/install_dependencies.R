@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("Seurat", "devtools", "dplyr", "ggplot2")
+cran_packages <- c("devtools", "NMF", "SDMTools", "velocyto.R")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
@@ -58,7 +58,7 @@ for (pkg in cran_packages) {
 
 # Installing Bioconductor packages
 cat("\nInstalling Bioconductor packages...\n")
-bioc_packages <- c("DESeq2", "NMF", "SingleCellExperiment", "monocle", "pcaMethods", "scmap", "velocyto.R")
+bioc_packages <- c("pcaMethods", "monocle", "scmap", "DESeq2", "IHW")
 
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
@@ -67,3 +67,4 @@ for (pkg in bioc_packages) {
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+

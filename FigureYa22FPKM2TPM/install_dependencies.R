@@ -59,3 +59,4 @@ for (pkg in bioc_packages) {
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+

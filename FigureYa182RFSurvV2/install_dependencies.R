@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("randomForestSRC", "randomSurvivalForest", "randomSurvivalForest_3.6.4.tar.gz", "survival")
+cran_packages <- c("repos", "survival", "randomForestSRC", "randomSurvivalForest")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
@@ -59,3 +59,4 @@ for (pkg in cran_packages) {
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+

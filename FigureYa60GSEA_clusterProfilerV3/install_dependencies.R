@@ -50,7 +50,7 @@ cat("===========================================\n")
 
 # Installing CRAN packages
 cat("\nInstalling CRAN packages...\n")
-cran_packages <- c("RColorBrewer", "ggplot2", "ggrepel", "gridExtra", "hsa04110", "plyr")
+cran_packages <- c("enrichplot", "plyr", "ggrepel", "ggplot2", "gridExtra", "hsa04110")
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)
@@ -58,7 +58,7 @@ for (pkg in cran_packages) {
 
 # Installing Bioconductor packages
 cat("\nInstalling Bioconductor packages...\n")
-bioc_packages <- c("clusterProfiler", "enrichplot")
+bioc_packages <- c("clusterProfiler", "RColorBrewer")
 
 for (pkg in bioc_packages) {
   install_bioc_package(pkg)
@@ -67,3 +67,4 @@ for (pkg in bioc_packages) {
 cat("\n===========================================\n")
 cat("Package installation completed!\n")
 cat("You can now run your R scripts in this directory.\n")
+
