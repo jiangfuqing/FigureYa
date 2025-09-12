@@ -51,9 +51,6 @@ iCluster分析过程答疑。
 #### 安装iClusterPlus
 
 
-- 国科大: <https://mirrors.ustc.edu.cn/CRAN/>
-- 同济大学: <https://mirrors.tongji.edu.cn/CRAN/>
-- 兰州大学: <https://mirror.lzu.edu.cn/CRAN/>
 
 ```{r, message=FALSE, warning=FALSE}
 source("install_dependencies.R")

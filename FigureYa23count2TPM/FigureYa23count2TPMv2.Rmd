@@ -511,7 +511,7 @@ Note 4: If you can't install biocLite via `source("https://bioconductor.org/bioc
 Download <https://bioconductor.org/biocLite.R> locally and open it, add the following two lines at the beginning of the file and save it.
 
 ```bash
-optionsoptions(BioC_mirror="https://mirrors.ustc.edu.cn/bioc/")
+
 #bioconductor
 
 
