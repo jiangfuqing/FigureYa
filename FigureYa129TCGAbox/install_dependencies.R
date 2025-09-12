@@ -32,7 +32,7 @@ install_bioc_package <- function(package_name) {
     cat("Installing Bioconductor package:", package_name, "\n")
     tryCatch({
       if (!is_package_installed("BiocManager")) {
-        install.packages("BiocManager")
+        install.packages("BiocManager", dependencies = TRUE)
       }
       BiocManager::install(package_name, update = FALSE, ask = FALSE)
       cat("Successfully installed:", package_name, "\n")
@@ -56,7 +56,7 @@ deal_pkg_name <- "DealGPL570"
 if (!is_package_installed(deal_pkg_name)) {
   cat("Installing archived DealGPL570 version 0.0.1 from CRAN Archive...\n")
   tryCatch({
-    install.packages(deal_pkg_url, repos = NULL, type = "source")
+    install.packages(deal_pkg_url, repos = NULL, type = "source", dependencies = TRUE)
     cat("Successfully installed DealGPL570_0.0.1\n")
   }, error = function(e) {
     cat("Failed to install DealGPL570_0.0.1:", e$message, "\n")
