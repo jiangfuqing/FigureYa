@@ -32,7 +32,7 @@ install_bioc_package <- function(package_name) {
     cat("Installing Bioconductor package:", package_name, "\n")
     tryCatch({
       if (!is_package_installed("BiocManager")) {
-        install.packages("BiocManager")
+        install.packages("BiocManager", dependencies = TRUE)
       }
       BiocManager::install(package_name, update = FALSE, ask = FALSE)
       cat("Successfully installed:", package_name, "\n")
@@ -53,7 +53,7 @@ cat("\nInstalling CRAN packages...\n")
 cran_packages <- c("dplyr", "stringr", "survival", "sva", "tibble", "tidyverse")
 
 # DealGPL570 package version 2.0 will report errors during operation, so I installed version 1.0
-install.packages("https://cran.r-project.org/src/contrib/Archive/DealGPL570/DealGPL570_0.0.1.tar.gz", repos = NULL, type = "source")
+install.packages("https://cran.r-project.org/src/contrib/Archive/DealGPL570/DealGPL570_0.0.1.tar.gz", repos = NULL, type = "source", dependencies = TRUE)
 
 for (pkg in cran_packages) {
   install_cran_package(pkg)

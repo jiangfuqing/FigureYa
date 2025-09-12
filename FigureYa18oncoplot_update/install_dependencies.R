@@ -32,7 +32,7 @@ install_bioc_package <- function(package_name) {
     cat("Installing Bioconductor package:", package_name, "\n")
     tryCatch({
       if (!is_package_installed("BiocManager")) {
-        install.packages("BiocManager")
+        install.packages("BiocManager", dependencies = TRUE)
       }
       BiocManager::install(package_name, update = FALSE, ask = FALSE)
       cat("Successfully installed:", package_name, "\n")
