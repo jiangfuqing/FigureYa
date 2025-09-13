@@ -3,8 +3,8 @@
 # This script installs all required R packages for this project
 
 # Set up mirrors for better download performance
-options("repos" = c(CRAN = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror = "http://mirrors.tuna.tsinghua.edu.cn/bioconductor/")
+options("repos" = c(CRAN = "https://cloud.r-project.org/"))
+options(BioC_mirror = "https://bioconductor.org/")
 
 # Function to check if a package is installed
 is_package_installed <- function(package_name) {
