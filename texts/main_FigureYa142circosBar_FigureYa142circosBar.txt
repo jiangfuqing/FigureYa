@@ -1,7 +1,12 @@
 FigureYa142circosBar
 FigureYa142circosBar
-Hao Wu
-2025-5-20
+Author(s)
+: Hao Wu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 需求描述
 Requirements
 用circos画出B图。 Use circos to draw Figure B.

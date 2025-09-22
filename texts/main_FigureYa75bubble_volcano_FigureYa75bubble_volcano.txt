@@ -1,7 +1,12 @@
 FigureYa75base_volcano
 FigureYa75base_volcano
-Haitao Wang, Taojun Ye
-2025-5-20
+Author(s)
+: Haitao Wang, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+:
+r Sys.Date()
 需求描述
 用base plot画美美的火山图
 Requirement description

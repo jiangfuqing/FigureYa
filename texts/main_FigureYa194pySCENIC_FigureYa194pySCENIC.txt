@@ -1,7 +1,10 @@
 FigureYa194pySCENIC
 FigureYa194pySCENIC
-Jianing Gao
-2020-9-11
+Author(s)
+: Jianing Gao
+Date
+:
+r Sys.Date()
 需求描述
 这是一篇用SCENIC挖掘公共数据的文章，Figure2特别值得学习一下。
 上次FigureYa177RNAvelocity直播讲解时，小伙伴提出想请作者Jarning分享一下SCENIC的用法和经验。于是，邀请Jarning再次出马，建立专属讨论群，并开直播讲解，带小伙伴顺利用上SCENIC。

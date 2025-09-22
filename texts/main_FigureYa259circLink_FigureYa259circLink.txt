@@ -5,7 +5,8 @@ Author(s)
 Reviewer(s)
 : Ying Ge
 Date
-: 2025-09-19
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

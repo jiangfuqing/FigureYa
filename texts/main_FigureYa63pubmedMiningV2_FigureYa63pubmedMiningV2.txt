@@ -1,8 +1,11 @@
 FigureYa63PubmedMiningV2
 FigureYa63PubmedMiningV2
-Haitao Wang, Melvin L.K. Chua; Ying Ge, Yijing
-Chen
-2025-9-20
+Author(s)
+: Haitao Wang, Melvin L.K. Chua; Ying Ge,
+Yijing Chen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

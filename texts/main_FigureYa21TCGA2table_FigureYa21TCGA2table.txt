@@ -1,7 +1,11 @@
 FigureYa21TCGA2table
 FigureYa21TCGA2table
-Guangchuang Yu; Ying Ge, Yijing Chen
-2025-5-20
+Author(s)
+: Guangchuang Yu; Ying Ge, Yijing
+Chen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

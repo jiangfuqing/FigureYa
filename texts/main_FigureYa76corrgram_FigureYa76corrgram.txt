@@ -1,7 +1,10 @@
 FigureYa76corrgram
 FigureYa76corrgram
-Ying Ge, TaojunYe
-2025-5-20
+Author(s)
+: Ying Ge, TaojunYe
+Date
+:
+r Sys.Date()
 需求描述
 用R复现原图的形式。
 Requirement description

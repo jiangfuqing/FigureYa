@@ -1,7 +1,10 @@
 FigureYa59Plus_GEO2DEG
 FigureYa59Plus_GEO2DEG
-Haitao Wang; Ying Ge, Yijing Chen
-2025-9-18
+Author(s)
+: Haitao Wang; Ying Ge, Yijing Chen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

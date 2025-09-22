@@ -1,7 +1,12 @@
 FigureYa163twoVarCor_update
 FigureYa163twoVarCor_update
-Xiaofan Lu
-2025-5-20
+Author(s)
+: Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

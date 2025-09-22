@@ -1,7 +1,10 @@
 FigureYa23count2TPMv2
 FigureYa23count2TPMv2
-Zhougeng Xu; Ying Ge, Yijing Chen
-2025-5-20
+Author(s)
+: Zhougeng Xu; Ying Ge, Yijing Chen
+Date
+:
+r Sys.Date()
 需求描述
 Requirement description
 RNA-seq read count转换成TPM。

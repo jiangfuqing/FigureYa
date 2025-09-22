@@ -1,7 +1,10 @@
 FigureYa10chromosomeV2_update
 FigureYa10chromosomeV2_update
-Zhaodong Hao; Ying Ge, Yijing Chen
-2025-9-12
+Author(s)
+: Zhaodong Hao; Ying Ge, Yijing Chen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

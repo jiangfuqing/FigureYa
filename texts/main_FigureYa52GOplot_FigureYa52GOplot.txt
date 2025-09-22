@@ -1,7 +1,12 @@
 FigureYa52 GOplot
 FigureYa52 GOplot
-Ying Ge, Guangchuang Yu, Taojun Ye
-2025-09-12
+Author(s)
+: Ying Ge, Guangchuang Yu, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

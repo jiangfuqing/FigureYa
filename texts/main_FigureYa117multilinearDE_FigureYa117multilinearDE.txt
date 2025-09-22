@@ -1,7 +1,12 @@
 FigureYa117multilinearDE
 FigureYa117multilinearDE
-Xiaofan Lu, Taojun Ye
-2025-5-20
+Author(s)
+: Xiaofan Lu, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

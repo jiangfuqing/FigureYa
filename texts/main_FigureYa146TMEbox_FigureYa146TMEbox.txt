@@ -1,7 +1,12 @@
 FigureYa146TMEbox
 FigureYa146TMEbox
-Dongqiang Zeng
-2025-5-20
+Author(s)
+: Dongqiang Zeng
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

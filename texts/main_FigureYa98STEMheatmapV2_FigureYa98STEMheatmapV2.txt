@@ -1,7 +1,12 @@
 FigureYa98STEMheatmapV2
 FigureYa98STEMheatmapV2
-Yuhui Li, Xiao Gu, Taojun Ye
-2025-5-20
+Author(s)
+: Yuhui Li, Xiao Gu, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

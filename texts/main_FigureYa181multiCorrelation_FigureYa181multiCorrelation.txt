@@ -1,7 +1,12 @@
 FigureYa181multiCorrelation
 FigureYa181multiCorrelation
-Long Zhao
-2025-5-20
+Author(s)
+: Long Zhao
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

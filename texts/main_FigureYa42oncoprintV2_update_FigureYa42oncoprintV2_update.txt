@@ -1,7 +1,10 @@
 FigureYa42oncoprintV2_update
 FigureYa42oncoprintV2_update
-Ying Ge, Yi Xiong; Yijing Chen
-2025-5-20
+Author(s)
+: Ying Ge, Yi Xiong; Yijing Chen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

@@ -1,7 +1,12 @@
 FigureYa158MutationPattern
 FigureYa158MutationPattern
-Rongfang Shen
-2025-5-20
+Author(s)
+: Rongfang Shen
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
@@ -55,6 +60,15 @@ options(stringsAsFactors = FALSE) #禁止chr转成factor
 Download input files
 用TCGAbiolinks下载突变信息、临床数据 Download mutation information
 and clinical data using TCGAbiolinks
+GDCdownload(query, method = "api", directory = "GDCdata")
+maf_BLCA <- GDCprepare(query, directory = "GDCdata")
+
+#下载一次就好，保存到文件，便于后面加载
+#Download once and save to a file for easy loading later
+save(maf_BLCA, file = "maf_BLCA.RData")
+
+## clinical data 
+blca_clinical <- TCGAquery_subtype(tumor = "blca")
 #非肌层浸润性膀胱癌是指局限于膀胱黏膜层（Tis、Ta）及固有层（T1）
 #Non-muscle invasive bladder cancer refers to cancer confined to the bladder mucosa (Tis, Ta) and lamina propria (T1)
 table(blca_clinical$`AJCC Tumor category`)
@@ -208,27 +222,6 @@ p1 <- ggplot(data = pattern.dat, aes(x = context, y = value,
    ggtitle(paste0("Mutation signatures in ", ncol(nmf_res$contribution),
                   " muscle-invasive TCGA bladder cancers")) + 
   theme(plot.title = element_text(hjust = 0.5, size = rel(1.5)))
-absolute.dat <- contribution.input(contribution = nmf_res$contribution, signatures = nmf_res$signatures, sampleindex = order.sample, signatureindex = c("POLE", "Unknow", "C>T_CpG", "APOBEC2", "APOBEC1"), mode = "absolute")
-
-p2 <- ggplot(absolute.dat, aes(x = factor(Sample), y = Contribution, 
-                               fill = factor(Signature), order = Sample)) + 
-  geom_bar(stat = "identity") + 
-  scale_y_continuous(expand = c(0,0)) + scale_x_discrete(breaks = NULL) +
-  xlab("") + ylab("Number of mutations \n ") + 
-  scale_fill_manual(values = signature.col) + 
-  theme_classic() +
-  theme(legend.position = c(0.95, 0.7)) +
-  theme(legend.background = element_blank()) + theme(legend.key = element_blank()) +
-  guides(fill = guide_legend(title = NULL)) + 
-  ggtitle(paste0("Signature activity across ", ncol(nmf_res$contribution),
-                 " muscle-invasive TCGA bladder cancers")) + 
-            theme(plot.title = element_text(hjust = 0.5, size = rel(1.5)))
-        
-p3 <- ggplot(relative.dat, aes(x = factor(Sample), y = Contribution, fill = factor(Signature), order = Sample)) + geom_bar(stat = "identity", position = "fill") + 
-  scale_y_continuous(expand = c(0,0)) + scale_x_discrete(breaks = NULL) +
-  ylab("Normalized proportion \nof signature") + xlab("") +  
-  scale_fill_manual(values = signature.col) + theme_classic() +
-  theme(legend.position = "none")
 p2p3 <- plot_grid(p2, p3, align = "hv", ncol = 1)
 p1p2p3 <- plot_grid(p1, p2p3, labels = c("A", "B"), align = "hv", ncol = 1, rel_heights = c(3, 2))
 pdf("MutationPatterns.pdf", width = 12, height = 9)

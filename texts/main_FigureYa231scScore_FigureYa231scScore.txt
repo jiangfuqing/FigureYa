@@ -1,7 +1,10 @@
 FigureYa231scScore
 FigureYa231scScore
-Yi Xiong
-2025-5-20
+Author(s)
+: Yi Xiong
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

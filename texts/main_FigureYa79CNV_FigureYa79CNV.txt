@@ -1,11 +1,16 @@
 FigureYa79CNV
 FigureYa79CNV
-Haitao Wang, Taojun Ye
-2025-5-20
+Author(s)
+: Haitao Wang, Taojun Ye
+Reviewer(s)
+: Ying Ge
+Date
+:
+r Sys.Date()
 需求描述
 我要DIY出paper里的这种对比多个subtype的composite copy number
 profiles：
-##Requirement description
+Requirement description
 I want to DIY composite copy number profiles for comparing multiple
 subtypes in the paper:
 出自
@@ -23,26 +28,20 @@ only the images of all samples are available. I want to compare
 different subtypes:
 出自
 https://www.sciencedirect.com/science/article/pii/S2352396418302986?via%3Dihub
-from
+From
 https://www.sciencedirect.com/science/article/pii/S2352396418302986?via%3Dihub
 应用场景
 此处提供的DIY画图方法更灵活，可以画gistic
 score，还可以画percentage/frequency。
 可单独画一个sample，也可以对比多组subtypes。
-##Application scenarios
+Application scenarios
 The DIY drawing method provided here is more flexible, allowing you
 to draw Gistic scores and percentage/frequency.
 You can draw a single sample or compare multiple subtypes.
 环境设置
 使用国内镜像安装包
-##Environment settings
-Use domestic image installation package
-options("repos"= c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
-BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
-#其他物种到这里找包的名字http://bioconductor.org/packages/3.8/data/annotation/
-加载包
-Load Package
+Environment settings
+source("install_dependencies.R")
 # 加载人类基因组数据（hg19版本）
 # Load the human genome data (hg19 version)
 library(BSgenome.Hsapiens.UCSC.hg19)
@@ -58,7 +57,7 @@ options(stringsAsFactors = FALSE)
 score可以用GISTIC 2.0计算（输入segment file）。
 如果你已经算出gistic
 scores，保存为“easy_input_*scores.gistic.txt”，就可以跳过这步，直接进入“准备染色体信息”。
-##Obtaining input files
+Obtaining input files
 Drawing a copy number profile requires a Gistic score and chromosome
 information, where Gistic score can be calculated using GISTIC 2.0
 (input segment file).
@@ -68,7 +67,7 @@ directly enter’ Prepare Chromosome Information ’.
 获得subtype的gistic scores
 下载全部样本的segment file，然后按subtype分开，用GISTIC 2.0计算gistic
 scores，然后用算出的gistic scores来画图。
-###Obtain Gistic Scores for Subtypes
+Obtain Gistic Scores for Subtypes
 Download the segment files for all samples, then separate them by
 subtype, calculate the Gistic scores using GISTIC 2.0, and use the
 calculated Gistic scores to draw a graph.
@@ -80,7 +79,7 @@ firehose
 http://gdac.broadinstitute.org/runs/analyses__2016_01_28/data/ESCA/20160128/gdac.broadinstitute.org_ESCA-TP.CopyNumber_Gistic2.Level_4.2016012800.0.0.tar.gz
 。解压缩，点击nozzle.html，查看其他结果图表和Methods。需要里面的focal_input.seg.txt和scores.gistic（后面直接用它画全部样本的图）两个文件。
 hg38版本（TCGA数据）segment的获取方法见“附一”。
-####Step one, download the segment files for all samples
+Step one, download the segment files for all samples
 focal_input.seg.txt：segment file。 From [firehose]（
 https://gdac.broadinstitute.org/
 ）Download the TCGA
@@ -97,7 +96,7 @@ shown in Appendix 1.
 从TCGA获得亚型的sample
 ID，然后把focal_input.seg.txt拆分成亚型的segment file
 此处模仿例文，根据Histological.Type…Oesophagus和Gastric.classification分为四种subtype。实际操作时可根据每种癌症的具体情况选择合适的列来分亚型做对比。
-####Step 2, split the segment file of the subtype
+Step 2, split the segment file of the subtype
 Obtain the sample ID of the subtype from TCGA, and then split
 focal_input.seg.txt into segment files for the subtype
 Here, imitating the example text, it is divided into four subtypes
@@ -168,7 +167,7 @@ segment file作为GISTIC 2.0的输入，用GISTIC
 easy_input_scores.gistic.txt：所有样品的gistic
 score，跟focal_input.seg.txt位于同一压缩包，原文件名为scores.gistic。
 easy_input_*.scores.gistic.txt：四种亚型的gistic score。
-####Step three, calculate the Gistic score
+Step three, calculate the Gistic score
 **Note: The segment file is used as input for GISTIC 2.0, and the
 method for calculating the GISTIC score using GISTIC 2.0 is shown in
 Appendix 2.
@@ -179,7 +178,7 @@ located in the same compressed file as focal_input.seg.txt, with the
 original file name being scores.gistic. -Easy_input_ *.
 scores.gistic.txt: Gistic scores for four subtypes.
 准备染色体信息
-###Prepare chromosome information
+Prepare chromosome information
 # 创建染色体参考对象的函数
 # Function to create chromosome reference objects
 chrom_extract <- function(BSgenome.hg  = NULL) {
@@ -271,12 +270,12 @@ chrom <- chrom_extract(BSg.obj)  # 提取染色体信息
 分别画全部样本的gistic
 score和percentage/frequency，再画四个subtye对比的gistic
 score和percentage/frequency。
-##Start drawing
+Start drawing
 Draw the Gistic score and percentage/frequency of all samples
 separately, and then draw the Gistic score and percentage/frequency of
 four subties for comparison.
 画全部sample的gistic score
-###Draw the Gistic Score for all samples
+Draw the Gistic Score for all samples
 #pdf("ESCA_copy_number_gistic_score.pdf",12,5)
 # Import gistic2 results read gistic output file
 scores <- read.table("easy_input_scores.gistic.txt", sep="\t",header=T,stringsAsFactors = F)
@@ -322,7 +321,7 @@ col2 <- adjustcolor("midnightblue", alpha.f = .8)
 legend("topleft", c("gain","loss"), cex=0.6, bty="n", fill=c(col1,col2))
 #dev.off()
 画全部样本的percentage/frequency
-###Draw the percentage/frequency of all samples
+Draw the percentage/frequency of all samples
 #pdf("ESCA_copy_number_gistic_score.pdf",12,5)  # 输出PDF（已注释）
 # Output PDF (commented out)
 
@@ -496,7 +495,7 @@ legend(
 #dev.off()  # 关闭PDF设备（已注释）
 # Close PDF device (commented out)
 画四个subtype对比的gistic score
-###Draw a Gistic Score Comparing Four Subtypes
+Draw a Gistic Score Comparing Four Subtypes
 # 创建PDF文件，设置宽度15英寸、高度12英寸
 # Create PDF file with specified width and height
 pdf("cnv.scores.gistic.pdf", 15, 12)
@@ -878,7 +877,7 @@ legend("topleft", c("gain","loss"), cex=0.6, bty="n", fill=c(col1,col2))
 # Close the graphics device to finalize the PDF
 dev.off()
 四种subtype的percentage/frequence
-###Percentage/frequency of four subtypes
+Percentage/frequency of four subtypes
 # 创建PDF文件，设置宽度15英寸、高度12英寸
 # Create PDF file with specified width and height
 pdf("cnv.frequence.pdf", 15, 12)
@@ -1261,4 +1260,5 @@ refgenefile=`pwd`/refgenefiles/hg19.UCSC.add_miR.140312.refgene.mat
 ## call script that sets MCR environment and calls GISTIC executable
 
 ./gistic2 -b $basedir -seg $segfile -refgene $refgenefile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.95 -armpeel 1 -savegene 1 -gcm extreme
+Session Info
 sessionInfo()

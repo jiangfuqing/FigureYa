@@ -1,7 +1,12 @@
 FigureYa174squareCross
 FigureYa174squareCross
-Zongcheng Li
-2025-9-18
+Author(s)
+: Zongcheng Li
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

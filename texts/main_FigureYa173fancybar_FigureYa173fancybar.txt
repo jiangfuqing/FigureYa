@@ -1,7 +1,12 @@
 FigureYa173fancybar
 FigureYa173fancybar
-Xiaofan Lu
-2025-5-20
+Author(s)
+: Xiaofan Lu
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 需求描述
 Requirement
 我想实现这篇文章的Figure

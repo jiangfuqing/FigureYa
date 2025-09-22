@@ -1,7 +1,10 @@
 FigureYa210survivalScape
 FigureYa210survivalScape
-Xiaofan Lu
-2025-5-20
+Author(s)
+: Xiaofan Lu
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:

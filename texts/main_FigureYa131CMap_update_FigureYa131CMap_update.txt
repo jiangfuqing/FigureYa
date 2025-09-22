@@ -1,7 +1,12 @@
 FigureYa131CMap_update
 FigureYa131CMap_update
-Rongfang Shen
-2025-5-20
+Author(s)
+: Rongfang Shen
+Reviewer(s)
+: Ying Ge, Junyi Shen
+Date
+:
+r Sys.Date()
 Academic Citation
 If you use this code in your work or research, we kindly request that
 you cite our publication:
